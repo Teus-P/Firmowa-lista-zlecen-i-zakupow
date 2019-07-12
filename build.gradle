@@ -26,6 +26,17 @@ dependencies {
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
+
+    // Use MySQL Connector/J » 5.1.13
+    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.13'
+
+
+    // Use Hibernate Core Relocation » 5.4.2.Final
+    // https://mvnrepository.com/artifact/org.hibernate/hibernate-core
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.2.Final'
+
+
 }
 
 // Define the main class for the application
