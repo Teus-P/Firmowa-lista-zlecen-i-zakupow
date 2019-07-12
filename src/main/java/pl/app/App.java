@@ -4,13 +4,12 @@
 package pl.app;
 
 public class App {
-    String greeting = "maslo";
 
-    public static void main(String[] args) {
-        System.out.println("chuj XD DDDDDDD");
+    public String getGreeting() {
+        return "Hello world.";
     }
 
-    public String getGreeting(){
-        return greeting;
+    public static void main(String[] args) {
+        System.out.println(new App().getGreeting());
     }
 }
