@@ -12,6 +12,7 @@ plugins {
 
     // Apply the application plugin to add support for building an application
     id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.7'
 }
 
 repositories {
@@ -37,6 +38,16 @@ dependencies {
     compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.2.Final'
 
 
+    compile group: 'org.openjfx', name: 'javafx-controls', version: '12'
+    compile group: 'org.openjfx', name: 'javafx-fxml', version: '12'
+    compile group: 'org.openjfx', name: 'javafx-graphics', version: '12'
+    compile group: 'org.openjfx', name: 'javafx-base', version: '12'
+
+}
+
+javafx {
+    version = "12"
+    modules = [ 'javafx.controls', 'javafx.fxml','javafx.graphics','javafx.base' ]
 }
 
 // Define the main class for the application
