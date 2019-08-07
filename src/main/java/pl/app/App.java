@@ -8,12 +8,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import pl.app.entity.Tabela;
+import pl.app.entity.manager.TabelaManager;
 
 import java.io.IOException;
 
 public class App extends Application {
 
     public static void main(String[] args) {
+
+        Tabela obj = new Tabela("testyTesty");
+        TabelaManager manager = new TabelaManager();
+        manager.addItem(obj);
+
         launch(args);
     }
 
