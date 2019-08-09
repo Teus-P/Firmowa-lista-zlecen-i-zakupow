@@ -128,6 +128,7 @@ gradle-app.setting
 ### Gradle Patch ###
 **/build/
 
+.idea/sqldialects.xml
 
 
 # End of https://www.gitignore.io/api/java,gradle,intellij
