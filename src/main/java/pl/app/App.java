@@ -8,19 +8,23 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import pl.app.entity.Tabela;
-import pl.app.entity.manager.TabelaManager;
+import pl.app.jpa.dao.SystemConfigurationDAO;
+import pl.app.jpa.dao.UserAccountDAO;
+import pl.app.jpa.model.SystemConfiguration;
+import pl.app.jpa.model.UserAccount;
+import pl.app.jpa.util.HibernateUtil;
+
 
 import java.io.IOException;
+import java.util.Date;
 
 public class App extends Application {
 
     public static void main(String[] args) {
 
-        Tabela obj = new Tabela("testyTesty");
-        TabelaManager manager = new TabelaManager();
-        manager.addItem(obj);
+        HibernateUtil.getSession();
 
+        HibernateUtil.closeSession();
         launch(args);
     }
 

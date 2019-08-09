@@ -1,0 +1,36 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.jdbc.time_zone">UTC</property>
+        <property name="hibernate.connection.url">
+            jdbc:mysql://localhost:3306/praca_inz_db?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC
+        </property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="current_session_context_class">thread</property>
+        <property name="connection.pool_size">10</property>
+        <property name="hibernate.connection.password">123qweasdzxc</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <!-- Mapping class -->
+
+        <mapping class="pl.app.jpa.model.SystemConfiguration"/>
+        <mapping class="pl.app.jpa.model.UserAccountType"/>
+        <mapping class="pl.app.jpa.model.UserAccount"/>
+        <mapping class="pl.app.jpa.model.ProductProposal"/>
+        <mapping class="pl.app.jpa.model.Categories"/>
+        <mapping class="pl.app.jpa.model.Implementers"/>
+        <mapping class="pl.app.jpa.model.ShoppingListStatus"/>
+        <mapping class="pl.app.jpa.model.ShoppingList"/>
+        <mapping class="pl.app.jpa.model.UserOrder"/>
+        <mapping class="pl.app.jpa.model.OrderStatus"/>
+        <mapping class="pl.app.jpa.model.Unit"/>
+        <mapping class="pl.app.jpa.model.Product"/>
+        <mapping class="pl.app.jpa.model.OrderProduct"/>
+
+    </session-factory>
+</hibernate-configuration>
