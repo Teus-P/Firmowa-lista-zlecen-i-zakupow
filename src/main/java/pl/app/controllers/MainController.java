@@ -1,4 +1,23 @@
 package pl.app.controllers;
 
-public class MainController {
+import javafx.fxml.Initializable;
+import pl.app.screenManager.ControlledScreen;
+import pl.app.screenManager.ScreenController;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class MainController implements Initializable, ControlledScreen {
+
+    private ScreenController screenController;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
+
+    @Override
+    public void setScreenParent(ScreenController screenPage) {
+        screenController = screenPage;
+    }
 }
