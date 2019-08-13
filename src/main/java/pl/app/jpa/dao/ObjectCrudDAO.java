@@ -14,7 +14,7 @@ import pl.app.jpa.util.HibernateUtil;
  */
 public class ObjectCrudDAO {
 
-    public static Integer addObject(Object object) {
+    public Integer addObject(Object object) {
         Session session = HibernateUtil.getSession();
         Transaction tx = null;
         Integer objectId = null;
@@ -33,5 +33,7 @@ public class ObjectCrudDAO {
         }
         return objectId;
     }
+    
+    
 
 }

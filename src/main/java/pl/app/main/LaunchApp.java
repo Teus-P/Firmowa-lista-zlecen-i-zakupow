@@ -8,23 +8,26 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import pl.app.jpa.dao.SystemConfigurationDAO;
 import pl.app.jpa.dao.UserAccountDAO;
-import pl.app.jpa.model.SystemConfiguration;
 import pl.app.jpa.model.UserAccount;
-import pl.app.jpa.util.HibernateUtil;
 
 
 import java.io.IOException;
-import java.util.Date;
 
-public class App extends Application {
+public class LaunchApp extends Application {
 
     public static void main(String[] args) {
 
-        HibernateUtil.getSession();
 
-        HibernateUtil.closeSession();
+        UserAccount userAccount1 = new UserAccount("test", "test", "test", "test", 12345678908L, "dsada@example.com", "+48000000000");
+        UserAccount userAccount2 = new UserAccount("test", "test", "test", "test", 12345678902L, "dsada@example.com", "+48000000000");
+
+        UserAccountDAO userAccountDAO = new UserAccountDAO();
+
+
+        userAccountDAO.addObject(userAccount1);
+        userAccountDAO.addObject(userAccount2);
+
         launch(args);
     }
 
