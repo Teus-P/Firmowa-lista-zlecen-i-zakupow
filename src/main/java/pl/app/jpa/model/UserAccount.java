@@ -1,5 +1,7 @@
 package pl.app.jpa.model;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -10,8 +12,10 @@ import java.util.Set;
  */
 @Entity(name = "UserAccount")
 @Table(name = "userAccount",
-        schema = "praca_inz_db",
         uniqueConstraints = {@UniqueConstraint(columnNames = {"login", "pesel"})})
+@NamedQueries(value = {
+        @NamedQuery(name = "UserAccount.getAll", query = "SELECT u FROM UserAccount u")
+})
 public class UserAccount implements Serializable {
 
     /* ******************************************************* *

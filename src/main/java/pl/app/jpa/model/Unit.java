@@ -9,7 +9,7 @@ import java.util.Set;
  * Mapowanie obiektowo-relacyjne między klasą Unit a tabelą unit
  */
 @Entity(name = "Unit")
-@Table(name = "unit", schema = "praca_inz_db")
+@Table(name = "unit")
 public class Unit implements Serializable {
 
     /* ******************************************************* *

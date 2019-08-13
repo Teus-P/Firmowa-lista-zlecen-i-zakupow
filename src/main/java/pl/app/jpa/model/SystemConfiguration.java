@@ -8,7 +8,7 @@ import java.time.LocalTime;
  * Mapowanie obiektowo-relacyjne między klasą SystemConfiguration a tabelą systemConfiguration
  */
 @Entity(name = "SystemConfiguration")
-@Table(name = "systemConfiguration", schema = "praca_inz_db")
+@Table(name = "systemConfiguration")
 public class SystemConfiguration implements Serializable {
 
     /* ******************************************************* *

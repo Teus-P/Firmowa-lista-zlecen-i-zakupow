@@ -9,7 +9,7 @@ import java.util.Set;
  * Mapowanie obiektowo-relacyjne między klasą Product a tabelą product
  */
 @Entity(name = "Product")
-@Table(name = "product", schema = "praca_inz_db")
+@Table(name = "product")
 public class Product implements Serializable {
 
     /* ******************************************************* *

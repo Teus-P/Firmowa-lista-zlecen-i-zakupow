@@ -9,7 +9,7 @@ import java.util.Set;
  * Mapowanie obiektowo-relacyjne między klasą OrderStatus a tabelą orderStatus
  */
 @Entity(name = "OrderStatus")
-@Table(name = "orderStatus", schema = "praca_inz_db")
+@Table(name = "orderStatus")
 public class OrderStatus implements Serializable {
 
     /* ******************************************************* *

@@ -9,7 +9,7 @@ import java.util.Set;
  * Mapowanie obiektowo-relacyjne między klasą UserAccountType a tabelą userAccountType
  */
 @Entity(name = "UserAccountType")
-@Table(name = "userAccountType", schema = "praca_inz_db")
+@Table(name = "userAccountType")
 public class UserAccountType implements Serializable {
 
     /* ******************************************************* *

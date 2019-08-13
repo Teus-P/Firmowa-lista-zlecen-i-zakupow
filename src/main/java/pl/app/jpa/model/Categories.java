@@ -9,7 +9,7 @@ import java.util.Set;
  * Mapowanie obiektowo-relacyjne między klasą Categories a tabelą categories
  */
 @Entity(name = "Categories")
-@Table(name = "categories", schema = "praca_inz_db")
+@Table(name = "categories")
 public class Categories implements Serializable {
 
     /* ******************************************************* *

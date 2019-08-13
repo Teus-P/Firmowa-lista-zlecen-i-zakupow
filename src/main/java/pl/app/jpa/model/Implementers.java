@@ -9,7 +9,7 @@ import java.util.Set;
  * Mapowanie obiektowo-relacyjne między klasą Implementers a tabelą implementers
  */
 @Entity(name = "Implementers")
-@Table(name = "implementers", schema = "praca_inz_db")
+@Table(name = "implementers")
 public class Implementers implements Serializable {
 
     /* ******************************************************* *

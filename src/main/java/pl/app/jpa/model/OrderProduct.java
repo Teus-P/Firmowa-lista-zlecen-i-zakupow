@@ -7,7 +7,7 @@ import java.io.Serializable;
  * Mapowanie obiektowo-relacyjne między klasą OrderProduct a tabelą orderProduct
  */
 @Entity(name = "OrderProduct")
-@Table(name = "orderProduct", schema = "praca_inz_db")
+@Table(name = "orderProduct")
 public class OrderProduct implements Serializable {
 
     /* ******************************************************* *

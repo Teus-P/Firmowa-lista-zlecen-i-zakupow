@@ -9,7 +9,7 @@ import java.util.Set;
  * Mapowanie obiektowo-relacyjne między klasą ShoppingListStatus a tabelą shoppingListStatus
  */
 @Entity(name = "ShoppingListStatus")
-@Table(name = "shoppingListStatus", schema = "praca_inz_db")
+@Table(name = "shoppingListStatus")
 public class ShoppingListStatus implements Serializable {
 
     /* ******************************************************* *
