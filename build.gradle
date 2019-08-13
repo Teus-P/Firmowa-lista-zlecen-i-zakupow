@@ -32,22 +32,22 @@ dependencies {
     compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.15'
 
 
-
     // Use Hibernate Core Relocation » 5.4.2.Final
     // https://mvnrepository.com/artifact/org.hibernate/hibernate-core
     compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.2.Final'
 
+    // https://mvnrepository.com/artifact/com.h2database/h2
+    testCompile group: 'com.h2database', name: 'h2', version: '1.4.197'
 
     compile group: 'org.openjfx', name: 'javafx-controls', version: '12'
     compile group: 'org.openjfx', name: 'javafx-fxml', version: '12'
     compile group: 'org.openjfx', name: 'javafx-graphics', version: '12'
     compile group: 'org.openjfx', name: 'javafx-base', version: '12'
-
 }
 
 javafx {
     version = "12"
-    modules = [ 'javafx.controls', 'javafx.fxml','javafx.graphics','javafx.base' ]
+    modules = ['javafx.controls', 'javafx.fxml', 'javafx.graphics', 'javafx.base']
 }
 
 // Define the main class for the application
