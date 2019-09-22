@@ -1,15 +1,22 @@
 package pl.app.controllers;
 
 import javafx.fxml.Initializable;
+import pl.app.core.LaunchApp;
 import pl.app.utils.screenManager.ControlledScreen;
 import pl.app.utils.screenManager.ScreenController;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MainController implements Initializable, ControlledScreen {
+public class MainPageController implements Initializable, ControlledScreen {
 
     private ScreenController screenController;
+
+    public MainPageController() {
+
+    }
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -18,6 +25,6 @@ public class MainController implements Initializable, ControlledScreen {
 
     @Override
     public void setScreenParent(ScreenController screenPage) {
-        screenController = screenPage;
+        this.screenController = screenPage;
     }
 }

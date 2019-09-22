@@ -58,20 +58,23 @@ public class ScreenController extends Parent {
         }
     }
 
-    private void setScreen(Node screen/*double width, double height, String title*/) {
+    private void setScreen(Node screen/*, String title*/) {
 
-        Node screenToRemove;
+        Node screenToRemove = null;
 
         if (screen != null) {
 
-            // primaryStageOperation(width, height, title);
+            // primaryStageOperation(title);
+
 
             if (!getChildren().isEmpty()) {
                 getChildren().add(0, screen);
                 screenToRemove = getChildren().get(1);
                 getChildren().remove(screenToRemove);
+                LaunchApp.getPrimaryStage().sizeToScene();
             } else {
                 getChildren().add(screen);
+                LaunchApp.getPrimaryStage().sizeToScene();
             }
         } else {
             throw new RuntimeException("** Something gone wrong in set screen **");
@@ -84,11 +87,16 @@ public class ScreenController extends Parent {
     }
 
 
-    private void primaryStageOperation(double width, double height, String title) {
-        LaunchApp.getPrimaryStage().setWidth(width);
-        LaunchApp.getPrimaryStage().setHeight(height);
+    private void primaryStageOperation(String title) {
         LaunchApp.getPrimaryStage().setTitle(title);
 
     }
 
+    public String getFxmlPath() {
+        return fxmlPath;
+    }
+
+    public void setFxmlPath(String fxmlPath) {
+        this.fxmlPath = fxmlPath;
+    }
 }

@@ -4,21 +4,18 @@ package pl.app.utils.screenManager;
  * enum ze sciezka do fxmla , rozmiary okna , tytul okna
  */
 public enum ScreensProperty {
-    HOME_SCREEN("homeScreen", "/fxml/main.fxml", 800, 600, "HOME"),
-    LOGIN_PAGE("loginPage", "view/LoginPage.fxml",800,600,"LOGOWANIE");
+    MAIN_PAGE("mainPage", "view/MainPage.fxml", "Main page"),
+    LOGIN_PAGE("loginPage", "view/LoginPage.fxml", "LOGOWANIE");
 
     private String screenId;
     private String screenPath;
-    private double width;
-    private double height;
+
     private String title;
 
 
-    ScreensProperty(String screenId, String screenPath, double width, double height, String title) {
+    ScreensProperty(String screenId, String screenPath, String title) {
         this.screenId = screenId;
         this.screenPath = screenPath;
-        this.width = width;
-        this.height = height;
         this.title = title;
     }
 
@@ -30,13 +27,6 @@ public enum ScreensProperty {
         return screenPath;
     }
 
-    public double getWidth() {
-        return width;
-    }
-
-    public double getHeight() {
-        return height;
-    }
 
     public String getTitle() {
         return title;
