@@ -1,8 +1,8 @@
 package pl.app.controllers;
 
 import javafx.fxml.Initializable;
-import pl.app.screenManager.ControlledScreen;
-import pl.app.screenManager.ScreenController;
+import pl.app.utils.screenManager.ControlledScreen;
+import pl.app.utils.screenManager.ScreenController;
 
 import java.net.URL;
 import java.util.ResourceBundle;

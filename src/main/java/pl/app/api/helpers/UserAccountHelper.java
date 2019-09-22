@@ -16,37 +16,22 @@ public class UserAccountHelper {
         this.api = api;
     }
 
-    public List<UserAccountModel> getAllUsers() throws IOException {
+
+
+
+    public List<UserAccountModel> getAllUsers() {
+
+        List<UserAccountModel> userAccountList = null;
         Call<List<UserAccountModel>> call = api.getUsers();
 
-        return call.execute().body();
+        try {
+            userAccountList = call.execute().body();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return userAccountList;
     }
 
-
 }
-
-
-/*public class UserAccountHelper implements UserAccountInterfaceAsyncExample
-
-    //example async call execute
-
-    @Override
-    public Call<List<UserAccountModel>> getAllUsers(OnResponse onResponse) {
-        Call<List<UserAccountModel>> call = api.getUsers();
-        call.enqueue(new Callback<List<UserAccountModel>>() {
-            @Override
-            public void onResponse(Call<List<UserAccountModel>> call, Response<List<UserAccountModel>> response) {
-                if (response.isSuccessful()) {
-                    onResponse.userAccountListRetrived(response.body());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<UserAccountModel>> call, Throwable throwable) {
-                    throwable.printStackTrace();
-            }
-        });
-
-        return call;
-
-    }*/

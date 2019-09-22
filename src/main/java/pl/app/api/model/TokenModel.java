@@ -17,10 +17,10 @@ public class TokenModel {
     @SerializedName("token")
     private String token;
 
+
     public TokenModel(String login, String password) {
         this.login = login;
         this.password = password;
-        this.token = token;
     }
 
     public String getToken() {

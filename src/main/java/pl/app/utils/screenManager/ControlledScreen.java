@@ -1,8 +1,8 @@
-package pl.app.screenManager;
+package pl.app.utils.screenManager;
 
 public interface ControlledScreen {
 
-    //metoda "wstrzykujaca Parenta"
+    //Parent injection
     void setScreenParent(ScreenController screenPage);
 
 }

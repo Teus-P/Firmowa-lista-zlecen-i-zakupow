@@ -1,7 +1,9 @@
 package pl.app.api;
 
+import com.google.gson.internal.GsonBuildConfig;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
+import org.hibernate.annotations.common.util.impl.LoggerFactory;
 import pl.app.api.interceptors.DynamicHostInterceptor;
 import pl.app.api.interceptors.HeaderInterceptor;
 import retrofit2.Retrofit;

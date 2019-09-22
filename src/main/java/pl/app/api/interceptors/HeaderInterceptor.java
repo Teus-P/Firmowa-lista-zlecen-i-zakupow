@@ -19,6 +19,8 @@ public class HeaderInterceptor implements Interceptor {
                     .build();
             System.out.println("TOKEN ISN'T NULL");
             System.out.println("TOKEN " + token);
+        }else{
+            System.out.println("TOKEN IS NULL");
         }
         return chain.proceed(request);
     }

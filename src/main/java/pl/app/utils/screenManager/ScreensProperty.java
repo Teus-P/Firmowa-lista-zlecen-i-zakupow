@@ -1,10 +1,11 @@
-package pl.app.screenManager;
+package pl.app.utils.screenManager;
 
 /**
  * enum ze sciezka do fxmla , rozmiary okna , tytul okna
  */
 public enum ScreensProperty {
-    HOME_SCREEN("homeScreen", "/fxml/main.fxml", 800, 600, "HOME");
+    HOME_SCREEN("homeScreen", "/fxml/main.fxml", 800, 600, "HOME"),
+    LOGIN_PAGE("loginPage", "view/LoginPage.fxml",800,600,"LOGOWANIE");
 
     private String screenId;
     private String screenPath;
