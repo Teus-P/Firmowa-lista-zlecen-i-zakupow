@@ -1,6 +1,7 @@
 # Firmowa-lista-zlecen-i-zakupow
 
-aplikacja kompatybilna z openJDK 11, openJFX 11
+Aplikacja kompatybilna z openJDK 11, openJFX 11
+dodatkowe biblioteki Jfoenix
 
 openJDK 11 https://jdk.java.net/java-se-ri/11
 
@@ -17,10 +18,12 @@ File -> Project Structure -> Project SDK -> wybieramy java 11
 
 3.Uruchomienie aplikacji:
 
-Run -> Edit Configurations -> Klikamy na górze w plusa -> Wybieramy Gradle -> W gradle project wybieramy projekt -> 
-W tasks wpisujemy: run -> klikamy OK :)
+Run -> Edit Configurations -> Klikamy na górze w plusa -> Wybieramy Gradle -> W "Gradle project" wybieramy projekt do uruchomienia -> 
+W "Tasks" wpisujemy: run -> klikamy OK :)
 
-Po tych ustawieniach aplikacja odpala się za pomocą gradle i nie ma potrzeby ustawiać VM options ani dodawać javy fx z global librares do projektu
+Po tych ustawieniach aplikacja odpala się za pomocą gradle i nie ma potrzeby ustawiać VM options ani dodawać javy fx z global librares do projektu.
+
+PS: wbudowany scenebuilder nie widzi bibliotek JFoenixa i trzeba wszystko robić za pomocą open in scenebuilder
 
 ******************************************************************************
 
