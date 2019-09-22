@@ -7,26 +7,26 @@ openJDK 11 https://jdk.java.net/java-se-ri/11
 
 Konfiguracja intelliJ:
 
-1.Import projektu:
+1. Import projektu:
 
 Przy imporcie projektu wybieramy openJDK 11 dla JVM Gradle
 
-2.Ustawienie JDK dla projektu
+2. stawienie JDK dla projektu
 
 File -> Project Structure -> Project SDK -> wybieramy java 11
                           -> Project language level: 11
 
-3.Uruchomienie aplikacji:
+3. Uruchomienie aplikacji:
 
 Run -> Edit Configurations -> Klikamy na górze w plusa -> Wybieramy Gradle -> W "Gradle project" wybieramy projekt do uruchomienia -> 
 W "Tasks" wpisujemy: run -> klikamy OK :)
-
-Po tych ustawieniach aplikacja odpala się za pomocą gradle i nie ma potrzeby ustawiać VM options ani dodawać javy fx z global librares do projektu.
 
 4. Enkodowanie plików properites
 Wywalało błędy przy polskich znakach więc trzeba ustawić domyśle kodowanie dla plików 
 
 File -> Setting -> Editor -> File Encodings -> Na dole: Properties Files: UTF-8
+
+Po tych ustawieniach aplikacja odpala się za pomocą gradle i nie ma potrzeby ustawiać VM options ani dodawać javy fx z global librares do projektu.
 
 PS: Wbudowany scenebuilder w IntelliJ'u czasami nie widzi niektórych bibliotek JFoenixa więc lepiej wszystko robić oddzielnie
 
