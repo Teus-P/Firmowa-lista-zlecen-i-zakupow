@@ -4,10 +4,10 @@ import com.google.common.hash.Hashing;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import pl.app.api.RestClient;
 import pl.app.api.helpers.TokenHelper;
 import pl.app.api.model.TokenModel;
-import pl.app.core.LaunchApp;
 import pl.app.utils.screenManager.ControlledScreen;
 import pl.app.utils.screenManager.ScreenController;
 import pl.app.utils.screenManager.ScreensProperty;
@@ -24,6 +24,8 @@ public class LoginPageController implements ControlledScreen, Initializable {
     private TokenModel tokenModel;
     private String userLogin;
     private String userPassword;
+    private ResourceBundle stringResources;
+    private Alert loginAlert;
 
 
     @FXML
@@ -35,6 +37,7 @@ public class LoginPageController implements ControlledScreen, Initializable {
 
     public LoginPageController() {
         tokenHelper = new TokenHelper(RestClient.getApi());
+        loginAlert = new Alert(Alert.AlertType.ERROR);
     }
 
     @Override
@@ -44,7 +47,8 @@ public class LoginPageController implements ControlledScreen, Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        stringResources = resources;
+        setLoginAlertContent();
     }
 
     @FXML
@@ -56,15 +60,27 @@ public class LoginPageController implements ControlledScreen, Initializable {
         if (!userLogin.equals("") && !userPassword.equals("")) {
 
             tokenModel = tokenHelper.getToken(loginTextField.getText(), hashPassword(userPassword));
-            System.out.println("LOGIN TOKEN " + tokenModel.getToken());
-            RestClient.setToken(tokenModel.getToken());
 
-            screenController.setFxmlPath(ScreensProperty.MAIN_PAGE.getScreenPath());
-            screenController.showScreen();
+            if (tokenModel.getToken() != null) {
+                System.out.println("LOGIN TOKEN " + tokenModel.getToken());
+                RestClient.setToken(tokenModel.getToken());
+                screenController.setFxmlPath(ScreensProperty.MAIN_PAGE.getScreenPath());
+                screenController.showScreen();
+
+            } else
+                loginAlert.showAndWait();
+
+
         }
     }
 
     private String hashPassword(String password) {
         return Hashing.sha256().hashString(password, StandardCharsets.UTF_8).toString();
+    }
+
+    private void setLoginAlertContent() {
+        loginAlert.setTitle(stringResources.getString("loginAlertTitle"));
+        loginAlert.setHeaderText(stringResources.getString("loginAlertHeaderText"));
+        loginAlert.setContentText(stringResources.getString("loginAlertContentText"));
     }
 }

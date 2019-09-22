@@ -4,13 +4,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import pl.app.core.LaunchApp;
+import pl.app.utils.Utf8ResourceBundleControl;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class ScreenController extends Parent {
 
     private String fxmlPath;
+
+    private static final Locale POLISH_LOCALE = new Locale("pl", "PL");
 
 
     public ScreenController(String fxmlPath) {
@@ -37,7 +42,25 @@ public class ScreenController extends Parent {
 
     private FXMLLoader fxmlLoader() {
 
-        return new FXMLLoader(getFxmlUrl());
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        ResourceBundle resourceBundle = getLanguageBundleResources(POLISH_LOCALE);
+
+        fxmlLoader.setLocation(getFxmlUrl());
+        fxmlLoader.setResources(resourceBundle);
+        //fxmlLoader.setResources(ResourceBundle.getBundle("bundles/language_pl_PL", new Locale("pl", "PL")));
+
+        return fxmlLoader;
+    }
+
+    private ResourceBundle getLanguageBundleResources(Locale locale) {
+        ResourceBundle resourceBundle = null;
+        Utf8ResourceBundleControl resourceBundleControl = new Utf8ResourceBundleControl();
+        try {
+            resourceBundle = resourceBundleControl.newBundle("bundles/language", locale, "properties", getClass().getClassLoader(), true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return resourceBundle;
     }
 
 

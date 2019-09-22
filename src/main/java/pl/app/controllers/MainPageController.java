@@ -11,16 +11,16 @@ import java.util.ResourceBundle;
 public class MainPageController implements Initializable, ControlledScreen {
 
     private ScreenController screenController;
+    private ResourceBundle bundle;
 
     public MainPageController() {
 
     }
 
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        bundle = resources;
     }
 
     @Override
