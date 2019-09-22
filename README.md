@@ -1,10 +1,10 @@
 # Firmowa-lista-zlecen-i-zakupow
 
-aplikacja kompatybilna z openJDK 11, openjJFX 11
+aplikacja kompatybilna z openJDK 11, openJFX 11
 
 openJDK 11 https://jdk.java.net/java-se-ri/11
 
-Konfiguracja:
+Konfiguracja intelliJ:
 
 1.Import projektu:
 
@@ -17,11 +17,12 @@ File -> Project Structure -> Project SDK -> wybieramy java 11
 
 3.Uruchomienie aplikacji:
 
-W intellij:
-
 Run -> Edit Configurations -> Klikamy na górze w plusa -> Wybieramy Gradle -> W gradle project wybieramy projekt -> 
 W tasks wpisujemy: run -> klikamy OK :)
 
+Po tych ustawieniach aplikacja odpala się za pomocą gradle i nie ma potrzeby ustawiać VM options ani dodawać javy fx z global librares do projektu
+
+******************************************************************************
 
 RESTfull client
 Integracja z api
