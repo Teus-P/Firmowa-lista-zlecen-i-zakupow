@@ -1,6 +1,21 @@
 # Firmowa-lista-zlecen-i-zakupow
 
-Uruchomienie aplikacji:
+aplikacja kompatybilna z openJDK 11, openjJFX 11
+
+openJDK 11 https://jdk.java.net/java-se-ri/11
+
+Konfiguracja:
+
+1.Import projektu:
+
+Przy imporcie projektu wybieramy openJDK 11 dla JVM Gradle
+
+2.Ustawienie JDK dla projektu
+
+File -> Project Structure -> Project SDK -> wybieramy java 11
+                          -> Project language level: 11
+
+3.Uruchomienie aplikacji:
 
 W intellij:
 
