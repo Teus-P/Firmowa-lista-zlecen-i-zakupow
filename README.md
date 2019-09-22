@@ -23,7 +23,7 @@ W "Tasks" wpisujemy: run -> klikamy OK :)
 
 Po tych ustawieniach aplikacja odpala się za pomocą gradle i nie ma potrzeby ustawiać VM options ani dodawać javy fx z global librares do projektu.
 
-PS: wbudowany scenebuilder nie widzi bibliotek JFoenixa i trzeba wszystko robić za pomocą open in scenebuilder
+PS: Wbudowany scenebuilder w IntelliJ'u czasami nie widzi niektórych bibliotek JFoenixa więc lepiej wszystko robić oddzielnie
 
 ******************************************************************************
 
