@@ -1,4 +1,4 @@
-# Firmowa-lista-zlecen-i-zakupow
+# Firmowa-lista-zlecen-i-zakupow - restfull javafx client
 
 Aplikacja kompatybilna z openJDK 11, openJFX 11
 dodatkowe biblioteki Jfoenix
