@@ -5,45 +5,29 @@ import com.google.gson.annotations.SerializedName;
 
 public class TokenModel {
 
+    @SerializedName("access_token")
     @Expose
-    @SerializedName("login")
-    private String login;
+    private String accessToken;
 
+    @SerializedName("refresh_token")
     @Expose
-    @SerializedName("password")
-    private String password;
-
-    @Expose
-    @SerializedName("token")
-    private String token;
+    private String refreshToken;
 
 
-    public TokenModel(String login, String password) {
-        this.login = login;
-        this.password = password;
+    public String getAccessToken() {
+        return accessToken;
     }
 
-    public String getToken() {
-        return token;
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public String getRefreshToken() {
+        return refreshToken;
     }
 
-    public String getLogin() {
-        return login;
+    public void setRefreshToken(String refreshToken) {
+        this.refreshToken = refreshToken;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

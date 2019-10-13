@@ -30,22 +30,12 @@ repositories {
 dependencies {
     // This dependency is found on compile classpath of this component and consumers.
     implementation 'com.google.guava:guava:27.0.1-jre'
-
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
-
     // https://mvnrepository.com/artifact/mysql/mysql-connector-java
     compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.15'
-
-
-    // Use Hibernate Core Relocation » 5.4.2.Final
-    // https://mvnrepository.com/artifact/org.hibernate/hibernate-core
-    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.2.Final'
-
     // https://mvnrepository.com/artifact/com.h2database/h2
     testCompile group: 'com.h2database', name: 'h2', version: '1.4.197'
-
-
     // https://mvnrepository.com/artifact/com.squareup.retrofit2/converter-gson
     compile group: 'com.squareup.retrofit2', name: 'converter-gson', version: '2.6.1'
     // https://mvnrepository.com/artifact/com.squareup.okhttp3/logging-interceptor
@@ -58,8 +48,6 @@ dependencies {
     compile group: 'com.squareup.retrofit2', name: 'retrofit', version: '2.6.1'
     // https://mvnrepository.com/artifact/com.jfoenix/jfoenix
     compile group: 'com.jfoenix', name: 'jfoenix', version: '9.0.8'
-
-
 }
 
 

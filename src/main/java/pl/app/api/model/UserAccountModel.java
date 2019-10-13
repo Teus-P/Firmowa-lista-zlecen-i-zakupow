@@ -10,10 +10,6 @@ public class UserAccountModel {
     private String username;
 
     @Expose
-    @SerializedName("password")
-    private String password;
-
-    @Expose
     @SerializedName("firstName")
     private String firstName;
 
@@ -41,13 +37,6 @@ public class UserAccountModel {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public String getFirstName() {
         return firstName;

@@ -1,7 +1,6 @@
 package pl.app.controllers;
 
 import javafx.fxml.Initializable;
-import pl.app.core.LaunchApp;
 import pl.app.utils.screenManager.ControlledScreen;
 import pl.app.utils.screenManager.ScreenController;
 
@@ -11,7 +10,7 @@ import java.util.ResourceBundle;
 public class MainPageController implements Initializable, ControlledScreen {
 
     private ScreenController screenController;
-    private ResourceBundle bundle;
+    private ResourceBundle stringResources;
 
     public MainPageController() {
 
@@ -20,7 +19,7 @@ public class MainPageController implements Initializable, ControlledScreen {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        bundle = resources;
+        this.stringResources = resources;
     }
 
     @Override
