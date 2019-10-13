@@ -11,7 +11,7 @@ Konfiguracja intelliJ:
 
 Przy imporcie projektu wybieramy openJDK 11 dla JVM Gradle
 
-2. stawienie JDK dla projektu
+2. ustawienie JDK dla projektu
 
 File -> Project Structure -> Project SDK -> wybieramy java 11
                           -> Project language level: 11
