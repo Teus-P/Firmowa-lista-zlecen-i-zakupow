@@ -1,4 +1,5 @@
 # Firmowa-lista-zlecen-i-zakupow - restfull javafx client
+https://trello.com/b/wM4onKKv/flziz-client
 
 Aplikacja kompatybilna z openJDK 11, openJFX 11
 dodatkowe biblioteki Jfoenix
