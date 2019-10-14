@@ -4,7 +4,7 @@ package pl.app.utils.screenManager;
  * enum ze sciezka do fxmla , rozmiary okna , tytul okna
  */
 public enum ScreensProperty {
-    MAIN_PAGE("mainPage", "view/MainPage.fxml", "Main page"),
+    MAIN_PAGE("mainPage", "view/MainPanel.fxml", "Main page"),
     LOGIN_PAGE("loginPage", "view/LoginPage.fxml", "LOGOWANIE");
 
     private String screenId;
