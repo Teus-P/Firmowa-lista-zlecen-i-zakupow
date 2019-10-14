@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="179.0" layoutY="21.0" text="POPOZYCJA DODANIA NOWEGO PRODUKTU" />
+      <Label layoutX="190.0" layoutY="51.0" prefHeight="17.0" prefWidth="220.0" text="Podstawowe informacje Twojego konta" />
+      <Label layoutX="150.0" layoutY="154.0" text="Nazwa produktu" />
+      <JFXTextField layoutX="286.0" layoutY="150.0" prefHeight="25.0" prefWidth="155.0" text="Zaproponuj nazwę" />
+      <Label layoutX="150.0" layoutY="189.0" prefHeight="17.0" prefWidth="110.0" text="Kategoria produktu" />
+      <JFXTextField layoutX="286.0" layoutY="185.0" prefHeight="25.0" prefWidth="155.0" text="Zaproponuj kategorię" />
+      <Label layoutX="150.0" layoutY="248.0" text="Powód dodania nowego produktu" />
+      <JFXTextArea layoutX="150.0" layoutY="293.0" prefHeight="159.0" prefWidth="300.0" style="-fx-border-color: black;" text="Podaj powód dodania nowego produktu." />
+      <JFXButton layoutX="203.0" layoutY="482.0" style="-fx-background-color: #3C58Fa;" text="+ Dodaj i powróć do zamówienia" textFill="#a0a2ab" />
+   </children>
+</AnchorPane>
