@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" stylesheets="@../styles/MainStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.MainPageController">
+   <children>
+      <VBox prefHeight="800.0" prefWidth="200.0">
+         <children>
+            <JFXButton buttonType="RAISED" prefHeight="100.0" prefWidth="200.0" styleClass="menuButton" text="Strona główna" />
+            <JFXButton buttonType="RAISED" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" styleClass="menuButton" text="Złóż zamówienie" />
+            <JFXButton layoutX="10.0" layoutY="60.0" prefHeight="100.0" prefWidth="200.0" styleClass="menuButton" text="Aktualne zamówienia" />
+            <JFXButton layoutX="10.0" layoutY="110.0" prefHeight="100.0" prefWidth="200.0" styleClass="menuButton" text="Historia zamówienia" />
+            <JFXButton prefHeight="100.0" prefWidth="200.0" styleClass="menuButton" text="Dane osobowe" />
+            <JFXButton prefHeight="100.0" prefWidth="200.0" styleClass="menuButton" text="Pomoc" />
+            <JFXButton prefHeight="100.0" prefWidth="200.0" styleClass="menuButton" text="Przycisk specjalny" />
+            <JFXButton prefHeight="100.0" prefWidth="200.0" styleClass="menuButton" text="Wyloguj" />
+         </children>
+      </VBox>
+      <AnchorPane prefHeight="600.0" prefWidth="600.0" />
+   </children>
+</HBox>

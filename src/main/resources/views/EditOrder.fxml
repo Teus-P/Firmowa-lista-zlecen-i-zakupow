@@ -8,7 +8,7 @@
 <?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:controller="pl.app.controllers.EditOrderController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="241.0" layoutY="24.0" text="EDYCJA ZAMÓWIENIA" AnchorPane.leftAnchor="241.0" AnchorPane.rightAnchor="240.0" />
       <Label layoutX="72.0" layoutY="82.0" prefHeight="17.0" prefWidth="88.0" text="Zamówienie nr:" />

@@ -1,0 +1,40 @@
+HBox {
+    -fx-background-color: #2D3447;
+}
+
+JFXTextField {
+    -fx-text-fill: #ffffff;
+}
+
+JFXCheckBox{
+    -fx-text-fill: #a0a2ab;
+}
+
+.enterButton{
+    -fx-background-color: #3C58Fa;
+    -fx-text-fill: #a0a2ab;
+}
+
+.menuButton {
+    -fx-background-color: #1D5C78;
+    -fx-text-fill: #a0a2ab;
+    /*-fx-background-color: #2196f3;*/
+    /*-fx-text-fill: #2D3447;*/
+    -fx-border-color: #2D3447;
+
+
+}
+
+#remindPasswordButton {
+    -fx-background-color: #151928;
+    -fx-text-fill: #a0a2ab;
+
+}
+
+#pageLabel {
+    -fx-text-fill:  #2196f3;
+}
+
+#logonLabel {
+    -fx-text-fill:  #a0a2ab;
+}

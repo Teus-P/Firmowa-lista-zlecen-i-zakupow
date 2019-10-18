@@ -7,12 +7,12 @@ import pl.app.utils.screenManager.ScreenController;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MainPageController implements Initializable, ControlledScreen {
+public class ProductInFieldInUnacceptedOrderController implements Initializable, ControlledScreen {
 
     private ScreenController screenController;
     private ResourceBundle stringResources;
 
-    public MainPageController() {
+    public ProductInFieldInUnacceptedOrderController() {
 
     }
 
