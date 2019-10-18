@@ -1,34 +1,28 @@
 package pl.app.utils.screenManager;
 
 /**
- * enum ze sciezka do fxmla , rozmiary okna , tytul okna
+ * enum with fxml paths and Stage title
  */
 public enum ScreensProperty {
-    MAIN_PAGE("mainPage", "view/MainPanel.fxml", "Mainpage"),
-    LOGIN_PAGE("loginPage", "view/LoginPage.fxml", "LOGOWANIE");
+    MAIN_PAGE("view/MainPanel.fxml", "Ekran główny"),
+    LOGIN_PAGE("view/LoginPage.fxml", "LOGOWANIE");
 
-    private String screenId;
     private String screenPath;
+    private String stageTitle;
 
-    private String title;
 
-
-    ScreensProperty(String screenId, String screenPath, String title) {
-        this.screenId = screenId;
+    ScreensProperty(String screenPath, String stageTitle) {
         this.screenPath = screenPath;
-        this.title = title;
+        this.stageTitle = stageTitle;
     }
 
-    public String getScreenId() {
-        return screenId;
-    }
 
     public String getScreenPath() {
         return screenPath;
     }
 
 
-    public String getTitle() {
-        return title;
+    public String getStageTitle() {
+        return stageTitle;
     }
 }

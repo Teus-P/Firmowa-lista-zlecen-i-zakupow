@@ -23,10 +23,11 @@ public class LaunchApp extends Application {
 
         setPrimaryStage(primaryStage);
 
+        primaryStage.setTitle("Firmowa lista zleceń i zakupów");
 
-        ScreenController screenController = new ScreenController(ScreensProperty.LOGIN_PAGE.getScreenPath());
-        screenController.showScreen();
+        ScreenController screenController = ScreenController.getInstance();
 
+        screenController.setScreenProperty(ScreensProperty.LOGIN_PAGE).show();
 
         Group root = new Group();
         root.getChildren().addAll(screenController);

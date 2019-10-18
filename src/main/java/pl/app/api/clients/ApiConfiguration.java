@@ -16,7 +16,7 @@ abstract class ApiConfiguration {
 
     //TODO - basic authorization api credicals
     // - do zmiany na hashe !
-    // - przenieœæ dane to zewnetrznego plku ?
+    // - przenieÅ›Ä‡ dane to zewnetrznego plku ?
     static final String CLIENT_LOGIN = "desktop";
     static final String CLIENT_SECRET = "password";
 

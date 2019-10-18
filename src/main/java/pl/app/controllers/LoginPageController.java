@@ -73,7 +73,6 @@ public class LoginPageController implements ControlledScreen, Initializable {
 
                 saveTokenAfterSuccessLogin();
                 showMainPage();
-
             } else
                 loginAlert.showAndWait();
 
@@ -92,21 +91,13 @@ public class LoginPageController implements ControlledScreen, Initializable {
     }
 
     private void showMainPage() {
-        screenController.setFxmlPath(ScreensProperty.MAIN_PAGE.getScreenPath());
-        screenController.showScreen();
+        screenController.setScreenProperty(ScreensProperty.MAIN_PAGE).show();
     }
 
     private void saveTokenAfterSuccessLogin() {
         TokenKeeper.setAccessToken(tokenModel.getAccessToken());
         TokenKeeper.setRefreshToken(tokenModel.getRefreshToken());
     }
-
-
-
-
-
-
-
 
     private void setLoginAlertContent() {
         loginAlert.setTitle(stringResources.getString("loginAlertTitle"));

@@ -14,14 +14,16 @@ import java.util.logging.Logger;
 
 public class ScreenController extends Parent {
 
+    private static final ScreenController instance = new ScreenController();
+
     private static final Logger LOGGER = Logger.getLogger(ScreenController.class.getName());
     private static final Locale POLISH_LOCALE = new Locale("pl", "PL");
 
-    private String fxmlPath;
+    private ScreensProperty screenProperty = null;
+    private String fxmlPath = null;
+    private String pageTitle = null;
 
-    public ScreenController(String fxmlPath) {
-        super();
-        this.fxmlPath = fxmlPath;
+    private ScreenController() {
     }
 
 
@@ -40,7 +42,6 @@ public class ScreenController extends Parent {
         }
         return url;
     }
-
 
     private FXMLLoader fxmlLoader() {
 
@@ -94,13 +95,13 @@ public class ScreenController extends Parent {
         }
     }
 
-    private void setScreen(Node screen/*, String title*/) {
+    private void setScreen(Node screen, String title) {
 
         Node screenToRemove = null;
 
         if (screen != null) {
 
-            // primaryStageOperation(title);
+            primaryStageOperation(title);
 
             if (!getChildren().isEmpty()) {
                 getChildren().add(0, screen);
@@ -116,22 +117,36 @@ public class ScreenController extends Parent {
         }
     }
 
-    public void showScreen() {
-        Node screen = loadNode();
-        setScreen(screen);
-    }
+    public void show() {
 
+        if (screenProperty != null) {
+            Node screen = loadNode();
+            setScreen(screen, pageTitle);
+            clearReference();
+        } else {
+            throw new NullPointerException("\nEXCEPTION INFO: " + ScreenController.class.getName()
+                    + "\nEXCEPTION INFO: Can't call show() method before setScreenProperty() method");
+        }
+    }
 
     private void primaryStageOperation(String title) {
         LaunchApp.getPrimaryStage().setTitle(title);
-
     }
 
-    public String getFxmlPath() {
-        return fxmlPath;
+    public ScreenController setScreenProperty(ScreensProperty screenProperty) {
+        this.screenProperty = screenProperty;
+        this.fxmlPath = screenProperty.getScreenPath();
+        this.pageTitle = screenProperty.getStageTitle();
+        return this;
     }
 
-    public void setFxmlPath(String fxmlPath) {
-        this.fxmlPath = fxmlPath;
+    public static ScreenController getInstance() {
+        return instance;
+    }
+
+    private void clearReference() {
+        screenProperty = null;
+        fxmlPath = null;
+        pageTitle = null;
     }
 }
