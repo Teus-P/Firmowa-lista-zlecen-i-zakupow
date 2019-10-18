@@ -5,7 +5,7 @@ package pl.app.utils.screenManager;
  */
 public enum ScreensProperty {
     MAIN_PAGE("mainPage", "view/MainPanel.fxml", "Mainpage"),
-    LOGIN_PAGE("loginPage", "view/AcceptedOrderField.fxml", "LOGOWANIE");
+    LOGIN_PAGE("loginPage", "view/LoginPage.fxml", "LOGOWANIE");
 
     private String screenId;
     private String screenPath;
