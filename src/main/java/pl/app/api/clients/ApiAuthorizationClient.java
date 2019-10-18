@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 public final class ApiAuthorizationClient extends ApiConfiguration {
 
     private static final Logger LOGGER = Logger.getLogger(ApiAuthorizationClient.class.getName());
+
     private static final ApiAuthorizationClient REST_INSTANCE = new ApiAuthorizationClient();
     private static ApiAuthorizationInterface apiAuthorizationInterface;
     private BasicAuthorizationInterceptor basicAuthorizationInterceptor;

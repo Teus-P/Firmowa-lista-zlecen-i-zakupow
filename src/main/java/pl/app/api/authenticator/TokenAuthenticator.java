@@ -16,7 +16,6 @@ public class TokenAuthenticator implements Authenticator {
 
     private static final Logger LOGGER = Logger.getLogger(TokenAuthenticator.class.getName());
 
-
     @Nullable
     @Override
     public Request authenticate(@Nullable Route route, @NotNull okhttp3.Response response) {

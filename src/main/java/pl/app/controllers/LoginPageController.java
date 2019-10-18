@@ -1,6 +1,7 @@
 package pl.app.controllers;
 
 import com.google.common.hash.Hashing;
+import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,12 +16,18 @@ import pl.app.utils.screenManager.ControlledScreen;
 import pl.app.utils.screenManager.ScreenController;
 import pl.app.utils.screenManager.ScreensProperty;
 
-import java.io.*;
+
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
+/**
+ * view/LoginPage.fxml Controller
+ */
 public class LoginPageController implements ControlledScreen, Initializable {
+
+    private static final Logger LOGGER = Logger.getLogger(LoginPageController.class.getName());
 
     private ScreenController screenController;
     private TokenHelper tokenHelper;
@@ -30,13 +37,11 @@ public class LoginPageController implements ControlledScreen, Initializable {
     private ResourceBundle stringResources;
     private Alert loginAlert;
 
-
     @FXML
     private JFXTextField loginTextField;
 
     @FXML
-    private JFXTextField passwordTextField;
-
+    private JFXPasswordField passwordPasswordField;
 
     public LoginPageController() {
         tokenHelper = new TokenHelper(ApiAuthorizationClient.getApi());
@@ -55,26 +60,19 @@ public class LoginPageController implements ControlledScreen, Initializable {
     }
 
     @FXML
-    private void onClickLoginButton() throws IOException {
+    private void onClickLoginButton() {
 
         userLogin = loginTextField.getText();
-        userPassword = passwordTextField.getText();
+        userPassword = passwordPasswordField.getText();
 
         if (!userLogin.equals("") && !userPassword.equals("")) {
-            RequestBody requestBodyGrantType = RequestBody.create(MediaType.parse("multipart/form-data"), "password");
-            RequestBody requestBodyUsername = RequestBody.create(MediaType.parse("multipart/form-data"), userLogin);
-            RequestBody requestBodyPassword = RequestBody.create(MediaType.parse("multipart/form-data"), userPassword);
 
-            tokenModel = tokenHelper.getAccessToken(requestBodyGrantType, requestBodyUsername, requestBodyPassword);
+            if (getTokenByUserCredentials(userLogin, userPassword) != null) {
 
+                LOGGER.info("TOKEN : " + tokenModel.getAccessToken());
 
-            if (tokenModel != null) {
-                System.out.println("LOGIN TOKEN " + tokenModel.getAccessToken());
-                TokenKeeper.setAccessToken(tokenModel.getAccessToken());
-                TokenKeeper.setRefreshToken(tokenModel.getRefreshToken());
-
-                screenController.setFxmlPath(ScreensProperty.MAIN_PAGE.getScreenPath());
-                screenController.showScreen();
+                saveTokenAfterSuccessLogin();
+                showMainPage();
 
             } else
                 loginAlert.showAndWait();
@@ -82,13 +80,42 @@ public class LoginPageController implements ControlledScreen, Initializable {
         }
     }
 
-    private String hashPassword(String password) {
-        return Hashing.sha256().hashString(password, StandardCharsets.UTF_8).toString();
+    private TokenModel getTokenByUserCredentials(String username, String password) {
+
+        RequestBody requestBodyGrantType = RequestBody.create(MediaType.parse("multipart/form-data"), "password");
+        RequestBody requestBodyUsername = RequestBody.create(MediaType.parse("multipart/form-data"), username);
+        RequestBody requestBodyPassword = RequestBody.create(MediaType.parse("multipart/form-data"), password);
+
+        tokenModel = tokenHelper.getAccessToken(requestBodyGrantType, requestBodyUsername, requestBodyPassword);
+
+        return tokenModel;
     }
+
+    private void showMainPage() {
+        screenController.setFxmlPath(ScreensProperty.MAIN_PAGE.getScreenPath());
+        screenController.showScreen();
+    }
+
+    private void saveTokenAfterSuccessLogin() {
+        TokenKeeper.setAccessToken(tokenModel.getAccessToken());
+        TokenKeeper.setRefreshToken(tokenModel.getRefreshToken());
+    }
+
+
+
+
+
+
+
 
     private void setLoginAlertContent() {
         loginAlert.setTitle(stringResources.getString("loginAlertTitle"));
         loginAlert.setHeaderText(stringResources.getString("loginAlertHeaderText"));
         loginAlert.setContentText(stringResources.getString("loginAlertContentText"));
     }
+
+    private String hashPassword(String password) {
+        return Hashing.sha256().hashString(password, StandardCharsets.UTF_8).toString();
+    }
+
 }

@@ -10,13 +10,14 @@ import java.io.*;
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 public class ScreenController extends Parent {
 
-    private String fxmlPath;
-
+    private static final Logger LOGGER = Logger.getLogger(ScreenController.class.getName());
     private static final Locale POLISH_LOCALE = new Locale("pl", "PL");
 
+    private String fxmlPath;
 
     public ScreenController(String fxmlPath) {
         super();
@@ -30,6 +31,7 @@ public class ScreenController extends Parent {
 
         try {
             url = getClass().getClassLoader().getResource(fxmlPath);
+            LOGGER.info("FXML URL : " + url);
             if (url == null) {
                 throw new NullPointerException("** File with " + fxmlPath + " path doesn't exist **");
             }
@@ -47,14 +49,15 @@ public class ScreenController extends Parent {
 
         fxmlLoader.setLocation(getFxmlUrl());
         fxmlLoader.setResources(resourceBundle);
-        //fxmlLoader.setResources(ResourceBundle.getBundle("bundles/language_pl_PL", new Locale("pl", "PL")));
 
         return fxmlLoader;
     }
 
     private ResourceBundle getLanguageBundleResources(Locale locale) {
-        ResourceBundle resourceBundle = null;
+
         Utf8ResourceBundleControl resourceBundleControl = new Utf8ResourceBundleControl();
+        ResourceBundle resourceBundle = null;
+
         try {
             resourceBundle = resourceBundleControl.newBundle("bundles/language", locale, "properties", getClass().getClassLoader(), true);
         } catch (IOException e) {
@@ -67,17 +70,27 @@ public class ScreenController extends Parent {
     private Node loadNode() {
 
         FXMLLoader fxmlLoader = fxmlLoader();
+        Node loadedNode = null;
+        ControlledScreen myScreenController = null;
 
         try {
-            Node loadedNode = fxmlLoader.load();
-
-            ControlledScreen myScreenController = fxmlLoader.getController();
-
+            loadedNode = fxmlLoader.load();
+            myScreenController = fxmlLoader.getController();
             myScreenController.setScreenParent(this);
 
             return loadedNode;
         } catch (IOException e) {
-            throw new RuntimeException("** Something gone wrong in Node loader **");
+            throw new RuntimeException(
+                    "\nEXCEPTION INFO: " + ScreenController.class.getName()
+                            + "\nEXCEPTION INFO: Controller doesn't exist! Controller : " + fxmlLoader.getController());
+        } catch (NullPointerException e) {
+            throw new NullPointerException(
+                    "\nEXCEPTION INFO: " + ScreenController.class.getName()
+                            + "\nEXCEPTION INFO: Maybe Controller class is not attach to fxml: " + fxmlLoader.getLocation().getPath());
+        } catch (ClassCastException e) {
+            throw new RuntimeException(
+                    "\nEXCEPTION INFO: " + ScreenController.class.getName()
+                            + "\nEXCEPTION INFO: Controller not implement ControlledScreen Interface : Controller " + fxmlLoader.getController().getClass());
         }
     }
 
@@ -89,7 +102,6 @@ public class ScreenController extends Parent {
 
             // primaryStageOperation(title);
 
-
             if (!getChildren().isEmpty()) {
                 getChildren().add(0, screen);
                 screenToRemove = getChildren().get(1);
@@ -100,7 +112,7 @@ public class ScreenController extends Parent {
                 LaunchApp.getPrimaryStage().sizeToScene();
             }
         } else {
-            throw new RuntimeException("** Something gone wrong in set screen **");
+            throw new RuntimeException("** Something gone wrong in set screen ** - " + ScreenController.class.getName());
         }
     }
 
