@@ -1,0 +1,8 @@
+package pl.app.core.screenController;
+
+public interface ControlledScreen {
+
+    //Parent injection
+    void setScreenParent(ScreenController screenPage);
+
+}

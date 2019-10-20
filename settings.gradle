@@ -8,3 +8,5 @@
  */
 
 rootProject.name = 'Firmowa-lista-zlecen-i-zakupow'
+include 'main'
+

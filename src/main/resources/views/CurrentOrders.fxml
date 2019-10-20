@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:controller="pl.app.controllers.CurrentOrdersController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="232.0" layoutY="27.0" text="AKTUALNE ZAMÓWIENIA" AnchorPane.leftAnchor="232.0" AnchorPane.rightAnchor="232.0" />
+      <JFXListView layoutX="70.0" layoutY="106.0" prefHeight="653.0" prefWidth="460.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" />
+      <Label layoutX="150.0" layoutY="44.0" prefHeight="52.0" prefWidth="300.0" text="Tutaj znajdziesz zamówienia, które są w trakcie realizacji lub nie zostały jeszcze zaakceptowane" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" />
+   </children>
+</AnchorPane>

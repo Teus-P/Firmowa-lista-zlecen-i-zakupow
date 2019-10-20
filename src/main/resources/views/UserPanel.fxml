@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane fx:controller="pl.app.controllers.UserPanelController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="253.0" layoutY="25.0" text="DANE OSOBOWE" />
+      <Label layoutX="190.0" layoutY="51.0" prefHeight="17.0" prefWidth="220.0" text="Podstawowe informacje Twojego konta" />
+      <AnchorPane layoutX="150.0" layoutY="77.0" prefHeight="170.0" prefWidth="300.0" style="-fx-border-color: #000000;">
+         <children>
+            <Label layoutX="131.0" layoutY="14.0" text="PROFIL" />
+            <Label layoutX="14.0" layoutY="43.0" text="Nazwa uzytkownika:" />
+            <Label layoutX="14.0" layoutY="83.0" text="Imię i nazwisko:" />
+            <Label layoutX="14.0" layoutY="122.0" text="Typ konta:" />
+            <JFXTextField editable="false" layoutX="150.0" layoutY="79.0" />
+            <JFXTextField editable="false" layoutX="150.0" layoutY="39.0" />
+            <JFXTextField editable="false" layoutX="150.0" layoutY="118.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="150.0" layoutY="261.0" prefHeight="130.0" prefWidth="300.0" style="-fx-border-color: #000000;">
+         <children>
+            <Label layoutX="93.0" layoutY="14.0" text="DANE KONTAKTOWE" />
+            <Label layoutX="14.0" layoutY="43.0" text="Numer telefonu: " />
+            <Label layoutX="14.0" layoutY="88.0" text="Adres e-mail:" />
+            <JFXTextField editable="false" layoutX="150.0" layoutY="84.0" />
+            <JFXTextField editable="false" layoutX="150.0" layoutY="39.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="150.0" layoutY="402.0" prefHeight="250.0" prefWidth="300.0" style="-fx-border-color: #000000;">
+         <children>
+            <Label layoutX="108.0" layoutY="14.0" text="ZMIANA HASŁA" />
+            <JFXTextField editable="false" layoutX="83.0" layoutY="44.0" text="Wprowadź stare hasło" />
+            <JFXTextField editable="false" layoutX="83.0" layoutY="85.0" text="Wprowadź nowe hasło" />
+            <JFXTextField editable="false" layoutX="83.0" layoutY="125.0" text="Powtórz nowe hasło" />
+            <JFXButton layoutX="124.0" layoutY="175.0" style="-fx-border-color: #000000;" text="Zapisz" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

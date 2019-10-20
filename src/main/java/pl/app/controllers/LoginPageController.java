@@ -12,9 +12,9 @@ import pl.app.api.TokenKeeper;
 import pl.app.api.clients.ApiAuthorizationClient;
 import pl.app.api.helpers.TokenHelper;
 import pl.app.api.model.TokenModel;
-import pl.app.utils.screenManager.ControlledScreen;
-import pl.app.utils.screenManager.ScreenController;
-import pl.app.utils.screenManager.ScreensProperty;
+import pl.app.core.screenController.ControlledScreen;
+import pl.app.core.screenController.ScreenController;
+import pl.app.core.property.ScreensProperty;
 
 
 import java.net.URL;
@@ -25,7 +25,7 @@ import java.util.logging.Logger;
 /**
  * view/LoginPage.fxml Controller
  */
-public class LoginPageController implements ControlledScreen, Initializable{
+public class LoginPageController implements ControlledScreen, Initializable {
 
     private static final Logger LOGGER = Logger.getLogger(LoginPageController.class.getName());
 
@@ -108,8 +108,10 @@ public class LoginPageController implements ControlledScreen, Initializable{
         loginAlert.setContentText(stringResources.getString("loginAlertContentText"));
     }
 
+
     private String hashPassword(String password) {
         return Hashing.sha256().hashString(password, StandardCharsets.UTF_8).toString();
     }
+
 
 }
