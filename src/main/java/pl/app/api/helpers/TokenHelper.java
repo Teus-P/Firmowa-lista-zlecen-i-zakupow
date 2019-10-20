@@ -30,6 +30,7 @@ public class TokenHelper {
             }
         } catch (IOException e) {
             e.printStackTrace();
+            //tutaj wywala jak nie ma połączenia z serwerem dodać listenery czy coś ?
             return null;
         }
     }

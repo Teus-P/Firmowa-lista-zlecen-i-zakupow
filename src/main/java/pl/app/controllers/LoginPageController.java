@@ -25,7 +25,7 @@ import java.util.logging.Logger;
 /**
  * view/LoginPage.fxml Controller
  */
-public class LoginPageController implements ControlledScreen, Initializable {
+public class LoginPageController implements ControlledScreen, Initializable{
 
     private static final Logger LOGGER = Logger.getLogger(LoginPageController.class.getName());
 
@@ -66,16 +66,19 @@ public class LoginPageController implements ControlledScreen, Initializable {
         userPassword = passwordPasswordField.getText();
 
         if (!userLogin.equals("") && !userPassword.equals("")) {
-
             if (getTokenByUserCredentials(userLogin, userPassword) != null) {
 
                 LOGGER.info("TOKEN : " + tokenModel.getAccessToken());
 
                 saveTokenAfterSuccessLogin();
-                showMainPage();
-            } else
-                loginAlert.showAndWait();
 
+                showMainPage();
+            } else {
+                loginAlert.showAndWait();
+            }
+
+        } else {
+            loginAlert.showAndWait();
         }
     }
 
