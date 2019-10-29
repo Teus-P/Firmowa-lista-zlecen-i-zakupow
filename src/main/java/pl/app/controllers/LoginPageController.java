@@ -10,35 +10,28 @@ import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import pl.app.api.TokenKeeper;
 import pl.app.api.clients.ApiAuthorizationClient;
-import pl.app.api.clients.ApiResourcesClient;
-import pl.app.api.helpers.OrderHelper;
 import pl.app.api.helpers.TokenHelper;
-import pl.app.api.model.OrderModel;
 import pl.app.api.model.TokenModel;
-import pl.app.core.screenController.ControlledScreen;
-import pl.app.core.screenController.ScreenController;
+import pl.app.core.BasePage;
 import pl.app.core.property.ScreensProperty;
 
 
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
 /**
  * view/LoginPage.fxml Controller
  */
-public class LoginPageController implements ControlledScreen, Initializable {
+public class LoginPageController extends BasePage {
 
     private static final Logger LOGGER = Logger.getLogger(LoginPageController.class.getName());
 
-    private ScreenController screenController;
     private TokenHelper tokenHelper;
     private TokenModel tokenModel;
     private String userLogin;
     private String userPassword;
-    private ResourceBundle stringResources;
     private Alert loginAlert;
 
     @FXML
@@ -52,14 +45,10 @@ public class LoginPageController implements ControlledScreen, Initializable {
         loginAlert = new Alert(Alert.AlertType.ERROR);
     }
 
-    @Override
-    public void setScreenParent(ScreenController screenPage) {
-        this.screenController = screenPage;
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.stringResources = resources;
+        super.initialize(location, resources);
         setLoginAlertContent();
     }
 
@@ -98,7 +87,7 @@ public class LoginPageController implements ControlledScreen, Initializable {
     }
 
     private void showMainPage() {
-        screenController.setScreenProperty(ScreensProperty.MAIN_PAGE).show();
+        super.screenController.setScreenProperty(ScreensProperty.MAIN_PAGE).show();
     }
 
     private void saveTokenAfterSuccessLogin() {
@@ -107,9 +96,9 @@ public class LoginPageController implements ControlledScreen, Initializable {
     }
 
     private void setLoginAlertContent() {
-        loginAlert.setTitle(stringResources.getString("loginAlertTitle"));
-        loginAlert.setHeaderText(stringResources.getString("loginAlertHeaderText"));
-        loginAlert.setContentText(stringResources.getString("loginAlertContentText"));
+        loginAlert.setTitle(getResourceBundle().getString("loginAlertTitle"));
+        loginAlert.setHeaderText(getResourceBundle().getString("loginAlertHeaderText"));
+        loginAlert.setContentText(getResourceBundle().getString("loginAlertContentText"));
     }
 
 

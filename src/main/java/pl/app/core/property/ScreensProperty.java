@@ -4,11 +4,11 @@ package pl.app.core.property;
  * enum with fxml paths and Stage title
  */
 public enum ScreensProperty {
-    MAIN_PAGE("views/MainPanel.fxml", "Main page"),
-    LOGIN_PAGE("views/LoginPage.fxml", "LOGOWANIE"),
+    MAIN_PAGE("views/screens/MainPanel.fxml", "Main page"),
+    LOGIN_PAGE("views/screens/LoginPage.fxml", "LOGOWANIE"),
     ACCEPTED_ORDER_FIELD("views/AcceptedOrderField.fxml", "Accepted order field"),
     ADD_NEW_PRODUCT("views/AddNewProduct.fxml", "Add new product"),
-    ADMIN_PANEL("views/AdminPanel.fxml", "Admin panel"),
+    ADMIN_PANEL("views/context/AdminPanel.fxml", "Admin panel"),
     CHANGE_PASSWORD_PAGE("views/ChangePasswordPage.fxml", "Change password page"),
     CREATE_ORDER("views/CreateOrder.fxml", "Create order"),
     CURRENT_ORDERS("views/CurrentOrders.fxml", "Current orders"),

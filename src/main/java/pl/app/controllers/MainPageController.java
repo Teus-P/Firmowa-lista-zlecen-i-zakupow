@@ -1,29 +1,34 @@
 package pl.app.controllers;
 
-import javafx.fxml.Initializable;
-import pl.app.core.screenController.ControlledScreen;
-import pl.app.core.screenController.ScreenController;
+import javafx.fxml.FXML;
+import javafx.scene.layout.AnchorPane;
+import pl.app.core.BaseScreen;
+import pl.app.core.property.ContextProperty;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 
-public class MainPageController implements Initializable, ControlledScreen {
+public class MainPageController extends BaseScreen {
 
-    private ScreenController screenController;
-    private ResourceBundle stringResources;
+    @FXML
+    private AnchorPane containerAnchorPane;
 
     public MainPageController() {
 
     }
 
-
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        this.stringResources = resources;
+    protected void onCreateBuildContext() {
+        super.onCreateBuildContext();
+        getContextManager().buildContext(ContextProperty.ADMIN_CONTEXT).injectIn(containerAnchorPane).build();
     }
 
-    @Override
-    public void setScreenParent(ScreenController screenPage) {
-        this.screenController = screenPage;
+    @FXML
+    public void mainPageOnAction() {
+        getContextManager().buildContext(ContextProperty.HISTORY_OF_ORDERS).injectIn(containerAnchorPane).build();
     }
+
+    @FXML
+    public void orderButtonOnAction() {
+        getContextManager().buildContext(ContextProperty.ADMIN_CONTEXT).injectIn(containerAnchorPane).build();
+    }
+
 }

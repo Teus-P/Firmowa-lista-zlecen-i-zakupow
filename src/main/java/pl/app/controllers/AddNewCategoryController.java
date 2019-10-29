@@ -43,7 +43,7 @@ public class AddNewCategoryController implements Initializable, ControlledScreen
     }
 
     @Override
-    public void setScreenParent(ScreenController screenPage) {
+    public void onLoadNode(ScreenController screenPage) {
         this.screenController = screenPage;
     }
 
@@ -70,4 +70,5 @@ public class AddNewCategoryController implements Initializable, ControlledScreen
         }
 
     }
+
 }

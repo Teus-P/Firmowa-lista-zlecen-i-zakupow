@@ -1,29 +1,29 @@
-package pl.app.controllers;
+package pl.app.core;
 
 import javafx.fxml.Initializable;
+import lombok.Getter;
 import pl.app.core.screenController.ControlledScreen;
 import pl.app.core.screenController.ScreenController;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AdminPanelController implements Initializable/*, ControlledScreen*/ {
+public abstract class BasePage implements ControlledScreen, Initializable {
 
-    private ScreenController screenController;
-    private ResourceBundle stringResources;
-
-    public AdminPanelController() {
-
-    }
-
+    @Getter
+    protected ScreenController screenController;
+    @Getter
+    private ResourceBundle resourceBundle;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.stringResources = resources;
+        this.resourceBundle = resources;
     }
-/*
+
     @Override
     public void onLoadNode(ScreenController screenPage) {
         this.screenController = screenPage;
-    }*/
+    }
+
+
 }

@@ -10,6 +10,10 @@ JFXCheckBox {
     -fx-text-fill: #a0a2ab;
 }
 
+JFXButton{
+    -fx-text-alignment: RED;
+}
+
 .enterButton {
     -fx-background-color: #3C58Fa;
     -fx-text-fill: #a0a2ab;

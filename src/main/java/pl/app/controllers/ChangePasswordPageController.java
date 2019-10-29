@@ -7,7 +7,7 @@ import pl.app.core.screenController.ScreenController;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ChangePasswordPageController implements Initializable, ControlledScreen {
+public class ChangePasswordPageController implements Initializable/*, ControlledScreen*/ {
 
     private ScreenController screenController;
     private ResourceBundle stringResources;
@@ -21,9 +21,9 @@ public class ChangePasswordPageController implements Initializable, ControlledSc
     public void initialize(URL location, ResourceBundle resources) {
         this.stringResources = resources;
     }
-
+/*
     @Override
-    public void setScreenParent(ScreenController screenPage) {
+    public void onLoadNode(ScreenController screenPage) {
         this.screenController = screenPage;
-    }
+    }*/
 }

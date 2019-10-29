@@ -3,6 +3,8 @@ package pl.app.core.screenController;
 public interface ControlledScreen {
 
     //Parent injection
-    void setScreenParent(ScreenController screenPage);
+    void onLoadNode(ScreenController screenPage);
+
+    //void setContainerContent();
 
 }

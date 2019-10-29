@@ -7,7 +7,7 @@ import pl.app.core.screenController.ScreenController;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ProductFieldInAcceptedOrderController implements Initializable, ControlledScreen {
+public class ProductFieldInAcceptedOrderController implements Initializable/*, ControlledScreen */{
 
     private ScreenController screenController;
     private ResourceBundle stringResources;
@@ -22,8 +22,8 @@ public class ProductFieldInAcceptedOrderController implements Initializable, Con
         this.stringResources = resources;
     }
 
-    @Override
-    public void setScreenParent(ScreenController screenPage) {
+  /*  @Override
+    public void onLoadNode(ScreenController screenPage) {
         this.screenController = screenPage;
-    }
+    }*/
 }
