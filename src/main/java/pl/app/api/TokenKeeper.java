@@ -1,7 +1,10 @@
 package pl.app.api;
 
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 
+@NoArgsConstructor
 public final class TokenKeeper implements Serializable {
 
     private static final long serialVersionUID = -6127338495549209874L;
@@ -10,9 +13,6 @@ public final class TokenKeeper implements Serializable {
     private static String accessToken = null;
     private static String refreshToken = null;
 
-
-    private TokenKeeper() {
-    }
 
     public static String getAccessToken() {
         return accessToken;

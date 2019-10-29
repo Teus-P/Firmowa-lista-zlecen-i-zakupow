@@ -7,16 +7,14 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class TokenModel {
+public class UnitModel {
 
-    @SerializedName("access_token")
+    @SerializedName("idUnit")
     @Expose
-    private String accessToken;
+    private Integer idUnit;
 
-    @SerializedName("refresh_token")
+    @SerializedName("unit")
     @Expose
-    private String refreshToken;
-
-
+    private String unit;
 
 }

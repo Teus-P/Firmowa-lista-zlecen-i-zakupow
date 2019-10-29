@@ -7,16 +7,19 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CategoriesModel {
+public class OrderStatusModel {
 
-    @SerializedName("idCategories")
+    @SerializedName("idOrderStatus")
     @Expose
-    private Integer idCategories;
+    private Integer idProduct;
 
     @SerializedName("name")
     @Expose
     private String name;
 
+    @SerializedName("description")
+    @Expose
+    private String description;
 
 
 }

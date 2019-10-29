@@ -10,7 +10,10 @@ import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import pl.app.api.TokenKeeper;
 import pl.app.api.clients.ApiAuthorizationClient;
+import pl.app.api.clients.ApiResourcesClient;
+import pl.app.api.helpers.OrderHelper;
 import pl.app.api.helpers.TokenHelper;
+import pl.app.api.model.OrderModel;
 import pl.app.api.model.TokenModel;
 import pl.app.core.screenController.ControlledScreen;
 import pl.app.core.screenController.ScreenController;
@@ -19,6 +22,7 @@ import pl.app.core.property.ScreensProperty;
 
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
@@ -65,7 +69,7 @@ public class LoginPageController implements ControlledScreen, Initializable {
         userLogin = loginTextField.getText();
         userPassword = passwordPasswordField.getText();
 
-        if (!userLogin.equals("") && !userPassword.equals("")) {
+        if (!userLogin.equals("") && !userPassword.equals("") && userLogin.length() > 0 && userPassword.length() > 0) {
             if (getTokenByUserCredentials(userLogin, userPassword) != null) {
 
                 LOGGER.info("TOKEN : " + tokenModel.getAccessToken());
