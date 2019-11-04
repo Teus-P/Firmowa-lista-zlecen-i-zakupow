@@ -1,10 +1,9 @@
-package pl.app.controllers;
+package pl.app.controllers.pages;
 
 import com.google.common.hash.Hashing;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;

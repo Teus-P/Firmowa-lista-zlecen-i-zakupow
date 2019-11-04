@@ -6,7 +6,7 @@ import javafx.scene.Group;
 
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import pl.app.core.screenController.ScreenController;
+import pl.app.core.screen.ScreenController;
 import pl.app.core.property.ScreensProperty;
 
 

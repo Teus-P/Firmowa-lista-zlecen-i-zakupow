@@ -4,7 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:controller="pl.app.controllers.HistoryOfOrdersController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:controller="pl.app.controllers.content.HistoryOfOrdersController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="232.0" layoutY="27.0" text="HISTORIA ZAMÓWIEŃ" AnchorPane.leftAnchor="232.0" AnchorPane.rightAnchor="232.0" />
       <JFXListView layoutX="70.0" layoutY="106.0" prefHeight="653.0" prefWidth="460.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" />

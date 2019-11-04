@@ -2,8 +2,8 @@ package pl.app.core;
 
 import javafx.fxml.Initializable;
 import lombok.Getter;
-import pl.app.core.screenController.ControlledScreen;
-import pl.app.core.screenController.ScreenController;
+import pl.app.core.screen.ControlledScreen;
+import pl.app.core.screen.ScreenController;
 
 import java.net.URL;
 import java.util.ResourceBundle;

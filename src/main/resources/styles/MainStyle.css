@@ -29,6 +29,11 @@ JFXButton{
 
 }
 
+
+#menuBar{
+    -fx-background-color: #832ABD;
+}
+
 #remindPasswordButton {
     -fx-background-color: #151928;
     -fx-text-fill: #a0a2ab;

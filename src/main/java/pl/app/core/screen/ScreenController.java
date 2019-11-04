@@ -1,4 +1,4 @@
-package pl.app.core.screenController;
+package pl.app.core.screen;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
