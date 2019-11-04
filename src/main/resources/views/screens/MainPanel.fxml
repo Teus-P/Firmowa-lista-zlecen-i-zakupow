@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-
-<ScrollPane maxHeight="1080.0" maxWidth="1920.0" pannable="true" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.MainPageController">
+<ScrollPane maxHeight="1080.0" maxWidth="1920.0" pannable="true" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.MainPageController">
    <content>
       <GridPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0">
         <columnConstraints>
@@ -20,16 +19,16 @@
           <RowConstraints vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <VBox stylesheets="@../../styles/MainStyle.css">
+            <VBox styleClass="VBox" stylesheets="@../../styles/MainStyle.css">
                <children>
                   <JFXButton buttonType="RAISED" onAction="#mainPageOnAction" prefHeight="100.0" prefWidth="200.0" styleClass="menuButton" text="Strona główna" />
                   <JFXButton buttonType="RAISED" layoutX="10.0" layoutY="10.0" onAction="#orderButtonOnAction" prefHeight="100.0" prefWidth="200.0" styleClass="menuButton" text="Złóż zamówienie" />
-                  <JFXButton layoutX="10.0" layoutY="60.0" prefHeight="100.0" prefWidth="200.0" styleClass="menuButton" text="Aktualne zamówienia" />
-                  <JFXButton layoutX="10.0" layoutY="110.0" prefHeight="100.0" prefWidth="200.0" styleClass="menuButton" text="Historia zamówienia" textFill="WHITE" />
-                  <JFXButton prefHeight="100.0" prefWidth="200.0" styleClass="menuButton" text="Dane osobowe" />
-                  <JFXButton prefHeight="100.0" prefWidth="200.0" styleClass="menuButton" text="Pomoc" />
-                  <JFXButton prefHeight="100.0" prefWidth="200.0" styleClass="menuButton" text="Przycisk specjalny" />
-                  <JFXButton prefHeight="100.0" prefWidth="200.0" styleClass="menuButton" text="Wyloguj" />
+                  <JFXButton buttonType="RAISED" layoutX="10.0" layoutY="60.0" prefHeight="100.0" prefWidth="200.0" styleClass="menuButton" text="Aktualne zamówienia" />
+                  <JFXButton buttonType="RAISED" layoutX="10.0" layoutY="110.0" prefHeight="100.0" prefWidth="200.0" styleClass="menuButton" text="Historia zamówienia" textFill="WHITE" />
+                  <JFXButton buttonType="RAISED" prefHeight="100.0" prefWidth="200.0" styleClass="menuButton" text="Dane osobowe" />
+                  <JFXButton buttonType="RAISED" prefHeight="100.0" prefWidth="200.0" styleClass="menuButton" text="Pomoc" />
+                  <JFXButton buttonType="RAISED" prefHeight="100.0" prefWidth="200.0" styleClass="menuButton" text="Przycisk specjalny" />
+                  <JFXButton buttonType="RAISED" prefHeight="100.0" prefWidth="200.0" styleClass="menuButton" text="Wyloguj" />
                </children>
             </VBox>
             <AnchorPane fx:id="containerAnchorPane" GridPane.columnIndex="1" />

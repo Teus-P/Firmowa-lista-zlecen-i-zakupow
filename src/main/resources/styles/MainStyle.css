@@ -2,6 +2,10 @@ HBox {
     -fx-background-color: #2D3447;
 }
 
+VBox {
+    -fx-background-color:  #1D5C78;
+}
+
 JFXTextField, JFXPasswordField {
     -fx-text-fill: #ffffff;
 }
@@ -24,9 +28,7 @@ JFXButton{
     -fx-text-fill: #a0a2ab;
     /*-fx-background-color: #2196f3;*/
     /*-fx-text-fill: #2D3447;*/
-    -fx-border-color: #2D3447;
-
-
+    /*-fx-border-color: #2D3447;*/
 }
 
 #remindPasswordButton {
