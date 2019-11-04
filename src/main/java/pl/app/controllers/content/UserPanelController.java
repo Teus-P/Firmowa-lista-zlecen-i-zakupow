@@ -1,18 +1,17 @@
-package pl.app.controllers;
+package pl.app.controllers.content;
 
 import javafx.fxml.Initializable;
-import pl.app.core.screenController.ControlledScreen;
-import pl.app.core.screenController.ScreenController;
+import pl.app.core.screen.ScreenController;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AdminPanelController implements Initializable/*, ControlledScreen*/ {
+public class UserPanelController implements Initializable/*, ControlledScreen */{
 
     private ScreenController screenController;
     private ResourceBundle stringResources;
 
-    public AdminPanelController() {
+    public UserPanelController() {
 
     }
 
@@ -21,8 +20,8 @@ public class AdminPanelController implements Initializable/*, ControlledScreen*/
     public void initialize(URL location, ResourceBundle resources) {
         this.stringResources = resources;
     }
-/*
-    @Override
+
+   /* @Override
     public void onLoadNode(ScreenController screenPage) {
         this.screenController = screenPage;
     }*/

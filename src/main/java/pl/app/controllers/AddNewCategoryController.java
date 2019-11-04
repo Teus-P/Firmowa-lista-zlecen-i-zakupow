@@ -9,8 +9,8 @@ import pl.app.api.clients.ApiResourcesClient;
 import pl.app.api.helpers.CategoriesHelper;
 import pl.app.api.model.CategoriesModel;
 import pl.app.api.model.ResponseModel;
-import pl.app.core.screenController.ControlledScreen;
-import pl.app.core.screenController.ScreenController;
+import pl.app.core.screen.ControlledScreen;
+import pl.app.core.screen.ScreenController;
 
 import java.net.URL;
 import java.util.ResourceBundle;

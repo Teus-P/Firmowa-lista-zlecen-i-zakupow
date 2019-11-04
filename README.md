@@ -5,7 +5,7 @@ Aplikacja kompatybilna z openJDK 11, openJFX 11
 dodatkowe biblioteki Jfoenix
 
 openJDK 11 https://jdk.java.net/java-se-ri/11
-
+Ikony https://material.io/resources/icons/?icon=access_time&style=baseline
 Konfiguracja intelliJ:
 
 1. Import projektu:

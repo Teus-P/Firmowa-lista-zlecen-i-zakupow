@@ -1,39 +1,39 @@
-package pl.app.core.contextController;
+package pl.app.core.content;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
 import pl.app.core.ResourceLoader;
-import pl.app.core.property.ContextProperty;
+import pl.app.core.property.ContentProperty;
 
 import java.io.IOException;
 
-public class ContextManager {
+public class ContentManager {
 
-    private static final ContextManager instance = new ContextManager();
+    private static final ContentManager instance = new ContentManager();
     private ResourceLoader resourceLoader = ResourceLoader.getInstance();
 
-    private ContextManager() {
+    private ContentManager() {
     }
 
-    public static ContextManager getInstance() {
+    public static ContentManager getInstance() {
         return instance;
     }
 
-    public Inject buildContext(ContextProperty contextProperty) {
-        return new Inject(resourceLoader.fxmlLoader(contextProperty.getScreenPath()));
+    public Builder buildContext(ContentProperty contentProperty) {
+        return new Builder(resourceLoader.fxmlLoader(contentProperty.getScreenPath()));
     }
 
-    public class Inject<T extends Pane> {
+    public class Builder<T extends Pane> {
 
         private T container;
         private FXMLLoader fxmlLoader;
 
-        Inject(FXMLLoader fxmlLoader) {
+        Builder(FXMLLoader fxmlLoader) {
             this.fxmlLoader = fxmlLoader;
         }
 
-        public Inject injectIn(T container) {
+        public Builder attachTo(T container) {
             this.container = container;
             return this;
         }

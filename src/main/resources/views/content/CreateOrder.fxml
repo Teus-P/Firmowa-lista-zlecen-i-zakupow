@@ -8,9 +8,9 @@
 <?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:controller="pl.app.controllers.CreateOrderController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1720.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.CreateOrderController">
    <children>
-      <Label layoutX="243.0" layoutY="24.0" text="NOWE ZAMÓWIENIE" />
+      <Label layoutX="804.0" layoutY="35.0" text="NOWE ZAMÓWIENIE" />
       <Label layoutX="72.0" layoutY="82.0" prefHeight="17.0" prefWidth="88.0" text="Zamówienie nr:" />
       <Label layoutX="70.0" layoutY="128.0" text="Nazwa produktu" />
       <Label layoutX="215.0" layoutY="128.0" prefHeight="17.0" prefWidth="110.0" text="Kategoria produktu" />

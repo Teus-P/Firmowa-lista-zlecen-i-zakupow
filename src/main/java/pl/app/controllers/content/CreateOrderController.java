@@ -1,4 +1,4 @@
-package pl.app.controllers;
+package pl.app.controllers.content;
 
 import javafx.fxml.Initializable;
 import pl.app.core.screen.ScreenController;
@@ -6,12 +6,11 @@ import pl.app.core.screen.ScreenController;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class EditOrderController implements Initializable/*, ControlledScreen */{
+public class CreateOrderController implements Initializable {
 
-    private ScreenController screenController;
     private ResourceBundle stringResources;
 
-    public EditOrderController() {
+    public CreateOrderController() {
 
     }
 
@@ -21,8 +20,5 @@ public class EditOrderController implements Initializable/*, ControlledScreen */
         this.stringResources = resources;
     }
 
-/*    @Override
-    public void onLoadNode(ScreenController screenPage) {
-        this.screenController = screenPage;
-    }*/
+
 }

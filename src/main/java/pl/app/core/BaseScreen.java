@@ -1,13 +1,13 @@
 package pl.app.core;
 
 import lombok.Getter;
-import pl.app.core.contextController.ContextManager;
-import pl.app.core.screenController.ScreenController;
+import pl.app.core.content.ContentManager;
+import pl.app.core.screen.ScreenController;
 
 public abstract class BaseScreen extends BasePage {
 
     @Getter
-    private ContextManager contextManager = ContextManager.getInstance();
+    private ContentManager contentManager = ContentManager.getInstance();
 
     protected void onCreateBuildContext(){
     }

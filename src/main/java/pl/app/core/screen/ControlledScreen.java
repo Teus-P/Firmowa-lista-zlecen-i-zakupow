@@ -1,4 +1,4 @@
-package pl.app.core.screenController;
+package pl.app.core.screen;
 
 public interface ControlledScreen {
 
