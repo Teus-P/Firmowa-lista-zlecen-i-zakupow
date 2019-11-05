@@ -5,7 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.AnchorPane;
 import pl.app.core.BaseScreen;
 import pl.app.core.property.ContentProperty;
 import pl.app.core.screen.ScreenController;
@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 public class MainPageController extends BaseScreen {
 
     @FXML
-    private Pane containerPane;
+    private AnchorPane container;
 
     @FXML
     private JFXButton homeButton;
@@ -43,6 +43,7 @@ public class MainPageController extends BaseScreen {
     @FXML
     private JFXButton adminButton;
 
+
     public MainPageController() {
 
     }
@@ -50,6 +51,7 @@ public class MainPageController extends BaseScreen {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize(location, resources);
+
     }
 
 
@@ -68,7 +70,7 @@ public class MainPageController extends BaseScreen {
 
     @FXML
     void currentOrdersButtonOnAction(ActionEvent event) {
-        getContentManager().buildContext(ContentProperty.CURRENT_ORDERS).attachTo(containerPane).build();
+        getContentManager().buildContext(ContentProperty.CURRENT_ORDERS).attachTo(container).build();
     }
 
     @FXML
@@ -87,12 +89,12 @@ public class MainPageController extends BaseScreen {
 
     @FXML
     void orderButtonOnAction(ActionEvent event) {
-        getContentManager().buildContext(ContentProperty.CREATE_ORDER).attachTo(containerPane).build();
+        getContentManager().buildContext(ContentProperty.CREATE_ORDER).attachTo(container).build();
     }
 
     @FXML
     void orderHistoryButtonOnAction(ActionEvent event) {
-        getContentManager().buildContext(ContentProperty.HISTORY_OF_ORDERS).attachTo(containerPane).build();
+        getContentManager().buildContext(ContentProperty.HISTORY_OF_ORDERS).attachTo(container).build();
     }
 
     @FXML
@@ -109,19 +111,6 @@ public class MainPageController extends BaseScreen {
     private void initUi() {
 
         adminButton.setVisible(false);
-
-        Image homeButtonIc = new Image(getClass().getResourceAsStream("/drawable/2x/baseline_home_white_18dp.png"));
-        homeButton.setGraphic(new ImageView(homeButtonIc));
-
-        Image orderHistoryButtonIc = new Image(getClass().getResourceAsStream("/drawable/2x/baseline_library_books_white_18dp.png"));
-        orderHistoryButton.setGraphic(new ImageView(orderHistoryButtonIc));
-
-        Image orderButtonIc = new Image(getClass().getResourceAsStream("/drawable/2x/baseline_screen_share_white_18dp.png"));
-        orderButton.setGraphic(new ImageView(orderButtonIc));
-
-        Image currentOrdersButtonIc = new Image(getClass().getResourceAsStream("/drawable/2x/baseline_access_time_white_18dp.png"));
-        currentOrdersButton.setGraphic(new ImageView(currentOrdersButtonIc));
-
 
 
     }

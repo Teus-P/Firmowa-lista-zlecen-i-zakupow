@@ -2,12 +2,16 @@ package pl.app.launch;
 
 import javafx.application.Application;
 
-import javafx.scene.Group;
+import javafx.fxml.FXMLLoader;
 
+import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import pl.app.core.screen.ScreenController;
 import pl.app.core.property.ScreensProperty;
+import pl.app.core.screen.ScreenController;
+
+import java.io.IOException;
 
 
 public class LaunchApp extends Application {
@@ -29,14 +33,10 @@ public class LaunchApp extends Application {
 
         screenController.setScreenProperty(ScreensProperty.LOGIN_PAGE).show();
 
-        Group root = new Group();
-        root.getChildren().addAll(screenController);
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(screenController);
         primaryStage.setScene(scene);
         primaryStage.show();
 
-
-        //primaryStage.setResizable(false);
 
         primaryStage.setOnCloseRequest(e ->
         {
