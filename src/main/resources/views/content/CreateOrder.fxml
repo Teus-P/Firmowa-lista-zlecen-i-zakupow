@@ -8,13 +8,13 @@
 <?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1720.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.CreateOrderController">
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.CreateOrderController">
    <children>
-      <Label layoutX="804.0" layoutY="35.0" text="NOWE ZAMÓWIENIE" />
+      <Label layoutX="632.0" layoutY="38.0" text="NOWE ZAMÓWIENIE" AnchorPane.leftAnchor="632.0" AnchorPane.rightAnchor="632.0" AnchorPane.topAnchor="38.0" />
       <Label layoutX="72.0" layoutY="82.0" prefHeight="17.0" prefWidth="88.0" text="Zamówienie nr:" />
       <Label layoutX="70.0" layoutY="128.0" text="Nazwa produktu" />
       <Label layoutX="215.0" layoutY="128.0" prefHeight="17.0" prefWidth="110.0" text="Kategoria produktu" />
-      <JFXTextArea editable="false" layoutX="79.0" layoutY="207.0" prefHeight="152.0" prefWidth="460.0" style="-fx-border-color: black;" text="OPIS PRODUKTU" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" />
+      <JFXTextArea editable="false" layoutX="79.0" layoutY="207.0" prefHeight="150.0" style="-fx-border-color: black;" text="OPIS PRODUKTU" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" />
       <JFXButton buttonType="RAISED" layoutX="190.0" layoutY="369.0" style="-fx-background-color: #3C58Fa;" text="+ Dodaj nowy produkt do zamówienia" textFill="#a0a2ab" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="190.0" />
       <Label layoutX="167.0" layoutY="82.0" prefHeight="17.0" prefWidth="36.0" text="-" />
       <Label layoutX="72.0" layoutY="99.0" prefHeight="17.0" prefWidth="182.0" text="Liczba produktów w zamówieniu:" />
@@ -38,8 +38,8 @@
             <MenuItem mnemonicParsing="false" text="Action 2" />
          </items>
       </SplitMenuButton>
-      <JFXButton layoutX="145.0" layoutY="401.0" prefHeight="25.0" prefWidth="299.0" text="Nie możesz znaleźć produktu? Kliknij tutaj!" textFill="#2511d7" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" />
+      <JFXButton layoutX="145.0" layoutY="401.0" text="Nie możesz znaleźć produktu? Kliknij tutaj!" textFill="#2511d7" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" />
       <JFXButton layoutX="234.0" layoutY="426.0" text="Dodaj własny produkt" textFill="#2511d7" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" />
-      <JFXListView layoutX="70.0" layoutY="459.0" prefHeight="303.0" prefWidth="460.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" />
+      <JFXListView layoutX="70.0" layoutY="459.0" prefHeight="300.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" />
    </children>
 </AnchorPane>

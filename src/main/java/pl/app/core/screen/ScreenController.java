@@ -3,13 +3,14 @@ package pl.app.core.screen;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.layout.AnchorPane;
 import pl.app.core.ResourceLoader;
 import pl.app.core.property.ScreensProperty;
 import pl.app.launch.LaunchApp;
 
 import java.io.*;
 
-public class ScreenController extends Parent {
+public class ScreenController extends AnchorPane {
 
     private static final ScreenController instance = new ScreenController();
 
@@ -31,6 +32,12 @@ public class ScreenController extends Parent {
 
         try {
             loadedNode = fxmlLoader.load();
+
+            AnchorPane.setTopAnchor(loadedNode, 0.0);
+            AnchorPane.setBottomAnchor(loadedNode, 0.0);
+            AnchorPane.setLeftAnchor(loadedNode, 0.0);
+            AnchorPane.setRightAnchor(loadedNode, 0.0);
+
             myScreenController = fxmlLoader.getController();
             myScreenController.onLoadNode(this);
             return loadedNode;
@@ -52,17 +59,16 @@ public class ScreenController extends Parent {
 
     private void setScreen(Node screen, String title) {
 
-        Node screenToRemove = null;
-
         if (screen != null) {
 
             primaryStageOperation(title);
 
             if (!getChildren().isEmpty()) {
-                getChildren().add(0, screen);
-                screenToRemove = getChildren().get(1);
-                getChildren().remove(screenToRemove);
+                getChildren().clear();
+                getChildren().add(screen);
                 LaunchApp.getPrimaryStage().sizeToScene();
+                //LaunchApp.getPrimaryStage().setMinHeight(screen.getScene().getHeight());
+                //LaunchApp.getPrimaryStage().setMinWidth(screen.getScene().getWidth());
             } else {
                 getChildren().add(screen);
                 LaunchApp.getPrimaryStage().sizeToScene();
@@ -76,7 +82,7 @@ public class ScreenController extends Parent {
     public void show() {
 
         if (screenProperty != null) {
-            Node screen = loadNode(screenProperty.getScreenPath());
+            Node screen = loadNode(fxmlPath);
             setScreen(screen, pageTitle);
             clearReference();
         } else {

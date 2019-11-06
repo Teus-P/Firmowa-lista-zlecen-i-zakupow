@@ -2,6 +2,7 @@ package pl.app.core.content;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import pl.app.core.ResourceLoader;
 import pl.app.core.property.ContentProperty;
@@ -44,6 +45,11 @@ public class ContentManager {
                 container.getChildren().clear();
                 Parent parent = fxmlLoader.load();
                 container.getChildren().add(parent);
+
+                AnchorPane.setBottomAnchor(parent, 0.0);
+                AnchorPane.setTopAnchor(parent, 0.0);
+                AnchorPane.setLeftAnchor(parent, 0.0);
+                AnchorPane.setRightAnchor(parent, 0.0);
 
             } catch (IOException e) {
                 e.printStackTrace();
