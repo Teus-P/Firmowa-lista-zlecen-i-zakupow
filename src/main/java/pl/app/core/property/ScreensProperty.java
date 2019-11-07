@@ -8,7 +8,7 @@ public enum ScreensProperty {
     LOGIN_PAGE("views/screens/LoginPage.fxml", "LOGOWANIE"),
     ACCEPTED_ORDER_FIELD("views/AcceptedOrderField.fxml", "Accepted order field"),
     ADD_NEW_PRODUCT("views/AddNewProduct.fxml", "Add new product"),
-    ADMIN_PANEL("views/context/AdminPanel.fxml", "Admin panel"),
+    ADMIN_PANEL("views/content/AdminPanel.fxml", "Admin panel"),
     CHANGE_PASSWORD_PAGE("views/ChangePasswordPage.fxml", "Change password page"),
 
 

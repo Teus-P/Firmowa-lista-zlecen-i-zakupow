@@ -31,7 +31,7 @@ public class LaunchApp extends Application {
 
         ScreenController screenController = ScreenController.getInstance();
 
-        screenController.setScreenProperty(ScreensProperty.LOGIN_PAGE).show();
+        screenController.setScreenProperty(ScreensProperty.MAIN_PAGE).show();
 
         Scene scene = new Scene(screenController);
         primaryStage.setScene(scene);
