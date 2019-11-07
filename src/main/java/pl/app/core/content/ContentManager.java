@@ -3,7 +3,6 @@ package pl.app.core.content;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import pl.app.core.ResourceLoader;
 import pl.app.core.property.ContentProperty;
 
@@ -25,7 +24,7 @@ public class ContentManager {
         return new Builder(resourceLoader.fxmlLoader(contentProperty.getScreenPath()));
     }
 
-    public class Builder<T extends Pane> {
+    public class Builder<T extends AnchorPane> {
 
         private T container;
         private FXMLLoader fxmlLoader;

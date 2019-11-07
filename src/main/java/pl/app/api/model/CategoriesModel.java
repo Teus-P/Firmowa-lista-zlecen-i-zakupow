@@ -18,5 +18,15 @@ public class CategoriesModel {
     private String name;
 
 
+    public CategoriesModel() {
+    }
 
+    public CategoriesModel(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

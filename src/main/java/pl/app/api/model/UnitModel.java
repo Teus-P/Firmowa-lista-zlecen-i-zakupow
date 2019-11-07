@@ -17,4 +17,12 @@ public class UnitModel {
     @Expose
     private String unit;
 
+    @Override
+    public String toString() {
+        return unit;
+    }
+
+    public UnitModel(String unit) {
+        this.unit = unit;
+    }
 }

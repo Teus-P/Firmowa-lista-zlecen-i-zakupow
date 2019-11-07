@@ -136,8 +136,9 @@ dependencies {
     // https://mvnrepository.com/artifact/org.openjfx/javafx
     compileOnly 'org.projectlombok:lombok:1.18.10'
     annotationProcessor 'org.projectlombok:lombok:1.18.10'
+    // https://mvnrepository.com/artifact/org.controlsfx/controlsfx
+    compile group: 'org.controlsfx', name: 'controlsfx', version: '11.0.0'
 }
-
 
 
 javafx {

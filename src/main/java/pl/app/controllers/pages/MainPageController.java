@@ -3,8 +3,6 @@ package pl.app.controllers.pages;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import pl.app.core.BaseScreen;
 import pl.app.core.property.ContentProperty;
@@ -104,13 +102,13 @@ public class MainPageController extends BaseScreen {
 
     @FXML
     void adminButtonOnAction(ActionEvent event) {
-
+        getContentManager().buildContext(ContentProperty.ADMIN_CONTEXT).attachTo(container).build();
     }
 
 
     private void initUi() {
 
-        adminButton.setVisible(false);
+        //adminButton.setVisible(false);
 
 
     }

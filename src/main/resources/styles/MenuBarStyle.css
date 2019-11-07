@@ -1,17 +1,13 @@
-#menuContainer{
-    -fx-background-color: #832ABD;
-}
-
 #menuHeader{
-    -fx-background-color: #441663;
+    -fx-background-color: #1D5C78;
 }
 
 .menuButton{
-    -fx-background-color: #832ABD;
+    -fx-background-color: #1D5C78;
 }
 
 AnchorPane{
-    -fx-background-color: #832ABD;
+    -fx-background-color: #1D5C78;
 }
 
 JFXButton{

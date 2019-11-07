@@ -5,12 +5,18 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import pl.app.api.TokenKeeper;
 import pl.app.api.clients.ApiAuthorizationClient;
 import pl.app.api.helpers.TokenHelper;
+import pl.app.api.model.ResponseModel;
 import pl.app.api.model.TokenModel;
+import pl.app.api.responseInterfaces.LoginResponseListener;
 import pl.app.core.BasePage;
 import pl.app.core.property.ScreensProperty;
 
@@ -23,7 +29,7 @@ import java.util.logging.Logger;
 /**
  * view/LoginPage.fxml Controller
  */
-public class LoginPageController extends BasePage {
+public class LoginPageController extends BasePage implements LoginResponseListener {
 
     private static final Logger LOGGER = Logger.getLogger(LoginPageController.class.getName());
 
@@ -80,7 +86,7 @@ public class LoginPageController extends BasePage {
         RequestBody requestBodyUsername = RequestBody.create(MediaType.parse("multipart/form-data"), username);
         RequestBody requestBodyPassword = RequestBody.create(MediaType.parse("multipart/form-data"), password);
 
-        tokenModel = tokenHelper.getAccessToken(requestBodyGrantType, requestBodyUsername, requestBodyPassword);
+        tokenModel = tokenHelper.getAccessToken(requestBodyGrantType, requestBodyUsername, requestBodyPassword, this);
 
         return tokenModel;
     }
@@ -106,4 +112,28 @@ public class LoginPageController extends BasePage {
     }
 
 
+    @Override
+    public void onFailedServerConnection(ResponseModel errorResponse) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(errorResponse.getMessage());
+        alert.setHeaderText(errorResponse.getStatus());
+        alert.setContentText(errorResponse.getTimestamp());
+        Label label = new Label("The exception stacktrace was:");
+        TextArea textArea = new TextArea(errorResponse.getDetails().get(0));
+        textArea.setEditable(false);
+        textArea.setWrapText(true);
+
+        textArea.setMaxWidth(Double.MAX_VALUE);
+        textArea.setMaxHeight(Double.MAX_VALUE);
+        GridPane.setVgrow(textArea, Priority.ALWAYS);
+        GridPane.setHgrow(textArea, Priority.ALWAYS);
+
+        GridPane expContent = new GridPane();
+        expContent.setMaxWidth(Double.MAX_VALUE);
+        expContent.add(label, 0, 0);
+        expContent.add(textArea, 0, 1);
+        alert.getDialogPane().setExpandableContent(expContent);
+
+        alert.showAndWait();
+    }
 }

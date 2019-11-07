@@ -9,10 +9,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.pages.MainPageController">
    <children>
-      <AnchorPane id="menuBar" layoutX="-4.099999904632568" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="200.0" stylesheets="@../../styles/menuBarStyle.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutX="-4.099999904632568" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="200.0" stylesheets="@../../styles/MenuBarStyle.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Pane id="menuHeader" layoutX="4.099999904632568" prefHeight="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
@@ -25,7 +24,7 @@
             </Pane>
             <JFXButton fx:id="homeButton" buttonType="RAISED" layoutX="-3.0" layoutY="120.0" onAction="#homeButtonOnAction" prefHeight="50.0" styleClass="menuButton" text="Strona główna" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
                <graphic>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="30.0" fitWidth="30.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../drawable/2x/baseline_home_white_18dp.png" />
                      </image>
@@ -37,7 +36,7 @@
             </JFXButton>
             <JFXButton fx:id="orderButton" buttonType="RAISED" layoutX="4.099999904632568" layoutY="182.0" onAction="#orderButtonOnAction" prefHeight="50.0" styleClass="menuButton" text="Złóż zamówienie" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="200.0">
                <graphic>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../drawable/2x/baseline_screen_share_white_18dp.png" />
                      </image>
@@ -46,7 +45,7 @@
             </JFXButton>
             <JFXButton fx:id="currentOrdersButton" layoutX="4.099999904632568" layoutY="232.0" onAction="#currentOrdersButtonOnAction" prefHeight="50.0" styleClass="menuButton" text="Aktualne zamówienia" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="250.0">
                <graphic>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../drawable/2x/baseline_access_time_white_18dp.png" />
                      </image>
@@ -55,17 +54,45 @@
             </JFXButton>
             <JFXButton fx:id="orderHistoryButton" layoutX="4.099999904632568" layoutY="282.0" onAction="#orderHistoryButtonOnAction" prefHeight="50.0" styleClass="menuButton" text="Historia zamówienia" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="300.0">
                <graphic>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../drawable/2x/baseline_library_books_white_18dp.png" />
                      </image>
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="profileButton" layoutX="4.099999904632568" layoutY="332.0" onAction="#profileButtonOnAction" prefHeight="50.0" styleClass="menuButton" text="Dane osobowe" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="350.0" />
-            <JFXButton fx:id="helpButton" layoutX="4.099999904632568" layoutY="382.0" onAction="#helpButtonOnAction" prefHeight="50.0" styleClass="menuButton" text="Pomoc" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="400.0" />
-            <JFXButton fx:id="adminButton" layoutX="4.099999904632568" layoutY="732.0" onAction="#adminButtonOnAction" prefHeight="50.0" styleClass="menuButton" text="Panel administratora" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="625.0" />
-            <JFXButton fx:id="logoutButton" layoutX="1.0" layoutY="757.0" onAction="#logoutButtonOnAction" prefHeight="50.0" styleClass="menuButton" text="Wyloguj" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="675.0" />
+            <JFXButton fx:id="profileButton" layoutX="4.099999904632568" layoutY="332.0" onAction="#profileButtonOnAction" prefHeight="50.0" styleClass="menuButton" text="Dane osobowe" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="350.0">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../drawable/2x/baseline_perm_identity_white_18dp.png" />
+                     </image>
+                  </ImageView>
+               </graphic></JFXButton>
+            <JFXButton fx:id="helpButton" layoutX="4.099999904632568" layoutY="382.0" onAction="#helpButtonOnAction" prefHeight="50.0" styleClass="menuButton" text="Pomoc" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="400.0">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../drawable/2x/baseline_help_outline_white_18dp.png" />
+                     </image>
+                  </ImageView>
+               </graphic></JFXButton>
+            <JFXButton fx:id="adminButton" layoutX="4.099999904632568" layoutY="732.0" onAction="#adminButtonOnAction" prefHeight="50.0" styleClass="menuButton" text="Panel administratora" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="625.0">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../drawable/2x/baseline_add_to_queue_white_18dp.png" />
+                     </image>
+                  </ImageView>
+               </graphic></JFXButton>
+            <JFXButton fx:id="logoutButton" layoutX="1.0" layoutY="757.0" onAction="#logoutButtonOnAction" prefHeight="50.0" styleClass="menuButton" text="Wyloguj" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="675.0">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../drawable/2x/baseline_power_settings_new_white_18dp.png" />
+                     </image>
+                  </ImageView>
+               </graphic></JFXButton>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="container" layoutX="215.0" maxHeight="1080.0" maxWidth="1720.0" minHeight="400.0" minWidth="600.0" prefHeight="904.0" prefWidth="1265.0" stylesheets="@../../styles/MainStyle.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />

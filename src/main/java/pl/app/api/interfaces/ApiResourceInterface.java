@@ -78,4 +78,11 @@ public interface ApiResourceInterface {
     @GET("/order/my/all")
     Call<List<OrderModel>> getMyAllOrders();
 
+
+    @POST("/product")
+    Call<ResponseModel> createNewProduct(
+            @Body ProductModel productModel
+    );
+
+
 }

@@ -11,8 +11,6 @@ import javafx.stage.Stage;
 import pl.app.core.property.ScreensProperty;
 import pl.app.core.screen.ScreenController;
 
-import java.io.IOException;
-
 
 public class LaunchApp extends Application {
 
@@ -34,6 +32,7 @@ public class LaunchApp extends Application {
         screenController.setScreenProperty(ScreensProperty.LOGIN_PAGE).show();
 
         Scene scene = new Scene(screenController);
+
         primaryStage.setScene(scene);
         primaryStage.show();
 

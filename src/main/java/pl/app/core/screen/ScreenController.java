@@ -2,7 +2,6 @@ package pl.app.core.screen;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import pl.app.core.ResourceLoader;
 import pl.app.core.property.ScreensProperty;
@@ -33,10 +32,7 @@ public class ScreenController extends AnchorPane {
         try {
             loadedNode = fxmlLoader.load();
 
-            AnchorPane.setTopAnchor(loadedNode, 0.0);
-            AnchorPane.setBottomAnchor(loadedNode, 0.0);
-            AnchorPane.setLeftAnchor(loadedNode, 0.0);
-            AnchorPane.setRightAnchor(loadedNode, 0.0);
+            setResponsiveScene(loadedNode);
 
             myScreenController = fxmlLoader.getController();
             myScreenController.onLoadNode(this);
@@ -57,6 +53,13 @@ public class ScreenController extends AnchorPane {
         }
     }
 
+    private void setResponsiveScene(Node loadedNode) {
+        AnchorPane.setTopAnchor(loadedNode, 0.0);
+        AnchorPane.setBottomAnchor(loadedNode, 0.0);
+        AnchorPane.setLeftAnchor(loadedNode, 0.0);
+        AnchorPane.setRightAnchor(loadedNode, 0.0);
+    }
+
     private void setScreen(Node screen, String title) {
 
         if (screen != null) {
@@ -67,8 +70,6 @@ public class ScreenController extends AnchorPane {
                 getChildren().clear();
                 getChildren().add(screen);
                 LaunchApp.getPrimaryStage().sizeToScene();
-                //LaunchApp.getPrimaryStage().setMinHeight(screen.getScene().getHeight());
-                //LaunchApp.getPrimaryStage().setMinWidth(screen.getScene().getWidth());
             } else {
                 getChildren().add(screen);
                 LaunchApp.getPrimaryStage().sizeToScene();

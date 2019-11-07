@@ -4,8 +4,8 @@ package pl.app.core.property;
  * enum with fxml paths and Stage title
  */
 public enum ScreensProperty {
-    MAIN_PAGE("views/screens/MainPanel.fxml", "Main page"),
-    LOGIN_PAGE("views/screens/LoginPage.fxml", "LOGOWANIE"),
+    MAIN_PAGE("views/screens/MainPanel.fxml", "Ekran główny"),
+    LOGIN_PAGE("views/screens/LoginPage.fxml", "Logowanie"),
     ACCEPTED_ORDER_FIELD("views/AcceptedOrderField.fxml", "Accepted order field"),
     ADD_NEW_PRODUCT("views/AddNewProduct.fxml", "Add new product"),
     ADMIN_PANEL("views/context/AdminPanel.fxml", "Admin panel"),
