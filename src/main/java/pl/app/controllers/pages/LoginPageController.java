@@ -55,10 +55,20 @@ public class LoginPageController extends BasePage implements LoginResponseListen
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize(location, resources);
         setLoginAlertContent();
+
+
+    }
+
+    void developTimeFastLoginMethod() {
+        getTokenByUserCredentials("admin2", "admin2");
+        saveTokenAfterSuccessLogin();
+        showMainPage();
     }
 
     @FXML
     private void onClickLoginButton() {
+
+        developTimeFastLoginMethod();
 
         userLogin = loginTextField.getText();
         userPassword = passwordPasswordField.getText();
