@@ -10,7 +10,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.CreateOrderController">
    <children>
-      <Label layoutX="632.0" layoutY="38.0" text="NOWE ZAMÓWIENIE" AnchorPane.leftAnchor="632.0" AnchorPane.rightAnchor="632.0" AnchorPane.topAnchor="38.0" />
+      <Label alignment="CENTER" layoutX="801.0" layoutY="44.0" text="NOWE ZAMÓWIENIE" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="190.0" />
       <Label layoutX="72.0" layoutY="82.0" prefHeight="17.0" prefWidth="88.0" text="Zamówienie nr:" />
       <Label layoutX="70.0" layoutY="128.0" text="Nazwa produktu" />
       <Label layoutX="215.0" layoutY="128.0" prefHeight="17.0" prefWidth="110.0" text="Kategoria produktu" />

@@ -97,7 +97,7 @@ public class MainPageController extends BaseScreen {
 
     @FXML
     void profileButtonOnAction(ActionEvent event) {
-
+        getContentManager().buildContext(ContentProperty.USER_PANEL).attachTo(container).build();
     }
 
     @FXML
