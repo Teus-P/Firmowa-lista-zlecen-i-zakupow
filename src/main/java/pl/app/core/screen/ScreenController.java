@@ -71,9 +71,6 @@ public class ScreenController extends AnchorPane {
                 getChildren().add(screen);
                 LaunchApp.getPrimaryStage().sizeToScene();
 
-                LaunchApp.getPrimaryStage().setMinWidth(1280);
-                LaunchApp.getPrimaryStage().setMinHeight(770);
-
             } else {
                 getChildren().add(screen);
                 LaunchApp.getPrimaryStage().sizeToScene();

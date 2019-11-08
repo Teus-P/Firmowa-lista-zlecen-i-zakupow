@@ -13,7 +13,7 @@ public abstract class BasePage implements ControlledScreen, Initializable {
     @Getter
     protected ScreenController screenController;
     @Getter
-    private ResourceBundle resourceBundle;
+    protected ResourceBundle resourceBundle;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
