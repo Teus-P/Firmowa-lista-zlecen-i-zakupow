@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="LoginPageBackground" stylesheets="@../../styles/MainStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.pages.LoginPageController">
+   <children>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <Label id="pageLabel" layoutX="206.0" layoutY="76.0" text="Strona">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label id="logonLabel" layoutX="280.0" layoutY="76.0" text="Logowania">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <JFXButton id="remindPasswordButton" layoutX="249.0" layoutY="320.0" text="Przypomnij hasło" textFill="#a0a2ab" />
+            <JFXTextField fx:id="loginTextField" focusColor="#a0a2ab" layoutX="200.0" layoutY="180.0" prefHeight="25.0" prefWidth="200.0" promptText="Login" styleClass="LoginPageTextField" unFocusColor="#a0a2ab" />
+            <JFXPasswordField fx:id="passwordPasswordField" focusColor="#a0a2ab" layoutX="200.0" layoutY="232.0" prefHeight="25.0" prefWidth="200.0" promptText="Hasło" styleClass="LoginPagePasswordField" unFocusColor="#a0a2ab" />
+            <JFXCheckBox layoutX="200.0" layoutY="290.0" style="-fx-text-fill: #a0a2ab;" text="Zapamiętaj mnie" />
+            <JFXButton fx:id="onClickLoginButton" buttonType="RAISED" layoutX="342.0" layoutY="285.0" onAction="#onClickLoginButton" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #3C58Fa;" text="Zaloguj" textFill="#a0a2ab" />
+         </children>
+      </AnchorPane>
+   </children>
+</HBox>

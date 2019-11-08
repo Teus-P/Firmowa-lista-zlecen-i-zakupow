@@ -1,0 +1,59 @@
+VBox {
+    -fx-background-color:  #1D5C78;
+}
+
+JFXTextField, JFXPasswordField {
+    -fx-text-fill: #000000;
+}
+
+JFXCheckBox {
+    -fx-text-fill: #a0a2ab;
+}
+
+JFXButton{
+    -fx-text-alignment: RED;
+}
+
+.LoginPageBackground {
+    -fx-background-color: #2D3447;
+}
+
+
+.LoginPageTextField,.LoginPagePasswordField{
+    -fx-text-fill: #fff;
+}
+
+.enterButton {
+    -fx-background-color: #3C58Fa;
+    -fx-text-fill: #a0a2ab;
+}
+
+.menuButton {
+    -fx-background-color: #1D5C78;
+    -fx-text-fill: #a0a2ab;
+    /*-fx-background-color: #2196f3;*/
+    /*-fx-text-fill: #2D3447;*/
+    /*-fx-border-color: #2D3447;*/
+}
+
+.Table {
+    -fx-border-color: #000000
+}
+
+#menuBar{
+    -fx-background-color: #832ABD;
+}
+
+#remindPasswordButton {
+    -fx-background-color: #151928;
+    -fx-text-fill: #a0a2ab;
+
+}
+
+#pageLabel {
+    -fx-text-fill: #2196f3;
+}
+
+#logonLabel {
+    -fx-text-fill: #a0a2ab;
+}
