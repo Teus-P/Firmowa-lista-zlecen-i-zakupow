@@ -31,6 +31,7 @@ public class LaunchApp extends Application {
 
         screenController.setScreenProperty(ScreensProperty.LOGIN_PAGE).show();
 
+
         Scene scene = new Scene(screenController);
 
         primaryStage.setMinWidth(1280);
