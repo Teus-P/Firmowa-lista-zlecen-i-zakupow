@@ -1,7 +1,6 @@
-package pl.app.controllers.content;
+package pl.app.controllers.content.adminPanel;
 
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
 import javafx.application.Platform;
 import javafx.beans.Observable;
 import javafx.beans.property.BooleanProperty;
@@ -12,9 +11,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.effect.BoxBlur;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import kotlin.Unit;
 import org.controlsfx.control.textfield.TextFields;
@@ -22,12 +27,13 @@ import pl.app.api.clients.ApiResourcesClient;
 import pl.app.api.helpers.CategoriesHelper;
 import pl.app.api.helpers.ProductHelper;
 import pl.app.api.helpers.UnitHelper;
-import pl.app.api.model.CategoriesModel;
-import pl.app.api.model.ProductModel;
-import pl.app.api.model.ResponseModel;
-import pl.app.api.model.UnitModel;
+import pl.app.api.helpers.UserAccountHelper;
+import pl.app.api.model.*;
+import pl.app.controllers.content.adminPanel.dialog.EditUserDialog;
+import pl.app.launch.LaunchApp;
 
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -38,8 +44,10 @@ public class AdminPanelController implements Initializable {
     private CategoriesHelper categoriesHelper;
     private UnitHelper unitHelper;
     private ProductHelper productHelper;
+    private UserAccountHelper userAccountHelper;
     private List<CategoriesModel> categoriesModelsList;
     private List<UnitModel> unitModelList;
+    private ObservableList<UserAccountModel> userAccountModelObservableList;
 
     @FXML
     private JFXComboBox<CategoriesModel> categoriesComboBox;
@@ -53,10 +61,24 @@ public class AdminPanelController implements Initializable {
     @FXML
     private Text responseText;
 
+    @FXML
+    private JFXListView<UserAccountModel> usersListView;
+
+    @FXML
+    private JFXButton addNewUserButton;
+
+    @FXML
+    private JFXButton editUserButton;
+
+    @FXML
+    private AnchorPane container;
+
     public AdminPanelController() {
         categoriesHelper = new CategoriesHelper(ApiResourcesClient.getApi());
         unitHelper = new UnitHelper(ApiResourcesClient.getApi());
         productHelper = new ProductHelper(ApiResourcesClient.getApi());
+        userAccountHelper = new UserAccountHelper(ApiResourcesClient.getApi());
+        userAccountModelObservableList = FXCollections.observableArrayList();
     }
 
     @Override
@@ -66,10 +88,25 @@ public class AdminPanelController implements Initializable {
         categoriesModelsList = categoriesHelper.getAllCategories();
         unitModelList = unitHelper.getAllUnits();
 
+        userAccountModelObservableList.addAll(userAccountHelper.getAllUsers());
 
         initCategoriesComboBox();
         initUnitComboBox();
+        initUserAccountListView();
 
+    }
+
+    private void initUserAccountListView() {
+        usersListView.setItems(userAccountModelObservableList);
+        usersListView.setCellFactory(factory -> new UserAccountViewCell());
+
+
+        usersListView.setOnMouseClicked(click -> {
+            if (click.getClickCount() == 2) {
+                EditUserDialog editUserDialog = new EditUserDialog(usersListView.getSelectionModel().getSelectedItem());
+                editUserDialog.showAndWait();
+            }
+        });
 
     }
 
@@ -137,6 +174,22 @@ public class AdminPanelController implements Initializable {
         unitComboBox.setValue(null);
         categoriesComboBox.setValue(null);
         productTextField.setText("");
+
+    }
+
+
+    @FXML
+    void addNewUserOnAction(ActionEvent event) {
+
+    }
+
+
+    @FXML
+    void editUserOnAction(ActionEvent event) {
+
+        EditUserDialog editUserDialog = new EditUserDialog(usersListView.getSelectionModel().getSelectedItem());
+        editUserDialog.showAndWait();
+
     }
 
 

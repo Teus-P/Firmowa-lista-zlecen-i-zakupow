@@ -35,7 +35,7 @@ public class LaunchApp extends Application {
         Scene scene = new Scene(screenController);
 
         primaryStage.setMinWidth(1280);
-        primaryStage.setMinHeight(770);
+        primaryStage.setMinHeight(800);
         primaryStage.setScene(scene);
         primaryStage.show();
 

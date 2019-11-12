@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.AdminPanelController">
+<AnchorPane fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.adminPanel.AdminPanelController">
    <children>
       <Label alignment="CENTER" layoutX="791.0" layoutY="22.0" text="PANEL ADMINISTRATORA" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="190.0" />
       <TabPane layoutY="64.0" prefHeight="750.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
@@ -22,9 +22,9 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="600.0">
                      <children>
-                        <JFXListView prefHeight="600.0" prefWidth="1720.0" />
-                        <JFXButton buttonType="RAISED" layoutX="14.0" layoutY="633.0" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #3C58Fa;" text="Dodaj nowego użytkownika" textFill="#a0a2ab" />
-                        <JFXButton buttonType="RAISED" layoutX="14.0" layoutY="667.0" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #3C58Fa;" text="Edytuj użytkownika" textFill="#a0a2ab" />
+                        <JFXListView fx:id="usersListView" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
+                        <JFXButton fx:id="addNewUserButton" buttonType="RAISED" layoutX="102.0" layoutY="646.0" onAction="#addNewUserOnAction" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #3C58Fa;" text="Dodaj nowego użytkownika" textFill="#a0a2ab" AnchorPane.topAnchor="650.0" />
+                        <JFXButton fx:id="editUserButton" buttonType="RAISED" layoutX="365.0" layoutY="646.0" onAction="#editUserOnAction" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #3C58Fa;" text="Edytuj użytkownika" textFill="#a0a2ab" AnchorPane.topAnchor="650.0" />
                      </children>
                   </AnchorPane>
             </content>

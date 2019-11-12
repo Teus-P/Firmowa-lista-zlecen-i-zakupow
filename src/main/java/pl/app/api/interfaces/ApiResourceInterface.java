@@ -85,4 +85,7 @@ public interface ApiResourceInterface {
     );
 
 
+    @GET("/users")
+    Call<List<UserAccountModel>> getAllUsers();
+
 }
