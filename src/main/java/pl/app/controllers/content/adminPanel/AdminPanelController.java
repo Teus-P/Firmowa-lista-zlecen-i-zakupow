@@ -186,10 +186,10 @@ public class AdminPanelController implements Initializable {
     void deleteProductOnAction(ActionEvent event) {
 
         if (productTable.getSelectionModel().getSelectedItem() != null) {
-            ButtonType delete = new ButtonType("Usuń");
-            ButtonType cancel = new ButtonType("Anuluj");
-            ProductModel productModel = productTable.getSelectionModel().getSelectedItem().getValue().getProductModel();
-            Alert alert = new Alert(Alert.AlertType.NONE, "", delete, cancel);
+            var delete = new ButtonType("Usuń");
+            var cancel = new ButtonType("Anuluj");
+            var productModel = productTable.getSelectionModel().getSelectedItem().getValue().getProductModel();
+            var alert = new Alert(Alert.AlertType.NONE, "", delete, cancel);
             alert.setTitle("Uwaga!");
             alert.setHeaderText("Czy na pewno chcesz usunąć produkt?");
             alert.setContentText("Produkt o następujących danych zostanie usunięty:\n\n" +
@@ -202,8 +202,11 @@ public class AdminPanelController implements Initializable {
                     productHelper.deleteProductById(productModel.getIdProduct());
                 }
             });
-
-
+        } else {
+            var warningAlert = new Alert(Alert.AlertType.WARNING);
+            warningAlert.setHeaderText("Uwaga!");
+            warningAlert.setContentText("Proszę wybrać produkt do usunięcia");
+            warningAlert.showAndWait();
         }
 
     }
