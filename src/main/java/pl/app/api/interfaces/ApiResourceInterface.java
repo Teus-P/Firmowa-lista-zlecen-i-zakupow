@@ -93,4 +93,10 @@ public interface ApiResourceInterface {
     @GET("/useraccounttype")
     Call<List<UserAccountTypeModel>> getAllAccountType();
 
+    @PUT("/product/delete/{id}")
+    Call<ResponseModel> deleteProductById(
+            @Path("id") int id
+    );
+
+
 }

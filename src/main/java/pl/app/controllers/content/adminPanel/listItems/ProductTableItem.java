@@ -1,4 +1,4 @@
-package pl.app.controllers.content.adminPanel;
+package pl.app.controllers.content.adminPanel.listItems;
 
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import javafx.beans.property.SimpleStringProperty;
@@ -13,14 +13,21 @@ import pl.app.api.model.UnitModel;
 @Setter
 public class ProductTableItem extends RecursiveTreeObject<ProductTableItem> {
 
+    private int productId;
     private StringProperty product;
     private StringProperty category;
     private StringProperty unit;
-
+    private ProductModel productModel;
+    private CategoriesModel categoriesModel;
+    private UnitModel unitModel;
 
     public ProductTableItem(ProductModel product, CategoriesModel category, UnitModel unit) {
         this.product = new SimpleStringProperty(product.getName());
         this.category = new SimpleStringProperty(category.getName());
         this.unit = new SimpleStringProperty(unit.getUnit());
+        this.productId = product.getIdProduct();
+        this.productModel = product;
+        this.categoriesModel = product.getCategories();
+        this.unitModel = product.getUnit();
     }
 }

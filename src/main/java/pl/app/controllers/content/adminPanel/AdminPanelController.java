@@ -2,51 +2,37 @@ package pl.app.controllers.content.adminPanel;
 
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.BoxBlur;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
-import javafx.util.Callback;
-import javafx.util.StringConverter;
-import org.controlsfx.control.textfield.TextFields;
 import pl.app.api.clients.ApiResourcesClient;
-import pl.app.api.helpers.CategoriesHelper;
 import pl.app.api.helpers.ProductHelper;
-import pl.app.api.helpers.UnitHelper;
 import pl.app.api.helpers.UserAccountHelper;
 import pl.app.api.model.*;
 import pl.app.controllers.content.adminPanel.dialog.EditUserDialog;
 import pl.app.controllers.content.adminPanel.dialog.NewProductDialog;
 import pl.app.controllers.content.adminPanel.dialog.NewUserDialog;
+import pl.app.controllers.content.adminPanel.listItems.ProductTableItem;
 import pl.app.core.ResourceLoader;
 import pl.app.launch.LaunchApp;
 
-
-import java.awt.*;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.function.Predicate;
 
 public class AdminPanelController implements Initializable {
 
+    private ResourceLoader resourceLoader = ResourceLoader.getInstance();
     private ResourceBundle stringResources;
     private ProductHelper productHelper;
     private UserAccountHelper userAccountHelper;
-    private List<CategoriesModel> categoriesModelsList;
-    private List<UnitModel> unitModelList;
     private ObservableList<UserAccountModel> userAccountModelObservableList;
     private NewUserDialog newUserDialog;
     private NewProductDialog newProductDialog;
-    private ResourceLoader resourceLoader = ResourceLoader.getInstance();
+
     private ObservableList<ProductTableItem> productModelObservableList;
 
     //user tab
@@ -59,10 +45,30 @@ public class AdminPanelController implements Initializable {
     //Product tab
 
     @FXML
-    private JFXTextField searchField;
+    private JFXTextField productSearchField;
 
     @FXML
     private JFXTreeTableView<ProductTableItem> productTable;
+
+    //end section
+
+    //Unit tab
+
+    @FXML
+    private JFXTextField unitSearchField;
+
+    @FXML
+    private JFXTreeTableView<?> unitTable;
+
+    //end section
+
+    //category tab
+
+    @FXML
+    private JFXTextField categorySearchField;
+
+    @FXML
+    private JFXTreeTableView<?> categoryTable;
 
     //end section
 
@@ -119,7 +125,7 @@ public class AdminPanelController implements Initializable {
         productTable.setShowRoot(false);
 
 
-        searchField.textProperty().addListener((observable, oldValue, newValue) ->
+        productSearchField.textProperty().addListener((observable, oldValue, newValue) ->
                 productTable.setPredicate(productTableItemTreeItem
                         -> productTableItemTreeItem.getValue().getProduct().getValue().contains(newValue)
                         || productTableItemTreeItem.getValue().getCategory().getValue().contains(newValue)
@@ -161,10 +167,45 @@ public class AdminPanelController implements Initializable {
     }
 
 
+    @FXML
+    void addNewUnitOnAction(ActionEvent event) {
+    }
+
+    @FXML
+    void addCategoryOnAction(ActionEvent event) {
+
+    }
+
     private void setPrimaryStageBlurEffect() {
         BoxBlur blur = new BoxBlur(3, 3, 3);
         LaunchApp.getPrimaryStage().getScene().getRoot().setEffect(blur);
     }
 
+
+    @FXML
+    void deleteProductOnAction(ActionEvent event) {
+
+        if (productTable.getSelectionModel().getSelectedItem() != null) {
+            ButtonType delete = new ButtonType("Usuń");
+            ButtonType cancel = new ButtonType("Anuluj");
+            ProductModel productModel = productTable.getSelectionModel().getSelectedItem().getValue().getProductModel();
+            Alert alert = new Alert(Alert.AlertType.NONE, "", delete, cancel);
+            alert.setTitle("Uwaga!");
+            alert.setHeaderText("Czy na pewno chcesz usunąć produkt?");
+            alert.setContentText("Produkt o następujących danych zostanie usunięty:\n\n" +
+                    "Nazwa produktu: " + productModel.getName() + "\n" +
+                    "Kategoria produktu: " + productModel.getCategories().getName() + "\n" +
+                    "Jednostka produktu: " + productModel.getUnit().getUnit());
+            alert.showAndWait().ifPresent(response -> {
+                if (response == delete) {
+                    productTable.getSelectionModel().getSelectedItem().getParent().getChildren().remove(productTable.getSelectionModel().getSelectedItem());
+                    productHelper.deleteProductById(productModel.getIdProduct());
+                }
+            });
+
+
+        }
+
+    }
 
 }

@@ -1,3 +1,9 @@
-JFXTextField{
+JFXTextField {
     -fx-text-fill: #000;
+}
+
+
+JFXButton {
+    -fx-text-fill: #FFF;
+    -fx-background-color: #3C58Fa;
 }

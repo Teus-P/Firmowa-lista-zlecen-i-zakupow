@@ -62,5 +62,26 @@ public class ProductHelper {
         }
     }
 
+    public ResponseModel deleteProductById(int productId) {
+        Call<ResponseModel> call = apiResourceInterface.deleteProductById(productId);
+
+        Response<ResponseModel> response = null;
+
+        try {
+            response = call.execute();
+            if (response.isSuccessful() && response.code() == 200) {
+                return response.body();
+            } else {
+                Gson gson = new Gson();
+
+                return gson.fromJson(response.errorBody() != null ? response.errorBody().string() : null, ResponseModel.class);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+
+            return null;
+        }
+
+    }
 
 }
