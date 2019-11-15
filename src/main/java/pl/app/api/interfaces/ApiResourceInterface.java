@@ -98,5 +98,11 @@ public interface ApiResourceInterface {
             @Path("id") int id
     );
 
+    @PUT("/product/edit/{id}")
+    Call<ResponseModel> editProductyById(
+            @Path("id") int id,
+            @Body ProductModel productModel
+    );
+
 
 }

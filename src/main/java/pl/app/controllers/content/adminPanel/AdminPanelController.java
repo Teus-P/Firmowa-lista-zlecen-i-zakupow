@@ -13,6 +13,7 @@ import pl.app.api.clients.ApiResourcesClient;
 import pl.app.api.helpers.ProductHelper;
 import pl.app.api.helpers.UserAccountHelper;
 import pl.app.api.model.*;
+import pl.app.controllers.content.adminPanel.dialog.EditProductDialog;
 import pl.app.controllers.content.adminPanel.dialog.EditUserDialog;
 import pl.app.controllers.content.adminPanel.dialog.NewProductDialog;
 import pl.app.controllers.content.adminPanel.dialog.NewUserDialog;
@@ -32,6 +33,7 @@ public class AdminPanelController implements Initializable {
     private ObservableList<UserAccountModel> userAccountModelObservableList;
     private NewUserDialog newUserDialog;
     private NewProductDialog newProductDialog;
+    private EditProductDialog editProductDialog;
 
     private ObservableList<ProductTableItem> productModelObservableList;
 
@@ -130,6 +132,15 @@ public class AdminPanelController implements Initializable {
                         -> productTableItemTreeItem.getValue().getProduct().getValue().contains(newValue)
                         || productTableItemTreeItem.getValue().getCategory().getValue().contains(newValue)
                         || productTableItemTreeItem.getValue().getUnit().getValue().contains(newValue)));
+        productTable.setOnMouseClicked(click -> {
+            if (click.getClickCount() == 2) {
+                setPrimaryStageBlurEffect();
+                editProductDialog = new EditProductDialog(productTable.getSelectionModel().getSelectedItem().getValue().getProductModel());
+                editProductDialog.showAndWait();
+            }
+
+        });
+
     }
 
 
@@ -208,7 +219,20 @@ public class AdminPanelController implements Initializable {
             warningAlert.setContentText("Proszę wybrać produkt do usunięcia");
             warningAlert.showAndWait();
         }
+    }
 
+    @FXML
+    void editProductOnAction(ActionEvent event) {
+        if (productTable.getSelectionModel().getSelectedItem() != null) {
+            setPrimaryStageBlurEffect();
+            editProductDialog = new EditProductDialog(productTable.getSelectionModel().getSelectedItem().getValue().getProductModel());
+            editProductDialog.showAndWait();
+        } else {
+            var warningAlert = new Alert(Alert.AlertType.WARNING);
+            warningAlert.setHeaderText("Uwaga!");
+            warningAlert.setContentText("Proszę wybrać produkt do edycji");
+            warningAlert.showAndWait();
+        }
     }
 
 }

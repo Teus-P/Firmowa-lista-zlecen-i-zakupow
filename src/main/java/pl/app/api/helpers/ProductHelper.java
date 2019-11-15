@@ -81,7 +81,27 @@ public class ProductHelper {
 
             return null;
         }
+    }
 
+
+    public ResponseModel editProductById(int productId, ProductModel productModel) {
+        Call<ResponseModel> call = apiResourceInterface.editProductyById(productId, productModel);
+
+        Response<ResponseModel> response = null;
+        try {
+            response = call.execute();
+            if (response.isSuccessful() && response.code() == 200) {
+                return response.body();
+            } else {
+                Gson gson = new Gson();
+
+                return gson.fromJson(response.errorBody() != null ? response.errorBody().string() : null, ResponseModel.class);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+
+            return null;
+        }
     }
 
 }

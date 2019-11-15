@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import pl.app.api.model.UserAccountModel;
 import pl.app.core.ResourceLoader;
+import pl.app.core.property.DialogProperty;
 import pl.app.launch.LaunchApp;
 
 import java.io.IOException;
@@ -36,14 +37,14 @@ public class EditUserDialog extends Stage implements Initializable {
 
         this.userAccountModel = userAccountModel;
 
-        FXMLLoader fxmlLoader = resourceLoader.fxmlLoader("views/content/adminPanel/EditUserDialog.fxml");
+        FXMLLoader fxmlLoader = resourceLoader.fxmlLoader(DialogProperty.EDIT_USER.getDialogFxmlPath());
         fxmlLoader.setController(this);
 
         initModality(Modality.APPLICATION_MODAL);
         initStyle(StageStyle.UTILITY);
         setMinWidth(1280);
         setMinHeight(720);
-        setTitle("Edycja użytkownika");
+        setTitle(DialogProperty.EDIT_USER.getDialogTitle());
         try {
             setScene(new Scene(fxmlLoader.load()));
         } catch (IOException e) {

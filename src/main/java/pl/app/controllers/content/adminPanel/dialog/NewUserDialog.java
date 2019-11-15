@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import pl.app.api.model.UserAccountModel;
 import pl.app.core.ResourceLoader;
+import pl.app.core.property.DialogProperty;
 import pl.app.launch.LaunchApp;
 
 import java.io.IOException;
@@ -19,23 +20,22 @@ public class NewUserDialog extends Stage implements Initializable {
     private ResourceLoader resourceLoader = ResourceLoader.getInstance();
 
 
-
     public NewUserDialog() {
-        FXMLLoader fxmlLoader = resourceLoader.fxmlLoader("views/content/adminPanel/NewUserDialog.fxml");
+        FXMLLoader fxmlLoader = resourceLoader.fxmlLoader(DialogProperty.NEW_USER.getDialogFxmlPath());
         fxmlLoader.setController(this);
 
         initModality(Modality.APPLICATION_MODAL);
         initStyle(StageStyle.UTILITY);
         setMinWidth(1280);
         setMinHeight(720);
-        setTitle("Dodawanie nowego użytkownika");
+        setTitle(DialogProperty.NEW_USER.getDialogTitle());
         try {
             setScene(new Scene(fxmlLoader.load()));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        setOnCloseRequest(e->{
+        setOnCloseRequest(e -> {
             LaunchApp.getPrimaryStage().getScene().getRoot().setEffect(null);
             close();
         });
