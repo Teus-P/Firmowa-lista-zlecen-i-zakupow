@@ -41,7 +41,7 @@ public class UserAccountModel {
 
     @SerializedName("userAccountTypes")
     @Expose
-    private List<UserAccountType> userAccountTypes = null;
+    private List<UserAccountTypeModel> userAccountTypeModels = null;
 
 
 }

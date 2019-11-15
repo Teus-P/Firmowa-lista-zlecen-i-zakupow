@@ -25,12 +25,12 @@ JFXButton{
 
 .enterButton {
     -fx-background-color: #3C58Fa;
-    -fx-text-fill: #a0a2ab;
+    -fx-text-fill: #FFF;
 }
 
 .menuButton {
     -fx-background-color: #1D5C78;
-    -fx-text-fill: #a0a2ab;
+    -fx-text-fill: #FFF;
     /*-fx-background-color: #2196f3;*/
     /*-fx-text-fill: #2D3447;*/
     /*-fx-border-color: #2D3447;*/
@@ -56,4 +56,9 @@ JFXButton{
 
 #logonLabel {
     -fx-text-fill: #a0a2ab;
+}
+
+
+#blackSplitter{
+
 }

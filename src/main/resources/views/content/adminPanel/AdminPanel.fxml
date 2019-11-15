@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXTimePicker?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.adminPanel.AdminPanelController">
+<AnchorPane fx:id="container" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.adminPanel.AdminPanelController">
    <children>
       <Label alignment="CENTER" layoutX="791.0" layoutY="22.0" text="PANEL ADMINISTRATORA" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="190.0" />
-      <TabPane layoutY="64.0" prefHeight="750.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+      <TabPane layoutY="64.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
         <tabs>
           <Tab text="Zarządzanie użytkownikami">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="600.0">
+              <AnchorPane>
                      <children>
                         <JFXListView fx:id="usersListView" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
                         <JFXButton fx:id="addNewUserButton" buttonType="RAISED" layoutX="102.0" layoutY="646.0" onAction="#addNewUserOnAction" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #3C58Fa;" text="Dodaj nowego użytkownika" textFill="#a0a2ab" AnchorPane.topAnchor="650.0" />
@@ -31,35 +32,38 @@
           </Tab>
             <Tab text="Zarządzanie zamówieniami">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <AnchorPane />
                </content>
             </Tab>
-            <Tab text="Zarządzanie produktami">
+            <Tab text="Zarządzanie zasobami">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <AnchorPane>
                      <children>
-                        <TabPane prefHeight="720.0" prefWidth="729.0" tabClosingPolicy="UNAVAILABLE">
+                        <TabPane tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <tabs>
-                            <Tab text="Dodaj produkt">
+                            <Tab text="Produkty">
                               <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="339.0" prefWidth="364.0">
+                                <AnchorPane>
                                        <children>
-                                          <JFXTextField fx:id="productTextField" layoutX="106.0" layoutY="65.0" prefHeight="25.0" prefWidth="155.0" promptText="Nazwa produktu" style="-jfx-label-float: true;" AnchorPane.bottomAnchor="601.0" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="464.0" AnchorPane.topAnchor="65.0" />
-                                          <JFXButton buttonType="RAISED" layoutX="365.0" layoutY="78.0" onAction="#addProductOnAction" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #3C58Fa;" text="Dodaj" textFill="#a0a2ab" AnchorPane.bottomAnchor="588.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="209.0" AnchorPane.topAnchor="78.0" />
-                                          <JFXComboBox fx:id="categoriesComboBox" layoutX="105.0" layoutY="113.0" prefHeight="25.0" prefWidth="155.0" promptText="Kategoria produktu" style="-jfx-label-float: true;" AnchorPane.bottomAnchor="551.0" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="461.0" AnchorPane.topAnchor="115.0" />
-                                          <JFXComboBox fx:id="unitComboBox" layoutX="107.0" layoutY="177.0" prefHeight="25.0" prefWidth="155.0" promptText="Jednostka" style="-jfx-label-float: true;" AnchorPane.bottomAnchor="501.0" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="461.0" AnchorPane.topAnchor="165.0" />
                                           <Text fx:id="responseText" strokeType="OUTSIDE" strokeWidth="0.0" visible="false" AnchorPane.bottomAnchor="535.0390625" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="379.0" AnchorPane.topAnchor="140.0" />
+                                          <JFXTreeTableView fx:id="productTable" layoutX="235.0" layoutY="256.0" prefHeight="304.0" prefWidth="709.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="75.0">
+                                             <columnResizePolicy>
+                                                <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                             </columnResizePolicy>
+                                          </JFXTreeTableView>
+                                          <JFXTextField fx:id="searchField" layoutX="14.0" layoutY="28.0" promptText="Szukaj" style="-jfx-label-float: true;" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="25.0" />
+                                          <JFXButton buttonType="RAISED" layoutX="39.0" layoutY="691.0" onAction="#addProductOnAction" prefWidth="150.0" style="-fx-background-color: #3C58Fa;" text="Dodaj" textFill="WHITE" AnchorPane.bottomAnchor="50.0" />
                                        </children>
                                     </AnchorPane>
                               </content>
                             </Tab>
                             <Tab text="Usuń produkt">
                               <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                <AnchorPane>
                                        <children>
                                           <Label layoutX="83.0" layoutY="105.0" text="Nazwa produktu" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="70.0" />
                                           <Label layoutX="150.0" layoutY="105.0" text="Kategoria" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="110.0" />
-                                          <ChoiceBox layoutX="315.0" layoutY="66.0" prefHeight="25.0" prefWidth="200.0" AnchorPane.rightAnchor="85.0" AnchorPane.topAnchor="66.0" />
+                                          <ChoiceBox layoutX="315.0" layoutY="66.0" prefHeight="25.0" prefWidth="200.0" AnchorPane.rightAnchor="214.0" AnchorPane.topAnchor="66.0" />
                                           <JFXTextField layoutX="315.0" layoutY="106.0" prefHeight="25.0" prefWidth="200.0" />
                                           <Label layoutX="165.0" layoutY="210.0" text="Opis produktu" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="160.0" />
                                           <JFXTextArea layoutX="165.0" layoutY="277.0" prefHeight="159.0" prefWidth="300.0" style="-fx-border-color: black;" text="Opis produktu." AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="190.0" />

@@ -84,8 +84,13 @@ public interface ApiResourceInterface {
             @Body ProductModel productModel
     );
 
+    @GET("/product")
+    Call<List<ProductModel>> getAllProducts();
 
     @GET("/users")
     Call<List<UserAccountModel>> getAllUsers();
+
+    @GET("/useraccounttype")
+    Call<List<UserAccountTypeModel>> getAllAccountType();
 
 }

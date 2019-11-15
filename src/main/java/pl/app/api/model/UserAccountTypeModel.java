@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class UserAccountType {
+public class UserAccountTypeModel {
 
     @SerializedName("idUserAccountType")
     @Expose

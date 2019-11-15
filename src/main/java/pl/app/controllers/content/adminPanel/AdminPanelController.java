@@ -1,27 +1,21 @@
 package pl.app.controllers.content.adminPanel;
 
 import com.jfoenix.controls.*;
-import javafx.application.Platform;
-import javafx.beans.Observable;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleObjectProperty;
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.BoxBlur;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
+import javafx.util.Callback;
 import javafx.util.StringConverter;
-import kotlin.Unit;
 import org.controlsfx.control.textfield.TextFields;
 import pl.app.api.clients.ApiResourcesClient;
 import pl.app.api.helpers.CategoriesHelper;
@@ -30,69 +24,67 @@ import pl.app.api.helpers.UnitHelper;
 import pl.app.api.helpers.UserAccountHelper;
 import pl.app.api.model.*;
 import pl.app.controllers.content.adminPanel.dialog.EditUserDialog;
+import pl.app.controllers.content.adminPanel.dialog.NewProductDialog;
+import pl.app.controllers.content.adminPanel.dialog.NewUserDialog;
+import pl.app.core.ResourceLoader;
 import pl.app.launch.LaunchApp;
 
 
-import java.io.IOException;
+import java.awt.*;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
 public class AdminPanelController implements Initializable {
 
     private ResourceBundle stringResources;
-    private CategoriesHelper categoriesHelper;
-    private UnitHelper unitHelper;
     private ProductHelper productHelper;
     private UserAccountHelper userAccountHelper;
     private List<CategoriesModel> categoriesModelsList;
     private List<UnitModel> unitModelList;
     private ObservableList<UserAccountModel> userAccountModelObservableList;
+    private NewUserDialog newUserDialog;
+    private NewProductDialog newProductDialog;
+    private ResourceLoader resourceLoader = ResourceLoader.getInstance();
+    private ObservableList<ProductTableItem> productModelObservableList;
 
-    @FXML
-    private JFXComboBox<CategoriesModel> categoriesComboBox;
-
-    @FXML
-    private JFXComboBox<UnitModel> unitComboBox;
-
-    @FXML
-    private JFXTextField productTextField;
-
-    @FXML
-    private Text responseText;
+    //user tab
 
     @FXML
     private JFXListView<UserAccountModel> usersListView;
 
-    @FXML
-    private JFXButton addNewUserButton;
+    //end section
+
+    //Product tab
 
     @FXML
-    private JFXButton editUserButton;
+    private JFXTextField searchField;
 
     @FXML
-    private AnchorPane container;
+    private JFXTreeTableView<ProductTableItem> productTable;
+
+    //end section
+
 
     public AdminPanelController() {
-        categoriesHelper = new CategoriesHelper(ApiResourcesClient.getApi());
-        unitHelper = new UnitHelper(ApiResourcesClient.getApi());
+
         productHelper = new ProductHelper(ApiResourcesClient.getApi());
         userAccountHelper = new UserAccountHelper(ApiResourcesClient.getApi());
         userAccountModelObservableList = FXCollections.observableArrayList();
+        productModelObservableList = FXCollections.observableArrayList();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.stringResources = resources;
 
-        categoriesModelsList = categoriesHelper.getAllCategories();
-        unitModelList = unitHelper.getAllUnits();
-
         userAccountModelObservableList.addAll(userAccountHelper.getAllUsers());
 
-        initCategoriesComboBox();
-        initUnitComboBox();
+        productHelper.getAllProducts().forEach(model -> productModelObservableList.add(new ProductTableItem(model, model.getCategories(), model.getUnit())));
+
         initUserAccountListView();
+        initProductListView();
 
     }
 
@@ -103,93 +95,75 @@ public class AdminPanelController implements Initializable {
 
         usersListView.setOnMouseClicked(click -> {
             if (click.getClickCount() == 2) {
-                EditUserDialog editUserDialog = new EditUserDialog(usersListView.getSelectionModel().getSelectedItem());
+                setPrimaryStageBlurEffect();
+                var editUserDialog = new EditUserDialog(usersListView.getSelectionModel().getSelectedItem());
                 editUserDialog.showAndWait();
             }
         });
-
     }
 
-    private void initUnitComboBox() {
+    private void initProductListView() {
+        JFXTreeTableColumn<ProductTableItem, String> productColumn = new JFXTreeTableColumn<>("Nazwa produktu");
+        productColumn.setCellValueFactory(param -> param.getValue().getValue().getProduct());
 
-        ObservableList<UnitModel> unitModelObservableList = FXCollections.observableList(unitModelList);
-        unitComboBox.setItems(unitModelObservableList);
-        // TextFields.bindAutoCompletion(unitComboBox.getEditor(), unitComboBox.getItems());
+        JFXTreeTableColumn<ProductTableItem, String> categoryColumn = new JFXTreeTableColumn<>("Kategoria");
+        categoryColumn.setCellValueFactory(param -> param.getValue().getValue().getCategory());
 
-        unitComboBox.setConverter(new StringConverter<>() {
-            @Override
-            public String toString(UnitModel object) {
-                if (object == null)
-                    return null;
-                else
-                    return object.getUnit();
-            }
+        JFXTreeTableColumn<ProductTableItem, String> unitColumn = new JFXTreeTableColumn<>("Jednostka");
+        unitColumn.setCellValueFactory(param -> param.getValue().getValue().getUnit());
 
-            @Override
-            public UnitModel fromString(String string) {
-                return new UnitModel(string);
-            }
-        });
 
+        final TreeItem<ProductTableItem> root = new RecursiveTreeItem<>(productModelObservableList, RecursiveTreeObject::getChildren);
+        productTable.getColumns().setAll(productColumn, categoryColumn, unitColumn);
+        productTable.setRoot(root);
+        productTable.setShowRoot(false);
+
+
+        searchField.textProperty().addListener((observable, oldValue, newValue) ->
+                productTable.setPredicate(productTableItemTreeItem
+                        -> productTableItemTreeItem.getValue().getProduct().getValue().contains(newValue)
+                        || productTableItemTreeItem.getValue().getCategory().getValue().contains(newValue)
+                        || productTableItemTreeItem.getValue().getUnit().getValue().contains(newValue)));
     }
 
-    private void initCategoriesComboBox() {
-
-        ObservableList<CategoriesModel> categoriesModelObservableList = FXCollections.observableList(categoriesModelsList);
-        categoriesComboBox.setItems(categoriesModelObservableList);
-        TextFields.bindAutoCompletion(categoriesComboBox.getEditor(), categoriesComboBox.getItems());
-
-        categoriesComboBox.setConverter(new StringConverter<>() {
-            @Override
-            public String toString(CategoriesModel object) {
-                if (object == null)
-                    return null;
-                else
-                    return object.getName();
-            }
-
-            @Override
-            public CategoriesModel fromString(String string) {
-                return new CategoriesModel(string);
-            }
-        });
-    }
 
     @FXML
     void addProductOnAction(ActionEvent event) {
-
-        ProductModel productModel = new ProductModel();
-        productModel.setCategories(categoriesComboBox.getValue());
-        productModel.setName(productTextField.getText());
-        productModel.setUnit(unitComboBox.getValue());
-
-        ResponseModel responseModel = productHelper.createNewProduct(productModel);
-
-        StringBuilder responseMessage = new StringBuilder();
-
-        responseModel.getDetails().forEach(message -> responseMessage.append(message).append("\n"));
-        responseText.setText(responseMessage.toString());
-
-        responseText.setVisible(true);
-        unitComboBox.setValue(null);
-        categoriesComboBox.setValue(null);
-        productTextField.setText("");
+        setPrimaryStageBlurEffect();
+        newProductDialog = new NewProductDialog();
+        newProductDialog.showAndWait();
 
     }
 
 
     @FXML
     void addNewUserOnAction(ActionEvent event) {
-
+        setPrimaryStageBlurEffect();
+        newUserDialog = new NewUserDialog();
+        newUserDialog.showAndWait();
     }
 
 
     @FXML
     void editUserOnAction(ActionEvent event) {
 
-        EditUserDialog editUserDialog = new EditUserDialog(usersListView.getSelectionModel().getSelectedItem());
-        editUserDialog.showAndWait();
+        if (usersListView.getSelectionModel().getSelectedItem() != null) {
+            setPrimaryStageBlurEffect();
+            var editUserDialog = new EditUserDialog(usersListView.getSelectionModel().getSelectedItem());
+            editUserDialog.showAndWait();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Informacja");
+            alert.setHeaderText("Proszę wybrać użytkownika do edycji");
+            alert.showAndWait();
+        }
 
+    }
+
+
+    private void setPrimaryStageBlurEffect() {
+        BoxBlur blur = new BoxBlur(3, 3, 3);
+        LaunchApp.getPrimaryStage().getScene().getRoot().setEffect(blur);
     }
 
 
