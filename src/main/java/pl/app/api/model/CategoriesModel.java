@@ -5,6 +5,8 @@ import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 import lombok.Setter;
 
+//TODO change the class name to CategoryModel
+
 import java.util.Objects;
 
 @Getter

@@ -25,4 +25,14 @@ public class ProductModel {
     @Expose
     private String name;
 
+    public ProductModel(){}
+
+    public ProductModel(String name){
+        this.name = name;
+    }
+
+//    @Override
+//    public String toString(){
+//        return name;
+//    }
 }
