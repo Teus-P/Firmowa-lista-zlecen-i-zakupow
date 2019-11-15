@@ -11,6 +11,7 @@ import retrofit2.Response;
 import java.io.IOException;
 import java.util.List;
 
+//TODO change the class name to "CategoryHelper"
 public class CategoriesHelper {
 
     private ApiResourceInterface apiResourceInterface;
@@ -24,7 +25,7 @@ public class CategoriesHelper {
 
         Response<List<CategoriesModel>> response = null;
 
-        try {
+        try{
             response = call.execute();
             if (response.isSuccessful() && response.code() == 200) {
                 return response.body();
