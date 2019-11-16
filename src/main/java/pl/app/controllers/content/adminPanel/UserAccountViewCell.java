@@ -1,16 +1,13 @@
 package pl.app.controllers.content.adminPanel;
 
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import pl.app.api.model.UserAccountModel;
 
-import pl.app.controllers.content.adminPanel.dialog.EditUserDialog;
-import pl.app.core.ResourceLoader;
+import pl.app.core.utils.ResourceLoader;
 
 import java.io.IOException;
 

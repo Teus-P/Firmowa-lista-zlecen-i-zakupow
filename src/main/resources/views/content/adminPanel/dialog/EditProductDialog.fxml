@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.adminPanel.dialog.EditEditProductDialogController">
    <children>
       <Label alignment="CENTER" layoutX="236.0" layoutY="36.0" text="Edycja produktu" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
          <font>
@@ -24,6 +24,7 @@
          </opaqueInsets>
       </JFXButton>
       <JFXButton buttonType="RAISED" layoutX="334.0" layoutY="328.0" onAction="#cancelButtonOnAction" style="-fx-background-color: #3C58Fa;" text="Anuluj" textFill="WHITE" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="30.0" />
+      <Label fx:id="responseMessage" layoutX="70.0" layoutY="279.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
    </children>
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

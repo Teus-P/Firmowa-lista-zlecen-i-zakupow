@@ -1,4 +1,4 @@
-package pl.app.core;
+package pl.app.core.baseComponent;
 
 import lombok.Getter;
 import pl.app.core.content.ContentManager;

@@ -1,4 +1,4 @@
-package pl.app.core;
+package pl.app.core.utils;
 
 import javafx.fxml.FXMLLoader;
 import pl.app.utils.Utf8ResourceBundleControl;

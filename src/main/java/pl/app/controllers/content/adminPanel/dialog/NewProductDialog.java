@@ -6,13 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.util.StringConverter;
 import org.controlsfx.control.textfield.TextFields;
 import pl.app.api.clients.ApiResourcesClient;
@@ -22,18 +16,14 @@ import pl.app.api.helpers.UnitHelper;
 import pl.app.api.model.CategoriesModel;
 import pl.app.api.model.ProductModel;
 import pl.app.api.model.UnitModel;
-import pl.app.core.ResourceLoader;
-import pl.app.core.property.DialogProperty;
-import pl.app.launch.LaunchApp;
+import pl.app.core.baseComponent.BaseDialog;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class NewProductDialog extends Stage implements Initializable {
+public class NewProductDialog extends BaseDialog {
 
-    private ResourceLoader resourceLoader = ResourceLoader.getInstance();
     private CategoriesHelper categoriesHelper;
     private UnitHelper unitHelper;
     private ProductHelper productHelper;
@@ -59,34 +49,6 @@ public class NewProductDialog extends Stage implements Initializable {
         initData();
         initCategoriesComboBox();
         initUnitComboBox();
-    }
-
-
-    public NewProductDialog() {
-
-        initView();
-
-    }
-
-    private void initView() {
-        FXMLLoader fxmlLoader = resourceLoader.fxmlLoader(DialogProperty.NEW_PRODUCT.getDialogFxmlPath());
-        fxmlLoader.setController(this);
-
-        initModality(Modality.APPLICATION_MODAL);
-        initStyle(StageStyle.UTILITY);
-        setMinWidth(1280);
-        setMinHeight(720);
-        setTitle(DialogProperty.NEW_PRODUCT.getDialogTitle());
-        try {
-            setScene(new Scene(fxmlLoader.load()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        setOnCloseRequest(e -> {
-            LaunchApp.getPrimaryStage().getScene().getRoot().setEffect(null);
-            close();
-        });
     }
 
 
@@ -125,8 +87,7 @@ public class NewProductDialog extends Stage implements Initializable {
 
     @FXML
     void cancelButtonOnAction(ActionEvent event) {
-        LaunchApp.getPrimaryStage().getScene().getRoot().setEffect(null);
-        close();
+        getDialogStage().close();
     }
 
     private void initUnitComboBox() {

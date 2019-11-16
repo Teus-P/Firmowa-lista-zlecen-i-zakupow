@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import org.controlsfx.control.CheckComboBox?>
 
-<AnchorPane prefHeight="580.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="580.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.adminPanel.dialog.NewUserDialogController">
    <children>
       <HBox alignment="CENTER" layoutX="105.0" layoutY="89.0" AnchorPane.bottomAnchor="290.0" AnchorPane.leftAnchor="105.0" AnchorPane.rightAnchor="105.0" AnchorPane.topAnchor="89.0">
          <children>
@@ -61,8 +61,8 @@
             <Insets />
          </opaqueInsets>
       </HBox>
-      <JFXButton id="enterButton" layoutX="97.0" layoutY="437.0" styleClass="enterButton" text="Dodaj" AnchorPane.bottomAnchor="118.0" AnchorPane.leftAnchor="97.0" AnchorPane.rightAnchor="373.0" />
-      <JFXButton layoutX="371.0" layoutY="437.0" styleClass="enterButton" text="Anuluj" AnchorPane.bottomAnchor="118.0" AnchorPane.leftAnchor="371.0" AnchorPane.rightAnchor="99.0" />
+      <JFXButton id="enterButton" layoutX="97.0" layoutY="437.0" onAction="#addButtonOnAction" styleClass="enterButton" text="Dodaj" AnchorPane.bottomAnchor="118.0" AnchorPane.leftAnchor="97.0" AnchorPane.rightAnchor="373.0" />
+      <JFXButton layoutX="371.0" layoutY="437.0" onAction="#cancelButtonOnAction" styleClass="enterButton" text="Anuluj" AnchorPane.bottomAnchor="118.0" AnchorPane.leftAnchor="371.0" AnchorPane.rightAnchor="99.0" />
       <Label layoutX="105.0" layoutY="390.0" prefHeight="61.0" prefWidth="231.0" text="UWAGA! Jeśli nie zostanie wybrany typ użytkownika, utwożone konto domyślnie będzie posiadać podstawowe uprawnienia" wrapText="true" />
       <CheckComboBox layoutX="105.0" layoutY="472.0" prefHeight="25.0" prefWidth="231.0" />
    </children>

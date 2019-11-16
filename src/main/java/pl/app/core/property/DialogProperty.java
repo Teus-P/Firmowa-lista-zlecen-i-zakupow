@@ -4,10 +4,10 @@ import lombok.Getter;
 
 @Getter
 public enum DialogProperty {
-    EDIT_PRODUCT("views/content/adminPanel/EditProductDialog.fxml", "Edycja produktu"),
-    EDIT_USER("views/content/adminPanel/EditUserDialog.fxml", "Edycja użytkownika"),
-    NEW_PRODUCT("views/content/adminPanel/NewProductDialog.fxml", "Dodawanie produktu"),
-    NEW_USER("views/content/adminPanel/NewUserDialog.fxml", "Dodawanie nowego użytkownika"
+    EDIT_PRODUCT("views/content/adminPanel/dialog/EditProductDialog.fxml", "Edycja produktu"),
+    EDIT_USER("views/content/adminPanel/dialog/EditUserDialog.fxml", "Edycja użytkownika"),
+    NEW_PRODUCT("views/content/adminPanel/dialog/NewProductDialog.fxml", "Dodawanie produktu"),
+    NEW_USER("views/content/adminPanel/dialog/NewUserDialog.fxml", "Dodawanie nowego użytkownika"
     );
 
 

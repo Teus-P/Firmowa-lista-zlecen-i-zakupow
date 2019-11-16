@@ -17,7 +17,7 @@ import pl.app.api.helpers.TokenHelper;
 import pl.app.api.model.ResponseModel;
 import pl.app.api.model.TokenModel;
 import pl.app.api.responseInterfaces.LoginResponseListener;
-import pl.app.core.BasePage;
+import pl.app.core.baseComponent.BasePage;
 import pl.app.core.property.ScreensProperty;
 
 

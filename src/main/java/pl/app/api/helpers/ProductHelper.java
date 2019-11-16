@@ -6,6 +6,7 @@ import lombok.Getter;
 import pl.app.api.interfaces.ApiResourceInterface;
 import pl.app.api.model.ProductModel;
 import pl.app.api.model.ResponseModel;
+import pl.app.api.responseInterfaces.product.EditProductResponseListener;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -84,23 +85,20 @@ public class ProductHelper {
     }
 
 
-    public ResponseModel editProductById(int productId, ProductModel productModel) {
+    public void editProductById(int productId, ProductModel productModel, EditProductResponseListener responseListener) {
         Call<ResponseModel> call = apiResourceInterface.editProductyById(productId, productModel);
 
         Response<ResponseModel> response = null;
         try {
             response = call.execute();
             if (response.isSuccessful() && response.code() == 200) {
-                return response.body();
+                responseListener.onSuccessResponse(response.body());
             } else {
                 Gson gson = new Gson();
-
-                return gson.fromJson(response.errorBody() != null ? response.errorBody().string() : null, ResponseModel.class);
+                responseListener.onFailedResponse(gson.fromJson(response.errorBody() != null ? response.errorBody().string() : null, ResponseModel.class));
             }
         } catch (IOException e) {
             e.printStackTrace();
-
-            return null;
         }
     }
 

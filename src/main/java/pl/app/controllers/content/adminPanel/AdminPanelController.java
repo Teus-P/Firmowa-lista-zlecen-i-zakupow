@@ -8,34 +8,30 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.effect.BoxBlur;
 import pl.app.api.clients.ApiResourcesClient;
 import pl.app.api.helpers.ProductHelper;
 import pl.app.api.helpers.UserAccountHelper;
 import pl.app.api.model.*;
-import pl.app.controllers.content.adminPanel.dialog.EditProductDialog;
-import pl.app.controllers.content.adminPanel.dialog.EditUserDialog;
-import pl.app.controllers.content.adminPanel.dialog.NewProductDialog;
-import pl.app.controllers.content.adminPanel.dialog.NewUserDialog;
+import pl.app.controllers.content.adminPanel.dialog.*;
 import pl.app.controllers.content.adminPanel.listItems.ProductTableItem;
-import pl.app.core.ResourceLoader;
-import pl.app.launch.LaunchApp;
+import pl.app.core.dialog.DialogStage;
+import pl.app.core.dialog.OnDialogCloseListener;
+import pl.app.core.property.DialogProperty;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AdminPanelController implements Initializable {
 
-    private ResourceLoader resourceLoader = ResourceLoader.getInstance();
     private ResourceBundle stringResources;
     private ProductHelper productHelper;
     private UserAccountHelper userAccountHelper;
     private ObservableList<UserAccountModel> userAccountModelObservableList;
-    private NewUserDialog newUserDialog;
-    private NewProductDialog newProductDialog;
-    private EditProductDialog editProductDialog;
-
     private ObservableList<ProductTableItem> productModelObservableList;
+    private DialogStage newUserDialog;
+    private DialogStage editProductDialog;
+    private DialogStage editUserDialog;
+    private DialogStage newProductDialog;
 
     //user tab
 
@@ -74,9 +70,7 @@ public class AdminPanelController implements Initializable {
 
     //end section
 
-
     public AdminPanelController() {
-
         productHelper = new ProductHelper(ApiResourcesClient.getApi());
         userAccountHelper = new UserAccountHelper(ApiResourcesClient.getApi());
         userAccountModelObservableList = FXCollections.observableArrayList();
@@ -93,6 +87,66 @@ public class AdminPanelController implements Initializable {
 
         initUserAccountListView();
         initProductListView();
+        initDialogs();
+    }
+
+    @FXML
+    void addProductOnAction(ActionEvent event) {
+        newProductDialog.showAndWait();
+    }
+
+    @FXML
+    void addNewUserOnAction(ActionEvent event) {
+        newUserDialog.showAndWait();
+    }
+
+    @FXML
+    void editUserOnAction(ActionEvent event) {
+
+        if (usersListView.getSelectionModel().getSelectedItem() != null) {
+
+            showEditUserDialog();
+
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Informacja");
+            alert.setHeaderText("Proszę wybrać użytkownika do edycji");
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    void addNewUnitOnAction(ActionEvent event) {
+    }
+
+    @FXML
+    void addCategoryOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void deleteProductOnAction(ActionEvent event) {
+
+        if (productTable.getSelectionModel().getSelectedItem() != null) {
+            showDeleteDialogInformation();
+        } else {
+            String header = "Uwaga";
+            String contentText = "Proszę wybrać produkt do usunięcia";
+            showWarningDialog(header, contentText);
+        }
+    }
+
+    @FXML
+    void editProductOnAction(ActionEvent event) {
+        if (productTable.getSelectionModel().getSelectedItem() != null) {
+
+            showEditProductDialog();
+
+        } else {
+            String header = "Uwaga";
+            String contentText = "Proszę wybrać produkt do edycji";
+            showWarningDialog(header, contentText);
+        }
 
     }
 
@@ -103,14 +157,13 @@ public class AdminPanelController implements Initializable {
 
         usersListView.setOnMouseClicked(click -> {
             if (click.getClickCount() == 2) {
-                setPrimaryStageBlurEffect();
-                var editUserDialog = new EditUserDialog(usersListView.getSelectionModel().getSelectedItem());
-                editUserDialog.showAndWait();
+                showEditUserDialog();
             }
         });
     }
 
     private void initProductListView() {
+
         JFXTreeTableColumn<ProductTableItem, String> productColumn = new JFXTreeTableColumn<>("Nazwa produktu");
         productColumn.setCellValueFactory(param -> param.getValue().getValue().getProduct());
 
@@ -132,107 +185,64 @@ public class AdminPanelController implements Initializable {
                         -> productTableItemTreeItem.getValue().getProduct().getValue().contains(newValue)
                         || productTableItemTreeItem.getValue().getCategory().getValue().contains(newValue)
                         || productTableItemTreeItem.getValue().getUnit().getValue().contains(newValue)));
+
         productTable.setOnMouseClicked(click -> {
             if (click.getClickCount() == 2) {
-                setPrimaryStageBlurEffect();
-                editProductDialog = new EditProductDialog(productTable.getSelectionModel().getSelectedItem().getValue().getProductModel());
-                editProductDialog.showAndWait();
+                showEditProductDialog();
             }
-
         });
 
     }
 
+    private void showEditUserDialog() {
+        EditUserDialogController controller = editUserDialog.getController();
+        controller.initData(usersListView.getSelectionModel().getSelectedItem());
+        editUserDialog.showAndWait();
+    }
 
-    @FXML
-    void addProductOnAction(ActionEvent event) {
-        setPrimaryStageBlurEffect();
-        newProductDialog = new NewProductDialog();
-        newProductDialog.showAndWait();
+    private void showEditProductDialog() {
+        EditEditProductDialogController controller = editProductDialog.getController();
+        controller.initData(productTable.getSelectionModel().getSelectedItem().getValue().getProductModel());
+        controller.setOnDialogCloseListener(() -> {
+            productModelObservableList.clear();
+            productHelper.getAllProducts().forEach(model -> productModelObservableList.add(new ProductTableItem(model, model.getCategories(), model.getUnit())));
+        });
+        editProductDialog.showAndWait();
+    }
+
+    private void showWarningDialog(String headerText, String contentText) {
+        var warningAlert = new Alert(Alert.AlertType.WARNING);
+        warningAlert.setHeaderText(headerText);
+        warningAlert.setContentText(contentText);
+        warningAlert.showAndWait();
+    }
+
+    private void showDeleteDialogInformation() {
+
+        var delete = new ButtonType("Usuń");
+        var cancel = new ButtonType("Anuluj");
+        var productModel = productTable.getSelectionModel().getSelectedItem().getValue().getProductModel();
+        var alert = new Alert(Alert.AlertType.NONE, "", delete, cancel);
+        alert.setTitle("Uwaga!");
+        alert.setHeaderText("Czy na pewno chcesz usunąć produkt?");
+        alert.setContentText("Produkt o następujących danych zostanie usunięty:\n\n" +
+                "Nazwa produktu: " + productModel.getName() + "\n" +
+                "Kategoria produktu: " + productModel.getCategories().getName() + "\n" +
+                "Jednostka produktu: " + productModel.getUnit().getUnit());
+        alert.showAndWait().ifPresent(response -> {
+            if (response == delete) {
+                productTable.getSelectionModel().getSelectedItem().getParent().getChildren().remove(productTable.getSelectionModel().getSelectedItem());
+                productHelper.deleteProductById(productModel.getIdProduct());
+            }
+        });
 
     }
 
-
-    @FXML
-    void addNewUserOnAction(ActionEvent event) {
-        setPrimaryStageBlurEffect();
-        newUserDialog = new NewUserDialog();
-        newUserDialog.showAndWait();
-    }
-
-
-    @FXML
-    void editUserOnAction(ActionEvent event) {
-
-        if (usersListView.getSelectionModel().getSelectedItem() != null) {
-            setPrimaryStageBlurEffect();
-            var editUserDialog = new EditUserDialog(usersListView.getSelectionModel().getSelectedItem());
-            editUserDialog.showAndWait();
-        } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Informacja");
-            alert.setHeaderText("Proszę wybrać użytkownika do edycji");
-            alert.showAndWait();
-        }
-
-    }
-
-
-    @FXML
-    void addNewUnitOnAction(ActionEvent event) {
-    }
-
-    @FXML
-    void addCategoryOnAction(ActionEvent event) {
-
-    }
-
-    private void setPrimaryStageBlurEffect() {
-        BoxBlur blur = new BoxBlur(3, 3, 3);
-        LaunchApp.getPrimaryStage().getScene().getRoot().setEffect(blur);
-    }
-
-
-    @FXML
-    void deleteProductOnAction(ActionEvent event) {
-
-        if (productTable.getSelectionModel().getSelectedItem() != null) {
-            var delete = new ButtonType("Usuń");
-            var cancel = new ButtonType("Anuluj");
-            var productModel = productTable.getSelectionModel().getSelectedItem().getValue().getProductModel();
-            var alert = new Alert(Alert.AlertType.NONE, "", delete, cancel);
-            alert.setTitle("Uwaga!");
-            alert.setHeaderText("Czy na pewno chcesz usunąć produkt?");
-            alert.setContentText("Produkt o następujących danych zostanie usunięty:\n\n" +
-                    "Nazwa produktu: " + productModel.getName() + "\n" +
-                    "Kategoria produktu: " + productModel.getCategories().getName() + "\n" +
-                    "Jednostka produktu: " + productModel.getUnit().getUnit());
-            alert.showAndWait().ifPresent(response -> {
-                if (response == delete) {
-                    productTable.getSelectionModel().getSelectedItem().getParent().getChildren().remove(productTable.getSelectionModel().getSelectedItem());
-                    productHelper.deleteProductById(productModel.getIdProduct());
-                }
-            });
-        } else {
-            var warningAlert = new Alert(Alert.AlertType.WARNING);
-            warningAlert.setHeaderText("Uwaga!");
-            warningAlert.setContentText("Proszę wybrać produkt do usunięcia");
-            warningAlert.showAndWait();
-        }
-    }
-
-    @FXML
-    void editProductOnAction(ActionEvent event) {
-        if (productTable.getSelectionModel().getSelectedItem() != null) {
-            setPrimaryStageBlurEffect();
-            editProductDialog = new EditProductDialog(productTable.getSelectionModel().getSelectedItem().getValue().getProductModel());
-            editProductDialog.showAndWait();
-        } else {
-            var warningAlert = new Alert(Alert.AlertType.WARNING);
-            warningAlert.setHeaderText("Uwaga!");
-            warningAlert.setContentText("Proszę wybrać produkt do edycji");
-            warningAlert.showAndWait();
-        }
+    private void initDialogs() {
+        newUserDialog = new DialogStage(DialogProperty.NEW_USER);
+        editProductDialog = new DialogStage(DialogProperty.EDIT_PRODUCT);
+        editUserDialog = new DialogStage(DialogProperty.EDIT_USER);
+        newProductDialog = new DialogStage(DialogProperty.NEW_PRODUCT);
     }
 
 }

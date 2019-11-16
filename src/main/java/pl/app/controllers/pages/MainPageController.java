@@ -4,7 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
-import pl.app.core.BaseScreen;
+import pl.app.core.baseComponent.BaseScreen;
 import pl.app.core.property.ContentProperty;
 import pl.app.core.screen.ScreenController;
 

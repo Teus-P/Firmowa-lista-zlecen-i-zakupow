@@ -1,4 +1,4 @@
-package pl.app.core;
+package pl.app.core.baseComponent;
 
 import javafx.fxml.Initializable;
 import lombok.Getter;

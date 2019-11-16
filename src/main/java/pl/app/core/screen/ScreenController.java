@@ -3,7 +3,7 @@ package pl.app.core.screen;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
-import pl.app.core.ResourceLoader;
+import pl.app.core.utils.ResourceLoader;
 import pl.app.core.property.ScreensProperty;
 import pl.app.launch.LaunchApp;
 
