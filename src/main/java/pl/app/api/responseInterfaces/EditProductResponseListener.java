@@ -1,4 +1,4 @@
-package pl.app.api.responseInterfaces.product;
+package pl.app.api.responseInterfaces;
 
 import pl.app.api.model.ResponseModel;
 

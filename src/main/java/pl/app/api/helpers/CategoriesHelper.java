@@ -1,8 +1,10 @@
 package pl.app.api.helpers;
 
+import com.google.gson.Gson;
 import pl.app.api.interfaces.ApiResourceInterface;
 import pl.app.api.model.CategoriesModel;
 import pl.app.api.model.ResponseModel;
+import pl.app.api.responseInterfaces.NewCategoryResponseListener;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -35,17 +37,35 @@ public class CategoriesHelper {
         }
     }
 
-    public ResponseModel postNewCategory(CategoriesModel categoriesModel){
+    public void postNewCategory(CategoriesModel categoriesModel, NewCategoryResponseListener listener) {
         Call<ResponseModel> call = apiResourceInterface.createNewCategory(categoriesModel);
         Response<ResponseModel> response = null;
 
         try {
             response = call.execute();
             if (response.isSuccessful() && response.code() == 200) {
+                listener.onNewCategoryResponseSuccess(response.body());
+            } else {
+                Gson gson = new Gson();
+                listener.onNewCategoryResponseFailed(gson.fromJson(response.errorBody() != null ? response.errorBody().string() : null, ResponseModel.class));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ResponseModel deleteCategoryById(int categoryId) {
+        Call<ResponseModel> call = apiResourceInterface.deleteCategoryById(categoryId);
+        Response<ResponseModel> response = null;
+        try {
+            response = call.execute();
+            if (response.isSuccessful() && response.code() == 200) {
                 return response.body();
             } else {
-                return null;
+                Gson gson = new Gson();
+                return (gson.fromJson(response.errorBody() != null ? response.errorBody().string() : null, ResponseModel.class));
             }
+
         } catch (IOException e) {
             e.printStackTrace();
             return null;

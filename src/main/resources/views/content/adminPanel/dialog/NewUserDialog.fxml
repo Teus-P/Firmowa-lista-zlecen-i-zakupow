@@ -1,69 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import org.controlsfx.control.CheckComboBox?>
 
-<AnchorPane prefHeight="580.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.adminPanel.dialog.NewUserDialogController">
+<AnchorPane prefHeight="580.0" prefWidth="600.0" stylesheets="@../../../../styles/DialogStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.adminPanel.dialog.NewUserDialogController">
    <children>
-      <HBox alignment="CENTER" layoutX="105.0" layoutY="89.0" AnchorPane.bottomAnchor="290.0" AnchorPane.leftAnchor="105.0" AnchorPane.rightAnchor="105.0" AnchorPane.topAnchor="89.0">
+      <VBox layoutX="62.0" layoutY="89.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="80.0">
          <children>
-            <VBox>
-               <children>
-                  <JFXTextField promptText="Imię" style="-jfx-label-float: true;">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                     <padding>
-                        <Insets right="100.0" top="8.0" />
-                     </padding>
-                  </JFXTextField>
-                  <JFXTextField promptText="Adres email" style="-jfx-label-float: true;">
-                     <padding>
-                        <Insets right="100.0" top="50.0" />
-                     </padding>
-                  </JFXTextField>
-                  <JFXTextField promptText="PESEL" style="-jfx-label-float: true;">
-                     <padding>
-                        <Insets right="100.0" top="50.0" />
-                     </padding>
-                  </JFXTextField>
-                  <JFXTextField promptText="Nazwa użytkownika" style="-jfx-label-float: true;">
-                     <padding>
-                        <Insets right="100.0" top="50.0" />
-                     </padding>
-                  </JFXTextField>
-                  <JFXComboBox prefHeight="25.0" prefWidth="232.0" promptText="Typ użytkownika" style="-jfx-label-float: true;">
-                     <VBox.margin>
-                        <Insets top="50.0" />
-                     </VBox.margin>
-                  </JFXComboBox>
-               </children>
-            </VBox>
-            <VBox prefHeight="293.0" prefWidth="163.0">
-               <children>
-                  <JFXTextField alignment="TOP_LEFT" promptText="Nazwisko" style="-jfx-label-float: true;" />
-                  <JFXTextField promptText="Numer telefonu" style="-jfx-label-float: true;">
-                     <padding>
-                        <Insets top="50.0" />
-                     </padding>
-                  </JFXTextField>
-               </children>
-            </VBox>
+            <JFXTextField fx:id="firstNameTextField" promptText="Imię">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets top="8.0" />
+               </padding>
+            </JFXTextField>
+            <JFXTextField fx:id="emailTextField" promptText="Adres email" style="-jfx-label-float: true;">
+               <padding>
+                  <Insets top="50.0" />
+               </padding>
+            </JFXTextField>
+            <JFXTextField fx:id="peselTextField" promptText="PESEL" style="-jfx-label-float: true;">
+               <padding>
+                  <Insets top="50.0" />
+               </padding>
+            </JFXTextField>
+            <JFXTextField fx:id="userNameTextField" promptText="Nazwa użytkownika" style="-jfx-label-float: true;">
+               <padding>
+                  <Insets top="50.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </JFXTextField>
+            <CheckComboBox fx:id="userTypeCheckComboBox" showCheckedCount="true" stylesheets="@../../../../styles/CheckComboBoxStyle.css" title="Typ użytkownika">
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin>
+            </CheckComboBox>
          </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </HBox>
-      <JFXButton id="enterButton" layoutX="97.0" layoutY="437.0" onAction="#addButtonOnAction" styleClass="enterButton" text="Dodaj" AnchorPane.bottomAnchor="118.0" AnchorPane.leftAnchor="97.0" AnchorPane.rightAnchor="373.0" />
-      <JFXButton layoutX="371.0" layoutY="437.0" onAction="#cancelButtonOnAction" styleClass="enterButton" text="Anuluj" AnchorPane.bottomAnchor="118.0" AnchorPane.leftAnchor="371.0" AnchorPane.rightAnchor="99.0" />
-      <Label layoutX="105.0" layoutY="390.0" prefHeight="61.0" prefWidth="231.0" text="UWAGA! Jeśli nie zostanie wybrany typ użytkownika, utwożone konto domyślnie będzie posiadać podstawowe uprawnienia" wrapText="true" />
-      <CheckComboBox layoutX="105.0" layoutY="472.0" prefHeight="25.0" prefWidth="231.0" />
+      </VBox>
+      <VBox layoutX="384.0" layoutY="89.0" prefHeight="293.0" prefWidth="163.0" AnchorPane.rightAnchor="50.0">
+         <children>
+            <JFXTextField fx:id="lastNameTextField" alignment="TOP_LEFT" promptText="Nazwisko" style="-jfx-label-float: true;" />
+            <JFXTextField fx:id="phoneNumberTextField" promptText="Numer telefonu" style="-jfx-label-float: true;">
+               <padding>
+                  <Insets top="50.0" />
+               </padding>
+            </JFXTextField>
+         </children>
+      </VBox>
+      <JFXButton id="enterButton" layoutX="97.0" layoutY="437.0" onAction="#addButtonOnAction" prefWidth="150.0" styleClass="enterButton" text="Dodaj" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" />
+      <JFXButton layoutX="371.0" layoutY="437.0" onAction="#cancelButtonOnAction" prefWidth="150.0" styleClass="enterButton" text="Anuluj" AnchorPane.bottomAnchor="100.0" AnchorPane.rightAnchor="100.0" />
+      <Label alignment="CENTER" layoutX="105.0" layoutY="390.0" prefHeight="61.0" prefWidth="231.0" text="UWAGA! Jeśli nie zostanie wybrany typ użytkownika, utwożone konto domyślnie będzie posiadać podstawowe uprawnienia" wrapText="true" AnchorPane.leftAnchor="105.0" AnchorPane.rightAnchor="105.0" />
    </children>
 </AnchorPane>

@@ -2,16 +2,14 @@ package pl.app.api.helpers;
 
 import com.google.gson.Gson;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import pl.app.api.interfaces.ApiResourceInterface;
 import pl.app.api.model.ProductModel;
 import pl.app.api.model.ResponseModel;
-import pl.app.api.responseInterfaces.product.EditProductResponseListener;
+import pl.app.api.responseInterfaces.EditProductResponseListener;
 import retrofit2.Call;
 import retrofit2.Response;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @AllArgsConstructor

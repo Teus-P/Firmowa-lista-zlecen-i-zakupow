@@ -2,19 +2,24 @@ package pl.app.controllers.content.adminPanel;
 
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.stage.StageStyle;
+import lombok.Setter;
 import pl.app.api.clients.ApiResourcesClient;
 import pl.app.api.helpers.CategoriesHelper;
 import pl.app.api.helpers.ProductHelper;
 import pl.app.api.helpers.UnitHelper;
 import pl.app.api.helpers.UserAccountHelper;
+import pl.app.api.model.CategoriesModel;
+import pl.app.api.model.ResponseModel;
+import pl.app.api.model.UnitModel;
+import pl.app.api.responseInterfaces.NewCategoryResponseListener;
+import pl.app.api.responseInterfaces.NewUnitResponseListener;
 import pl.app.controllers.content.adminPanel.dialog.*;
 import pl.app.controllers.content.adminPanel.listItems.CategoryTableItem;
 import pl.app.controllers.content.adminPanel.listItems.ProductTableItem;
@@ -26,7 +31,7 @@ import pl.app.core.property.DialogProperty;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AdminPanelController implements Initializable {
+public class AdminPanelController implements Initializable, NewUnitResponseListener, NewCategoryResponseListener {
 
     private ResourceBundle stringResources;
     private ProductHelper productHelper;
@@ -70,6 +75,12 @@ public class AdminPanelController implements Initializable {
     @FXML
     private JFXTreeTableView<UnitTableItem> unitTable;
 
+    @FXML
+    private JFXTextField newUnitTextField;
+
+    @FXML
+    private Label newUnitResponseLabel;
+
     //end section
 
     //category tab
@@ -79,6 +90,12 @@ public class AdminPanelController implements Initializable {
 
     @FXML
     private JFXTreeTableView<CategoryTableItem> categoryTable;
+
+    @FXML
+    private Label newCategoryResponseLabel;
+
+    @FXML
+    private JFXTextField newCategoryTextField;
 
     //end section
 
@@ -131,18 +148,46 @@ public class AdminPanelController implements Initializable {
 
     @FXML
     void addNewUnitOnAction(ActionEvent event) {
+        if (newUnitTextField.getText().length() > 0) {
+            unitHelper.addNewUnit(new UnitModel(newUnitTextField.getText()), this);
+            unitTableItemObservableList.clear();
+            unitHelper.getAllUnits().forEach(unitModel -> unitTableItemObservableList.add(new UnitTableItem(unitModel)));
+        } else {
+            newUnitResponseLabel.setText("Nazwa nowej jednostki nie może być pusta.");
+        }
     }
 
     @FXML
     void addCategoryOnAction(ActionEvent event) {
+        if (newCategoryTextField.getText().length() > 0) {
+            categoriesHelper.postNewCategory(new CategoriesModel(newCategoryTextField.getText()), this);
+            categoryTableItemObservableList.clear();
+            categoriesHelper.getAllCategories().forEach(categoriesModel -> categoryTableItemObservableList.add(new CategoryTableItem(categoriesModel)));
 
+        } else {
+            newCategoryResponseLabel.setText("Nazwa kategorii nie może być pusta");
+        }
     }
 
     @FXML
     void deleteProductOnAction(ActionEvent event) {
 
         if (productTable.getSelectionModel().getSelectedItem() != null) {
-            showDeleteDialogInformation();
+
+            var productModel = productTable.getSelectionModel().getSelectedItem().getValue().getProductModel();
+            String title = "Uwaga!";
+            String header = "Czy na pewno chcesz usunąć produkt?";
+            String content = "Produkt o następujących danych zostanie usunięty:\n\n" +
+                    "Nazwa produktu: " + productModel.getName() + "\n" +
+                    "Kategoria produktu: " + productModel.getCategories().getName() + "\n" +
+                    "Jednostka produktu: " + productModel.getUnit().getUnit();
+
+            boolean dialogResult = getDeleteDialogInformation(title, header, content);
+            if (dialogResult) {
+                productTable.getSelectionModel().getSelectedItem().getParent().getChildren().remove(productTable.getSelectionModel().getSelectedItem());
+                productHelper.deleteProductById(productModel.getIdProduct());
+            }
+
         } else {
             String header = "Uwaga";
             String contentText = "Proszę wybrać produkt do usunięcia";
@@ -164,8 +209,46 @@ public class AdminPanelController implements Initializable {
 
     }
 
+    @FXML
+    void deleteUnitOnAction(ActionEvent event) {
+        if (unitTable.getSelectionModel().getSelectedItem() != null) {
+            var unitModel = unitTable.getSelectionModel().getSelectedItem().getValue().getUnitModel();
+            String title = "Uwaga!";
+            String header = "Czy na pewno chcesz usunąć jednostkę?";
+            String content = "Jednostka o nazwie " + unitModel.getUnit() + " zostanie usunięta";
+            boolean dialogResult = getDeleteDialogInformation(title, header, content);
+            if (dialogResult) {
+                unitTable.getSelectionModel().getSelectedItem().getParent().getChildren().remove(unitTable.getSelectionModel().getSelectedItem());
+                unitHelper.deleteUnitById(unitModel.getIdUnit());
+            }
+        } else {
+            String header = "Uwaga!";
+            String contentText = "Proszę wybrać jednostke do usunięcia";
+            showWarningDialog(header, contentText);
+        }
+    }
+
+    @FXML
+    void deleteCategoryOnAction(ActionEvent event) {
+        if (categoryTable.getSelectionModel().getSelectedItem() != null) {
+            var categoryModel = categoryTable.getSelectionModel().getSelectedItem().getValue().getCategoriesModel();
+            String title = "Uwaga!";
+            String header = "Czy na pewno chcesz usunąć jednostkę?";
+            String content = "Kategoria o nazwie " + categoryModel.getName() + " zostanie usunięta";
+            boolean dialogResult = getDeleteDialogInformation(title, header, content);
+            if (dialogResult) {
+                categoryTable.getSelectionModel().getSelectedItem().getParent().getChildren().remove(categoryTable.getSelectionModel().getSelectedItem());
+                categoriesHelper.deleteCategoryById(categoryModel.getIdCategories());
+            }
+        } else {
+            String header = "Uwaga!";
+            String contentText = "Proszę wybrać kategorię do usunięcia";
+            showWarningDialog(header, contentText);
+        }
+    }
+
     private void initProductTreeTableView() {
-        productHelper.getAllProducts().forEach(model -> productTableItemObservableList.add(new ProductTableItem(model, model.getCategories(), model.getUnit())));
+        productHelper.getAllProducts().forEach(model -> productTableItemObservableList.add(new ProductTableItem(model)));
 
         JFXTreeTableColumn<ProductTableItem, String> productColumn = new JFXTreeTableColumn<>("Nazwa produktu");
         productColumn.setCellValueFactory(param -> param.getValue().getValue().getProduct());
@@ -285,7 +368,7 @@ public class AdminPanelController implements Initializable {
         controller.initData(productTable.getSelectionModel().getSelectedItem().getValue().getProductModel());
         controller.setOnDialogCloseListener(() -> {
             productTableItemObservableList.clear();
-            productHelper.getAllProducts().forEach(model -> productTableItemObservableList.add(new ProductTableItem(model, model.getCategories(), model.getUnit())));
+            productHelper.getAllProducts().forEach(model -> productTableItemObservableList.add(new ProductTableItem(model)));
         });
         editProductDialog.showAndWait();
     }
@@ -297,25 +380,25 @@ public class AdminPanelController implements Initializable {
         warningAlert.showAndWait();
     }
 
-    private void showDeleteDialogInformation() {
+    private boolean getDeleteDialogInformation(String title, String header, String content) {
 
+        var wrapper = new Object() {
+            boolean buttonClickFlag;
+        };
         var delete = new ButtonType("Usuń");
         var cancel = new ButtonType("Anuluj");
-        var productModel = productTable.getSelectionModel().getSelectedItem().getValue().getProductModel();
         var alert = new Alert(Alert.AlertType.NONE, "", delete, cancel);
-        alert.setTitle("Uwaga!");
-        alert.setHeaderText("Czy na pewno chcesz usunąć produkt?");
-        alert.setContentText("Produkt o następujących danych zostanie usunięty:\n\n" +
-                "Nazwa produktu: " + productModel.getName() + "\n" +
-                "Kategoria produktu: " + productModel.getCategories().getName() + "\n" +
-                "Jednostka produktu: " + productModel.getUnit().getUnit());
+        alert.initStyle(StageStyle.UTILITY);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+
         alert.showAndWait().ifPresent(response -> {
             if (response == delete) {
-                productTable.getSelectionModel().getSelectedItem().getParent().getChildren().remove(productTable.getSelectionModel().getSelectedItem());
-                productHelper.deleteProductById(productModel.getIdProduct());
+                wrapper.buttonClickFlag = true;
             }
         });
-
+        return wrapper.buttonClickFlag;
     }
 
     private void initDialogs() {
@@ -325,4 +408,27 @@ public class AdminPanelController implements Initializable {
         newProductDialog = new DialogStage(DialogProperty.NEW_PRODUCT);
     }
 
+    @Override
+    public void onNewUnitResponseSuccess(ResponseModel responseModel) {
+        newUnitResponseLabel.setText(responseModel.getMessage());
+    }
+
+    @Override
+    public void onNewUnitResponseFailed(ResponseModel responseModel) {
+        StringBuilder builder = new StringBuilder(responseModel.getMessage() + "\n");
+        responseModel.getDetails().forEach(message -> builder.append(message).append("\n"));
+        newUnitResponseLabel.setText(builder.toString());
+    }
+
+    @Override
+    public void onNewCategoryResponseSuccess(ResponseModel responseModel) {
+        newCategoryResponseLabel.setText(responseModel.getMessage());
+    }
+
+    @Override
+    public void onNewCategoryResponseFailed(ResponseModel responseModel) {
+        StringBuilder builder = new StringBuilder(responseModel.getMessage() + "\n");
+        responseModel.getDetails().forEach(message -> builder.append(message).append("\n"));
+        newCategoryResponseLabel.setText(builder.toString());
+    }
 }

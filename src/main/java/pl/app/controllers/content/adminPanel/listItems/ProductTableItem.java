@@ -21,13 +21,15 @@ public class ProductTableItem extends RecursiveTreeObject<ProductTableItem> {
     private CategoriesModel categoriesModel;
     private UnitModel unitModel;
 
-    public ProductTableItem(ProductModel product, CategoriesModel category, UnitModel unit) {
-        this.product = new SimpleStringProperty(product.getName());
-        this.category = new SimpleStringProperty(category.getName());
-        this.unit = new SimpleStringProperty(unit.getUnit());
-        this.productId = product.getIdProduct();
+    public ProductTableItem(ProductModel product) {
         this.productModel = product;
+        this.productId = product.getIdProduct();
         this.categoriesModel = product.getCategories();
         this.unitModel = product.getUnit();
+
+        this.product = new SimpleStringProperty(product.getName());
+        this.category = new SimpleStringProperty(product.getCategories().getName());
+        this.unit = new SimpleStringProperty(product.getUnit().getUnit());
+
     }
 }

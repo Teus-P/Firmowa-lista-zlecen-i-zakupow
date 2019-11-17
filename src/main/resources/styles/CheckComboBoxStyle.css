@@ -1,0 +1,27 @@
+.combo-box,
+.choice-box {
+    -fx-font-size: 12px;
+    -fx-prompt-text-fill: #4d4d4d;
+    -fx-text-fill: #4d4d4d;
+    -fx-background-color: none;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #4d4d4d;
+
+}
+
+.combo-box .list-cell:filled:selected .text,
+.choice-box .list-cell:filled:selected .text {
+    -fx-fill: #4d4d4d;
+}
+
+.combo-box .arrow,
+.choice-box .arrow {
+    -fx-background-color: #4d4d4d;
+}
+
+.combo-box.center-aligned>.list-cell {
+    -fx-alignment: center;
+}
+.combo-box>.list-cell {
+    -fx-alignment: LEFT;
+}

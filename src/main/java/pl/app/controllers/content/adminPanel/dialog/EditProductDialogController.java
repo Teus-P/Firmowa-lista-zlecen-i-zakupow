@@ -7,10 +7,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.util.Callback;
-import javafx.util.StringConverter;
 import pl.app.api.clients.ApiResourcesClient;
 import pl.app.api.helpers.CategoriesHelper;
 import pl.app.api.helpers.ProductHelper;
@@ -19,11 +15,10 @@ import pl.app.api.model.CategoriesModel;
 import pl.app.api.model.ProductModel;
 import pl.app.api.model.ResponseModel;
 import pl.app.api.model.UnitModel;
-import pl.app.api.responseInterfaces.product.EditProductResponseListener;
+import pl.app.api.responseInterfaces.EditProductResponseListener;
 import pl.app.controllers.common.CategoriesComboBoxInitializer;
 import pl.app.controllers.common.UnitComboBoxInitializer;
 import pl.app.core.baseComponent.BaseDialog;
-import pl.app.core.dialog.OnDialogCloseListener;
 
 import java.util.List;
 

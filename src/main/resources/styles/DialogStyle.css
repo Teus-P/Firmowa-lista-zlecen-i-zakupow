@@ -1,0 +1,23 @@
+JFXButton {
+    -fx-text-fill: #FFF;
+    -fx-background-color: #3C58Fa;
+}
+
+JFXTextField {
+    -fx-focus-color: #4059a9;
+    -fx-unfocu-color: #4d4d4d;
+    -jfx-label-float: true
+
+}
+
+JFXComboBox {
+    -fx-focus-color: #4059a9;
+    -fx-unfocu-color: #4d4d4d;
+    -jfx-label-float: true
+
+}
+
+.header {
+    -fx-text-fill: #000;
+    -fx-font-size: 18px;
+}
