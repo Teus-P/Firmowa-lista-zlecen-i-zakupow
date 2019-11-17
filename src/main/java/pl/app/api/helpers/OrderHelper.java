@@ -36,4 +36,21 @@ public class OrderHelper {
     }
 
 
+    public List<OrderModel> getAllOrders() {
+        Call<List<OrderModel>> call = apiResourceInterface.getAllOrders();
+        Response<List<OrderModel>> response = null;
+
+        try {
+            response = call.execute();
+            if (response.isSuccessful() && response.code() == 200) {
+                return response.body();
+            } else {
+                return null;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }

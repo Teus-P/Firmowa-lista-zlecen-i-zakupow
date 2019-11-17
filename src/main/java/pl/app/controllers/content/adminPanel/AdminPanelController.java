@@ -4,6 +4,7 @@ import com.jfoenix.controls.*;
 import com.jfoenix.controls.cells.editors.TextFieldEditorBuilder;
 import com.jfoenix.controls.cells.editors.base.GenericEditableTreeTableCell;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import com.mysql.cj.x.protobuf.MysqlxCrud;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,20 +13,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.StageStyle;
 import pl.app.api.clients.ApiResourcesClient;
-import pl.app.api.helpers.CategoriesHelper;
-import pl.app.api.helpers.ProductHelper;
-import pl.app.api.helpers.UnitHelper;
-import pl.app.api.helpers.UserAccountHelper;
+import pl.app.api.helpers.*;
 import pl.app.api.model.CategoriesModel;
 import pl.app.api.model.ResponseModel;
 import pl.app.api.model.UnitModel;
 import pl.app.api.responseInterfaces.NewCategoryResponseListener;
 import pl.app.api.responseInterfaces.NewUnitResponseListener;
 import pl.app.controllers.content.adminPanel.dialog.*;
-import pl.app.controllers.content.adminPanel.listItems.CategoryTableItem;
-import pl.app.controllers.content.adminPanel.listItems.ProductTableItem;
-import pl.app.controllers.content.adminPanel.listItems.UnitTableItem;
-import pl.app.controllers.content.adminPanel.listItems.UserTableItem;
+import pl.app.controllers.content.adminPanel.listItems.*;
 import pl.app.core.dialog.DialogStage;
 import pl.app.core.property.DialogProperty;
 
@@ -39,10 +34,12 @@ public class AdminPanelController implements Initializable, NewUnitResponseListe
     private UserAccountHelper userAccountHelper;
     private UnitHelper unitHelper;
     private CategoriesHelper categoriesHelper;
+    private OrderHelper orderHelper;
     private ObservableList<UserTableItem> userTableItemObservableList;
     private ObservableList<ProductTableItem> productTableItemObservableList;
     private ObservableList<UnitTableItem> unitTableItemObservableList;
     private ObservableList<CategoryTableItem> categoryTableItemObservableList;
+    private ObservableList<OrderTableItem> orderTableItemObservableList;
     private DialogStage newUserDialog;
     private DialogStage editProductDialog;
     private DialogStage editUserDialog;
@@ -100,15 +97,27 @@ public class AdminPanelController implements Initializable, NewUnitResponseListe
 
     //end section
 
+    //order tab
+
+    @FXML
+    private JFXTextField orderSearchField;
+
+    @FXML
+    private JFXTreeTableView<OrderTableItem> orderTable;
+
+    //end section
+
     public AdminPanelController() {
         productHelper = new ProductHelper(ApiResourcesClient.getApi());
         userAccountHelper = new UserAccountHelper(ApiResourcesClient.getApi());
         unitHelper = new UnitHelper(ApiResourcesClient.getApi());
         categoriesHelper = new CategoriesHelper(ApiResourcesClient.getApi());
+        orderHelper = new OrderHelper(ApiResourcesClient.getApi());
         userTableItemObservableList = FXCollections.observableArrayList();
         productTableItemObservableList = FXCollections.observableArrayList();
         unitTableItemObservableList = FXCollections.observableArrayList();
         categoryTableItemObservableList = FXCollections.observableArrayList();
+        orderTableItemObservableList = FXCollections.observableArrayList();
     }
 
     @Override
@@ -119,6 +128,7 @@ public class AdminPanelController implements Initializable, NewUnitResponseListe
         initUserTreeTableView();
         initUnitTreeTableView();
         initCategoriesTreeTableView();
+        initOrderTreeTableView();
         initDialogs();
     }
 
@@ -403,6 +413,26 @@ public class AdminPanelController implements Initializable, NewUnitResponseListe
             categoryTable.setPredicate(table -> table.getValue().getCategoryName().getValue().contains(newValue));
         });
     }
+
+    //TODO - do dokończenia
+    private void initOrderTreeTableView() {
+        orderHelper.getAllOrders().forEach(orderModel -> orderTableItemObservableList.add(new OrderTableItem(orderModel)));
+
+        JFXTreeTableColumn<OrderTableItem, String> orderNumberColumn = new JFXTreeTableColumn<>("Numer zamówienia");
+        orderNumberColumn.setCellValueFactory(param -> param.getValue().getValue().getOrderNumber());
+
+        JFXTreeTableColumn<OrderTableItem, String> userNameColumn = new JFXTreeTableColumn<>("Użytkownik");
+        userNameColumn.setCellValueFactory(param -> param.getValue().getValue().getUserName());
+
+        JFXTreeTableColumn<OrderTableItem, String> orderAcceptStatusColumn = new JFXTreeTableColumn<>("Status akceptacji");
+        orderAcceptStatusColumn.setCellValueFactory(param -> param.getValue().getValue().getAcceptedStatus());
+
+        final TreeItem<OrderTableItem> root = new RecursiveTreeItem<>(orderTableItemObservableList, RecursiveTreeObject::getChildren);
+        orderTable.getColumns().setAll(orderNumberColumn, userNameColumn, orderAcceptStatusColumn);
+        orderTable.setRoot(root);
+        orderTable.setShowRoot(false);
+    }
+
 
     private void showEditUserDialog() {
         EditUserDialogController controller = editUserDialog.getController();

@@ -18,7 +18,7 @@ public class OrderModel {
 
     @SerializedName("userAccount")
     @Expose
-    private UserModel userAccount;
+    private UserAccountModel userAccount;
 
     @SerializedName("orderStatus")
     @Expose
@@ -26,11 +26,11 @@ public class OrderModel {
 
     @SerializedName("storekeeper")
     @Expose
-    private UserModel storekeeper;
+    private UserAccountModel storekeeper;
 
     @SerializedName("recipient")
     @Expose
-    private UserModel recipient;
+    private UserAccountModel recipient;
 
     @SerializedName("date")
     @Expose
@@ -43,5 +43,9 @@ public class OrderModel {
     @SerializedName("orderProducts")
     @Expose
     private List<OrderProductModel> orderProductModels;
+
+    @SerializedName("accepted")
+    @Expose
+    private boolean accepted;
 
 }

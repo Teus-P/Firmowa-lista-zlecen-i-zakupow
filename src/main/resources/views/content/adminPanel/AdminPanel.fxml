@@ -32,7 +32,15 @@
           </Tab>
             <Tab text="Zarządzanie zamówieniami">
                <content>
-                  <AnchorPane />
+                  <AnchorPane>
+                     <children>
+                        <JFXTextField fx:id="orderSearchField" layoutX="83.0" layoutY="43.0" promptText="Szukaj" style="-jfx-label-float: true;" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="25.0" />
+                        <JFXTreeTableView fx:id="orderTable" layoutX="204.0" layoutY="157.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="75.0">
+                           <columnResizePolicy>
+                              <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </JFXTreeTableView>
+                     </children></AnchorPane>
                </content>
             </Tab>
             <Tab text="Zarządzanie zasobami">
