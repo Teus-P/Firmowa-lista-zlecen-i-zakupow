@@ -8,7 +8,6 @@ import lombok.Setter;
 import pl.app.api.model.CategoriesModel;
 
 @Getter
-@Setter
 public class CategoryTableItem extends RecursiveTreeObject<CategoryTableItem> {
 
     private CategoriesModel categoriesModel;
@@ -18,5 +17,10 @@ public class CategoryTableItem extends RecursiveTreeObject<CategoryTableItem> {
     public CategoryTableItem(CategoriesModel categoriesModel) {
         this.categoriesModel = categoriesModel;
         this.categoryName = new SimpleStringProperty(categoriesModel.getName());
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName.set(categoryName);
+        this.categoriesModel.setName(categoryName);
     }
 }

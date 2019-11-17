@@ -1,6 +1,8 @@
 package pl.app.controllers.content.adminPanel;
 
 import com.jfoenix.controls.*;
+import com.jfoenix.controls.cells.editors.TextFieldEditorBuilder;
+import com.jfoenix.controls.cells.editors.base.GenericEditableTreeTableCell;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,7 +11,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.StageStyle;
-import lombok.Setter;
 import pl.app.api.clients.ApiResourcesClient;
 import pl.app.api.helpers.CategoriesHelper;
 import pl.app.api.helpers.ProductHelper;
@@ -79,7 +80,7 @@ public class AdminPanelController implements Initializable, NewUnitResponseListe
     private JFXTextField newUnitTextField;
 
     @FXML
-    private Label newUnitResponseLabel;
+    private Label unitResponseLabel;
 
     //end section
 
@@ -92,7 +93,7 @@ public class AdminPanelController implements Initializable, NewUnitResponseListe
     private JFXTreeTableView<CategoryTableItem> categoryTable;
 
     @FXML
-    private Label newCategoryResponseLabel;
+    private Label categoryResponseLabel;
 
     @FXML
     private JFXTextField newCategoryTextField;
@@ -153,7 +154,7 @@ public class AdminPanelController implements Initializable, NewUnitResponseListe
             unitTableItemObservableList.clear();
             unitHelper.getAllUnits().forEach(unitModel -> unitTableItemObservableList.add(new UnitTableItem(unitModel)));
         } else {
-            newUnitResponseLabel.setText("Nazwa nowej jednostki nie może być pusta.");
+            unitResponseLabel.setText("Nazwa nowej jednostki nie może być pusta.");
         }
     }
 
@@ -165,7 +166,7 @@ public class AdminPanelController implements Initializable, NewUnitResponseListe
             categoriesHelper.getAllCategories().forEach(categoriesModel -> categoryTableItemObservableList.add(new CategoryTableItem(categoriesModel)));
 
         } else {
-            newCategoryResponseLabel.setText("Nazwa kategorii nie może być pusta");
+            categoryResponseLabel.setText("Nazwa kategorii nie może być pusta");
         }
     }
 
@@ -328,6 +329,30 @@ public class AdminPanelController implements Initializable, NewUnitResponseListe
 
         JFXTreeTableColumn<UnitTableItem, String> unitNameColumn = new JFXTreeTableColumn<>("Nazwa jednostki");
         unitNameColumn.setCellValueFactory(param -> param.getValue().getValue().getUnit());
+        unitNameColumn.setCellFactory((TreeTableColumn<UnitTableItem, String> param) -> new GenericEditableTreeTableCell<>(new TextFieldEditorBuilder()));
+
+        unitNameColumn.setOnEditCommit(event -> {
+
+            UnitTableItem unitTableItem = event.getTreeTableView().getTreeItem(event.getTreeTablePosition().getRow()).getValue();
+
+            unitTableItem.setUnit(event.getNewValue());
+
+            ResponseModel responseModel = unitHelper.editUnitById(unitTableItem.getUnitModel().getIdUnit(), unitTableItem.getUnitModel());
+
+            //rollback
+            if (responseModel.getCode() != 200) {
+                StringBuilder builder = new StringBuilder();
+                responseModel.getDetails().forEach(message -> builder.append(message).append("\n"));
+                unitTableItem.setUnit(event.getOldValue());
+                unitResponseLabel.setText(builder.toString());
+                int position = event.getTreeTablePosition().getRow();
+                unitTableItemObservableList.clear();
+                unitHelper.getAllUnits().forEach(item -> unitTableItemObservableList.add(new UnitTableItem(item)));
+                unitTable.getSelectionModel().select(position);
+            }
+
+        });
+
 
         final TreeItem<UnitTableItem> root = new RecursiveTreeItem<>(unitTableItemObservableList, RecursiveTreeObject::getChildren);
         unitTable.getColumns().setAll(unitNameColumn);
@@ -346,6 +371,28 @@ public class AdminPanelController implements Initializable, NewUnitResponseListe
 
         JFXTreeTableColumn<CategoryTableItem, String> categoryColumn = new JFXTreeTableColumn<>("Nazwa kategorii");
         categoryColumn.setCellValueFactory(param -> param.getValue().getValue().getCategoryName());
+        categoryColumn.setCellFactory((TreeTableColumn<CategoryTableItem, String> param) -> new GenericEditableTreeTableCell<>(new TextFieldEditorBuilder()));
+
+        categoryColumn.setOnEditCommit(event -> {
+
+            CategoryTableItem categoryTableItem = event.getTreeTableView().getTreeItem(event.getTreeTablePosition().getRow()).getValue();
+            categoryTableItem.setCategoryName(event.getNewValue());
+
+            ResponseModel responseModel = categoriesHelper.editCategoryById(categoryTableItem.getCategoriesModel().getIdCategories(), categoryTableItem.getCategoriesModel());
+
+            //rollback
+            if (responseModel.getCode() != 200) {
+                StringBuilder builder = new StringBuilder();
+                responseModel.getDetails().forEach(message -> builder.append(message).append("\n"));
+                categoryTableItem.setCategoryName(event.getOldValue());
+                categoryResponseLabel.setText(builder.toString());
+                int position = event.getTreeTablePosition().getRow();
+                categoryTableItemObservableList.clear();
+                categoriesHelper.getAllCategories().forEach(item -> categoryTableItemObservableList.add(new CategoryTableItem(item)));
+                categoryTable.getSelectionModel().select(position);
+            }
+
+        });
 
         final TreeItem<CategoryTableItem> root = new RecursiveTreeItem<>(categoryTableItemObservableList, RecursiveTreeObject::getChildren);
         categoryTable.getColumns().setAll(categoryColumn);
@@ -410,25 +457,25 @@ public class AdminPanelController implements Initializable, NewUnitResponseListe
 
     @Override
     public void onNewUnitResponseSuccess(ResponseModel responseModel) {
-        newUnitResponseLabel.setText(responseModel.getMessage());
+        unitResponseLabel.setText(responseModel.getMessage());
     }
 
     @Override
     public void onNewUnitResponseFailed(ResponseModel responseModel) {
         StringBuilder builder = new StringBuilder(responseModel.getMessage() + "\n");
         responseModel.getDetails().forEach(message -> builder.append(message).append("\n"));
-        newUnitResponseLabel.setText(builder.toString());
+        unitResponseLabel.setText(builder.toString());
     }
 
     @Override
     public void onNewCategoryResponseSuccess(ResponseModel responseModel) {
-        newCategoryResponseLabel.setText(responseModel.getMessage());
+        categoryResponseLabel.setText(responseModel.getMessage());
     }
 
     @Override
     public void onNewCategoryResponseFailed(ResponseModel responseModel) {
         StringBuilder builder = new StringBuilder(responseModel.getMessage() + "\n");
         responseModel.getDetails().forEach(message -> builder.append(message).append("\n"));
-        newCategoryResponseLabel.setText(builder.toString());
+        categoryResponseLabel.setText(builder.toString());
     }
 }

@@ -72,4 +72,23 @@ public class CategoriesHelper {
         }
     }
 
+    public ResponseModel editCategoryById(int categoryId, CategoriesModel categoriesModel) {
+        Call<ResponseModel> call = apiResourceInterface.editCategoryById(categoryId, categoriesModel);
+        Response<ResponseModel> response = null;
+
+        try {
+            response = call.execute();
+            if (response.isSuccessful() && response.code() == 200) {
+                return response.body();
+            } else {
+                Gson gson = new Gson();
+                return (gson.fromJson(response.errorBody() != null ? response.errorBody().string() : null, ResponseModel.class));
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }

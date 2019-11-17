@@ -84,7 +84,7 @@ public class ProductHelper {
 
 
     public void editProductById(int productId, ProductModel productModel, EditProductResponseListener responseListener) {
-        Call<ResponseModel> call = apiResourceInterface.editProductyById(productId, productModel);
+        Call<ResponseModel> call = apiResourceInterface.editProductById(productId, productModel);
 
         Response<ResponseModel> response = null;
         try {

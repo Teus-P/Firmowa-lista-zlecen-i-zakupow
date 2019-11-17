@@ -26,7 +26,8 @@ public interface ApiResourceInterface {
 
     @PUT("/categories/edit/{id}")
     Call<ResponseModel> editCategoryById(
-            @Path("id") int id
+            @Path("id") int id,
+            @Body CategoriesModel categoriesModel
     );
 
     @PUT("/categories/delete/{id}")
@@ -42,9 +43,10 @@ public interface ApiResourceInterface {
             @Body UnitModel unitModel
     );
 
-    @PUT("/unit/edit")
+    @PUT("/unit/edit/{id}")
     Call<ResponseModel> editUnitById(
-            @Path("id") int id
+            @Path("id") int id,
+            @Body UnitModel unitModel
     );
 
     @PUT("/unit/delete/{id}")
@@ -99,7 +101,7 @@ public interface ApiResourceInterface {
     );
 
     @PUT("/product/edit/{id}")
-    Call<ResponseModel> editProductyById(
+    Call<ResponseModel> editProductById(
             @Path("id") int id,
             @Body ProductModel productModel
     );

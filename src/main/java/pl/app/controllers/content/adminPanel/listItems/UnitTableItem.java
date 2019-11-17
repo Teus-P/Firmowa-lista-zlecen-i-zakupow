@@ -7,8 +7,9 @@ import lombok.Getter;
 import lombok.Setter;
 import pl.app.api.model.UnitModel;
 
+import java.util.Objects;
+
 @Getter
-@Setter
 public class UnitTableItem extends RecursiveTreeObject<UnitTableItem> {
 
     private UnitModel unitModel;
@@ -18,4 +19,10 @@ public class UnitTableItem extends RecursiveTreeObject<UnitTableItem> {
         this.unitModel = unitModel;
         this.unit = new SimpleStringProperty(unitModel.getUnit());
     }
+
+    public void setUnit(String unit) {
+        this.unit.set(unit);
+        this.unitModel.setUnit(unit);
+    }
+
 }
