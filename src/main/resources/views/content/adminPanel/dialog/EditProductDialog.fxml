@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.adminPanel.dialog.EditEditProductDialogController">
+<AnchorPane minWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.adminPanel.dialog.EditProductDialogController">
    <children>
       <Label alignment="CENTER" layoutX="236.0" layoutY="36.0" text="Edycja produktu" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
          <font>
@@ -18,12 +18,12 @@
       <JFXTextField fx:id="productTextField" layoutX="233.0" layoutY="106.0" promptText="Nazwa produktu" style="-jfx-label-float: true;" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
       <JFXComboBox fx:id="categoriesComboBox" layoutX="233.0" layoutY="172.0" promptText="Kategoria produktu" style="-jfx-label-float: true;" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
       <JFXComboBox fx:id="unitComboBox" layoutX="233.0" layoutY="235.0" promptText="Jednostka" style="-jfx-label-float: true;" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
-      <JFXButton buttonType="RAISED" layoutX="70.0" layoutY="328.0" onAction="#saveProductOnAction" prefWidth="100.0" style="-fx-background-color: #3C58Fa;" text="Zapisz" textFill="WHITE" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="200.0">
+      <JFXButton buttonType="RAISED" layoutX="70.0" layoutY="328.0" maxWidth="100.0" onAction="#saveProductOnAction" prefWidth="100.0" style="-fx-background-color: #3C58Fa;" text="Zapisz" textFill="WHITE" AnchorPane.leftAnchor="30.0">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="334.0" layoutY="328.0" onAction="#cancelButtonOnAction" style="-fx-background-color: #3C58Fa;" text="Anuluj" textFill="WHITE" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="30.0" />
+      <JFXButton buttonType="RAISED" layoutX="334.0" layoutY="328.0" maxWidth="100.0" onAction="#cancelButtonOnAction" prefWidth="100.0" style="-fx-background-color: #3C58Fa;" text="Anuluj" textFill="WHITE" AnchorPane.rightAnchor="30.0" />
       <Label fx:id="responseMessage" layoutX="70.0" layoutY="279.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
    </children>
    <padding>

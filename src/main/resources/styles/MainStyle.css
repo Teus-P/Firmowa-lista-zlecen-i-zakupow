@@ -11,7 +11,7 @@ JFXCheckBox {
 }
 
 JFXButton{
-    -fx-text-alignment: RED;
+    -fx-text-alignment: #FF0000;
 }
 
 .LoginPageBackground {

@@ -20,12 +20,14 @@ import pl.app.api.model.ProductModel;
 import pl.app.api.model.ResponseModel;
 import pl.app.api.model.UnitModel;
 import pl.app.api.responseInterfaces.product.EditProductResponseListener;
+import pl.app.controllers.common.CategoriesComboBoxInitializer;
+import pl.app.controllers.common.UnitComboBoxInitializer;
 import pl.app.core.baseComponent.BaseDialog;
 import pl.app.core.dialog.OnDialogCloseListener;
 
 import java.util.List;
 
-public class EditEditProductDialogController extends BaseDialog implements EditProductResponseListener {
+public class EditProductDialogController extends BaseDialog implements EditProductResponseListener {
 
     private ProductModel productModel;
     private CategoriesHelper categoriesHelper;
@@ -91,81 +93,34 @@ public class EditEditProductDialogController extends BaseDialog implements EditP
     private void initUnitComboBox() {
 
         unitModelObservableList = FXCollections.observableList(unitModelList);
-        unitComboBox.setItems(unitModelObservableList);
-        // TextFields.bindAutoCompletion(unitComboBox.getEditor(), unitComboBox.getItems());
-
-        unitComboBox.setCellFactory(new Callback<>() {
-            @Override
-            public ListCell<UnitModel> call(ListView<UnitModel> param) {
-                return new ListCell<>() {
-                    @Override
-                    protected void updateItem(UnitModel item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (item != null) {
-                            setText(item.getUnit());
-                        } else {
-                            setText(null);
-                        }
-                    }
-                };
-            }
-        });
-
-        unitComboBox.setConverter(new StringConverter<>() {
-            @Override
-            public String toString(UnitModel object) {
-                if (object == null)
-                    return null;
-                else
-                    return object.getUnit();
-            }
-
-            @Override
-            public UnitModel fromString(String string) {
-                return new UnitModel(string);
-            }
-        });
+        UnitComboBoxInitializer.init(unitComboBox, unitModelObservableList);
 
     }
 
     private void initCategoriesComboBox() {
 
         categoriesModelObservableList = FXCollections.observableList(categoriesModelsList);
-        categoriesComboBox.setItems(categoriesModelObservableList);
-        //TextFields.bindAutoCompletion(categoriesComboBox.getEditor(), categoriesComboBox.getItems());
+        CategoriesComboBoxInitializer.init(categoriesComboBox, categoriesModelObservableList);
 
-        categoriesComboBox.setConverter(new StringConverter<>() {
-            @Override
-            public String toString(CategoriesModel object) {
-                if (object == null)
-                    return null;
-                else
-                    return object.getName();
-            }
-
-            @Override
-            public CategoriesModel fromString(String string) {
-                return new CategoriesModel(string);
-            }
-        });
     }
 
 
     @FXML
     void saveProductOnAction(ActionEvent event) {
 
-        if (unitComboBox.getSelectionModel().getSelectedIndex() > 0) {
-            productModel.setUnit(unitComboBox.getItems().get(unitComboBox.getSelectionModel().getSelectedIndex()));
+        if (unitComboBox.getSelectionModel().getSelectedIndex() >= 0) {
+            productModel.setUnit(unitComboBox.getValue());
         }
 
-        if (categoriesComboBox.getSelectionModel().getSelectedIndex() > 0) {
-            productModel.setCategories(categoriesComboBox.getItems().get(categoriesComboBox.getSelectionModel().getSelectedIndex()));
+        if (categoriesComboBox.getSelectionModel().getSelectedIndex() >= 0) {
+            productModel.setCategories(categoriesComboBox.getValue());
         }
 
         if (productTextField.getText().length() > 0) {
             productTextField.getText();
             productModel.setName(productTextField.getText());
         }
+
         productHelper.editProductById(productModel.getIdProduct(), productModel, this);
 
     }

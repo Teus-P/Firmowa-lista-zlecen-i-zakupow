@@ -7,8 +7,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.util.StringConverter;
-import org.controlsfx.control.textfield.TextFields;
 import pl.app.api.clients.ApiResourcesClient;
 import pl.app.api.helpers.CategoriesHelper;
 import pl.app.api.helpers.ProductHelper;
@@ -16,6 +14,8 @@ import pl.app.api.helpers.UnitHelper;
 import pl.app.api.model.CategoriesModel;
 import pl.app.api.model.ProductModel;
 import pl.app.api.model.UnitModel;
+import pl.app.controllers.common.CategoriesComboBoxInitializer;
+import pl.app.controllers.common.UnitComboBoxInitializer;
 import pl.app.core.baseComponent.BaseDialog;
 
 import java.net.URL;
@@ -93,45 +93,13 @@ public class NewProductDialog extends BaseDialog {
     private void initUnitComboBox() {
 
         ObservableList<UnitModel> unitModelObservableList = FXCollections.observableList(unitModelList);
-        unitComboBox.setItems(unitModelObservableList);
-        // TextFields.bindAutoCompletion(unitComboBox.getEditor(), unitComboBox.getItems());
-
-        unitComboBox.setConverter(new StringConverter<>() {
-            @Override
-            public String toString(UnitModel object) {
-                if (object == null)
-                    return null;
-                else
-                    return object.getUnit();
-            }
-
-            @Override
-            public UnitModel fromString(String string) {
-                return new UnitModel(string);
-            }
-        });
+        UnitComboBoxInitializer.init(unitComboBox, unitModelObservableList);
 
     }
 
     private void initCategoriesComboBox() {
 
         ObservableList<CategoriesModel> categoriesModelObservableList = FXCollections.observableList(categoriesModelsList);
-        categoriesComboBox.setItems(categoriesModelObservableList);
-        TextFields.bindAutoCompletion(categoriesComboBox.getEditor(), categoriesComboBox.getItems());
-
-        categoriesComboBox.setConverter(new StringConverter<>() {
-            @Override
-            public String toString(CategoriesModel object) {
-                if (object == null)
-                    return null;
-                else
-                    return object.getName();
-            }
-
-            @Override
-            public CategoriesModel fromString(String string) {
-                return new CategoriesModel(string);
-            }
-        });
+        CategoriesComboBoxInitializer.init(categoriesComboBox, categoriesModelObservableList);
     }
 }

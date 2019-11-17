@@ -2,6 +2,8 @@ package pl.app.controllers.content.adminPanel;
 
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,8 +16,8 @@ import pl.app.api.helpers.UserAccountHelper;
 import pl.app.api.model.*;
 import pl.app.controllers.content.adminPanel.dialog.*;
 import pl.app.controllers.content.adminPanel.listItems.ProductTableItem;
+import pl.app.controllers.content.adminPanel.listItems.UserTableItem;
 import pl.app.core.dialog.DialogStage;
-import pl.app.core.dialog.OnDialogCloseListener;
 import pl.app.core.property.DialogProperty;
 
 import java.net.URL;
@@ -26,7 +28,7 @@ public class AdminPanelController implements Initializable {
     private ResourceBundle stringResources;
     private ProductHelper productHelper;
     private UserAccountHelper userAccountHelper;
-    private ObservableList<UserAccountModel> userAccountModelObservableList;
+    private ObservableList<UserTableItem> userAccountModelObservableList;
     private ObservableList<ProductTableItem> productModelObservableList;
     private DialogStage newUserDialog;
     private DialogStage editProductDialog;
@@ -36,7 +38,10 @@ public class AdminPanelController implements Initializable {
     //user tab
 
     @FXML
-    private JFXListView<UserAccountModel> usersListView;
+    private JFXTextField userSearchField;
+
+    @FXML
+    private JFXTreeTableView<UserTableItem> userTable;
 
     //end section
 
@@ -81,12 +86,8 @@ public class AdminPanelController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         this.stringResources = resources;
 
-        userAccountModelObservableList.addAll(userAccountHelper.getAllUsers());
-
-        productHelper.getAllProducts().forEach(model -> productModelObservableList.add(new ProductTableItem(model, model.getCategories(), model.getUnit())));
-
-        initUserAccountListView();
-        initProductListView();
+        initProductTreeTableView();
+        initUserTreeTableView();
         initDialogs();
     }
 
@@ -103,7 +104,7 @@ public class AdminPanelController implements Initializable {
     @FXML
     void editUserOnAction(ActionEvent event) {
 
-        if (usersListView.getSelectionModel().getSelectedItem() != null) {
+        if (userTable.getSelectionModel().getSelectedItem() != null) {
 
             showEditUserDialog();
 
@@ -150,19 +151,8 @@ public class AdminPanelController implements Initializable {
 
     }
 
-    private void initUserAccountListView() {
-        usersListView.setItems(userAccountModelObservableList);
-        usersListView.setCellFactory(factory -> new UserAccountViewCell());
-
-
-        usersListView.setOnMouseClicked(click -> {
-            if (click.getClickCount() == 2) {
-                showEditUserDialog();
-            }
-        });
-    }
-
-    private void initProductListView() {
+    private void initProductTreeTableView() {
+        productHelper.getAllProducts().forEach(model -> productModelObservableList.add(new ProductTableItem(model, model.getCategories(), model.getUnit())));
 
         JFXTreeTableColumn<ProductTableItem, String> productColumn = new JFXTreeTableColumn<>("Nazwa produktu");
         productColumn.setCellValueFactory(param -> param.getValue().getValue().getProduct());
@@ -194,14 +184,56 @@ public class AdminPanelController implements Initializable {
 
     }
 
+    private void initUserTreeTableView() {
+        userAccountHelper.getAllUsers().forEach(model -> userAccountModelObservableList.add(new UserTableItem(model)));
+
+        JFXTreeTableColumn<UserTableItem, String> firstNameColumn = new JFXTreeTableColumn<>("Imię");
+        firstNameColumn.setCellValueFactory(param -> param.getValue().getValue().getFirstName());
+
+        JFXTreeTableColumn<UserTableItem, String> lastNameColumn = new JFXTreeTableColumn<>("Nazwisko");
+        lastNameColumn.setCellValueFactory(param -> param.getValue().getValue().getLastName());
+
+        JFXTreeTableColumn<UserTableItem, String> usernameColumn = new JFXTreeTableColumn<>("Nazwa użytkownika");
+        usernameColumn.setCellValueFactory(param -> param.getValue().getValue().getUserLogin());
+
+        JFXTreeTableColumn<UserTableItem, String> emailColumn = new JFXTreeTableColumn<>("Email");
+        emailColumn.setCellValueFactory(param -> param.getValue().getValue().getEmail());
+
+        JFXTreeTableColumn<UserTableItem, String> phoneNumberColumn = new JFXTreeTableColumn<>("Numer telefonu");
+        phoneNumberColumn.setCellValueFactory(param -> param.getValue().getValue().getPhoneNumber());
+
+        JFXTreeTableColumn<UserTableItem, String> userTypeColumn = new JFXTreeTableColumn<>("Typ użytkownika");
+        userTypeColumn.setCellValueFactory(param -> param.getValue().getValue().getRole());
+
+        final TreeItem<UserTableItem> root = new RecursiveTreeItem<>(userAccountModelObservableList, RecursiveTreeObject::getChildren);
+        userTable.getColumns().setAll(usernameColumn, firstNameColumn, lastNameColumn, emailColumn, phoneNumberColumn, userTypeColumn);
+        userTable.setRoot(root);
+        userTable.setShowRoot(false);
+
+        userSearchField.textProperty().addListener((observable, oldValue, newValue) ->
+                userTable.setPredicate(table
+                        -> table.getValue().getLastName().getValue().contains(newValue)
+                        || table.getValue().getFirstName().getValue().contains(newValue)
+                        || table.getValue().getRole().getValue().contains(newValue)
+                        || table.getValue().getUserLogin().getValue().contains(newValue)
+                        || table.getValue().getEmail().getValue().contains(newValue)));
+
+        userTable.setOnMouseClicked(click -> {
+            if (click.getClickCount() == 2) {
+                showEditUserDialog();
+            }
+        });
+
+    }
+
     private void showEditUserDialog() {
         EditUserDialogController controller = editUserDialog.getController();
-        controller.initData(usersListView.getSelectionModel().getSelectedItem());
+        controller.initData(userTable.getSelectionModel().getSelectedItem().getValue().getUserAccountModel());
         editUserDialog.showAndWait();
     }
 
     private void showEditProductDialog() {
-        EditEditProductDialogController controller = editProductDialog.getController();
+        EditProductDialogController controller = editProductDialog.getController();
         controller.initData(productTable.getSelectionModel().getSelectedItem().getValue().getProductModel());
         controller.setOnDialogCloseListener(() -> {
             productModelObservableList.clear();
