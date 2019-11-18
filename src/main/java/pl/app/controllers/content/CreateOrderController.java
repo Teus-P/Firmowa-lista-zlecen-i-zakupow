@@ -8,6 +8,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -17,12 +18,18 @@ import pl.app.api.model.ProductModel;
 import pl.app.controllers.ComboBoxInit;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class CreateOrderController implements Initializable {
 
     private ResourceBundle stringResources;
     private ComboBoxInit comboBoxInit;
+
+    private Alert alert;
+    boolean isProductOnTheList;
+    List<ProductInTable> productInTableList;
 
     @FXML
     private JFXComboBox<ProductModel> productComboBox;
@@ -51,7 +58,7 @@ public class CreateOrderController implements Initializable {
 
     @Getter
     @Setter
-    private class ProductInTable {
+    public class ProductInTable {
         String name;
         String category;
         String number;
@@ -65,11 +72,15 @@ public class CreateOrderController implements Initializable {
 
     public CreateOrderController() {
         comboBoxInit = new ComboBoxInit();
+        alert = new Alert(Alert.AlertType.ERROR);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.stringResources = resources;
+        productInTableList = new ArrayList<ProductInTable>();
+
+        setAlertContent();
 
         comboBoxInit.initProductComboBox(productComboBox);
 
@@ -96,22 +107,35 @@ public class CreateOrderController implements Initializable {
     }
 
     public void addNewProductToList(ActionEvent event) {
-        //TODO check how to add element to table
-        if(productComboBox.getSelectionModel().getSelectedItem() != null && numberTextField.getText() != null){
-//            productNameColumn.setCellValueFactory(new PropertyValueFactory<>(productComboBox.getSelectionModel().getSelectedItem().getName()));
-//            categoryNameColumn.setCellValueFactory(new PropertyValueFactory<>(categoryTextField.getText()));
-//            numberColumn.setCellValueFactory(new PropertyValueFactory<>(numberTextField.getText()));
+        isProductOnTheList = false;
 
-//            productNameColumn.getColumns().add(productComboBox.getSelectionModel().getSelectedItem().getName());
-//            categoryNameColumn.getColumns().add(categoryTextField.getText());
-//            numberColumn.getColumns().add(numberTextField.getText());
+        if (productComboBox.getSelectionModel().getSelectedItem() != null && numberTextField.getText() != null) {
+            productInTableList.forEach(product -> {
+                if (product.getName() == productComboBox.getSelectionModel().getSelectedItem().getName()) {
+                    alert.showAndWait();
+                    isProductOnTheList = true;
+                }
+            });
 
-            ProductInTable productInTable = new ProductInTable(
-                    productComboBox.getSelectionModel().getSelectedItem().getName(),
-                    categoryTextField.getText(),
-                    numberTextField.getText());
+            if (!isProductOnTheList) {
+                ProductInTable productInTable = new ProductInTable(
+                        productComboBox.getSelectionModel().getSelectedItem().getName(),
+                        categoryTextField.getText(),
+                        numberTextField.getText()
+                );
 
-            productTable.getItems().add(productInTable);
+                productInTableList.add(productInTable);
+
+                productTable.getItems().add(productInTable);
+            }
+
+//            productInTableList.forEach(product -> System.out.println(product.getName()));
         }
+    }
+
+    private void setAlertContent() {
+        alert.setTitle("Alert");
+        alert.setHeaderText("Alert");
+        alert.setContentText("Alert");
     }
 }
