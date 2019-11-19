@@ -21,7 +21,6 @@ import pl.app.controllers.common.FieldValidator;
 import pl.app.controllers.content.adminPanel.checkComboBoxItem.UserTypeCheckBoxItem;
 import pl.app.core.baseComponent.BaseDialog;
 
-import java.lang.reflect.Field;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -95,6 +94,8 @@ public class NewUserDialogController extends BaseDialog implements NewUserRespon
             );
 
             userAccountHelper.saveNewUserAccount(userAccountModel, this);
+
+            getDialogStage().close();
         }
 
     }

@@ -12,7 +12,7 @@ import java.util.ResourceBundle;
 
 public abstract class BaseDialog implements Initializable, DialogBody {
 
-    @Getter
+
     private Stage dialogStage;
 
     @Setter
@@ -30,6 +30,8 @@ public abstract class BaseDialog implements Initializable, DialogBody {
         this.dialogStage = stage;
     }
 
-
-
+    public Stage getDialogStage() {
+        onDialogCloseListener.onClose();
+        return dialogStage;
+    }
 }

@@ -128,7 +128,6 @@ public class EditProductDialogController extends BaseDialog implements EditProdu
 
     @Override
     public void onSuccessResponse(ResponseModel responseModel) {
-        onDialogCloseListener.onClose();
         getDialogStage().close();
     }
 
