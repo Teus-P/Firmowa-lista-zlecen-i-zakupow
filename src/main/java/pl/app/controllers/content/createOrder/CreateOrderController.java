@@ -1,21 +1,26 @@
-package pl.app.controllers.content;
+package pl.app.controllers.content.createOrder;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TreeItem;
 import javafx.scene.control.cell.PropertyValueFactory;
 import lombok.Getter;
 import lombok.Setter;
+import pl.app.api.clients.ApiResourcesClient;
+import pl.app.api.helpers.ProductHelper;
 import pl.app.api.model.ProductModel;
 import pl.app.controllers.ComboBoxInit;
+import pl.app.controllers.content.adminPanel.listItems.ProductTableItem;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -26,6 +31,8 @@ public class CreateOrderController implements Initializable {
 
     private ResourceBundle stringResources;
     private ComboBoxInit comboBoxInit;
+    private ProductHelper productHelper;
+    private ObservableList<ProductTableItem> productTableItemObservableList;
 
     private Alert alert;
     boolean isProductOnTheList;
@@ -56,6 +63,10 @@ public class CreateOrderController implements Initializable {
     private TableColumn numberColumn;
 
 
+    @FXML
+    private JFXTreeTableView<ProductTableItem> productTableJFX;
+
+
     @Getter
     @Setter
     public class ProductInTable {
@@ -71,6 +82,9 @@ public class CreateOrderController implements Initializable {
     }
 
     public CreateOrderController() {
+        productHelper = new ProductHelper(ApiResourcesClient.getApi());
+        productTableItemObservableList = FXCollections.observableArrayList();
+
         comboBoxInit = new ComboBoxInit();
         alert = new Alert(Alert.AlertType.ERROR);
     }
@@ -137,5 +151,38 @@ public class CreateOrderController implements Initializable {
         alert.setTitle("Alert");
         alert.setHeaderText("Alert");
         alert.setContentText("Alert");
+    }
+
+    private void initProductTreeTableView() {
+        productHelper.getAllProducts().forEach(model -> productTableItemObservableList.add(new ProductTableItem(model)));
+
+        JFXTreeTableColumn<ProductTableItem, String> productColumn = new JFXTreeTableColumn<>("Nazwa produktu");
+        productColumn.setCellValueFactory(param -> param.getValue().getValue().getProduct());
+
+        JFXTreeTableColumn<ProductTableItem, String> categoryColumn = new JFXTreeTableColumn<>("Kategoria");
+        categoryColumn.setCellValueFactory(param -> param.getValue().getValue().getCategory());
+
+        JFXTreeTableColumn<ProductTableItem, String> unitColumn = new JFXTreeTableColumn<>("Jednostka");
+        unitColumn.setCellValueFactory(param -> param.getValue().getValue().getUnit());
+
+
+        final TreeItem<ProductTableItem> root = new RecursiveTreeItem<>(productTableItemObservableList, RecursiveTreeObject::getChildren);
+        productTableJFX.getColumns().setAll(productColumn, categoryColumn, unitColumn);
+        productTableJFX.setRoot(root);
+        productTableJFX.setShowRoot(false);
+
+
+//        productSearchField.textProperty().addListener((observable, oldValue, newValue) ->
+//                productTable.setPredicate(productTableItemTreeItem
+//                        -> productTableItemTreeItem.getValue().getProduct().getValue().contains(newValue)
+//                        || productTableItemTreeItem.getValue().getCategory().getValue().contains(newValue)
+//                        || productTableItemTreeItem.getValue().getUnit().getValue().contains(newValue)));
+//
+//        productTable.setOnMouseClicked(click -> {
+//            if (click.getClickCount() == 2) {
+//                showEditProductDialog();
+//            }
+//        });
+
     }
 }
