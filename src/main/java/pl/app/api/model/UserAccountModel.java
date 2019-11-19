@@ -23,6 +23,9 @@ public class UserAccountModel {
     @Expose
     private String firstName;
 
+    @SerializedName("password")
+    private String password;
+
     @SerializedName("lastName")
     @Expose
     private String lastName;
@@ -44,4 +47,14 @@ public class UserAccountModel {
     private List<UserAccountTypeModel> userAccountTypeModels = null;
 
 
+    public UserAccountModel(String username, String firstName, String password, String lastName, Long pesel, String email, String phoneNumber, List<UserAccountTypeModel> userAccountTypeModels) {
+        this.username = username;
+        this.firstName = firstName;
+        this.password = password;
+        this.lastName = lastName;
+        this.pesel = pesel;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.userAccountTypeModels = userAccountTypeModels;
+    }
 }

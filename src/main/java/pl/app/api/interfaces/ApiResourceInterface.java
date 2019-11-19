@@ -11,6 +11,11 @@ import java.util.List;
 
 public interface ApiResourceInterface {
 
+    @POST("/register")
+    Call<ResponseModel> saveNewUser(
+            @Body UserAccountModel userAccountModel
+    );
+
     @GET("/categories")
     Call<List<CategoriesModel>> getAllCategories();
 
