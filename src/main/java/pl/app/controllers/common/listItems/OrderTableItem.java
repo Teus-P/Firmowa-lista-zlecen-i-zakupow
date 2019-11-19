@@ -1,4 +1,4 @@
-package pl.app.controllers.content.adminPanel.listItems;
+package pl.app.controllers.common.listItems;
 
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import javafx.beans.property.SimpleStringProperty;

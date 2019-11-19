@@ -4,7 +4,6 @@ import com.jfoenix.controls.*;
 import com.jfoenix.controls.cells.editors.TextFieldEditorBuilder;
 import com.jfoenix.controls.cells.editors.base.GenericEditableTreeTableCell;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
-import com.mysql.cj.x.protobuf.MysqlxCrud;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,7 +19,7 @@ import pl.app.api.model.UnitModel;
 import pl.app.api.responseInterfaces.NewCategoryResponseListener;
 import pl.app.api.responseInterfaces.NewUnitResponseListener;
 import pl.app.controllers.content.adminPanel.dialog.*;
-import pl.app.controllers.content.adminPanel.listItems.*;
+import pl.app.controllers.common.listItems.*;
 import pl.app.core.dialog.DialogStage;
 import pl.app.core.property.DialogProperty;
 
@@ -139,7 +138,7 @@ public class AdminPanelController implements Initializable, NewUnitResponseListe
 
     @FXML
     void addNewUserOnAction(ActionEvent event) {
-        newUserDialog.showAndWait();
+        showNewUserDialog();
     }
 
     @FXML
@@ -434,6 +433,15 @@ public class AdminPanelController implements Initializable, NewUnitResponseListe
     }
 
 
+    private void showNewUserDialog(){
+        NewUserDialogController controller = newUserDialog.getController();
+        controller.setOnDialogCloseListener(()->{
+            userTableItemObservableList.clear();
+            userAccountHelper.getAllUsers().forEach(model -> userTableItemObservableList.add(new UserTableItem(model)));
+        });
+        newUserDialog.showAndWait();
+    }
+
     private void showEditUserDialog() {
         EditUserDialogController controller = editUserDialog.getController();
         controller.initData(userTable.getSelectionModel().getSelectedItem().getValue().getUserAccountModel());
@@ -508,4 +516,6 @@ public class AdminPanelController implements Initializable, NewUnitResponseListe
         responseModel.getDetails().forEach(message -> builder.append(message).append("\n"));
         categoryResponseLabel.setText(builder.toString());
     }
+
+
 }

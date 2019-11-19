@@ -1,13 +1,10 @@
-package pl.app.controllers.content.adminPanel.listItems;
+package pl.app.controllers.common.listItems;
 
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import lombok.Getter;
-import lombok.Setter;
 import pl.app.api.model.UnitModel;
-
-import java.util.Objects;
 
 @Getter
 public class UnitTableItem extends RecursiveTreeObject<UnitTableItem> {
