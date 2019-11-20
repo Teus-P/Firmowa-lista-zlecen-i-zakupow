@@ -39,10 +39,6 @@ public class AdminPanelController implements Initializable, NewUnitResponseListe
     private ObservableList<UnitTableItem> unitTableItemObservableList;
     private ObservableList<CategoryTableItem> categoryTableItemObservableList;
     private ObservableList<OrderTableItem> orderTableItemObservableList;
-    private DialogStage newUserDialog;
-    private DialogStage editProductDialog;
-    private DialogStage editUserDialog;
-    private DialogStage newProductDialog;
 
     //user tab
 
