@@ -32,7 +32,7 @@ public class UserAccountModel {
 
     @SerializedName("pesel")
     @Expose
-    private Long pesel;
+    private String pesel;
 
     @SerializedName("email")
     @Expose
@@ -47,10 +47,23 @@ public class UserAccountModel {
     private List<UserAccountTypeModel> userAccountTypeModels = null;
 
 
-    public UserAccountModel(String username, String firstName, String password, String lastName, Long pesel, String email, String phoneNumber, List<UserAccountTypeModel> userAccountTypeModels) {
+    public UserAccountModel(String username, String firstName, String password, String lastName,
+                            String pesel, String email, String phoneNumber, List<UserAccountTypeModel> userAccountTypeModels) {
         this.username = username;
         this.firstName = firstName;
         this.password = password;
+        this.lastName = lastName;
+        this.pesel = pesel;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.userAccountTypeModels = userAccountTypeModels;
+    }
+
+    public UserAccountModel(String username, String firstName, String lastName,
+                            String pesel, String email, String phoneNumber, List<UserAccountTypeModel> userAccountTypeModels) {
+
+        this.username = username;
+        this.firstName = firstName;
         this.lastName = lastName;
         this.pesel = pesel;
         this.email = email;

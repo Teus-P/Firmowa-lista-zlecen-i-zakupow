@@ -16,8 +16,30 @@ public class UserAccountTypeHelper {
     private ApiResourceInterface api;
 
 
-    public List<UserAccountTypeModel> getAllAccountTypes(){
+    public List<UserAccountTypeModel> getAllAccountTypes() {
         Call<List<UserAccountTypeModel>> call = api.getAllAccountType();
+
+        Response<List<UserAccountTypeModel>> response = null;
+
+        try {
+            response = call.execute();
+            if (response.isSuccessful() && response.code() == 200) {
+                return response.body();
+            } else {
+                Gson gson = new Gson();
+
+                return null;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+
+    public List<UserAccountTypeModel> getExtraAccountTypes() {
+        Call<List<UserAccountTypeModel>> call = api.getExtraAccountType();
 
         Response<List<UserAccountTypeModel>> response = null;
 

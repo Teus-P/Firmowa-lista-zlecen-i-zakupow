@@ -6,6 +6,7 @@ import pl.app.api.interfaces.ApiResourceInterface;
 import pl.app.api.model.ResponseModel;
 import pl.app.api.model.UnitModel;
 import pl.app.api.model.UserAccountModel;
+import pl.app.api.responseInterfaces.EditUserResponseListener;
 import pl.app.api.responseInterfaces.NewUserResponseListener;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -60,4 +61,23 @@ public class UserAccountHelper {
         }
     }
 
+
+    public void editUserAccountById(UserAccountModel userAccountModel, EditUserResponseListener listener) {
+        Call<ResponseModel> call = apiResourceInterface.editUser(userAccountModel);
+
+        Response<ResponseModel> response = null;
+
+        try {
+            response = call.execute();
+            if (response.isSuccessful() && response.code() == 200) {
+                listener.onEditUserSuccessResponse(response.body());
+
+            } else {
+                Gson gson = new Gson();
+                listener.onEditUserFailedResponse(gson.fromJson(response.errorBody() != null ? response.errorBody().string() : null, ResponseModel.class));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

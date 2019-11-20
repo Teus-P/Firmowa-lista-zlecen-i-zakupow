@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface ApiResourceInterface {
 
-    @POST("/register")
+    @POST("/user")
     Call<ResponseModel> saveNewUser(
             @Body UserAccountModel userAccountModel
     );
@@ -96,11 +96,14 @@ public interface ApiResourceInterface {
     @GET("/product")
     Call<List<ProductModel>> getAllProducts();
 
-    @GET("/users")
+    @GET("/user/all")
     Call<List<UserAccountModel>> getAllUsers();
 
     @GET("/useraccounttype")
     Call<List<UserAccountTypeModel>> getAllAccountType();
+
+    @GET("/useraccounttype/extra")
+    Call<List<UserAccountTypeModel>> getExtraAccountType();
 
     @PUT("/product/delete/{id}")
     Call<ResponseModel> deleteProductById(
@@ -113,5 +116,9 @@ public interface ApiResourceInterface {
             @Body ProductModel productModel
     );
 
+    @PUT("/user/edit")
+    Call<ResponseModel> editUser(
+            @Body UserAccountModel userAccountModel
+    );
 
 }

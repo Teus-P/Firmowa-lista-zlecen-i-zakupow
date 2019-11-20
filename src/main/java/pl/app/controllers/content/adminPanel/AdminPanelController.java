@@ -128,12 +128,11 @@ public class AdminPanelController implements Initializable, NewUnitResponseListe
         initUnitTreeTableView();
         initCategoriesTreeTableView();
         initOrderTreeTableView();
-        initDialogs();
     }
 
     @FXML
     void addProductOnAction(ActionEvent event) {
-        newProductDialog.showAndWait();
+        showNewProductDialog();
     }
 
     @FXML
@@ -173,6 +172,7 @@ public class AdminPanelController implements Initializable, NewUnitResponseListe
             categoriesHelper.postNewCategory(new CategoriesModel(newCategoryTextField.getText()), this);
             categoryTableItemObservableList.clear();
             categoriesHelper.getAllCategories().forEach(categoriesModel -> categoryTableItemObservableList.add(new CategoryTableItem(categoriesModel)));
+            newCategoryTextField.clear();
 
         } else {
             categoryResponseLabel.setText("Nazwa kategorii nie może być pusta");
@@ -433,9 +433,10 @@ public class AdminPanelController implements Initializable, NewUnitResponseListe
     }
 
 
-    private void showNewUserDialog(){
+    private void showNewUserDialog() {
+        DialogStage newUserDialog = new DialogStage(DialogProperty.NEW_USER);
         NewUserDialogController controller = newUserDialog.getController();
-        controller.setOnDialogCloseListener(()->{
+        controller.setOnDialogCloseListener(() -> {
             userTableItemObservableList.clear();
             userAccountHelper.getAllUsers().forEach(model -> userTableItemObservableList.add(new UserTableItem(model)));
         });
@@ -443,12 +444,18 @@ public class AdminPanelController implements Initializable, NewUnitResponseListe
     }
 
     private void showEditUserDialog() {
+        DialogStage editUserDialog = new DialogStage(DialogProperty.EDIT_USER);
         EditUserDialogController controller = editUserDialog.getController();
         controller.initData(userTable.getSelectionModel().getSelectedItem().getValue().getUserAccountModel());
+        controller.setOnDialogCloseListener(() -> {
+            userTableItemObservableList.clear();
+            userAccountHelper.getAllUsers().forEach(model -> userTableItemObservableList.add(new UserTableItem(model)));
+        });
         editUserDialog.showAndWait();
     }
 
     private void showEditProductDialog() {
+        DialogStage editProductDialog = new DialogStage(DialogProperty.EDIT_PRODUCT);
         EditProductDialogController controller = editProductDialog.getController();
         controller.initData(productTable.getSelectionModel().getSelectedItem().getValue().getProductModel());
         controller.setOnDialogCloseListener(() -> {
@@ -456,6 +463,16 @@ public class AdminPanelController implements Initializable, NewUnitResponseListe
             productHelper.getAllProducts().forEach(model -> productTableItemObservableList.add(new ProductTableItem(model)));
         });
         editProductDialog.showAndWait();
+    }
+
+    private void showNewProductDialog() {
+        DialogStage newProductDialog = new DialogStage(DialogProperty.NEW_PRODUCT);
+        NewProductDialogController controller = newProductDialog.getController();
+        controller.setOnDialogCloseListener(() -> {
+            productTableItemObservableList.clear();
+            productHelper.getAllProducts().forEach(model -> productTableItemObservableList.add(new ProductTableItem(model)));
+        });
+        newProductDialog.showAndWait();
     }
 
     private void showWarningDialog(String headerText, String contentText) {
@@ -484,13 +501,6 @@ public class AdminPanelController implements Initializable, NewUnitResponseListe
             }
         });
         return wrapper.buttonClickFlag;
-    }
-
-    private void initDialogs() {
-        newUserDialog = new DialogStage(DialogProperty.NEW_USER);
-        editProductDialog = new DialogStage(DialogProperty.EDIT_PRODUCT);
-        editUserDialog = new DialogStage(DialogProperty.EDIT_USER);
-        newProductDialog = new DialogStage(DialogProperty.NEW_PRODUCT);
     }
 
     @Override

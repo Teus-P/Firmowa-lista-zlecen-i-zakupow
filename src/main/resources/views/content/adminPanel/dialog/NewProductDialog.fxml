@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane stylesheets="@../../../../styles/DialogStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.adminPanel.dialog.NewProductDialog">
+<AnchorPane stylesheets="@../../../../styles/DialogStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.adminPanel.dialog.NewProductDialogController">
    <children>
       <JFXTextField fx:id="productTextField" layoutX="223.0" layoutY="96.0" prefHeight="25.0" prefWidth="155.0" promptText="Nazwa produktu" style="-jfx-label-float: true;" AnchorPane.leftAnchor="223.0" AnchorPane.rightAnchor="223.0" />
       <JFXComboBox fx:id="categoriesComboBox" layoutX="223.0" layoutY="162.0" prefHeight="25.0" prefWidth="155.0" promptText="Kategoria produktu" style="-jfx-label-float: true;" AnchorPane.leftAnchor="223.0" AnchorPane.rightAnchor="223.0" />

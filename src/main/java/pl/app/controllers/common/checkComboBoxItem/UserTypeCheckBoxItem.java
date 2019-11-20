@@ -1,4 +1,4 @@
-package pl.app.controllers.content.adminPanel.checkComboBoxItem;
+package pl.app.controllers.common.checkComboBoxItem;
 
 import lombok.Getter;
 import pl.app.api.model.UserAccountTypeModel;

@@ -22,7 +22,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class NewProductDialog extends BaseDialog {
+public class NewProductDialogController extends BaseDialog {
 
     private CategoriesHelper categoriesHelper;
     private UnitHelper unitHelper;
@@ -87,6 +87,7 @@ public class NewProductDialog extends BaseDialog {
 
     @FXML
     void cancelButtonOnAction(ActionEvent event) {
+
         getDialogStage().close();
     }
 

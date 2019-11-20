@@ -1,14 +1,11 @@
 package pl.app.controllers.content.adminPanel.dialog;
 
 import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.validation.NumberValidator;
-import com.jfoenix.validation.RequiredFieldValidator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.Tooltip;
 import org.controlsfx.control.CheckComboBox;
 import pl.app.api.clients.ApiResourcesClient;
 import pl.app.api.helpers.UserAccountHelper;
@@ -18,7 +15,7 @@ import pl.app.api.model.UserAccountModel;
 import pl.app.api.model.UserAccountTypeModel;
 import pl.app.api.responseInterfaces.NewUserResponseListener;
 import pl.app.controllers.common.FieldValidator;
-import pl.app.controllers.content.adminPanel.checkComboBoxItem.UserTypeCheckBoxItem;
+import pl.app.controllers.common.checkComboBoxItem.UserTypeCheckBoxItem;
 import pl.app.core.baseComponent.BaseDialog;
 
 import java.net.URL;
@@ -76,6 +73,7 @@ public class NewUserDialogController extends BaseDialog implements NewUserRespon
         if (peselTextField.validate() && firstNameTextField.validate() && lastNameTextField.validate()
                 && phoneNumberTextField.validate() && userNameTextField.validate() && emailTextField.validate() && passwordTextField.validate()) {
 
+
             List<UserAccountTypeModel> userAccountTypeModelList = new ArrayList<>();
 
             userTypeCheckComboBox.getCheckModel().getCheckedItems().forEach(item ->
@@ -87,7 +85,7 @@ public class NewUserDialogController extends BaseDialog implements NewUserRespon
                     firstNameTextField.getText(),
                     passwordTextField.getText(),
                     lastNameTextField.getText(),
-                    Long.valueOf(peselTextField.getText()),
+                    peselTextField.getText(),
                     emailTextField.getText(),
                     phoneNumberTextField.getText(),
                     userAccountTypeModelList
@@ -115,7 +113,6 @@ public class NewUserDialogController extends BaseDialog implements NewUserRespon
         FieldValidator.setNumberValidator("Nieprawidłowy format!", peselTextField);
         FieldValidator.setRegexValidator("Długość peselu musi wynosić 11 znaków", peselTextField, "^[0-9]{11,11}$");
         FieldValidator.setRequiredValidator("Proszę wpisać pesel", peselTextField);
-
         FieldValidator.setRequiredValidator("Proszę wpisać imię", firstNameTextField);
         FieldValidator.setRequiredValidator("Proszę wpisać nazwisko", lastNameTextField);
         FieldValidator.setRequiredValidator("Proszę wpisać numer telefonu!", phoneNumberTextField);
@@ -123,10 +120,8 @@ public class NewUserDialogController extends BaseDialog implements NewUserRespon
         FieldValidator.setRequiredValidator("Proszę wpisać adres email!", emailTextField);
         FieldValidator.setRegexValidator("Nieprawidłowy adres email", emailTextField, "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$");
         FieldValidator.setRequiredValidator("Hasło nie może być puste", passwordTextField);
-
         FieldValidator.setRegexValidator("Długość hasła musi wynosić od 8 do 20 znaków oraz zawierać minimum jedną dużą i jedną małą lierę", passwordTextField,
                 "^(?=.*[a-z])(?=.*[A-Z]).{8,}$");
-
     }
 
 
@@ -137,7 +132,7 @@ public class NewUserDialogController extends BaseDialog implements NewUserRespon
 
     private void initUserTypeCheckComboBox() {
 
-        userAccountTypeHelper.getAllAccountTypes().forEach(model -> userAccountTypeModelObservableList.add(new UserTypeCheckBoxItem(model)));
+        userAccountTypeHelper.getExtraAccountTypes().forEach(model -> userAccountTypeModelObservableList.add(new UserTypeCheckBoxItem(model)));
 
         userTypeCheckComboBox.getItems().setAll(userAccountTypeModelObservableList);
     }

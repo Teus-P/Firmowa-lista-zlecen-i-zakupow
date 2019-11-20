@@ -24,7 +24,7 @@ public class UserTableItem extends RecursiveTreeObject<UserTableItem> {
     public UserTableItem(UserAccountModel userAccountModel) {
         this.userAccountModel = userAccountModel;
         this.firstName = new SimpleStringProperty(userAccountModel.getFirstName());
-        this.lastName = new SimpleStringProperty(userAccountModel.getFirstName());
+        this.lastName = new SimpleStringProperty(userAccountModel.getLastName());
         this.userLogin = new SimpleStringProperty(userAccountModel.getUsername());
         this.email = new SimpleStringProperty(userAccountModel.getEmail());
         this.phoneNumber = new SimpleStringProperty(userAccountModel.getPhoneNumber());
