@@ -1,22 +1,29 @@
 package pl.app.controllers.content.adminPanel.dialog;
 
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.controlsfx.control.CheckComboBox;
 import pl.app.api.clients.ApiResourcesClient;
+import pl.app.api.helpers.CategoriesHelper;
 import pl.app.api.helpers.UserAccountHelper;
 import pl.app.api.helpers.UserAccountTypeHelper;
+import pl.app.api.model.CategoriesModel;
 import pl.app.api.model.ResponseModel;
 import pl.app.api.model.UserAccountModel;
 import pl.app.api.model.UserAccountTypeModel;
@@ -41,9 +48,6 @@ public class EditUserDialogController extends BaseDialog implements EditUserResp
     private UserAccountTypeHelper userAccountTypeHelper;
     private UserAccountHelper userAccountHelper;
     private ObservableList<UserTypeCheckBoxItem> userAccountTypeModelObservableList;
-
-    @FXML
-    private AnchorPane rowContainer;
 
     @FXML
     private Label userNameLabel;
@@ -72,6 +76,9 @@ public class EditUserDialogController extends BaseDialog implements EditUserResp
     @FXML
     private Label responseLabel;
 
+    @FXML
+    private JFXComboBox<CategoriesModel> categoriesComboBox;
+
 
     public void initData(UserAccountModel userAccountModel) {
         this.userAccountModel = userAccountModel;
@@ -89,7 +96,7 @@ public class EditUserDialogController extends BaseDialog implements EditUserResp
         emailTextField.setText(userAccountModel.getEmail());
         firstNameTextField.setText(userAccountModel.getFirstName());
         lastNameTextField.setText(userAccountModel.getLastName());
-        peselTextField.setText(userAccountModel.getPesel().toString());
+        peselTextField.setText(userAccountModel.getPesel());
 
         userAccountTypeModelObservableList.forEach(item -> {
             userAccountModel.getUserAccountTypeModels().forEach(type -> {
@@ -100,6 +107,7 @@ public class EditUserDialogController extends BaseDialog implements EditUserResp
         });
 
 
+
     }
 
     private void initUserTypeCheckComboBox() {
@@ -107,7 +115,9 @@ public class EditUserDialogController extends BaseDialog implements EditUserResp
         userAccountTypeHelper.getExtraAccountTypes().forEach(model -> userAccountTypeModelObservableList.add(new UserTypeCheckBoxItem(model)));
 
         userTypeCheckComboBox.getItems().setAll(userAccountTypeModelObservableList);
+
     }
+
 
     private void initHelpers() {
         userAccountTypeHelper = new UserAccountTypeHelper(ApiResourcesClient.getApi());
@@ -154,8 +164,6 @@ public class EditUserDialogController extends BaseDialog implements EditUserResp
             userAccountHelper.editUserAccountById(userAccountModel, this);
 
             getDialogStage().close();
-            //TODO nie działa nie dodaje do bazy userAccountTypeModels jest nullem, pesel nie łapie
-            // błąd przy edycji z comboboxem są złe zaznaczone
         }
 
     }

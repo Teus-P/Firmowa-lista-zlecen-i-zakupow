@@ -2,6 +2,7 @@ package pl.app.api.helpers;
 
 import com.google.gson.Gson;
 import lombok.AllArgsConstructor;
+import pl.app.api.helpers.common.CallExecutor;
 import pl.app.api.interfaces.ApiResourceInterface;
 import pl.app.api.model.ProductModel;
 import pl.app.api.model.ResponseModel;
@@ -22,64 +23,19 @@ public class ProductHelper {
 
         Call<ResponseModel> call = apiResourceInterface.createNewProduct(productModel);
 
-        Response<ResponseModel> response = null;
-
-        try {
-            response = call.execute();
-            if (response.isSuccessful() && response.code() == 200) {
-                return response.body();
-            } else {
-                Gson gson = new Gson();
-
-                return gson.fromJson(response.errorBody() != null ? response.errorBody().string() : null, ResponseModel.class);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-
-            return null;
-        }
+        return CallExecutor.execute(call);
     }
 
     public List<ProductModel> getAllProducts() {
         Call<List<ProductModel>> call = apiResourceInterface.getAllProducts();
 
-        Response<List<ProductModel>> response = null;
-
-        try {
-            response = call.execute();
-            if (response.isSuccessful() && response.code() == 200) {
-                return response.body();
-            } else {
-                Gson gson = new Gson();
-
-                return null;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-
-            return null;
-        }
+        return CallExecutor.execute(call);
     }
 
     public ResponseModel deleteProductById(int productId) {
         Call<ResponseModel> call = apiResourceInterface.deleteProductById(productId);
 
-        Response<ResponseModel> response = null;
-
-        try {
-            response = call.execute();
-            if (response.isSuccessful() && response.code() == 200) {
-                return response.body();
-            } else {
-                Gson gson = new Gson();
-
-                return gson.fromJson(response.errorBody() != null ? response.errorBody().string() : null, ResponseModel.class);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-
-            return null;
-        }
+        return CallExecutor.execute(call);
     }
 
 

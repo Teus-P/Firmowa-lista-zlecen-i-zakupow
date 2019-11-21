@@ -1,6 +1,7 @@
 package pl.app.api.helpers;
 
 import com.google.gson.Gson;
+import pl.app.api.helpers.common.CallExecutor;
 import pl.app.api.interfaces.ApiResourceInterface;
 import pl.app.api.model.CategoriesModel;
 import pl.app.api.model.ResponseModel;
@@ -22,19 +23,8 @@ public class CategoriesHelper {
     public List<CategoriesModel> getAllCategories() {
         Call<List<CategoriesModel>> call = apiResourceInterface.getAllCategories();
 
-        Response<List<CategoriesModel>> response = null;
+        return CallExecutor.execute(call);
 
-        try {
-            response = call.execute();
-            if (response.isSuccessful() && response.code() == 200) {
-                return response.body();
-            } else {
-                return null;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
     }
 
     public void postNewCategory(CategoriesModel categoriesModel, NewCategoryResponseListener listener) {
@@ -56,39 +46,14 @@ public class CategoriesHelper {
 
     public ResponseModel deleteCategoryById(int categoryId) {
         Call<ResponseModel> call = apiResourceInterface.deleteCategoryById(categoryId);
-        Response<ResponseModel> response = null;
-        try {
-            response = call.execute();
-            if (response.isSuccessful() && response.code() == 200) {
-                return response.body();
-            } else {
-                Gson gson = new Gson();
-                return (gson.fromJson(response.errorBody() != null ? response.errorBody().string() : null, ResponseModel.class));
-            }
 
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
+        return CallExecutor.execute(call);
     }
 
     public ResponseModel editCategoryById(int categoryId, CategoriesModel categoriesModel) {
         Call<ResponseModel> call = apiResourceInterface.editCategoryById(categoryId, categoriesModel);
-        Response<ResponseModel> response = null;
 
-        try {
-            response = call.execute();
-            if (response.isSuccessful() && response.code() == 200) {
-                return response.body();
-            } else {
-                Gson gson = new Gson();
-                return (gson.fromJson(response.errorBody() != null ? response.errorBody().string() : null, ResponseModel.class));
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
+        return CallExecutor.execute(call);
     }
 
 }

@@ -2,6 +2,7 @@ package pl.app.api.helpers;
 
 import com.google.gson.Gson;
 import lombok.AllArgsConstructor;
+import pl.app.api.helpers.common.CallExecutor;
 import pl.app.api.interfaces.ApiResourceInterface;
 import pl.app.api.model.CategoriesModel;
 import pl.app.api.model.ResponseModel;
@@ -22,19 +23,7 @@ public class UnitHelper {
     public List<UnitModel> getAllUnits() {
         Call<List<UnitModel>> call = apiResourceInterface.getAllUnits();
 
-        Response<List<UnitModel>> response = null;
-
-        try {
-            response = call.execute();
-            if (response.isSuccessful() && response.code() == 200) {
-                return response.body();
-            } else {
-                return null;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
+        return CallExecutor.execute(call);
     }
 
     public void addNewUnit(UnitModel unitModel, NewUnitResponseListener listener) {
@@ -59,40 +48,13 @@ public class UnitHelper {
     public ResponseModel deleteUnitById(int unitId) {
         Call<ResponseModel> call = apiResourceInterface.deleteUnitById(unitId);
 
-        Response<ResponseModel> response = null;
-
-        try {
-            response = call.execute();
-            if (response.isSuccessful() && response.code() == 200) {
-                return response.body();
-            } else {
-                Gson gson = new Gson();
-                return (gson.fromJson(response.errorBody() != null ? response.errorBody().string() : null, ResponseModel.class));
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
+        return CallExecutor.execute(call);
     }
 
     public ResponseModel editUnitById(int unitId, UnitModel unitModel) {
         Call<ResponseModel> call = apiResourceInterface.editUnitById(unitId, unitModel);
-        Response<ResponseModel> response = null;
 
-        try {
-            response = call.execute();
-            if (response.isSuccessful() && response.code() == 200) {
-                return response.body();
-            } else {
-                Gson gson = new Gson();
-                return (gson.fromJson(response.errorBody() != null ? response.errorBody().string() : null, ResponseModel.class));
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
+        return CallExecutor.execute(call);
     }
 
 }

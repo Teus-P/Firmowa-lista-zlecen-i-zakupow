@@ -1,5 +1,6 @@
 package pl.app.api.helpers;
 
+import pl.app.api.helpers.common.CallExecutor;
 import pl.app.api.interfaces.ApiResourceInterface;
 import pl.app.api.model.OrderModel;
 import retrofit2.Call;
@@ -20,37 +21,14 @@ public class OrderHelper {
     public List<OrderModel> getAllUserOrders() {
         Call<List<OrderModel>> call = apiResourceInterface.getMyAllOrders();
 
-        Response<List<OrderModel>> response = null;
-
-        try {
-            response = call.execute();
-            if (response.isSuccessful() && response.code() == 200) {
-                return response.body();
-            } else {
-                return null;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
+        return CallExecutor.execute(call);
     }
 
 
     public List<OrderModel> getAllOrders() {
         Call<List<OrderModel>> call = apiResourceInterface.getAllOrders();
-        Response<List<OrderModel>> response = null;
 
-        try {
-            response = call.execute();
-            if (response.isSuccessful() && response.code() == 200) {
-                return response.body();
-            } else {
-                return null;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
+        return CallExecutor.execute(call);
     }
 
 }

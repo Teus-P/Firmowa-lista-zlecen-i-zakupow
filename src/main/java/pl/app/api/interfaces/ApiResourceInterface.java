@@ -121,4 +121,13 @@ public interface ApiResourceInterface {
             @Body UserAccountModel userAccountModel
     );
 
+    @POST("/implementers")
+    Call<ResponseModel> addNewImplementers(
+            @Field("idUserAccount") int userId,
+            @Field("idCategories") int categoryId
+    );
+
+    @GET("/implementers")
+    Call<List<ImplementerModel>> getAllImplementers();
+
 }

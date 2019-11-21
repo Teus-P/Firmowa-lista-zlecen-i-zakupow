@@ -2,6 +2,7 @@ package pl.app.api.helpers;
 
 import com.google.gson.Gson;
 import lombok.AllArgsConstructor;
+import pl.app.api.helpers.common.CallExecutor;
 import pl.app.api.interfaces.ApiResourceInterface;
 import pl.app.api.model.UserAccountTypeModel;
 import retrofit2.Call;
@@ -19,43 +20,14 @@ public class UserAccountTypeHelper {
     public List<UserAccountTypeModel> getAllAccountTypes() {
         Call<List<UserAccountTypeModel>> call = api.getAllAccountType();
 
-        Response<List<UserAccountTypeModel>> response = null;
-
-        try {
-            response = call.execute();
-            if (response.isSuccessful() && response.code() == 200) {
-                return response.body();
-            } else {
-                Gson gson = new Gson();
-
-                return null;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-
+        return CallExecutor.execute(call);
     }
 
 
     public List<UserAccountTypeModel> getExtraAccountTypes() {
         Call<List<UserAccountTypeModel>> call = api.getExtraAccountType();
 
-        Response<List<UserAccountTypeModel>> response = null;
-
-        try {
-            response = call.execute();
-            if (response.isSuccessful() && response.code() == 200) {
-                return response.body();
-            } else {
-                Gson gson = new Gson();
-
-                return null;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
+        return CallExecutor.execute(call);
 
     }
 
