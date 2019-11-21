@@ -60,7 +60,7 @@ public class LoginPageController extends BasePage implements LoginResponseListen
     }
 
     void developTimeFastLoginMethod() {
-        getTokenByUserCredentials("admin", "admin");
+        getTokenByUserCredentials("admin2", "admin2");
         saveTokenAfterSuccessLogin();
         showMainPage();
     }
