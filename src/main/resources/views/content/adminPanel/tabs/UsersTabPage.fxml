@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="752.0" prefWidth="745.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.adminPanel.tabs.UsersTabPageController">
+   <children>
+      <JFXButton buttonType="RAISED" layoutX="102.0" layoutY="646.0" onAction="#addNewUserOnAction" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #3C58Fa;" text="Dodaj nowego użytkownika" textFill="#a0a2ab" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" />
+      <JFXButton buttonType="RAISED" layoutX="365.0" layoutY="646.0" onAction="#editUserOnAction" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #3C58Fa;" text="Edytuj użytkownika" textFill="#a0a2ab" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0" />
+      <JFXTextField fx:id="userSearchField" layoutX="14.0" layoutY="14.0" promptText="Szukaj" style="-jfx-label-float: true;" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="25.0" />
+      <JFXTreeTableView fx:id="userTable" layoutX="15.0" layoutY="275.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="75.0">
+         <columnResizePolicy>
+            <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </JFXTreeTableView>
+   </children>
+</AnchorPane>

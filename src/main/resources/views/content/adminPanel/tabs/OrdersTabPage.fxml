@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane minHeight="500.0" minWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.adminPanel.tabs.OrdersTabPageController">
+   <children>
+      <JFXTextField fx:id="orderSearchField" layoutX="83.0" layoutY="43.0" promptText="Szukaj" style="-jfx-label-float: true;" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="25.0" />
+      <JFXTreeTableView fx:id="orderTable" layoutX="204.0" layoutY="157.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="75.0">
+         <columnResizePolicy>
+            <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </JFXTreeTableView>
+   </children>
+</AnchorPane>

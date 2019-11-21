@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -41,5 +42,6 @@
       <JFXButton layoutX="150.0" layoutY="390.0" onAction="#saveButtonOnAction" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #3C58Fa;" text="Zapisz" textFill="#a0a2ab" AnchorPane.leftAnchor="150.0" />
       <JFXButton layoutX="501.0" layoutY="390.0" onAction="#cancelButtonOnAction" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #3C58Fa;" text="Anuluj" textFill="#a0a2ab" AnchorPane.rightAnchor="150.0" />
       <Label fx:id="responseLabel" alignment="CENTER" layoutX="60.0" layoutY="472.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
+      <JFXComboBox fx:id="categoriesComboBox" layoutX="448.0" layoutY="342.0" minWidth="300.0" promptText="Kategoria realizatora" AnchorPane.rightAnchor="50.0" />
    </children>
 </AnchorPane>

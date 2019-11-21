@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextField?>
-<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane fx:id="container" minHeight="900.0" minWidth="800.0" stylesheets="@../../../styles/AdminPanelStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.adminPanel.AdminPanelController">
@@ -18,29 +14,27 @@
             <content>
               <AnchorPane>
                      <children>
-                        <JFXButton fx:id="addNewUserButton" buttonType="RAISED" layoutX="102.0" layoutY="646.0" onAction="#addNewUserOnAction" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #3C58Fa;" text="Dodaj nowego użytkownika" textFill="#a0a2ab" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" />
-                        <JFXButton fx:id="editUserButton" buttonType="RAISED" layoutX="365.0" layoutY="646.0" onAction="#editUserOnAction" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #3C58Fa;" text="Edytuj użytkownika" textFill="#a0a2ab" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0" />
-                        <JFXTextField fx:id="userSearchField" layoutX="14.0" layoutY="14.0" promptText="Szukaj" style="-jfx-label-float: true;" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="25.0" />
-                        <JFXTreeTableView fx:id="userTable" layoutX="15.0" layoutY="275.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="75.0">
-                           <columnResizePolicy>
-                              <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                           </columnResizePolicy>
-                        </JFXTreeTableView>
+                        <TabPane tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <tabs>
+                            <Tab text="Użytkownicy">
+                              <content>
+                                    <AnchorPane fx:id="usersTabContainer" prefHeight="752.0" prefWidth="745.0" />
+                              </content>
+                            </Tab>
+                            <Tab fx:id="implementersTab" text="Realizatorzy">
+                              <content>
+                                <AnchorPane fx:id="implementersContainer" />
+                              </content>
+                            </Tab>
+                          </tabs>
+                        </TabPane>
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
             <Tab text="Zarządzanie zamówieniami">
                <content>
-                  <AnchorPane>
-                     <children>
-                        <JFXTextField fx:id="orderSearchField" layoutX="83.0" layoutY="43.0" promptText="Szukaj" style="-jfx-label-float: true;" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="25.0" />
-                        <JFXTreeTableView fx:id="orderTable" layoutX="204.0" layoutY="157.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="75.0">
-                           <columnResizePolicy>
-                              <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                           </columnResizePolicy>
-                        </JFXTreeTableView>
-                     </children></AnchorPane>
+                  <AnchorPane fx:id="ordersTabContainer" />
                </content>
             </Tab>
             <Tab text="Zarządzanie zasobami">
@@ -51,53 +45,17 @@
                           <tabs>
                             <Tab text="Produkty">
                               <content>
-                                <AnchorPane>
-                                       <children>
-                                          <JFXTreeTableView fx:id="productTable" layoutX="235.0" layoutY="256.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="75.0">
-                                             <columnResizePolicy>
-                                                <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                             </columnResizePolicy>
-                                          </JFXTreeTableView>
-                                          <JFXTextField fx:id="productSearchField" layoutX="14.0" layoutY="28.0" promptText="Szukaj" style="-jfx-label-float: true;" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="25.0" />
-                                          <JFXButton buttonType="RAISED" layoutX="39.0" layoutY="691.0" onAction="#addProductOnAction" prefWidth="150.0" text="Dodaj" textFill="WHITE" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="10.0" />
-                                          <JFXButton buttonType="RAISED" layoutX="383.0" layoutY="621.0" onAction="#deleteProductOnAction" prefWidth="150.0" text="Usuń" textFill="WHITE" AnchorPane.bottomAnchor="100.0" AnchorPane.rightAnchor="10.0" />
-                                          <JFXButton buttonType="RAISED" layoutX="185.0" layoutY="621.0" onAction="#editProductOnAction" prefWidth="150.0" text="Edytuj" textFill="WHITE" AnchorPane.bottomAnchor="100.0" />
-                                       </children>
-                                    </AnchorPane>
+                                <AnchorPane fx:id="productsTabContainer" />
                               </content>
                             </Tab>
                             <Tab text="Jednostki">
                               <content>
-                                <AnchorPane>
-                                       <children>
-                                          <JFXTextField fx:id="unitSearchField" layoutX="35.0" layoutY="20.0" promptText="Szukaj" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="25.0" />
-                                          <JFXButton buttonType="RAISED" layoutX="65.0" layoutY="605.0" onAction="#addNewUnitOnAction" prefWidth="150.0" style="-fx-background-color: #3C58Fa;" text="Dodaj" textFill="#a0a2ab" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="300.0" />
-                                          <JFXTreeTableView fx:id="unitTable" editable="true" layoutX="41.0" layoutY="89.0" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="75.0">
-                                             <columnResizePolicy>
-                                                <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                             </columnResizePolicy></JFXTreeTableView>
-                                          <JFXTextField fx:id="newUnitTextField" labelFloat="true" layoutX="199.0" layoutY="621.0" prefWidth="250.0" promptText="Nazwa nowej jednostki" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="10.0" />
-                                          <Label fx:id="unitResponseLabel" layoutX="14.0" layoutY="656.0" wrapText="true" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-                                          <JFXButton buttonType="RAISED" layoutX="831.0" layoutY="623.0" onAction="#deleteUnitOnAction" prefWidth="150.0" style="-fx-background-color: #3C58Fa;" text="Usuń" textFill="#a0a2ab" AnchorPane.bottomAnchor="100.0" AnchorPane.rightAnchor="10.0" />
-                                       </children>
-                                    </AnchorPane>
+                                <AnchorPane fx:id="unitsTabContainer" />
                               </content>
                             </Tab>
                               <Tab text="Kategorie">
                                  <content>
-                                    <AnchorPane>
-                                       <children>
-                                          <JFXTextField fx:id="categorySearchField" layoutX="50.0" layoutY="26.0" promptText="Szukaj" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="25.0" />
-                                          <JFXButton buttonType="RAISED" layoutX="44.0" layoutY="517.0" onAction="#addCategoryOnAction" prefWidth="150.0" style="-fx-background-color: #3C58Fa;" text="Dodaj" textFill="#a0a2ab" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="300.0" />
-                                          <JFXTreeTableView fx:id="categoryTable" editable="true" layoutX="44.0" layoutY="82.0" prefHeight="400.0" prefWidth="616.0" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="75.0">
-                                             <columnResizePolicy>
-                                                <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                             </columnResizePolicy></JFXTreeTableView>
-                                          <JFXTextField fx:id="newCategoryTextField" layoutX="192.0" layoutY="609.0" prefWidth="250.0" promptText="Nazwa nowej kategorii" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="10.0" />
-                                          <Label fx:id="categoryResponseLabel" layoutX="99.0" layoutY="657.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-                                          <JFXButton buttonType="RAISED" layoutX="893.0" layoutY="620.0" onAction="#deleteCategoryOnAction" prefWidth="150.0" style="-fx-background-color: #3C58Fa;" text="Usuń" textFill="#a0a2ab" AnchorPane.bottomAnchor="100.0" AnchorPane.rightAnchor="10.0" />
-                                       </children>
-                                    </AnchorPane>
+                                    <AnchorPane fx:id="categoriesTabContainer" />
                                  </content>
                               </Tab>
                           </tabs>
