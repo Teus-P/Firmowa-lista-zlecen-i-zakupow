@@ -88,6 +88,11 @@ public interface ApiResourceInterface {
     @GET("/order/all")
     Call<List<OrderModel>> getAllOrders();
 
+    @POST("/order/create")
+    Call<ResponseModel> createNewOrder(
+            @Body List<OrderProductModel> orderProductList
+    );
+
     @POST("/product")
     Call<ResponseModel> createNewProduct(
             @Body ProductModel productModel

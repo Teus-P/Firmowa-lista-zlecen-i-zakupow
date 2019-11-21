@@ -2,25 +2,26 @@ package pl.app.controllers.content.createOrder;
 
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TreeItem;
-import javafx.scene.control.cell.PropertyValueFactory;
-import lombok.Getter;
-import lombok.Setter;
+import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.cell.TextFieldTreeTableCell;
 import pl.app.api.clients.ApiResourcesClient;
+import pl.app.api.helpers.OrderHelper;
 import pl.app.api.helpers.ProductHelper;
+import pl.app.api.model.OrderProductModel;
 import pl.app.api.model.ProductModel;
-import pl.app.controllers.ComboBoxInit;
-import pl.app.controllers.content.adminPanel.listItems.ProductTableItem;
+import pl.app.controllers.common.ProductsComboBoxInitializer;
+import pl.app.controllers.common.listItems.OrderProductTableItem;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -30,13 +31,13 @@ import java.util.ResourceBundle;
 public class CreateOrderController implements Initializable {
 
     private ResourceBundle stringResources;
-    private ComboBoxInit comboBoxInit;
+    private ObservableList<OrderProductTableItem> productTableItemObservableList;
+
     private ProductHelper productHelper;
-    private ObservableList<ProductTableItem> productTableItemObservableList;
+    private OrderHelper orderHelper;
 
     private Alert alert;
     boolean isProductOnTheList;
-    List<ProductInTable> productInTableList;
 
     @FXML
     private JFXComboBox<ProductModel> productComboBox;
@@ -48,59 +49,31 @@ public class CreateOrderController implements Initializable {
     private JFXTextField numberTextField;
 
     @FXML
+    private JFXTreeTableView<OrderProductTableItem> productTable;
+
+    @FXML
     private JFXButton addNewProductToOrderButton;
 
     @FXML
-    private TableView productTable;
+    private JFXButton addNewOrderButton;
 
     @FXML
-    private TableColumn productNameColumn;
-
-    @FXML
-    private TableColumn categoryNameColumn;
-
-    @FXML
-    private TableColumn numberColumn;
-
-
-    @FXML
-    private JFXTreeTableView<ProductTableItem> productTableJFX;
-
-
-    @Getter
-    @Setter
-    public class ProductInTable {
-        String name;
-        String category;
-        String number;
-
-        public ProductInTable(String name, String category, String number) {
-            this.name = name;
-            this.category = category;
-            this.number = number;
-        }
-    }
+    private JFXButton deleteRowButton;
 
     public CreateOrderController() {
-        productHelper = new ProductHelper(ApiResourcesClient.getApi());
         productTableItemObservableList = FXCollections.observableArrayList();
-
-        comboBoxInit = new ComboBoxInit();
         alert = new Alert(Alert.AlertType.ERROR);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.stringResources = resources;
-        productInTableList = new ArrayList<ProductInTable>();
 
+        initHelpers();
+        initProductTreeTableView();
         setAlertContent();
 
-        comboBoxInit.initProductComboBox(productComboBox);
-
-        productNameColumn.setCellValueFactory(new PropertyValueFactory<ProductInTable, String>("name"));
-        categoryNameColumn.setCellValueFactory(new PropertyValueFactory<ProductInTable, String>("category"));
-        numberColumn.setCellValueFactory(new PropertyValueFactory<ProductInTable, String>("number"));
+        ProductsComboBoxInitializer.init(productComboBox, FXCollections.observableList(productHelper.getAllProducts()));
 
         //TODO move this code to separate method
         numberTextField.textProperty().addListener(new ChangeListener<String>() {
@@ -115,36 +88,64 @@ public class CreateOrderController implements Initializable {
 
     public void productComboBoxActionPerformed(javafx.event.ActionEvent event) {
         JFXComboBox<ProductModel> productModelJFXComboBox = (JFXComboBox<ProductModel>) event.getSource();
-        ProductModel selected = productModelJFXComboBox.getSelectionModel().getSelectedItem();
 
-        categoryTextField.setText(selected.getCategories().getName());
+        ProductModel productModel = productModelJFXComboBox.getSelectionModel().getSelectedItem();
+        if (productModel != null) {
+            categoryTextField.setText(productModelJFXComboBox.getSelectionModel().getSelectedItem().getCategories().getName());
+        }
     }
 
     public void addNewProductToList(ActionEvent event) {
         isProductOnTheList = false;
+        String quantity = numberTextField.getText();
 
-        if (productComboBox.getSelectionModel().getSelectedItem() != null && numberTextField.getText() != null) {
-            productInTableList.forEach(product -> {
-                if (product.getName() == productComboBox.getSelectionModel().getSelectedItem().getName()) {
-                    alert.showAndWait();
+
+        if (productComboBox.getSelectionModel().getSelectedItem() != null && quantity != null) {
+
+            productTableItemObservableList.forEach(product -> {
+                if (product.getOrderProductModel().getProduct().getName() == productComboBox.getSelectionModel().getSelectedItem().getName()) {
+                    Integer newQuantityValue = product.getOrderProductModel().getQuantity() + Integer.valueOf(quantity);
+
+                    product.getOrderProductModel().setQuantity(newQuantityValue);
+                    product.setQuantity(new SimpleStringProperty(newQuantityValue.toString()));
                     isProductOnTheList = true;
                 }
             });
 
             if (!isProductOnTheList) {
-                ProductInTable productInTable = new ProductInTable(
-                        productComboBox.getSelectionModel().getSelectedItem().getName(),
-                        categoryTextField.getText(),
-                        numberTextField.getText()
+                OrderProductTableItem productInTable = new OrderProductTableItem(
+                        productComboBox.getSelectionModel().getSelectedItem(),
+                        Integer.valueOf(numberTextField.getText())
                 );
 
-                productInTableList.add(productInTable);
+                productTableItemObservableList.add(productInTable);
 
-                productTable.getItems().add(productInTable);
+
             }
 
-//            productInTableList.forEach(product -> System.out.println(product.getName()));
+            final TreeItem<OrderProductTableItem> root = new RecursiveTreeItem<>(productTableItemObservableList, RecursiveTreeObject::getChildren);
+            productTable.setRoot(root);
         }
+
+        productComboBox.getSelectionModel().clearSelection();
+        categoryTextField.setText("Kategoria");
+        numberTextField.clear();
+    }
+
+    public void addNewOrder(ActionEvent event) {
+        List<OrderProductModel> orderProductModelList = new ArrayList<>();
+        productTableItemObservableList.forEach(product -> {
+            orderProductModelList.add(product.getOrderProductModel());
+        });
+
+        orderHelper.createNewOrder(orderProductModelList);
+
+        productTableItemObservableList.clear();
+    }
+
+    private void initHelpers() {
+        productHelper = new ProductHelper(ApiResourcesClient.getApi());
+        orderHelper = new OrderHelper(ApiResourcesClient.getApi());
     }
 
     private void setAlertContent() {
@@ -154,35 +155,50 @@ public class CreateOrderController implements Initializable {
     }
 
     private void initProductTreeTableView() {
-        productHelper.getAllProducts().forEach(model -> productTableItemObservableList.add(new ProductTableItem(model)));
+        JFXTreeTableColumn<OrderProductTableItem, String> productColumn = new JFXTreeTableColumn<>("Nazwa produktu");
+        productColumn.setCellValueFactory(param -> param.getValue().getValue().getName());
 
-        JFXTreeTableColumn<ProductTableItem, String> productColumn = new JFXTreeTableColumn<>("Nazwa produktu");
-        productColumn.setCellValueFactory(param -> param.getValue().getValue().getProduct());
 
-        JFXTreeTableColumn<ProductTableItem, String> categoryColumn = new JFXTreeTableColumn<>("Kategoria");
+        JFXTreeTableColumn<OrderProductTableItem, String> categoryColumn = new JFXTreeTableColumn<>("Kategoria");
         categoryColumn.setCellValueFactory(param -> param.getValue().getValue().getCategory());
 
-        JFXTreeTableColumn<ProductTableItem, String> unitColumn = new JFXTreeTableColumn<>("Jednostka");
-        unitColumn.setCellValueFactory(param -> param.getValue().getValue().getUnit());
+        JFXTreeTableColumn<OrderProductTableItem, String> quantityColumn = new JFXTreeTableColumn<>("Liczba");
+        quantityColumn.setCellValueFactory(param -> param.getValue().getValue().getQuantity());
+        quantityColumn.setEditable(true);
+
+        quantityColumn.setCellFactory(TextFieldTreeTableCell.forTreeTableColumn());
+        quantityColumn.setOnEditCommit(new EventHandler<TreeTableColumn.CellEditEvent<OrderProductTableItem, String>>() {
+            @Override
+            public void handle(TreeTableColumn.CellEditEvent<OrderProductTableItem, String> event) {
+                TreeItem<OrderProductTableItem> item = productTable.getTreeItem(event.getTreeTablePosition().getRow());
+
+                if (!event.getNewValue().matches("\\d{0,7}([\\.]\\d{0,4})?")) {
+                    item.getValue().setQuantity(new SimpleStringProperty(event.getOldValue()));
+                } else {
+                    item.getValue().setQuantity(new SimpleStringProperty(event.getNewValue()));
+                    item.getValue().getOrderProductModel().setQuantity(Integer.valueOf(event.getNewValue()));
+                }
+
+                productTable.refresh();
+            }
+        });
 
 
-        final TreeItem<ProductTableItem> root = new RecursiveTreeItem<>(productTableItemObservableList, RecursiveTreeObject::getChildren);
-        productTableJFX.getColumns().setAll(productColumn, categoryColumn, unitColumn);
-        productTableJFX.setRoot(root);
-        productTableJFX.setShowRoot(false);
+        final TreeItem<OrderProductTableItem> root = new RecursiveTreeItem<>(productTableItemObservableList, RecursiveTreeObject::getChildren);
+        productTable.setEditable(true);
+        productTable.getColumns().setAll(productColumn, categoryColumn, quantityColumn);
+        productTable.setRoot(root);
+        productTable.setShowRoot(false);
+    }
 
+    public void deleteRow(ActionEvent event) {
+        TreeItem<OrderProductTableItem> selectedItem = productTable.getSelectionModel().getSelectedItem();
 
-//        productSearchField.textProperty().addListener((observable, oldValue, newValue) ->
-//                productTable.setPredicate(productTableItemTreeItem
-//                        -> productTableItemTreeItem.getValue().getProduct().getValue().contains(newValue)
-//                        || productTableItemTreeItem.getValue().getCategory().getValue().contains(newValue)
-//                        || productTableItemTreeItem.getValue().getUnit().getValue().contains(newValue)));
-//
-//        productTable.setOnMouseClicked(click -> {
-//            if (click.getClickCount() == 2) {
-//                showEditProductDialog();
-//            }
-//        });
-
+        for (OrderProductTableItem product : productTableItemObservableList) {
+            if (product.getName() == selectedItem.getValue().getName()) {
+                productTableItemObservableList.remove(product);
+                break;
+            }
+        }
     }
 }

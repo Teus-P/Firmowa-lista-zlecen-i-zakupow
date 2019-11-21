@@ -52,7 +52,7 @@ JFXButton{
     -fx-background-color: #832ABD;
 }
 
-#remindPasswordButton {
+#remindPasswordButton, #deleteRowButton {
     -fx-background-color: #151928;
     -fx-text-fill: #a0a2ab;
 
