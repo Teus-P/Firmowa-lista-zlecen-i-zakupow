@@ -12,6 +12,14 @@ JFXCheckBox {
 
 JFXButton{
     -fx-text-alignment: #FF0000;
+    -fx-text-alignment: RED;
+    -fx-background-color: #3C58Fa;
+    -fx-text-fill: #FFFFFF;
+}
+
+.LinkButton {
+    -fx-background-color: NONE;
+    -fx-text-fill: #2511d7;
 }
 
 .LoginPageBackground {
@@ -44,7 +52,7 @@ JFXButton{
     -fx-background-color: #832ABD;
 }
 
-#remindPasswordButton {
+#remindPasswordButton, #deleteRowButton {
     -fx-background-color: #151928;
     -fx-text-fill: #a0a2ab;
 

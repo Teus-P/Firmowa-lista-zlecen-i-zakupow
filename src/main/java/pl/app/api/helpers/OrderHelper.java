@@ -1,7 +1,10 @@
 package pl.app.api.helpers;
 
+import com.google.gson.Gson;
 import pl.app.api.interfaces.ApiResourceInterface;
 import pl.app.api.model.OrderModel;
+import pl.app.api.model.OrderProductModel;
+import pl.app.api.model.ResponseModel;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -19,7 +22,6 @@ public class OrderHelper {
 
     public List<OrderModel> getAllUserOrders() {
         Call<List<OrderModel>> call = apiResourceInterface.getMyAllOrders();
-
         Response<List<OrderModel>> response = null;
 
         try {
@@ -53,4 +55,25 @@ public class OrderHelper {
         }
     }
 
+    public ResponseModel createNewOrder(List<OrderProductModel> orderProductList) {
+
+        Call<ResponseModel> call = apiResourceInterface.createNewOrder(orderProductList);
+
+        Response<ResponseModel> response = null;
+
+        try {
+            response = call.execute();
+            if (response.isSuccessful() && response.code() == 200) {
+                return response.body();
+            } else {
+                Gson gson = new Gson();
+
+                return gson.fromJson(response.errorBody() != null ? response.errorBody().string() : null, ResponseModel.class);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+
+            return null;
+        }
+    }
 }
