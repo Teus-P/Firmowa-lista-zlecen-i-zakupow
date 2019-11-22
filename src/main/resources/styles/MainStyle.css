@@ -26,7 +26,6 @@ JFXButton{
     -fx-background-color: #2D3447;
 }
 
-
 .LoginPageTextField,.LoginPagePasswordField{
     -fx-text-fill: #fff;
 }
@@ -39,9 +38,6 @@ JFXButton{
 .menuButton {
     -fx-background-color: #1D5C78;
     -fx-text-fill: #FFF;
-    /*-fx-background-color: #2196f3;*/
-    /*-fx-text-fill: #2D3447;*/
-    /*-fx-border-color: #2D3447;*/
 }
 
 .Table {

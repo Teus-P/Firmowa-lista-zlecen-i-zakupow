@@ -62,7 +62,7 @@ public class CreateOrderController implements Initializable {
 
     public CreateOrderController() {
         productTableItemObservableList = FXCollections.observableArrayList();
-        alert = new Alert(Alert.AlertType.ERROR);
+        alert = new Alert(Alert.AlertType.NONE);
     }
 
     @Override
@@ -71,7 +71,6 @@ public class CreateOrderController implements Initializable {
 
         initHelpers();
         initProductTreeTableView();
-        setAlertContent();
 
         ProductsComboBoxInitializer.init(productComboBox, FXCollections.observableList(productHelper.getAllProducts()));
 
@@ -133,14 +132,21 @@ public class CreateOrderController implements Initializable {
     }
 
     public void addNewOrder(ActionEvent event) {
-        List<OrderProductModel> orderProductModelList = new ArrayList<>();
-        productTableItemObservableList.forEach(product -> {
-            orderProductModelList.add(product.getOrderProductModel());
-        });
+        if(productTableItemObservableList.size() != 0){
+            List<OrderProductModel> orderProductModelList = new ArrayList<>();
+            productTableItemObservableList.forEach(product -> {
+                orderProductModelList.add(product.getOrderProductModel());
+            });
 
-        orderHelper.createNewOrder(orderProductModelList);
+            orderHelper.createNewOrder(orderProductModelList);
+            productTableItemObservableList.clear();
 
-        productTableItemObservableList.clear();
+            setAlertContent(Alert.AlertType.CONFIRMATION, "Złożono zamówienie", "Zamówienie zostało złożone.", "Złożone przez Ciebie zamówienie zostało wysłane i oczekuje na akceptacje.");
+            alert.show();
+        }else {
+            setAlertContent(Alert.AlertType.ERROR,"Błędne zamówienie", "Zamówienie nie zostało złożone.", "Składane zamówienie musi zawierać listę produktów.");
+            alert.show();
+        }
     }
 
     private void initHelpers() {
@@ -148,10 +154,11 @@ public class CreateOrderController implements Initializable {
         orderHelper = new OrderHelper(ApiResourcesClient.getApi());
     }
 
-    private void setAlertContent() {
-        alert.setTitle("Alert");
-        alert.setHeaderText("Alert");
-        alert.setContentText("Alert");
+    private void setAlertContent(Alert.AlertType alertType, String title, String header, String content) {
+        alert.setAlertType(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
     }
 
     private void initProductTreeTableView() {
@@ -162,7 +169,7 @@ public class CreateOrderController implements Initializable {
         JFXTreeTableColumn<OrderProductTableItem, String> categoryColumn = new JFXTreeTableColumn<>("Kategoria");
         categoryColumn.setCellValueFactory(param -> param.getValue().getValue().getCategory());
 
-        JFXTreeTableColumn<OrderProductTableItem, String> quantityColumn = new JFXTreeTableColumn<>("Liczba");
+        JFXTreeTableColumn<OrderProductTableItem, String> quantityColumn = new JFXTreeTableColumn<>("Liczba sztuk");
         quantityColumn.setCellValueFactory(param -> param.getValue().getValue().getQuantity());
         quantityColumn.setEditable(true);
 
