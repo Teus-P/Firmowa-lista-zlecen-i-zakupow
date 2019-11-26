@@ -1,7 +1,3 @@
-VBox {
-    -fx-background-color:  #1D5C78;
-}
-
 JFXTextField, JFXPasswordField {
     -fx-text-fill: #000000;
 }

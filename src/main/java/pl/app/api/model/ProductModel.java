@@ -3,10 +3,12 @@ package pl.app.api.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class ProductModel {
 
     @SerializedName("idProduct")
@@ -25,7 +27,6 @@ public class ProductModel {
     @Expose
     private String name;
 
-    public ProductModel(){}
 
     public ProductModel(String name){
         this.name = name;

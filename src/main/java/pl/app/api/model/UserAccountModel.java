@@ -44,7 +44,7 @@ public class UserAccountModel {
 
     @SerializedName("userAccountTypes")
     @Expose
-    private List<UserAccountTypeModel> userAccountTypeModels = null;
+    private List<UserAccountTypeModel> userAccountTypeModels;
 
 
     public UserAccountModel(String username, String firstName, String password, String lastName,

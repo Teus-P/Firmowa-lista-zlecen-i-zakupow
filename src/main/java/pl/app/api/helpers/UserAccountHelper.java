@@ -29,9 +29,9 @@ public class UserAccountHelper {
 
 
     public void saveNewUserAccount(UserAccountModel userAccountModel, NewUserResponseListener listener) {
-        Call<ResponseModel> call = apiResourceInterface.saveNewUser(userAccountModel);
+        Call<UserAccountModel> call = apiResourceInterface.saveNewUser(userAccountModel);
 
-        Response<ResponseModel> response = null;
+        Response<UserAccountModel> response = null;
 
         try {
             response = call.execute();

@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 import lombok.Setter;
 
-//TODO change the class name to CategoryModel
+//TODO change the class productName to CategoryModel
 
 import java.util.Objects;
 

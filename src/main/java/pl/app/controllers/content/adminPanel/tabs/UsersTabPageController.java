@@ -7,10 +7,12 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TreeItem;
+import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
+import javafx.util.Callback;
 import pl.app.api.clients.ApiResourcesClient;
 import pl.app.api.helpers.UserAccountHelper;
+import pl.app.api.model.CategoriesModel;
 import pl.app.controllers.common.listItems.UserTableItem;
 import pl.app.controllers.content.adminPanel.dialog.EditUserDialogController;
 import pl.app.controllers.content.adminPanel.dialog.NewUserDialogController;
@@ -18,9 +20,11 @@ import pl.app.core.dialog.DialogStage;
 import pl.app.core.property.DialogProperty;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class UsersTabPageController implements Initializable {
+
 
     private UserAccountHelper userAccountHelper;
     private ObservableList<UserTableItem> userTableItemObservableList;
@@ -66,8 +70,42 @@ public class UsersTabPageController implements Initializable {
         JFXTreeTableColumn<UserTableItem, String> userTypeColumn = new JFXTreeTableColumn<>("Typ użytkownika");
         userTypeColumn.setCellValueFactory(param -> param.getValue().getValue().getRole());
 
+        JFXTreeTableColumn<UserTableItem, List<CategoriesModel>> implementersCategoriesColumn = new JFXTreeTableColumn<>("Kategorie relizatora");
+        implementersCategoriesColumn.setCellFactory(new Callback<>() {
+            @Override
+            public TreeTableCell<UserTableItem, List<CategoriesModel>> call(TreeTableColumn<UserTableItem, List<CategoriesModel>> param) {
+                final TreeTableCell<UserTableItem, List<CategoriesModel>> cell = new TreeTableCell<>() {
+
+                    @Override
+                    protected void updateItem(List<CategoriesModel> item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty || item == null) {
+                            setGraphic(null);
+                            setText(null);
+                        } else {
+                            VBox vBox = new VBox();
+                            item.forEach(categoriesModel -> {
+
+                                Label label = new Label(categoriesModel.getName());
+                                if (categoriesModel.isDeleted()) {
+                                    label.getStylesheets().addAll(getClass().getResource("/styles/StrikethroughLabel.css").toExternalForm());
+                                }
+                                vBox.getChildren().add(label);
+
+                            });
+                            setGraphic(vBox);
+                            setText(null);
+                        }
+                    }
+                };
+                return cell;
+            }
+        });
+        implementersCategoriesColumn.setCellValueFactory(param -> param.getValue().getValue().getImplementersCategoriesObservable());
+
+
         final TreeItem<UserTableItem> root = new RecursiveTreeItem<>(userTableItemObservableList, RecursiveTreeObject::getChildren);
-        userTable.getColumns().setAll(usernameColumn, firstNameColumn, lastNameColumn, emailColumn, phoneNumberColumn, userTypeColumn);
+        userTable.getColumns().setAll(usernameColumn, firstNameColumn, lastNameColumn, emailColumn, phoneNumberColumn, userTypeColumn, implementersCategoriesColumn);
         userTable.setRoot(root);
         userTable.setShowRoot(false);
 

@@ -17,6 +17,8 @@ import pl.app.api.responseInterfaces.NewUserResponseListener;
 import pl.app.controllers.common.FieldValidator;
 import pl.app.controllers.common.checkComboBoxItem.UserTypeCheckBoxItem;
 import pl.app.core.baseComponent.BaseDialog;
+import pl.app.core.dialog.DialogStage;
+import pl.app.core.property.DialogProperty;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -25,9 +27,13 @@ import java.util.ResourceBundle;
 
 public class NewUserDialogController extends BaseDialog implements NewUserResponseListener {
 
+    private static final String IMPLEMENTER_ROLE = "Role_IMPLEMENTERS";
+
     private UserAccountTypeHelper userAccountTypeHelper;
     private UserAccountHelper userAccountHelper;
     private ObservableList<UserTypeCheckBoxItem> userAccountTypeModelObservableList;
+    private UserAccountModel newUserAccount;
+    private List<UserAccountTypeModel> userAccountTypeModelList;
 
     @FXML
     private JFXTextField firstNameTextField;
@@ -74,13 +80,13 @@ public class NewUserDialogController extends BaseDialog implements NewUserRespon
                 && phoneNumberTextField.validate() && userNameTextField.validate() && emailTextField.validate() && passwordTextField.validate()) {
 
 
-            List<UserAccountTypeModel> userAccountTypeModelList = new ArrayList<>();
+            userAccountTypeModelList = new ArrayList<>();
 
             userTypeCheckComboBox.getCheckModel().getCheckedItems().forEach(item ->
                     userAccountTypeModelList.add(item.getUserAccountTypeModel())
             );
 
-            UserAccountModel userAccountModel = new UserAccountModel(
+            newUserAccount = new UserAccountModel(
                     userNameTextField.getText(),
                     firstNameTextField.getText(),
                     passwordTextField.getText(),
@@ -91,10 +97,27 @@ public class NewUserDialogController extends BaseDialog implements NewUserRespon
                     userAccountTypeModelList
             );
 
-            userAccountHelper.saveNewUserAccount(userAccountModel, this);
+            userAccountHelper.saveNewUserAccount(newUserAccount, this);
+
+            if (userAccountTypeModelList.stream().anyMatch(item -> item.getName().equals(IMPLEMENTER_ROLE))) {
+                showChooseImplementerCategory();
+            }
+
 
             getDialogStage().close();
         }
+
+    }
+
+
+    private void showChooseImplementerCategory() {
+        DialogStage implementerCategories = new DialogStage(DialogProperty.SET_IMPLEMENTER_CATEGORY);
+        AddImplCategoryDialogController controller = implementerCategories.getController();
+        controller.initData(this.newUserAccount);
+        controller.setOnDialogCloseListener(() -> {
+//TODO
+        });
+        implementerCategories.showAndWait();
 
     }
 
@@ -139,10 +162,8 @@ public class NewUserDialogController extends BaseDialog implements NewUserRespon
 
 
     @Override
-    public void onNewUserResponseSuccess(ResponseModel responseModel) {
-        StringBuilder builder = new StringBuilder();
-        responseModel.getDetails().forEach(message -> builder.append(message).append("\n"));
-        responseLabel.setText(builder.toString());
+    public void onNewUserResponseSuccess(UserAccountModel userAccountModel) {
+        this.newUserAccount = userAccountModel;
     }
 
     @Override

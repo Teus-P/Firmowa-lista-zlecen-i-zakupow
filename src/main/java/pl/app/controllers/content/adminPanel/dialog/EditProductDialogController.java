@@ -45,7 +45,6 @@ public class EditProductDialogController extends BaseDialog implements EditProdu
     @FXML
     private Label responseMessage;
 
-
     public void initData(ProductModel productModel) {
         this.productModel = productModel;
 
@@ -143,6 +142,7 @@ public class EditProductDialogController extends BaseDialog implements EditProdu
 
         responseMessage.setText(stringBuilder.toString());
     }
+
 
 
 }

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -29,19 +28,19 @@
          </font>
       </Label>
       <JFXTextField fx:id="userNameTextField" disable="true" editable="false" layoutX="446.0" layoutY="95.0" minWidth="300.0" promptText="Nazwa użytkownika" style="-jfx-label-float: true;" />
-      <JFXTextField fx:id="phoneNumberTextField" layoutX="51.0" layoutY="167.0" minWidth="300.0" promptText="Numer telefonu" style="-jfx-label-float: true;" />
-      <JFXTextField fx:id="emailTextField" layoutX="446.0" layoutY="167.0" minWidth="300.0" promptText="Adres email" style="-jfx-label-float: true;" AnchorPane.rightAnchor="50.0" />
-      <JFXTextField fx:id="firstNameTextField" layoutX="50.0" layoutY="225.0" minWidth="300.0" promptText="Imię" AnchorPane.leftAnchor="50.0">
+      <JFXTextField fx:id="phoneNumberTextField" layoutX="51.0" layoutY="167.0" minWidth="300.0" promptText="Numer telefonu" style="-jfx-label-float: true;" AnchorPane.topAnchor="165.0" />
+      <JFXTextField fx:id="emailTextField" layoutX="446.0" layoutY="167.0" minWidth="300.0" promptText="Adres email" style="-jfx-label-float: true;" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="165.0" />
+      <JFXTextField fx:id="firstNameTextField" layoutX="50.0" layoutY="225.0" minWidth="300.0" promptText="Imię" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="230.0">
          <padding>
             <Insets top="8.0" />
          </padding>
       </JFXTextField>
-      <JFXTextField fx:id="lastNameTextField" alignment="TOP_LEFT" layoutX="470.0" layoutY="225.0" minWidth="300.0" promptText="Nazwisko" style="-jfx-label-float: true;" AnchorPane.rightAnchor="50.0" />
-      <JFXTextField fx:id="peselTextField" layoutX="51.0" layoutY="288.0" minWidth="300.0" promptText="PESEL" style="-jfx-label-float: true;" />
-      <CheckComboBox fx:id="userTypeCheckComboBox" layoutX="446.0" layoutY="288.0" minWidth="300.0" showCheckedCount="true" stylesheets="@../../../../styles/CheckComboBoxStyle.css" title="Typ użytkownika" AnchorPane.rightAnchor="50.0" />
-      <JFXButton layoutX="150.0" layoutY="390.0" onAction="#saveButtonOnAction" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #3C58Fa;" text="Zapisz" textFill="#a0a2ab" AnchorPane.leftAnchor="150.0" />
-      <JFXButton layoutX="501.0" layoutY="390.0" onAction="#cancelButtonOnAction" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #3C58Fa;" text="Anuluj" textFill="#a0a2ab" AnchorPane.rightAnchor="150.0" />
-      <Label fx:id="responseLabel" alignment="CENTER" layoutX="60.0" layoutY="472.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
-      <JFXComboBox fx:id="categoriesComboBox" layoutX="448.0" layoutY="342.0" minWidth="300.0" promptText="Kategoria realizatora" AnchorPane.rightAnchor="50.0" />
+      <JFXTextField fx:id="lastNameTextField" alignment="TOP_LEFT" layoutX="470.0" layoutY="225.0" minWidth="300.0" promptText="Nazwisko" style="-jfx-label-float: true;" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="230.0" />
+      <JFXTextField fx:id="peselTextField" layoutX="51.0" layoutY="288.0" minWidth="300.0" promptText="PESEL" style="-jfx-label-float: true;" AnchorPane.topAnchor="295.0" />
+      <CheckComboBox fx:id="userTypeCheckComboBox" layoutX="51.0" layoutY="349.0" minWidth="300.0" showCheckedCount="true" stylesheets="@../../../../styles/CheckComboBoxStyle.css" title="Typ użytkownika" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="360.0" />
+      <JFXButton layoutX="150.0" layoutY="440.0" onAction="#saveButtonOnAction" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #3C58Fa;" text="Zapisz" textFill="#a0a2ab" AnchorPane.leftAnchor="150.0" />
+      <JFXButton layoutX="473.0" layoutY="440.0" onAction="#cancelButtonOnAction" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #3C58Fa;" text="Anuluj" textFill="#a0a2ab" AnchorPane.rightAnchor="153.0" />
+      <Label fx:id="responseLabel" alignment="CENTER" layoutX="50.0" layoutY="498.0" AnchorPane.bottomAnchor="73.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
+      <CheckComboBox fx:id="categoriesCheckComboBox" layoutX="446.0" layoutY="373.0" minWidth="300.0" showCheckedCount="true" stylesheets="@../../../../styles/CheckComboBoxStyle.css" title="Kategoria realizatora" visible="false" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="360.0" />
    </children>
 </AnchorPane>

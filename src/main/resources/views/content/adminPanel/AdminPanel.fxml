@@ -5,32 +5,25 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="container" minHeight="900.0" minWidth="800.0" stylesheets="@../../../styles/AdminPanelStyle.css"
-            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="pl.app.controllers.content.adminPanel.AdminPanelController">
+<AnchorPane fx:id="container" minHeight="900.0" minWidth="800.0" stylesheets="@../../../styles/AdminPanelStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.adminPanel.AdminPanelController">
     <children>
-        <Label alignment="CENTER" layoutX="791.0" layoutY="22.0" text="PANEL ADMINISTRATORA"
-               AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="20.0"/>
-        <TabPane layoutY="64.0" minHeight="850.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="0.0"
-                 AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+        <Label alignment="CENTER" layoutX="791.0" layoutY="22.0" text="PANEL ADMINISTRATORA" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="20.0" />
+        <TabPane layoutY="64.0" minHeight="850.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
             <tabs>
-                <Tab text="Zarządzanie użytkownikami">
+                <Tab fx:id="usersTab" text="Zarządzanie użytkownikami">
                     <content>
                         <AnchorPane>
                             <children>
-                                <TabPane tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0"
-                                         AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                                         AnchorPane.topAnchor="0.0">
+                                <TabPane tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <tabs>
                                         <Tab text="Użytkownicy">
                                             <content>
-                                                <AnchorPane fx:id="usersTabContainer" prefHeight="752.0"
-                                                            prefWidth="745.0"/>
+                                                <AnchorPane fx:id="usersTabContainer" prefHeight="752.0" prefWidth="745.0" />
                                             </content>
                                         </Tab>
                                         <Tab fx:id="implementersTab" text="Realizatorzy">
                                             <content>
-                                                <AnchorPane fx:id="implementersContainer"/>
+                                                <AnchorPane fx:id="implementersContainer" />
                                             </content>
                                         </Tab>
                                     </tabs>
@@ -39,32 +32,30 @@
                         </AnchorPane>
                     </content>
                 </Tab>
-                <Tab text="Zarządzanie zamówieniami">
+                <Tab fx:id="ordersTab" text="Zarządzanie zamówieniami">
                     <content>
-                        <AnchorPane fx:id="ordersTabContainer"/>
+                        <AnchorPane fx:id="ordersTabContainer" />
                     </content>
                 </Tab>
-                <Tab text="Zarządzanie zasobami">
+                <Tab fx:id="resourcesTab" text="Zarządzanie zasobami">
                     <content>
                         <AnchorPane>
                             <children>
-                                <TabPane tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0"
-                                         AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                                         AnchorPane.topAnchor="0.0">
+                                <TabPane tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <tabs>
                                         <Tab text="Produkty">
                                             <content>
-                                                <AnchorPane fx:id="productsTabContainer"/>
+                                                <AnchorPane fx:id="productsTabContainer" />
                                             </content>
                                         </Tab>
                                         <Tab text="Jednostki">
                                             <content>
-                                                <AnchorPane fx:id="unitsTabContainer"/>
+                                                <AnchorPane fx:id="unitsTabContainer" />
                                             </content>
                                         </Tab>
                                         <Tab text="Kategorie">
                                             <content>
-                                                <AnchorPane fx:id="categoriesTabContainer"/>
+                                                <AnchorPane fx:id="categoriesTabContainer" />
                                             </content>
                                         </Tab>
                                     </tabs>

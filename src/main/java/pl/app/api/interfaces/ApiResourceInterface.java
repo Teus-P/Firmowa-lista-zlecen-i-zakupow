@@ -12,7 +12,7 @@ import java.util.List;
 public interface ApiResourceInterface {
 
     @POST("/user")
-    Call<ResponseModel> saveNewUser(
+    Call<UserAccountModel> saveNewUser(
             @Body UserAccountModel userAccountModel
     );
 
@@ -24,9 +24,9 @@ public interface ApiResourceInterface {
             @Body CategoriesModel categoriesModel
     );
 
-    @GET("/categories/{name}")
+    @GET("/categories/{productName}")
     Call<CategoriesModel> getCategoryByName(
-            @Path("name") String categoriesName
+            @Path("productName") String categoriesName
     );
 
     @PUT("/categories/edit/{id}")
@@ -134,5 +134,22 @@ public interface ApiResourceInterface {
 
     @GET("/implementers")
     Call<List<ImplementerModel>> getAllImplementers();
+
+
+    @GET("/implementers/{id}/categories")
+    Call<List<CategoriesModel>> getImplementerCategories(
+            @Path("id") int userId
+    );
+
+    @POST("/implementers/{id}/add/many")
+    Call<ResponseModel> assignManyCategoriesToImplementer(
+            @Path("id") int userId,
+            @Body List<CategoriesModel> categoriesId
+    );
+
+    @GET("/implementers/order/{id}")
+    Call<List<ImplementerModel>> getImplementersForOrder(
+            @Path("id") int orderId
+    );
 
 }

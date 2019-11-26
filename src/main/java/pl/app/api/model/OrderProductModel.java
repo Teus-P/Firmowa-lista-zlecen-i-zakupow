@@ -10,6 +10,10 @@ import lombok.Setter;
 @Setter
 public class OrderProductModel extends RecursiveTreeObject<OrderProductModel> {
 
+    @SerializedName("userOrder")
+    @Expose
+    private Integer userOrder;
+
     @SerializedName("idOrderProduct")
     @Expose
     private Integer idOrderProduct;
@@ -18,9 +22,17 @@ public class OrderProductModel extends RecursiveTreeObject<OrderProductModel> {
     @Expose
     private ProductModel product;
 
+    @SerializedName("shoppingList")
+    @Expose
+    private Object shoppingList;
+
     @SerializedName("quantity")
     @Expose
     private Integer quantity;
+
+    @SerializedName("quantityBought")
+    @Expose
+    private Integer quantityBought;
 
 
 }

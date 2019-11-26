@@ -106,7 +106,7 @@ public class CreateOrderController implements Initializable {
                     Integer newQuantityValue = product.getOrderProductModel().getQuantity() + Integer.valueOf(quantity);
 
                     product.getOrderProductModel().setQuantity(newQuantityValue);
-                    product.setQuantity(new SimpleStringProperty(newQuantityValue.toString()));
+                    product.setProductQuantity(new SimpleStringProperty(newQuantityValue.toString()));
                     isProductOnTheList = true;
                 }
             });
@@ -163,14 +163,14 @@ public class CreateOrderController implements Initializable {
 
     private void initProductTreeTableView() {
         JFXTreeTableColumn<OrderProductTableItem, String> productColumn = new JFXTreeTableColumn<>("Nazwa produktu");
-        productColumn.setCellValueFactory(param -> param.getValue().getValue().getName());
+        productColumn.setCellValueFactory(param -> param.getValue().getValue().getProductName());
 
 
         JFXTreeTableColumn<OrderProductTableItem, String> categoryColumn = new JFXTreeTableColumn<>("Kategoria");
-        categoryColumn.setCellValueFactory(param -> param.getValue().getValue().getCategory());
+        categoryColumn.setCellValueFactory(param -> param.getValue().getValue().getCategoryName());
 
         JFXTreeTableColumn<OrderProductTableItem, String> quantityColumn = new JFXTreeTableColumn<>("Liczba sztuk");
-        quantityColumn.setCellValueFactory(param -> param.getValue().getValue().getQuantity());
+        quantityColumn.setCellValueFactory(param -> param.getValue().getValue().getProductQuantity());
         quantityColumn.setEditable(true);
 
         quantityColumn.setCellFactory(TextFieldTreeTableCell.forTreeTableColumn());
@@ -180,9 +180,9 @@ public class CreateOrderController implements Initializable {
                 TreeItem<OrderProductTableItem> item = productTable.getTreeItem(event.getTreeTablePosition().getRow());
 
                 if (!event.getNewValue().matches("\\d{0,7}([\\.]\\d{0,4})?")) {
-                    item.getValue().setQuantity(new SimpleStringProperty(event.getOldValue()));
+                    item.getValue().setProductQuantity(new SimpleStringProperty(event.getOldValue()));
                 } else {
-                    item.getValue().setQuantity(new SimpleStringProperty(event.getNewValue()));
+                    item.getValue().setProductQuantity(new SimpleStringProperty(event.getNewValue()));
                     item.getValue().getOrderProductModel().setQuantity(Integer.valueOf(event.getNewValue()));
                 }
 
@@ -202,7 +202,7 @@ public class CreateOrderController implements Initializable {
         TreeItem<OrderProductTableItem> selectedItem = productTable.getSelectionModel().getSelectedItem();
 
         for (OrderProductTableItem product : productTableItemObservableList) {
-            if (product.getName() == selectedItem.getValue().getName()) {
+            if (product.getProductName() == selectedItem.getValue().getProductName()) {
                 productTableItemObservableList.remove(product);
                 break;
             }

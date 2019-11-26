@@ -34,7 +34,4 @@ public class ResponseModel {
     @Expose
     private List<String> details;
 
-
-
-
 }

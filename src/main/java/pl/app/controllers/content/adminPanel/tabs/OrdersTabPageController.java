@@ -13,6 +13,9 @@ import javafx.scene.control.TreeItem;
 import pl.app.api.clients.ApiResourcesClient;
 import pl.app.api.helpers.OrderHelper;
 import pl.app.controllers.common.listItems.OrderTableItem;
+import pl.app.controllers.content.adminPanel.dialog.WaitingOrderDialogDetails;
+import pl.app.core.dialog.DialogStage;
+import pl.app.core.property.DialogProperty;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -56,6 +59,24 @@ public class OrdersTabPageController implements Initializable {
         orderTable.getColumns().setAll(orderNumberColumn, userNameColumn, orderAcceptStatusColumn);
         orderTable.setRoot(root);
         orderTable.setShowRoot(false);
+
+        orderTable.setOnMouseClicked(click -> {
+            if (click.getClickCount() == 2) {
+                showOrderDetails();
+            }
+        });
+
     }
+
+    private void showOrderDetails() {
+        DialogStage waitingOrderDetails = new DialogStage(DialogProperty.WAITING_ORDER_DETAILS);
+        WaitingOrderDialogDetails controller = waitingOrderDetails.getController();
+        controller.initData(orderTable.getSelectionModel().getSelectedItem().getValue().getOrderModel());
+        controller.setOnDialogCloseListener(() -> {
+
+        });
+        waitingOrderDetails.showAndWait();
+    }
+
 
 }

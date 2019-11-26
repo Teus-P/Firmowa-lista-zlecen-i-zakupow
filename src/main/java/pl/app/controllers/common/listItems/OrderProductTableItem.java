@@ -12,26 +12,29 @@ import pl.app.api.model.ProductModel;
 @Setter
 public class OrderProductTableItem extends RecursiveTreeObject<OrderProductTableItem> {
 
-    OrderProductModel orderProductModel;
-    StringProperty name;
-    StringProperty category;
-    StringProperty quantity;
+    private OrderProductModel orderProductModel;
+
+    private StringProperty productName;
+    private StringProperty categoryName;
+    private StringProperty productQuantity;
+    private StringProperty unitName;
 
     public OrderProductTableItem(OrderProductModel orderProductModel) {
         this.orderProductModel = orderProductModel;
 
-        this.name = new SimpleStringProperty(orderProductModel.getProduct().getName());
-        this.category = new SimpleStringProperty(orderProductModel.getProduct().getCategories().getName());
-        this.quantity = new SimpleStringProperty(orderProductModel.getQuantity().toString());
+        this.productName = new SimpleStringProperty(orderProductModel.getProduct().getName());
+        this.categoryName = new SimpleStringProperty(orderProductModel.getProduct().getCategories().getName());
+        this.productQuantity = new SimpleStringProperty(orderProductModel.getQuantity().toString());
+        this.unitName = new SimpleStringProperty(orderProductModel.getProduct().getUnit().getUnit());
     }
 
-    public OrderProductTableItem(ProductModel productModel, Integer quantity) {
+    public OrderProductTableItem(ProductModel productModel, Integer productQuantity) {
         this.orderProductModel = new OrderProductModel();
         this.orderProductModel.setProduct(productModel);
-        this.orderProductModel.setQuantity(quantity);
+        this.orderProductModel.setQuantity(productQuantity);
 
-        this.name = new SimpleStringProperty(orderProductModel.getProduct().getName());
-        this.category = new SimpleStringProperty(orderProductModel.getProduct().getCategories().getName());
-        this.quantity = new SimpleStringProperty(orderProductModel.getQuantity().toString());
+        this.productName = new SimpleStringProperty(orderProductModel.getProduct().getName());
+        this.categoryName = new SimpleStringProperty(orderProductModel.getProduct().getCategories().getName());
+        this.productQuantity = new SimpleStringProperty(orderProductModel.getQuantity().toString());
     }
 }

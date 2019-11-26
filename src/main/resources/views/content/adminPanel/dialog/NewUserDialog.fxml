@@ -5,25 +5,31 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.CheckComboBox?>
 
 <AnchorPane minWidth="800.0" stylesheets="@../../../../styles/DialogStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.adminPanel.dialog.NewUserDialogController">
     <children>
-        <JFXTextField fx:id="firstNameTextField" layoutX="201.0" layoutY="62.0" minWidth="300.0" promptText="Imię" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="50.0">
+        <JFXTextField fx:id="firstNameTextField" layoutX="50.0" layoutY="75.0" minWidth="300.0" promptText="Imię" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="75.0">
             <padding>
                 <Insets top="8.0" />
             </padding>
         </JFXTextField>
-        <JFXTextField fx:id="emailTextField" layoutX="50.0" layoutY="201.0" minWidth="300.0" promptText="Adres email" style="-jfx-label-float: true;" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="200.0" />
-        <JFXTextField fx:id="peselTextField" layoutX="233.0" layoutY="213.0" minWidth="300.0" promptText="PESEL" style="-jfx-label-float: true;" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="125.0" />
-        <JFXTextField fx:id="userNameTextField" layoutX="358.0" layoutY="321.0" minWidth="300.0" promptText="Nazwa użytkownika" style="-jfx-label-float: true;" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="275.0" />
-        <CheckComboBox fx:id="userTypeCheckComboBox" layoutX="100.0" layoutY="385.0" minWidth="200.0" showCheckedCount="true" stylesheets="@../../../../styles/CheckComboBoxStyle.css" title="Typ użytkownika" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="350.0">
+        <JFXTextField fx:id="emailTextField" layoutX="50.0" layoutY="225.0" minWidth="300.0" promptText="Adres email" style="-jfx-label-float: true;" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="225.0" />
+        <JFXTextField fx:id="peselTextField" layoutX="50.0" layoutY="150.0" minWidth="300.0" promptText="PESEL" style="-jfx-label-float: true;" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="150.0" />
+        <JFXTextField fx:id="userNameTextField" layoutX="50.0" layoutY="300.0" minWidth="300.0" promptText="Nazwa użytkownika" style="-jfx-label-float: true;" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="300.0" />
+        <CheckComboBox fx:id="userTypeCheckComboBox" layoutX="200.0" layoutY="375.0" minWidth="200.0" showCheckedCount="true" stylesheets="@../../../../styles/CheckComboBoxStyle.css" title="Typ użytkownika" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="375.0">
         </CheckComboBox>
-        <JFXTextField fx:id="lastNameTextField" alignment="TOP_LEFT" layoutX="233.0" layoutY="125.0" minWidth="300.0" promptText="Nazwisko" style="-jfx-label-float: true;" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0" />
-        <JFXTextField fx:id="phoneNumberTextField" layoutX="350.0" layoutY="201.0" minWidth="300.0" promptText="Numer telefonu" style="-jfx-label-float: true;" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="200.0" />
-        <JFXButton id="enterButton" layoutX="97.0" layoutY="437.0" onAction="#addButtonOnAction" prefWidth="150.0" styleClass="enterButton" text="Dodaj" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="425.0" />
-        <JFXButton layoutX="377.0" layoutY="363.0" onAction="#cancelButtonOnAction" prefWidth="150.0" styleClass="enterButton" text="Anuluj" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="425.0" />
-        <Label fx:id="responseLabel" alignment="CENTER" layoutX="50.0" layoutY="462.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="475.0" />
-      <JFXTextField fx:id="passwordTextField" layoutX="372.0" layoutY="275.0" minWidth="300.0" promptText="Hasło" AnchorPane.rightAnchor="50.0" />
+        <JFXTextField fx:id="lastNameTextField" alignment="TOP_LEFT" layoutX="450.0" layoutY="75.0" minWidth="300.0" promptText="Nazwisko" style="-jfx-label-float: true;" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="75.0" />
+        <JFXTextField fx:id="phoneNumberTextField" layoutX="450.0" layoutY="225.0" minWidth="300.0" promptText="Numer telefonu" style="-jfx-label-float: true;" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="225.0" />
+        <JFXButton id="enterButton" layoutX="100.0" layoutY="450.0" onAction="#addButtonOnAction" prefWidth="150.0" styleClass="enterButton" text="Dodaj" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="450.0" />
+        <JFXButton layoutX="550.0" layoutY="450.0" onAction="#cancelButtonOnAction" prefWidth="150.0" styleClass="enterButton" text="Anuluj" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="450.0" />
+        <Label fx:id="responseLabel" alignment="CENTER" layoutX="50.0" layoutY="500.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="500.0" />
+        <JFXTextField fx:id="passwordTextField" layoutX="450.0" layoutY="300.0" minWidth="300.0" promptText="Hasło" AnchorPane.rightAnchor="50.0" />
+      <Label layoutX="50.0" layoutY="14.0" text="Nowy użytkownik" AnchorPane.topAnchor="10.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

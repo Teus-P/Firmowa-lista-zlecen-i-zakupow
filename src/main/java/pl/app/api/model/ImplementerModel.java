@@ -11,7 +11,7 @@ public class ImplementerModel {
 
     @SerializedName("idImplementers")
     @Expose
-    private Integer idImplementers;
+    private int idImplementers;
 
     @SerializedName("categories")
     @Expose

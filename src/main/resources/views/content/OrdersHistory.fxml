@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="pl.app.controllers.content.OrdersHistory">
+    <children>
+        <Label alignment="CENTER" layoutX="232.0" layoutY="27.0" text="HISTORIA ZAMÓWIEŃ" AnchorPane.leftAnchor="190.0"
+               AnchorPane.rightAnchor="190.0"/>
+        <JFXListView layoutX="70.0" layoutY="106.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0"/>
+    </children>
+</AnchorPane>
