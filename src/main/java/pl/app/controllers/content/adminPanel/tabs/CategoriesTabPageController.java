@@ -18,8 +18,8 @@ import pl.app.api.helpers.CategoriesHelper;
 import pl.app.api.model.CategoriesModel;
 import pl.app.api.model.ResponseModel;
 import pl.app.api.responseInterfaces.NewCategoryResponseListener;
-import pl.app.controllers.common.informationDialog.DeleteDialogInformation;
-import pl.app.controllers.common.informationDialog.WarningDialog;
+import pl.app.controllers.common.popupDialogs.DeleteDialogInformation;
+import pl.app.controllers.common.popupDialogs.WarningDialog;
 import pl.app.controllers.common.listItems.CategoryTableItem;
 
 import java.net.URL;

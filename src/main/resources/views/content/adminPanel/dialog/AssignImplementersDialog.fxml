@@ -7,32 +7,32 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="650.0" prefWidth="1000.0" stylesheets="@../../../../styles/DialogStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.adminPanel.dialog.AssignImplementersResponseListenerDialog">
+<AnchorPane prefHeight="650.0" prefWidth="1200.0" stylesheets="@../../../../styles/DialogStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.adminPanel.dialog.AssignImplementersDialog">
    <children>
       <Label layoutX="14.0" layoutY="14.0" text="Przypisz realizatorów do zamówienia">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <JFXTreeTableView fx:id="availableImplTable" layoutX="160.0" layoutY="106.0" prefHeight="362.0" prefWidth="248.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="100.0">
+      <JFXTreeTableView fx:id="availableImplTable" layoutX="160.0" layoutY="106.0" prefHeight="362.0" prefWidth="248.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="100.0">
          <columnResizePolicy>
             <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy></JFXTreeTableView>
-      <JFXTreeTableView fx:id="choosenImplTable" layoutX="448.0" layoutY="106.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="550.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
+      <JFXTreeTableView fx:id="chosenImplTable" layoutX="448.0" layoutY="106.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="700.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
          <columnResizePolicy>
             <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy></JFXTreeTableView>
-      <JFXTreeTableView fx:id="categoryInfoTable" layoutX="20.0" layoutY="105.0" prefWidth="100.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="100.0">
+      <JFXTreeTableView fx:id="categoryInfoTable" layoutX="20.0" layoutY="105.0" prefWidth="150.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="950.0" AnchorPane.topAnchor="100.0">
          <columnResizePolicy>
             <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </JFXTreeTableView>
-      <JFXButton layoutX="431.0" layoutY="244.0" onAction="#choseImplementer" prefWidth="100.0" text="+ Dodaj" />
-      <JFXButton layoutX="431.0" layoutY="302.0" onAction="#deleteImplementer" prefWidth="100.0" text="Usuń" />
-      <JFXButton layoutX="323.0" layoutY="584.0" onAction="#acceptButtonOnAction" prefWidth="100.0" text="Zatwierdź" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="250.0" />
-      <JFXButton layoutX="593.0" layoutY="584.0" onAction="#cancelButtonOnAction" prefWidth="100.0" text="Anuluj" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="250.0" />
-      <Label layoutX="204.0" layoutY="73.0" text="Dostępni realizatorzy dla zamówienia" />
-      <Label layoutX="882.0" layoutY="72.0" text="Wybrani realizatorzy" />
-      <Label layoutX="10.0" layoutY="72.0" text="Kategorie w zamówieniu" />
+      <JFXButton layoutX="557.0" layoutY="245.0" onAction="#choseImplementer" prefWidth="100.0" text="Dodaj &gt;&gt;" />
+      <JFXButton layoutX="558.0" layoutY="296.0" onAction="#removeChosenImplementer" prefWidth="100.0" text="&lt;&lt; Usuń" />
+      <JFXButton layoutX="323.0" layoutY="584.0" onAction="#acceptButtonOnAction" prefWidth="100.0" text="Zatwierdź" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="400.0" />
+      <JFXButton layoutX="593.0" layoutY="584.0" onAction="#cancelButtonOnAction" prefWidth="100.0" text="Anuluj" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="400.0" />
+      <Label layoutX="286.0" layoutY="72.0" text="Dostępni realizatorzy dla zamówienia" />
+      <Label layoutX="904.0" layoutY="71.0" text="Wybrani realizatorzy" />
+      <Label layoutX="56.0" layoutY="71.0" text="Kategorie w zamówieniu" />
    </children>
 </AnchorPane>

@@ -6,6 +6,7 @@ import pl.app.api.interfaces.ApiResourceInterface;
 import pl.app.api.model.OrderModel;
 import pl.app.api.model.OrderProductModel;
 import pl.app.api.model.ResponseModel;
+import pl.app.api.responseInterfaces.AcceptOrderResponseListener;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -56,4 +57,25 @@ public class OrderHelper {
             return null;
         }
     }
+
+
+    public void acceptOrderById(int orderId, List<Integer> implementersId, AcceptOrderResponseListener listener) {
+        Call<ResponseModel> call = apiResourceInterface.acceptOrderById(orderId, implementersId);
+
+        Response<ResponseModel> response = null;
+
+        try {
+            response = call.execute();
+            if (response.isSuccessful() && response.code() == 200) {
+                listener.onAcceptOrderSuccessResponse(response.body());
+            } else {
+                Gson gson = new Gson();
+                listener.onAcceptOrderFailedResponse(gson.fromJson(response.errorBody() != null ? response.errorBody().string() : null, ResponseModel.class));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }

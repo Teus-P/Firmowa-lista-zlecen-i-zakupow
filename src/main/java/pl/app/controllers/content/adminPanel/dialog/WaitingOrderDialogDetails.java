@@ -1,5 +1,6 @@
 package pl.app.controllers.content.adminPanel.dialog;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
@@ -46,6 +47,12 @@ public class WaitingOrderDialogDetails extends BaseDialog {
     @FXML
     private Label productCountLabel;
 
+    @FXML
+    private JFXButton acceptButton;
+
+    @FXML
+    private JFXButton rejectButton;
+
     public void initData(OrderModel orderModel) {
 
         this.orderModel = orderModel;
@@ -59,8 +66,13 @@ public class WaitingOrderDialogDetails extends BaseDialog {
         orderNumberLabel.setText(orderModel.getIdOrder().toString());
         orderStatus.setText(orderModel.getOrderStatus().getName());
         orderUserNameLabel.setText(orderModel.getUserAccount().getUsername());
-        orderDateLabel.setText(orderModel.getDate());
+        orderDateLabel.setText(orderModel.getAcceptedDate());
         productCountLabel.setText(Integer.toString(orderModel.getOrderProductModels().size()));
+
+        if (orderModel.isAccepted()) {
+            acceptButton.setVisible(false);
+            rejectButton.setVisible(false);
+        }
     }
 
     private void initObjects() {
@@ -96,7 +108,7 @@ public class WaitingOrderDialogDetails extends BaseDialog {
     @FXML
     void acceptOrderButtonOnAction(ActionEvent event) {
         DialogStage assignImplementersDialog = new DialogStage(DialogProperty.ASSIGN_IMPLEMENTERS);
-        AssignImplementersResponseListenerDialog controller = assignImplementersDialog.getController();
+        AssignImplementersDialog controller = assignImplementersDialog.getController();
         controller.initData(orderModel);
         controller.setOnDialogCloseListener(() -> {
 
@@ -108,7 +120,6 @@ public class WaitingOrderDialogDetails extends BaseDialog {
     void rejectOrderButtonOnAction(ActionEvent event) {
 
     }
-
 
 
 }

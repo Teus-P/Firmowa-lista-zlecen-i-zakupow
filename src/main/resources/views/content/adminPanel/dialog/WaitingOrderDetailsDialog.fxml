@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="621.0" prefWidth="695.0" stylesheets="@../../../../styles/DialogStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.adminPanel.dialog.WaitingOrderDialogDetails">
    <children>
-      <JFXTreeTableView fx:id="ordersProductTable" layoutX="112.0" layoutY="138.0" minHeight="600.0" minWidth="1000.0" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="150.0">
+      <JFXTreeTableView fx:id="ordersProductTable" layoutX="112.0" layoutY="138.0" minHeight="600.0" minWidth="1000.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="150.0">
          <columnResizePolicy>
             <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy></JFXTreeTableView>
@@ -17,13 +17,13 @@
       <Label fx:id="orderNumberLabel" layoutX="251.0" layoutY="23.0" prefHeight="17.0" prefWidth="77.0" AnchorPane.topAnchor="20.0" />
       <Label layoutX="31.0" layoutY="55.0" text="Liczba produktów" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="50.0" />
       <Label fx:id="orderStatus" layoutX="782.0" layoutY="50.0" prefHeight="17.0" prefWidth="223.0" AnchorPane.leftAnchor="780.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0" />
-      <JFXButton layoutX="328.0" layoutY="799.0" onAction="#acceptOrderButtonOnAction" text="Akceptuj" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="300.0" />
-      <JFXButton layoutX="498.0" layoutY="560.0" onAction="#rejectOrderButtonOnAction" text="Odrzuć" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="300.0" />
+      <JFXButton fx:id="acceptButton" layoutX="295.0" layoutY="810.0" onAction="#acceptOrderButtonOnAction" prefWidth="150.0" text="Akceptuj" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="300.0" />
+      <JFXButton fx:id="rejectButton" layoutX="571.0" layoutY="809.0" onAction="#rejectOrderButtonOnAction" prefWidth="150.0" text="Odrzuć" AnchorPane.bottomAnchor="65.0" AnchorPane.rightAnchor="300.0" />
       <Label layoutX="31.0" layoutY="85.0" text="Liczba nowych propozycji produktu" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="80.0" />
       <Label fx:id="productCountLabel" layoutX="251.0" layoutY="55.0" prefHeight="17.0" prefWidth="85.0" AnchorPane.topAnchor="50.0" />
       <Label fx:id="productSuggestionCountLabel" layoutX="251.0" layoutY="85.0" prefHeight="17.0" prefWidth="77.0" AnchorPane.topAnchor="80.0" />
-      <Label fx:id="responseLabel" alignment="CENTER" layoutX="496.0" layoutY="774.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-      <Label layoutX="363.0" layoutY="20.0" text="Data złożenia zamówienia" />
+      <Label fx:id="responseLabel" alignment="CENTER" layoutX="9.0" layoutY="852.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+      <Label layoutX="363.0" layoutY="20.0" text="Data akceptacji zamówienia" />
       <Label layoutX="363.0" layoutY="50.0" text="Zleceniodawca" />
       <Label fx:id="orderUserNameLabel" layoutX="565.0" layoutY="50.0" prefHeight="17.0" prefWidth="104.0" />
       <Label fx:id="orderDateLabel" layoutX="565.0" layoutY="20.0" prefHeight="17.0" prefWidth="104.0" />

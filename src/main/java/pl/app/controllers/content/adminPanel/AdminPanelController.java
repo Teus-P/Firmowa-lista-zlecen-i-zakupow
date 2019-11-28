@@ -12,7 +12,7 @@ import pl.app.core.property.ContentProperty;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AdminPanelController extends BaseScreen implements Initializable {
+public class AdminPanelController extends BaseScreen {
 
     private ResourceBundle stringResources;
 

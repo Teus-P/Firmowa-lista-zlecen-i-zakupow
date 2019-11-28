@@ -47,13 +47,13 @@ public class OrdersTabPageController implements Initializable {
         orderHelper.getAllOrders().forEach(orderModel -> orderTableItemObservableList.add(new OrderTableItem(orderModel)));
 
         JFXTreeTableColumn<OrderTableItem, String> orderNumberColumn = new JFXTreeTableColumn<>("Numer zamówienia");
-        orderNumberColumn.setCellValueFactory(param -> param.getValue().getValue().getOrderNumber());
+        orderNumberColumn.setCellValueFactory(param -> param.getValue().getValue().getOrderNumberDisplayValue());
 
         JFXTreeTableColumn<OrderTableItem, String> userNameColumn = new JFXTreeTableColumn<>("Użytkownik");
-        userNameColumn.setCellValueFactory(param -> param.getValue().getValue().getUserName());
+        userNameColumn.setCellValueFactory(param -> param.getValue().getValue().getUserNameDisplayValue());
 
         JFXTreeTableColumn<OrderTableItem, String> orderAcceptStatusColumn = new JFXTreeTableColumn<>("Status akceptacji");
-        orderAcceptStatusColumn.setCellValueFactory(param -> param.getValue().getValue().getAcceptedStatus());
+        orderAcceptStatusColumn.setCellValueFactory(param -> param.getValue().getValue().getAcceptedStatusDisplayValue());
 
         final TreeItem<OrderTableItem> root = new RecursiveTreeItem<>(orderTableItemObservableList, RecursiveTreeObject::getChildren);
         orderTable.getColumns().setAll(orderNumberColumn, userNameColumn, orderAcceptStatusColumn);

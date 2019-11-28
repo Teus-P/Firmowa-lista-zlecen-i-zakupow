@@ -3,16 +3,21 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1720.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.UserPanelController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.UserPanelController">
    <children>
-      <Label alignment="CENTER" layoutX="253.0" layoutY="25.0" text="DANE OSOBOWE" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="190.0" />
-      <Label alignment="CENTER" layoutX="190.0" layoutY="51.0" prefHeight="17.0" prefWidth="220.0" text="Podstawowe informacje Twojego konta" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="190.0" />
-      <HBox alignment="CENTER" layoutX="190.0" layoutY="119.0" prefHeight="190.0" prefWidth="427.0" styleClass="TableHolder" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="190.0">
+      <Label alignment="CENTER" layoutX="48.0" layoutY="123.0" text="Dane osobowe" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font></Label>
+      <Label alignment="CENTER" layoutX="48.0" layoutY="149.0" text="Podstawowe informacje Twojego konta" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="60.0" />
+      <HBox alignment="CENTER" layoutX="198.0" layoutY="118.0" prefHeight="190.0" prefWidth="427.0" styleClass="TableHolder" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="120.0">
          <children>
-            <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="193.0" prefWidth="384.0" styleClass="Table">
+            <AnchorPane styleClass="Table">
                <children>
                   <Label layoutX="173.0" layoutY="14.0" text="PROFIL" />
                   <Label layoutX="14.0" layoutY="43.0" text="Nazwa uzytkownika:" />
@@ -25,7 +30,7 @@
             </AnchorPane>
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutX="190.0" layoutY="328.0" prefHeight="160.0" prefWidth="427.0" styleClass="TableHolder" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="190.0">
+      <HBox alignment="CENTER" layoutX="48.0" layoutY="426.0" prefHeight="160.0" prefWidth="427.0" styleClass="TableHolder" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="320.0">
          <children>
             <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="147.0" prefWidth="384.0" styleClass="Table">
                <children>
@@ -38,7 +43,7 @@
             </AnchorPane>
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutX="190.0" layoutY="515.0" prefHeight="230.0" prefWidth="427.0" styleClass="TableHolder" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="190.0">
+      <HBox alignment="CENTER" layoutX="48.0" layoutY="613.0" prefHeight="230.0" prefWidth="427.0" styleClass="TableHolder" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="500.0">
          <children>
             <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="384.0" styleClass="Table">
                <children>
@@ -51,5 +56,6 @@
             </AnchorPane>
          </children>
       </HBox>
+      <ImageView fx:id="qrImageView" fitHeight="300.0" fitWidth="300.0" layoutX="642.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
    </children>
 </AnchorPane>

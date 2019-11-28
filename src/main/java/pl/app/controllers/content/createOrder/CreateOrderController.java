@@ -174,20 +174,17 @@ public class CreateOrderController implements Initializable {
         quantityColumn.setEditable(true);
 
         quantityColumn.setCellFactory(TextFieldTreeTableCell.forTreeTableColumn());
-        quantityColumn.setOnEditCommit(new EventHandler<TreeTableColumn.CellEditEvent<OrderProductTableItem, String>>() {
-            @Override
-            public void handle(TreeTableColumn.CellEditEvent<OrderProductTableItem, String> event) {
-                TreeItem<OrderProductTableItem> item = productTable.getTreeItem(event.getTreeTablePosition().getRow());
+        quantityColumn.setOnEditCommit(event -> {
+            TreeItem<OrderProductTableItem> item = productTable.getTreeItem(event.getTreeTablePosition().getRow());
 
-                if (!event.getNewValue().matches("\\d{0,7}([\\.]\\d{0,4})?")) {
-                    item.getValue().setProductQuantity(new SimpleStringProperty(event.getOldValue()));
-                } else {
-                    item.getValue().setProductQuantity(new SimpleStringProperty(event.getNewValue()));
-                    item.getValue().getOrderProductModel().setQuantity(Integer.valueOf(event.getNewValue()));
-                }
-
-                productTable.refresh();
+            if (!event.getNewValue().matches("\\d{0,7}([\\.]\\d{0,4})?")) {
+                item.getValue().setProductQuantity(new SimpleStringProperty(event.getOldValue()));
+            } else {
+                item.getValue().setProductQuantity(new SimpleStringProperty(event.getNewValue()));
+                item.getValue().getOrderProductModel().setQuantity(Integer.valueOf(event.getNewValue()));
             }
+
+            productTable.refresh();
         });
 
 

@@ -18,8 +18,8 @@ import pl.app.api.helpers.UnitHelper;
 import pl.app.api.model.ResponseModel;
 import pl.app.api.model.UnitModel;
 import pl.app.api.responseInterfaces.NewUnitResponseListener;
-import pl.app.controllers.common.informationDialog.DeleteDialogInformation;
-import pl.app.controllers.common.informationDialog.WarningDialog;
+import pl.app.controllers.common.popupDialogs.DeleteDialogInformation;
+import pl.app.controllers.common.popupDialogs.WarningDialog;
 import pl.app.controllers.common.listItems.UnitTableItem;
 
 import java.net.URL;

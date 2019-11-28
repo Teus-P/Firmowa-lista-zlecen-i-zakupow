@@ -1,11 +1,11 @@
-package pl.app.controllers.common.informationDialog;
+package pl.app.controllers.common.popupDialogs;
 
 import javafx.scene.control.Alert;
 
 public class WarningDialog {
 
     /**
-     * simple popup information dialog
+     * simple popup warning dialog
      *
      * @param headerText  window header text
      * @param contentText window content text

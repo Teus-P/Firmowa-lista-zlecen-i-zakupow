@@ -13,7 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TreeItem;
 import pl.app.api.clients.ApiResourcesClient;
 import pl.app.api.helpers.ProductHelper;
-import pl.app.controllers.common.informationDialog.DeleteDialogInformation;
+import pl.app.controllers.common.popupDialogs.DeleteDialogInformation;
 import pl.app.controllers.common.listItems.ProductTableItem;
 import pl.app.controllers.content.adminPanel.dialog.EditProductDialogController;
 import pl.app.controllers.content.adminPanel.dialog.NewProductDialogController;
@@ -23,7 +23,7 @@ import pl.app.core.property.DialogProperty;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static pl.app.controllers.common.informationDialog.WarningDialog.showWarningDialog;
+import static pl.app.controllers.common.popupDialogs.WarningDialog.showWarningDialog;
 
 public class ProductsTabPageController implements Initializable {
 

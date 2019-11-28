@@ -11,18 +11,23 @@ public class OrderTableItem extends RecursiveTreeObject<OrderTableItem> {
 
     private OrderModel orderModel;
 
-    private StringProperty orderNumber;
-    private StringProperty acceptedStatus;
-    private StringProperty userName;
+    private StringProperty orderNumberDisplayValue;
+    private StringProperty acceptedStatusDisplayValue;
+    private StringProperty userNameDisplayValue;
+    private StringProperty acceptOrderDateDisplayValue;
 
     public OrderTableItem(OrderModel orderModel) {
         this.orderModel = orderModel;
-        this.orderNumber = new SimpleStringProperty(orderModel.getIdOrder().toString());
-        if (orderModel.isAccepted()) {
-            this.acceptedStatus = new SimpleStringProperty("Zaakceptowany");
-        } else {
-            this.acceptedStatus = new SimpleStringProperty("Niezaakceptowany");
+        this.orderNumberDisplayValue = new SimpleStringProperty(orderModel.getIdOrder().toString());
+        this.acceptedStatusDisplayValue = new SimpleStringProperty(orderModel.getOrderStatus().getName());
+        if (orderModel.getUserAccount() != null) {
+            this.userNameDisplayValue = new SimpleStringProperty(orderModel.getUserAccount().getUsername());
         }
-        this.userName = new SimpleStringProperty(orderModel.getUserAccount().getUsername());
+        if (orderModel.getAcceptedDate() != null) {
+            this.acceptOrderDateDisplayValue = new SimpleStringProperty(orderModel.getAcceptedDate());
+        } else {
+            this.acceptOrderDateDisplayValue = new SimpleStringProperty("Brak daty akceptacji");
+        }
+
     }
 }

@@ -152,4 +152,16 @@ public interface ApiResourceInterface {
             @Path("id") int orderId
     );
 
+    @GET("/categories/order/{id}/all")
+    Call<List<CategoriesModel>> getOrderCategories(
+            @Path("id") int orderId
+    );
+
+    @POST("/order/accept/{id}")
+    Call<ResponseModel> acceptOrderById(
+            @Path("id") int orderId,
+            @Body List<Integer> implementersId
+    );
+
+
 }

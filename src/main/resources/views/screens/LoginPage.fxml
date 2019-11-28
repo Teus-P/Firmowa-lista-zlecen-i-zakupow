@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
@@ -23,11 +22,9 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <JFXButton id="remindPasswordButton" layoutX="249.0" layoutY="320.0" text="Przypomnij hasło" textFill="#a0a2ab" />
             <JFXTextField fx:id="loginTextField" focusColor="#a0a2ab" layoutX="200.0" layoutY="180.0" prefHeight="25.0" prefWidth="200.0" promptText="Login" styleClass="LoginPageTextField" unFocusColor="#a0a2ab" />
             <JFXPasswordField fx:id="passwordPasswordField" focusColor="#a0a2ab" layoutX="200.0" layoutY="232.0" prefHeight="25.0" prefWidth="200.0" promptText="Hasło" styleClass="LoginPagePasswordField" unFocusColor="#a0a2ab" />
-            <JFXCheckBox layoutX="200.0" layoutY="290.0" style="-fx-text-fill: #a0a2ab;" text="Zapamiętaj mnie" />
-            <JFXButton fx:id="onClickLoginButton" buttonType="RAISED" layoutX="342.0" layoutY="285.0" onAction="#onClickLoginButton" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #3C58Fa;" text="Zaloguj" textFill="WHITE" />
+            <JFXButton fx:id="onClickLoginButton" buttonType="RAISED" layoutX="342.0" layoutY="285.0" onAction="#onClickLoginButton" style="-fx-background-color: #3C58Fa;" text="Zaloguj" textFill="WHITE" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" />
          </children>
       </AnchorPane>
    </children>

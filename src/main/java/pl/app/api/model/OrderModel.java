@@ -32,9 +32,9 @@ public class OrderModel {
     @Expose
     private UserAccountModel recipient;
 
-    @SerializedName("date")
+    @SerializedName("acceptedDate")
     @Expose
-    private String date;
+    private String acceptedDate;
 
     @SerializedName("userInfo")
     @Expose
