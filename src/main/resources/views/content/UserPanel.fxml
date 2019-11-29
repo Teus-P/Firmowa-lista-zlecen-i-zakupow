@@ -1,61 +1,142 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.UserPanelController">
-   <children>
-      <Label alignment="CENTER" layoutX="48.0" layoutY="123.0" text="Dane osobowe" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font></Label>
-      <Label alignment="CENTER" layoutX="48.0" layoutY="149.0" text="Podstawowe informacje Twojego konta" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="60.0" />
-      <HBox alignment="CENTER" layoutX="198.0" layoutY="118.0" prefHeight="190.0" prefWidth="427.0" styleClass="TableHolder" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="120.0">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1000.0" stylesheets="@../../styles/MainStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.UserPanelController">
+    <children>
+        <AnchorPane layoutX="20.0" layoutY="139.0">
+            <children>
+                <Label text="Dane personalne">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <VBox AnchorPane.topAnchor="50.0">
+                    <children>
+                        <Label text="Nazwa użytkownika" />
+                        <Label text="janNowak">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </VBox>
+                <VBox AnchorPane.topAnchor="100.0">
+                    <children>
+                        <Label text="Imię i nazwisko" />
+                        <Label text="Jan Nowak">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </VBox>
+                <VBox AnchorPane.topAnchor="150.0">
+                    <children>
+                        <Label text="PESEL" />
+                        <Label text="93030321321">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </VBox>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="329.0" layoutY="139.0">
+            <children>
+                <Label layoutX="36.0" layoutY="24.0" text="Dane kontaktowe" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <VBox AnchorPane.topAnchor="50.0">
+                    <children>
+                        <Label text="Akres email" />
+                        <Label text="email@example.com">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </VBox>
+                <VBox AnchorPane.topAnchor="100.0">
+                    <children>
+                        <Label text="Numer telefonu" />
+                        <Label text="+48 504213123">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </VBox>
+            </children>
+        </AnchorPane>
+        <VBox layoutX="907.0" layoutY="25.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="25.0">
+            <children>
+                <Label text="Typ konta" />
+                <Label text="Realizator">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+            </children>
+        </VBox>
+        <AnchorPane layoutX="20.0" layoutY="363.0">
+            <children>
+                <Label text="Zmiana hasła">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <VBox AnchorPane.topAnchor="50.0">
+                    <children>
+                        <JFXPasswordField prefWidth="200.0" promptText="Stare hasło">
+                            <VBox.margin>
+                                <Insets />
+                            </VBox.margin>
+                        </JFXPasswordField>
+                        <JFXPasswordField promptText="Nowe hasło">
+                            <VBox.margin>
+                                <Insets top="25.0" />
+                            </VBox.margin>
+                        </JFXPasswordField>
+                        <JFXPasswordField promptText="Powtórz nowe hasło">
+                            <VBox.margin>
+                                <Insets top="25.0" />
+                            </VBox.margin>
+                        </JFXPasswordField>
+                    </children>
+                </VBox>
+                <JFXButton text="Zapisz" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="225.0" />
+            </children>
+        </AnchorPane>
+        <VBox layoutX="570.0" layoutY="579.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
+            <children>
+                <ImageView fx:id="qrImageView" fitHeight="300.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
+                <Label lineSpacing="1.0" text="Za pomocą kodu QR szybko zalogujesz się do aplikacji mobilnej">
+                    <VBox.margin>
+                        <Insets top="10.0" />
+                    </VBox.margin>
+                </Label>
+            </children>
+        </VBox>
+      <VBox layoutX="718.0" layoutY="120.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
          <children>
-            <AnchorPane styleClass="Table">
-               <children>
-                  <Label layoutX="173.0" layoutY="14.0" text="PROFIL" />
-                  <Label layoutX="14.0" layoutY="43.0" text="Nazwa uzytkownika:" />
-                  <Label layoutX="14.0" layoutY="83.0" text="Imię i nazwisko:" />
-                  <Label layoutX="14.0" layoutY="122.0" text="Typ konta:" />
-                  <JFXTextField editable="false" layoutX="175.0" layoutY="79.0" prefHeight="25.0" prefWidth="169.0" />
-                  <JFXTextField editable="false" layoutX="175.0" layoutY="39.0" prefHeight="25.0" prefWidth="169.0" />
-                  <JFXTextField editable="false" layoutX="175.0" layoutY="118.0" prefHeight="25.0" prefWidth="169.0" />
-               </children>
-            </AnchorPane>
+              <Label alignment="CENTER" text="Profil użytkownika">
+                  <font>
+                      <Font name="System Bold" size="36.0" />
+                  </font>
+              </Label>
+              <Label alignment="CENTER" text="Podstawowe informacje Twojego konta" />
          </children>
-      </HBox>
-      <HBox alignment="CENTER" layoutX="48.0" layoutY="426.0" prefHeight="160.0" prefWidth="427.0" styleClass="TableHolder" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="320.0">
-         <children>
-            <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="147.0" prefWidth="384.0" styleClass="Table">
-               <children>
-                  <Label layoutX="135.0" layoutY="14.0" text="DANE KONTAKTOWE" />
-                  <Label layoutX="14.0" layoutY="43.0" text="Numer telefonu: " />
-                  <Label layoutX="14.0" layoutY="88.0" text="Adres e-mail:" />
-                  <JFXTextField editable="false" layoutX="175.0" layoutY="84.0" prefHeight="25.0" prefWidth="169.0" />
-                  <JFXTextField editable="false" layoutX="175.0" layoutY="39.0" prefHeight="25.0" prefWidth="169.0" />
-               </children>
-            </AnchorPane>
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" layoutX="48.0" layoutY="613.0" prefHeight="230.0" prefWidth="427.0" styleClass="TableHolder" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="500.0">
-         <children>
-            <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="384.0" styleClass="Table">
-               <children>
-                  <Label layoutX="150.0" layoutY="14.0" text="ZMIANA HASŁA" />
-                  <JFXTextField editable="false" layoutX="125.0" layoutY="44.0" text="Wprowadź stare hasło" />
-                  <JFXTextField editable="false" layoutX="125.0" layoutY="85.0" text="Wprowadź nowe hasło" />
-                  <JFXTextField editable="false" layoutX="125.0" layoutY="125.0" text="Powtórz nowe hasło" />
-                  <JFXButton layoutX="167.0" layoutY="175.0" style="-fx-border-color: #000000;" text="Zapisz" />
-               </children>
-            </AnchorPane>
-         </children>
-      </HBox>
-      <ImageView fx:id="qrImageView" fitHeight="300.0" fitWidth="300.0" layoutX="642.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
-   </children>
+      </VBox>
+    </children>
 </AnchorPane>

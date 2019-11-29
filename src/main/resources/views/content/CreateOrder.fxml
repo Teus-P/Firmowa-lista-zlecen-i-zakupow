@@ -8,9 +8,20 @@
 <?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1080.0" stylesheets="@../../styles/MainStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.createOrder.CreateOrderController">
+<AnchorPane prefHeight="800.0" prefWidth="1080.0" stylesheets="@../../styles/MainStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.createOrder.CreateOrderController">
     <children>
+      <VBox AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <children>
+              <Label alignment="CENTER" text="Nowe zamówienie">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
         <HBox alignment="CENTER" layoutX="113.0" layoutY="44.0" prefHeight="127.0" prefWidth="377.0" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="190.0">
             <children>
                 <AnchorPane prefHeight="127.0" prefWidth="600.0">
@@ -25,7 +36,6 @@
                 </AnchorPane>
             </children>
         </HBox>
-        <Label alignment="CENTER" layoutX="801.0" layoutY="44.0" text="NOWE ZAMÓWIENIE" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="190.0" />
         <JFXButton fx:id="addNewProductToOrderButton" buttonType="RAISED" layoutX="191.0" layoutY="183.0" onAction="#addNewProductToList" text="+ Dodaj nowy produkt do zamówienia" textFill="#a0a2ab" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="190.0" />
         <JFXButton layoutX="151.0" layoutY="216.0" styleClass="LinkButton" text="Zaproponuj własny produkt" AnchorPane.leftAnchor="151.0" AnchorPane.rightAnchor="149.0" />
       <JFXTreeTableView fx:id="productTable" editable="true" layoutX="183.0" layoutY="277.0" prefHeight="300.0" prefWidth="332.0" AnchorPane.bottomAnchor="190.0" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="280.0">

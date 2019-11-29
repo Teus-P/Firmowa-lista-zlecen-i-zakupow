@@ -4,14 +4,24 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1720.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.CurrentOrdersController">
    <children>
-      <Label alignment="CENTER" layoutX="792.0" layoutY="35.0" text="AKTUALNE ZAMÓWIENIA" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="190.0" />
-      <Label alignment="CENTER" layoutX="710.0" layoutY="52.0" prefHeight="52.0" prefWidth="300.0" text="Tutaj znajdziesz zamówienia, które są w trakcie realizacji lub nie zostały jeszcze zaakceptowane" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="190.0" />
-      <JFXTreeTableView fx:id="currentOrdersTable" layoutX="688.0" layoutY="301.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="150.0">
+      <JFXTreeTableView fx:id="currentOrdersTable" layoutX="688.0" layoutY="301.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
          <columnResizePolicy>
             <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy></JFXTreeTableView>
+      <VBox layoutX="620.0" layoutY="-21.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <children>
+            <Label alignment="CENTER" text="Aktualne zamówienia">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" text="Tutaj znajdziesz zamówienia, które są w trakcie realizacji lub nie zostały jeszcze zaakceptowane" textAlignment="CENTER" wrapText="true" />
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

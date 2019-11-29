@@ -63,7 +63,9 @@ public class UserPanelController extends BaseScreen {
             Logger.getLogger(UserPanelController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        qrImageView.setImage(SwingFXUtils.toFXImage(bufferedImage, null));
+        if (bufferedImage != null) {
+            qrImageView.setImage(SwingFXUtils.toFXImage(bufferedImage, null));
+        }
     }
 
 }
