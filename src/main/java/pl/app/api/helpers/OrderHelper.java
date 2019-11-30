@@ -7,6 +7,9 @@ import pl.app.api.model.OrderModel;
 import pl.app.api.model.OrderProductModel;
 import pl.app.api.model.ResponseModel;
 import pl.app.api.responseInterfaces.AcceptOrderResponseListener;
+import pl.app.api.responseInterfaces.CurrentUserOrdersResponseListener;
+import pl.app.api.responseInterfaces.OrderHistoryResponseListener;
+import pl.app.api.responseInterfaces.RejectOrderResponseListener;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -27,6 +30,42 @@ public class OrderHelper {
 
         return CallExecutor.execute(call);
 
+    }
+
+    public void getAllUserOrderHistory(OrderHistoryResponseListener listener) {
+        Call<List<OrderModel>> call = apiResourceInterface.getUserOrderHistory();
+
+        Response<List<OrderModel>> response = null;
+
+        try {
+            response = call.execute();
+            if (response.isSuccessful() && response.code() == 200) {
+                listener.onOrderHistorySuccessResponse(response.body());
+            } else {
+                Gson gson = new Gson();
+                listener.onOrderHistoryFailedResponse(gson.fromJson(response.errorBody() != null ? response.errorBody().string() : null, ResponseModel.class));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void getAllCurrentUserOrders(CurrentUserOrdersResponseListener listener) {
+        Call<List<OrderModel>> call = apiResourceInterface.getAllCurrentUserOrders();
+
+        Response<List<OrderModel>> response = null;
+
+        try {
+            response = call.execute();
+            if (response.isSuccessful() && response.code() == 200) {
+                listener.onCurrentUserOrdersSuccessResponse(response.body());
+            } else {
+                Gson gson = new Gson();
+                listener.onCurrentUserOrdersFailedResponse(gson.fromJson(response.errorBody() != null ? response.errorBody().string() : null, ResponseModel.class));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -75,7 +114,30 @@ public class OrderHelper {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+
+    public void rejectOrderById(int orderId, String rejectReason, RejectOrderResponseListener listener) {
+        Call<ResponseModel> call = apiResourceInterface.rejectOrderById(orderId, rejectReason);
+
+        Response<ResponseModel> response = null;
+
+        try {
+            response = call.execute();
+            if (response.isSuccessful() && response.code() == 200) {
+                listener.onRejectOrderSuccessResponse(response.body());
+            } else {
+                Gson gson = new Gson();
+                listener.onRejectOrderFailedResponse(gson.fromJson(response.errorBody() != null ? response.errorBody().string() : null, ResponseModel.class));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
+    public OrderModel getOrderById(int orderId) {
+        Call<OrderModel> call = apiResourceInterface.getOrderById(orderId);
+        return CallExecutor.execute(call);
+    }
 }

@@ -17,24 +17,26 @@ public class DialogStage extends Stage {
 
     private ResourceLoader resourceLoader = ResourceLoader.getInstance();
     private FXMLLoader fxmlLoader;
+    private DialogBody dialogBody;
 
     public DialogStage(DialogProperty dialogProperty) {
 
         fxmlLoader = resourceLoader.fxmlLoader(dialogProperty.getDialogFxmlPath());
 
         Parent parent = null;
-        DialogBody dialogBody;
         try {
             parent = fxmlLoader.load();
             dialogBody = fxmlLoader.getController();
             dialogBody.dialogStage(this);
             initModality(Modality.APPLICATION_MODAL);
             initStyle(StageStyle.UTILITY);
-            setMinWidth(1280);
-            setMinHeight(720);
+
+            setResizable(false);
             setTitle(dialogProperty.getDialogTitle());
             Scene scene = new Scene(parent);
             setScene(scene);
+            setMinWidth(parent.getScene().getWidth());
+            setMinHeight(parent.getScene().getHeight());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -44,11 +46,12 @@ public class DialogStage extends Stage {
     }
 
 
-
     @Override
     public void close() {
+
+        clearBlur();
+        dialogBody.onClose();
         super.close();
-        LaunchApp.getPrimaryStage().getScene().getRoot().setEffect(null);
     }
 
     @Override
@@ -57,13 +60,18 @@ public class DialogStage extends Stage {
         super.showAndWait();
     }
 
+
     private void setPrimaryStageBlurEffect() {
         BoxBlur blur = new BoxBlur(3, 3, 3);
         LaunchApp.getPrimaryStage().getScene().getRoot().setEffect(blur);
     }
 
+    private void clearBlur() {
+        LaunchApp.getPrimaryStage().getScene().getRoot().setEffect(null);
+    }
 
-    public <T> T getController(){
+
+    public <T> T getController() {
         return fxmlLoader.getController();
     }
 

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+
+
+<AnchorPane minWidth="300.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.realizedOrder.OrderStatusCellController">
+   <children>
+      <VBox alignment="CENTER" AnchorPane.bottomAnchor="5.0" AnchorPane.topAnchor="5.0">
+         <children>
+              <Circle fx:id="statusShape" fill="DODGERBLUE" radius="10.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+         </children>
+      </VBox>
+        <VBox alignment="CENTER_RIGHT" layoutX="20.0" AnchorPane.rightAnchor="0.0">
+            <children>
+                <Label fx:id="statusName" text="Status" />
+                <Label fx:id="statusDate" text="Data" />
+            </children>
+        </VBox>
+   </children>
+</AnchorPane>

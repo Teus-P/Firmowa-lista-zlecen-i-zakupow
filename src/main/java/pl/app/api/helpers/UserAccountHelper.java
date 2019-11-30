@@ -21,6 +21,12 @@ public class UserAccountHelper {
     private ApiResourceInterface apiResourceInterface;
 
 
+    public UserAccountModel getMyAccountDetails() {
+        Call<UserAccountModel> call = apiResourceInterface.getMyAccountDetails();
+
+        return CallExecutor.execute(call);
+    }
+
     public List<UserAccountModel> getAllUsers() {
         Call<List<UserAccountModel>> call = apiResourceInterface.getAllUsers();
 

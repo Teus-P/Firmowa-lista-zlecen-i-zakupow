@@ -23,7 +23,7 @@
       <Label fx:id="productCountLabel" layoutX="251.0" layoutY="55.0" prefHeight="17.0" prefWidth="85.0" AnchorPane.topAnchor="50.0" />
       <Label fx:id="productSuggestionCountLabel" layoutX="251.0" layoutY="85.0" prefHeight="17.0" prefWidth="77.0" AnchorPane.topAnchor="80.0" />
       <Label fx:id="responseLabel" alignment="CENTER" layoutX="9.0" layoutY="852.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-      <Label layoutX="363.0" layoutY="20.0" text="Data akceptacji zamówienia" />
+      <Label layoutX="363.0" layoutY="20.0" text="Data stworzenia zamówienia" />
       <Label layoutX="363.0" layoutY="50.0" text="Zleceniodawca" />
       <Label fx:id="orderUserNameLabel" layoutX="565.0" layoutY="50.0" prefHeight="17.0" prefWidth="104.0" />
       <Label fx:id="orderDateLabel" layoutX="565.0" layoutY="20.0" prefHeight="17.0" prefWidth="104.0" />

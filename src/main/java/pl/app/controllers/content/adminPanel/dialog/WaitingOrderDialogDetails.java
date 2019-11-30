@@ -11,6 +11,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
+import javafx.scene.paint.Color;
+import pl.app.api.clients.ApiResourcesClient;
+import pl.app.api.helpers.OrderHelper;
 import pl.app.api.model.OrderModel;
 import pl.app.controllers.common.listItems.OrderProductTableItem;
 import pl.app.core.baseComponent.BaseDialog;
@@ -21,6 +24,7 @@ public class WaitingOrderDialogDetails extends BaseDialog {
 
     private OrderModel orderModel;
     private ObservableList<OrderProductTableItem> orderProductTableItemObservableList;
+    private OrderHelper orderHelper;
 
 
     @FXML
@@ -64,19 +68,35 @@ public class WaitingOrderDialogDetails extends BaseDialog {
 
     private void initUI() {
         orderNumberLabel.setText(orderModel.getIdOrder().toString());
-        orderStatus.setText(orderModel.getOrderStatus().getName());
+
+        if (orderModel.getRecipient() == null) {
+            orderStatus.setText("Zamówienie oczekuje na akceptację");
+            orderStatus.setTextFill(Color.ORANGE);
+        } else {
+            if (orderModel.isAccepted()) {
+                orderStatus.setText("Zamówienie zaakceptowane");
+                orderStatus.setTextFill(Color.GREEN);
+            } else if (!orderModel.isAccepted()) {
+                orderStatus.setText("Zamówienie odrzucone");
+                orderStatus.setTextFill(Color.RED);
+            }
+        }
+
+
         orderUserNameLabel.setText(orderModel.getUserAccount().getUsername());
-        orderDateLabel.setText(orderModel.getAcceptedDate());
+        orderDateLabel.setText(orderModel.getCreatedDate());
         productCountLabel.setText(Integer.toString(orderModel.getOrderProductModels().size()));
 
-        if (orderModel.isAccepted()) {
+        if (orderModel.getRecipient() != null) {
             acceptButton.setVisible(false);
             rejectButton.setVisible(false);
         }
+
     }
 
     private void initObjects() {
         orderProductTableItemObservableList = FXCollections.observableArrayList();
+        orderHelper = new OrderHelper(ApiResourcesClient.getApi());
     }
 
     private void initOrderProductTreeTableView() {
@@ -111,14 +131,26 @@ public class WaitingOrderDialogDetails extends BaseDialog {
         AssignImplementersDialog controller = assignImplementersDialog.getController();
         controller.initData(orderModel);
         controller.setOnDialogCloseListener(() -> {
-
+            refreshOrderModel();
+            initUI();
         });
         assignImplementersDialog.showAndWait();
     }
 
     @FXML
     void rejectOrderButtonOnAction(ActionEvent event) {
+        DialogStage rejectOrderDialog = new DialogStage(DialogProperty.REJECT_ORDER);
+        RejectOrderDialogController controller = rejectOrderDialog.getController();
+        controller.initData(orderModel);
+        controller.setOnDialogCloseListener(() -> {
+            refreshOrderModel();
+            initUI();
+        });
+        rejectOrderDialog.showAndWait();
+    }
 
+    private void refreshOrderModel() {
+        this.orderModel = orderHelper.getOrderById(orderModel.getIdOrder());
     }
 
 

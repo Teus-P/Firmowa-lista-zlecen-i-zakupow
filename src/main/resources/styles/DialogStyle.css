@@ -10,6 +10,12 @@ JFXTextField {
 
 }
 
+JFXTextArea{
+    -jfx-label-float: true;
+    -fx-focus-color: #4059a9;
+    -fx-unfocu-color: #4d4d4d;
+}
+
 JFXComboBox {
     -fx-focus-color: #4059a9;
     -fx-unfocu-color: #4d4d4d;

@@ -1,4 +1,4 @@
-package pl.app.controllers.pages;
+package pl.app.controllers.content;
 
 import com.google.common.hash.Hashing;
 import com.jfoenix.controls.JFXPasswordField;
@@ -59,8 +59,8 @@ public class LoginPageController extends BasePage implements LoginResponseListen
 
     }
 
-    void developTimeFastLoginMethod() {
-        getTokenByUserCredentials("admin2", "admin2");
+    private void developTimeFastLoginMethod() {
+        getTokenByUserCredentials("Administrator", "admin");
         saveTokenAfterSuccessLogin();
         showMainPage();
     }

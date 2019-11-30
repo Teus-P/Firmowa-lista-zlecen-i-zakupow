@@ -10,7 +10,8 @@ public enum DialogProperty {
     NEW_USER("views/content/adminPanel/dialog/NewUserDialog.fxml", "Dodawanie nowego użytkownika"),
     SET_IMPLEMENTER_CATEGORY("views/content/adminPanel/dialog/AddImplCategoryDialog.fxml", "Wybierz kategorię realizatora"),
     WAITING_ORDER_DETAILS("views/content/adminPanel/dialog/WaitingOrderDetailsDialog.fxml", "Szczegóły zamówienia"),
-    ASSIGN_IMPLEMENTERS("views/content/adminPanel/dialog/AssignImplementersDialog.fxml", "Przypisywanie realizatorów do zamówienia");
+    ASSIGN_IMPLEMENTERS("views/content/adminPanel/dialog/AssignImplementersDialog.fxml", "Przypisywanie realizatorów do zamówienia"),
+    REJECT_ORDER("views/content/adminPanel/dialog/RejectOrderDialog.fxml","Odrzuć zamówienie");
 
 
     private String dialogFxmlPath;

@@ -4,14 +4,23 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
+import com.jfoenix.controls.JFXPasswordField;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import pl.app.api.TokenKeeper;
+import pl.app.api.clients.ApiResourcesClient;
+import pl.app.api.helpers.UserAccountHelper;
+import pl.app.api.model.UserAccountModel;
+import pl.app.controllers.common.FieldValidator;
 import pl.app.core.baseComponent.BaseScreen;
 
-import java.awt.*;
+
+import java.awt.Graphics2D;
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,17 +29,50 @@ import java.util.logging.Logger;
 
 public class UserPanelController extends BaseScreen {
 
+    private UserAccountHelper userAccountHelper;
+    private UserAccountModel userAccountModel;
+
+    @FXML
+    private Label userNameLabel;
+
+    @FXML
+    private Label fullNameLabel;
+
+    @FXML
+    private Label peselLabel;
+
+    @FXML
+    private Label emailLabel;
+
+    @FXML
+    private Label phoneNumberLabel;
+
+    @FXML
+    private Label userTypesLabel;
+
+    @FXML
+    private JFXPasswordField oldPasswordTxField;
+
+    @FXML
+    private JFXPasswordField newPasswordTxField;
+
+    @FXML
+    private JFXPasswordField repNewPasswordTxField;
+
     @FXML
     private ImageView qrImageView;
 
-    public UserPanelController() {
 
+    public UserPanelController() {
+        userAccountHelper = new UserAccountHelper(ApiResourcesClient.getApi());
+        userAccountModel = userAccountHelper.getMyAccountDetails();
     }
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initQrCode();
+        initUi();
     }
 
 
@@ -66,6 +108,31 @@ public class UserPanelController extends BaseScreen {
         if (bufferedImage != null) {
             qrImageView.setImage(SwingFXUtils.toFXImage(bufferedImage, null));
         }
+    }
+
+    private void initUi() {
+        userNameLabel.setText(userAccountModel.getUsername());
+        fullNameLabel.setText(userAccountModel.getFirstName() + " " + userAccountModel.getLastName());
+        peselLabel.setText(userAccountModel.getPesel());
+        emailLabel.setText(userAccountModel.getEmail());
+        phoneNumberLabel.setText(userAccountModel.getPhoneNumber());
+
+        StringBuilder builder = new StringBuilder();
+        userAccountModel.getUserAccountTypeModels().forEach(types ->
+        {
+
+            builder.append(types.getDescription()).append("\n");
+
+        });
+        userTypesLabel.setText(builder.toString());
+
+
+
+    }
+
+    @FXML
+    void saveNewPasswordOnAction(ActionEvent event) {
+
     }
 
 }

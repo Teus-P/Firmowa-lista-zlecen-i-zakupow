@@ -22,11 +22,6 @@
                                                 <AnchorPane fx:id="usersTabContainer" prefHeight="752.0" prefWidth="745.0" />
                                             </content>
                                         </Tab>
-                                        <Tab fx:id="implementersTab" text="Realizatorzy">
-                                            <content>
-                                                <AnchorPane fx:id="implementersContainer" />
-                                            </content>
-                                        </Tab>
                                     </tabs>
                                 </TabPane>
                             </children>

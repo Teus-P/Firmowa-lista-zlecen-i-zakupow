@@ -1,15 +1,18 @@
-package pl.app.controllers.pages;
+package pl.app.controllers.content;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXProgressBar;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.effect.Effect;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 import pl.app.core.baseComponent.BaseScreen;
 import pl.app.core.property.ContentProperty;
 import pl.app.core.screen.ScreenController;
 
+import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -109,9 +112,11 @@ public class MainPageController extends BaseScreen {
 
 
     private void initUi() {
-
         //adminButton.setVisible(false);
 
+    }
+
+    private void clearUi(){
 
     }
 

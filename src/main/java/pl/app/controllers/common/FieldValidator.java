@@ -1,9 +1,13 @@
 package pl.app.controllers.common;
 
+import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.base.IFXLabelFloatControl;
 import com.jfoenix.validation.NumberValidator;
 import com.jfoenix.validation.RegexValidator;
 import com.jfoenix.validation.RequiredFieldValidator;
+import javafx.scene.control.TextField;
+
 
 public class FieldValidator {
 
@@ -32,5 +36,23 @@ public class FieldValidator {
         });
     }
 
+    public static void setPasswordValidator(JFXTextField textField) {
+        String message = "Długość hasła musi wynosić od 8 do 20 znaków oraz zawierać minimum jedną dużą i jedną małą lierę";
+        String passwordRegex = "^(?=.*[a-z])(?=.*[A-Z]).{8,}$";
+        setRegexValidator(message, textField, passwordRegex);
+
+    }
+
+    public static void setEmailValidator(JFXTextField textField) {
+        String message = "Nieprawidłowy adres email";
+        String emailRegex = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
+        setRegexValidator(message, textField, emailRegex);
+    }
+
+    public static void setPeselValidator(JFXTextField textField) {
+        String message = "Długość peselu musi wynosić 11 znaków";
+        String peselRegex = "^[0-9]{11,11}$";
+        setRegexValidator(message, textField, peselRegex);
+    }
 
 }

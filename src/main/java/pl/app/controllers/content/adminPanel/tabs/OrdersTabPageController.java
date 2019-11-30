@@ -20,6 +20,7 @@ import pl.app.core.property.DialogProperty;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+//TODO - szczegóły w panelu admina - obsłużyć wyszukiwarkę + wyświetlenie tylko niezakceptowanych/zaakceptowanych zamówień
 public class OrdersTabPageController implements Initializable {
 
     private OrderHelper orderHelper;
@@ -42,7 +43,7 @@ public class OrdersTabPageController implements Initializable {
         initOrderTreeTableView();
     }
 
-    //TODO - do dokończenia
+
     private void initOrderTreeTableView() {
         orderHelper.getAllOrders().forEach(orderModel -> orderTableItemObservableList.add(new OrderTableItem(orderModel)));
 
@@ -73,7 +74,6 @@ public class OrdersTabPageController implements Initializable {
         WaitingOrderDialogDetails controller = waitingOrderDetails.getController();
         controller.initData(orderTable.getSelectionModel().getSelectedItem().getValue().getOrderModel());
         controller.setOnDialogCloseListener(() -> {
-
         });
         waitingOrderDetails.showAndWait();
     }

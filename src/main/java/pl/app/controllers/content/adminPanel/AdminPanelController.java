@@ -17,9 +17,6 @@ public class AdminPanelController extends BaseScreen {
     private ResourceBundle stringResources;
 
     @FXML
-    private AnchorPane implementersContainer;
-
-    @FXML
     private AnchorPane usersTabContainer;
 
     @FXML
@@ -51,14 +48,12 @@ public class AdminPanelController extends BaseScreen {
     public void initialize(URL location, ResourceBundle resources) {
         this.stringResources = resources;
 
-        initImplementersTab();
         initUsersTab();
 
 
         usersTab.setOnSelectionChanged(e -> {
             if (usersTab.isSelected()) {
                 initUsersTab();
-                initImplementersTab();
             }
         });
 
@@ -78,11 +73,6 @@ public class AdminPanelController extends BaseScreen {
 
     }
 
-
-    private void initImplementersTab() {
-        implementersContainer.getChildren().clear();
-        getContentManager().buildContext(ContentProperty.IMPLEMENTERS_PAGE).attachTo(implementersContainer).build();
-    }
 
     private void initUsersTab() {
         usersTabContainer.getChildren().clear();

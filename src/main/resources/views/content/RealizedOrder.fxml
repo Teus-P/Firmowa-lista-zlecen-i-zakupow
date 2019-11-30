@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="pageContainer" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../../styles/MainStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.realizedOrder.RealizedOrderController">
+   <children>
+      <VBox layoutX="388.0" layoutY="157.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <children>
+            <Label text="Realizacja zamówienia">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+            <Label text="Przebieg realizacji zamówienia" />
+         </children>
+      </VBox>
+      <JFXButton layoutX="123.0" layoutY="686.0" minWidth="100.0" onAction="#backButtonOnAction" text="Wstecz" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" />
+      <JFXTreeTableView fx:id="orderProductTable" layoutX="529.0" layoutY="138.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="150.0">
+         <columnResizePolicy>
+            <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy></JFXTreeTableView>
+      <Label layoutX="400.0" layoutY="201.0" text="Produkty w zamówieniu" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <HBox alignment="BOTTOM_RIGHT" layoutX="79.0" layoutY="120.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="150.0">
+         <children>
+            <Label text="Numer zamówienia:">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="orderNumberLabel" alignment="BOTTOM_RIGHT">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <HBox.margin>
+                  <Insets left="50.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="BOTTOM_RIGHT" layoutX="75.0" layoutY="227.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="200.0">
+         <children>
+            <Label text="Osoba decydująca:">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="recipientNameLabel" minWidth="50.0">
+               <HBox.margin>
+                  <Insets left="50.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+      <JFXListView fx:id="orderStatusListView" depth="1" layoutX="10.0" layoutY="280.0" minHeight="300.0" minWidth="375.0" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="300.0" />
+   </children>
+</AnchorPane>

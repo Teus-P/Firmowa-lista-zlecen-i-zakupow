@@ -57,9 +57,6 @@ public class NewUserDialogController extends BaseDialog implements NewUserRespon
     private JFXTextField phoneNumberTextField;
 
     @FXML
-    private JFXTextField passwordTextField;
-
-    @FXML
     private Label responseLabel;
 
     @Override
@@ -77,7 +74,7 @@ public class NewUserDialogController extends BaseDialog implements NewUserRespon
     void addButtonOnAction(ActionEvent event) {
 
         if (peselTextField.validate() && firstNameTextField.validate() && lastNameTextField.validate()
-                && phoneNumberTextField.validate() && userNameTextField.validate() && emailTextField.validate() && passwordTextField.validate()) {
+                && phoneNumberTextField.validate() && userNameTextField.validate() && emailTextField.validate()) {
 
 
             userAccountTypeModelList = new ArrayList<>();
@@ -89,7 +86,6 @@ public class NewUserDialogController extends BaseDialog implements NewUserRespon
             newUserAccount = new UserAccountModel(
                     userNameTextField.getText(),
                     firstNameTextField.getText(),
-                    passwordTextField.getText(),
                     lastNameTextField.getText(),
                     peselTextField.getText(),
                     emailTextField.getText(),
@@ -115,7 +111,6 @@ public class NewUserDialogController extends BaseDialog implements NewUserRespon
         AddImplCategoryDialogController controller = implementerCategories.getController();
         controller.initData(this.newUserAccount);
         controller.setOnDialogCloseListener(() -> {
-//TODO
         });
         implementerCategories.showAndWait();
 
@@ -134,17 +129,16 @@ public class NewUserDialogController extends BaseDialog implements NewUserRespon
     private void setupValidators() {
 
         FieldValidator.setNumberValidator("Nieprawidłowy format!", peselTextField);
-        FieldValidator.setRegexValidator("Długość peselu musi wynosić 11 znaków", peselTextField, "^[0-9]{11,11}$");
+        FieldValidator.setPeselValidator(peselTextField);
+
         FieldValidator.setRequiredValidator("Proszę wpisać pesel", peselTextField);
         FieldValidator.setRequiredValidator("Proszę wpisać imię", firstNameTextField);
         FieldValidator.setRequiredValidator("Proszę wpisać nazwisko", lastNameTextField);
         FieldValidator.setRequiredValidator("Proszę wpisać numer telefonu!", phoneNumberTextField);
         FieldValidator.setRequiredValidator("Proszę wpisać nazwę użytkownika!", userNameTextField);
+
         FieldValidator.setRequiredValidator("Proszę wpisać adres email!", emailTextField);
-        FieldValidator.setRegexValidator("Nieprawidłowy adres email", emailTextField, "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$");
-        FieldValidator.setRequiredValidator("Hasło nie może być puste", passwordTextField);
-        FieldValidator.setRegexValidator("Długość hasła musi wynosić od 8 do 20 znaków oraz zawierać minimum jedną dużą i jedną małą lierę", passwordTextField,
-                "^(?=.*[a-z])(?=.*[A-Z]).{8,}$");
+        FieldValidator.setEmailValidator(emailTextField);
     }
 
 

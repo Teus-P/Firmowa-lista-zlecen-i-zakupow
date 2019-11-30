@@ -3,22 +3,44 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXTreeTableView?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-
 
 <AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.adminPanel.tabs.CategoriesTabPageController">
    <children>
       <JFXTextField fx:id="categorySearchField" layoutX="50.0" layoutY="26.0" promptText="Szukaj" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="25.0" />
-      <JFXButton buttonType="RAISED" layoutX="44.0" layoutY="517.0" onAction="#addCategoryOnAction" prefWidth="150.0" style="-fx-background-color: #3C58Fa;" text="Dodaj" textFill="#a0a2ab" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="300.0" />
-      <JFXTreeTableView fx:id="categoryTable" editable="true" layoutX="44.0" layoutY="82.0" prefHeight="400.0" prefWidth="616.0" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="75.0">
+      <JFXButton buttonType="RAISED" layoutX="44.0" layoutY="517.0" minWidth="70.0" onAction="#addCategoryOnAction" style="-fx-background-color: #3C58Fa;" text="Dodaj" textFill="#a0a2ab" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="25.0">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../drawable/2x/baseline_add_white_18dp.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding></JFXButton>
+      <JFXTreeTableView fx:id="categoryTable" editable="true" layoutX="44.0" layoutY="82.0" prefHeight="400.0" prefWidth="616.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="125.0">
          <columnResizePolicy>
             <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </JFXTreeTableView>
-      <JFXTextField fx:id="newCategoryTextField" layoutX="192.0" layoutY="609.0" prefWidth="250.0" promptText="Nazwa nowej kategorii" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="10.0" />
-      <Label fx:id="categoryResponseLabel" layoutX="99.0" layoutY="657.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-      <JFXButton buttonType="RAISED" layoutX="893.0" layoutY="620.0" onAction="#deleteCategoryOnAction" prefWidth="150.0" style="-fx-background-color: #3C58Fa;" text="Usuń" textFill="#a0a2ab" AnchorPane.bottomAnchor="100.0" AnchorPane.rightAnchor="10.0" />
+      <JFXTextField fx:id="newCategoryTextField" layoutX="192.0" layoutY="609.0" prefWidth="250.0" promptText="Nazwa nowej kategorii" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="25.0" />
+      <Label fx:id="categoryResponseLabel" layoutX="99.0" layoutY="657.0" prefWidth="250.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="87.0" />
+      <JFXButton buttonType="RAISED" layoutX="893.0" layoutY="620.0" minWidth="70.0" onAction="#deleteCategoryOnAction" style="-fx-background-color: #3C58Fa;" text="Usuń" textFill="#a0a2ab" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="80.0">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../drawable/2x/baseline_delete_forever_white_18dp.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding></JFXButton>
    </children>
 </AnchorPane>

@@ -163,5 +163,19 @@ public interface ApiResourceInterface {
             @Body List<Integer> implementersId
     );
 
+    @GET("/user/my")
+    Call<UserAccountModel> getMyAccountDetails();
 
+    @POST("/order/reject/{id}")
+    Call<ResponseModel> rejectOrderById(
+            @Path("id") int orderId,
+            @Body String rejectReason
+    );
+
+
+    @GET("/order/current")
+    Call<List<OrderModel>> getAllCurrentUserOrders();
+
+    @GET("/order/history")
+    Call<List<OrderModel>> getUserOrderHistory();
 }

@@ -11,6 +11,16 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1000.0" stylesheets="@../../styles/MainStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.UserPanelController">
     <children>
+      <VBox layoutX="718.0" layoutY="120.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <children>
+              <Label alignment="CENTER" text="Profil użytkownika">
+                  <font>
+                      <Font name="System Bold" size="36.0" />
+                  </font>
+              </Label>
+              <Label alignment="CENTER" text="Podstawowe informacje Twojego konta" />
+         </children>
+      </VBox>
         <AnchorPane layoutX="20.0" layoutY="139.0">
             <children>
                 <Label text="Dane personalne">
@@ -21,7 +31,7 @@
                 <VBox AnchorPane.topAnchor="50.0">
                     <children>
                         <Label text="Nazwa użytkownika" />
-                        <Label text="janNowak">
+                        <Label fx:id="userNameLabel" text="janNowak">
                             <font>
                                 <Font size="18.0" />
                             </font>
@@ -31,7 +41,7 @@
                 <VBox AnchorPane.topAnchor="100.0">
                     <children>
                         <Label text="Imię i nazwisko" />
-                        <Label text="Jan Nowak">
+                        <Label fx:id="fullNameLabel" text="Jan Nowak">
                             <font>
                                 <Font size="18.0" />
                             </font>
@@ -41,7 +51,7 @@
                 <VBox AnchorPane.topAnchor="150.0">
                     <children>
                         <Label text="PESEL" />
-                        <Label text="93030321321">
+                        <Label fx:id="peselLabel" text="93030321321">
                             <font>
                                 <Font size="18.0" />
                             </font>
@@ -60,7 +70,7 @@
                 <VBox AnchorPane.topAnchor="50.0">
                     <children>
                         <Label text="Akres email" />
-                        <Label text="email@example.com">
+                        <Label fx:id="emailLabel" text="email@example.com">
                             <font>
                                 <Font size="18.0" />
                             </font>
@@ -70,7 +80,7 @@
                 <VBox AnchorPane.topAnchor="100.0">
                     <children>
                         <Label text="Numer telefonu" />
-                        <Label text="+48 504213123">
+                        <Label fx:id="phoneNumberLabel" text="+48 504213123">
                             <font>
                                 <Font size="18.0" />
                             </font>
@@ -82,7 +92,7 @@
         <VBox layoutX="907.0" layoutY="25.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="25.0">
             <children>
                 <Label text="Typ konta" />
-                <Label text="Realizator">
+                <Label fx:id="userTypesLabel" text="Realizator">
                     <font>
                         <Font size="18.0" />
                     </font>
@@ -98,24 +108,24 @@
                 </Label>
                 <VBox AnchorPane.topAnchor="50.0">
                     <children>
-                        <JFXPasswordField prefWidth="200.0" promptText="Stare hasło">
+                        <JFXPasswordField fx:id="oldPasswordTxField" prefWidth="200.0" promptText="Stare hasło">
                             <VBox.margin>
                                 <Insets />
                             </VBox.margin>
                         </JFXPasswordField>
-                        <JFXPasswordField promptText="Nowe hasło">
+                        <JFXPasswordField fx:id="newPasswordTxField" promptText="Nowe hasło">
                             <VBox.margin>
                                 <Insets top="25.0" />
                             </VBox.margin>
                         </JFXPasswordField>
-                        <JFXPasswordField promptText="Powtórz nowe hasło">
+                        <JFXPasswordField fx:id="repNewPasswordTxField" promptText="Powtórz nowe hasło">
                             <VBox.margin>
                                 <Insets top="25.0" />
                             </VBox.margin>
                         </JFXPasswordField>
                     </children>
                 </VBox>
-                <JFXButton text="Zapisz" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="225.0" />
+                <JFXButton onAction="#saveNewPasswordOnAction" text="Zapisz" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="225.0" />
             </children>
         </AnchorPane>
         <VBox layoutX="570.0" layoutY="579.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
@@ -128,15 +138,5 @@
                 </Label>
             </children>
         </VBox>
-      <VBox layoutX="718.0" layoutY="120.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
-         <children>
-              <Label alignment="CENTER" text="Profil użytkownika">
-                  <font>
-                      <Font name="System Bold" size="36.0" />
-                  </font>
-              </Label>
-              <Label alignment="CENTER" text="Podstawowe informacje Twojego konta" />
-         </children>
-      </VBox>
     </children>
 </AnchorPane>

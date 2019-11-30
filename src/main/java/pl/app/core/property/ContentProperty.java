@@ -6,12 +6,13 @@ public enum ContentProperty {
     CREATE_ORDER("views/content/CreateOrder.fxml"),
     CURRENT_ORDERS("views/content/CurrentOrders.fxml"),
     USER_PANEL("views/content/UserPanel.fxml"),
-    IMPLEMENTERS_PAGE("views/content/adminPanel/tabs/ImplementersTabPage.fxml"),
     USERS_TAB_PAGE("views/content/adminPanel/tabs/UsersTabPage.fxml"),
     PRODUCTS_TAB_PAGE("views/content/adminPanel/tabs/ProductsTabPage.fxml"),
     ORDERS_TAB_PAGE("views/content/adminPanel/tabs/OrdersTabPage.fxml"),
     UNITS_TAB_PAGE("views/content/adminPanel/tabs/UnitsTabPage.fxml"),
-    CATEGORIES_TAB_PAGE("views/content/adminPanel/tabs/CategoriesTabPage.fxml");
+    CATEGORIES_TAB_PAGE("views/content/adminPanel/tabs/CategoriesTabPage.fxml"),
+    CURRENT_WAITING_ORDER("views/content/CurrentWaitingOrder.fxml"),
+    REALIZED_ORDER("views/content/RealizedOrder.fxml");
 
 
     private String screenPath;

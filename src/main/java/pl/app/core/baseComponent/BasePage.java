@@ -25,5 +25,8 @@ public abstract class BasePage implements ControlledScreen, Initializable {
         this.screenController = screenPage;
     }
 
+    @Override
+    public void notifyDataSetChanged() {
 
+    }
 }

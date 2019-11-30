@@ -5,15 +5,17 @@ import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
 import pl.app.core.dialog.DialogBody;
+import pl.app.core.dialog.DialogStage;
 import pl.app.core.dialog.OnDialogCloseListener;
+import pl.app.launch.LaunchApp;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public abstract class BaseDialog implements Initializable, DialogBody {
 
-
-    private Stage dialogStage;
+    @Getter
+    private DialogStage dialogStage;
 
     @Setter
     protected OnDialogCloseListener onDialogCloseListener;
@@ -26,12 +28,13 @@ public abstract class BaseDialog implements Initializable, DialogBody {
     }
 
     @Override
-    public void dialogStage(Stage stage) {
+    public void dialogStage(DialogStage stage) {
         this.dialogStage = stage;
     }
 
-    public Stage getDialogStage() {
+    @Override
+    public void onClose() {
         onDialogCloseListener.onClose();
-        return dialogStage;
     }
+
 }

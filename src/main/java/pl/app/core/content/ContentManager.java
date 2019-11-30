@@ -8,6 +8,7 @@ import pl.app.core.property.ContentProperty;
 
 import java.io.IOException;
 
+//TODO do dokończenia
 public class ContentManager {
 
     private static final ContentManager instance = new ContentManager();
@@ -24,22 +25,22 @@ public class ContentManager {
         return new Builder(resourceLoader.fxmlLoader(contentProperty.getScreenPath()));
     }
 
-    public class Builder<T extends AnchorPane> {
+    public class Builder extends AnchorPane {
 
-        private T container;
+        private AnchorPane container;
         private FXMLLoader fxmlLoader;
 
         Builder(FXMLLoader fxmlLoader) {
             this.fxmlLoader = fxmlLoader;
         }
 
-        public Builder attachTo(T container) {
+        public Builder attachTo(AnchorPane container) {
             this.container = container;
             return this;
         }
 
 
-        public void build() {
+        public FXMLLoader build() {
             try {
                 container.getChildren().clear();
                 Parent parent = fxmlLoader.load();
@@ -49,10 +50,13 @@ public class ContentManager {
                 AnchorPane.setTopAnchor(parent, 0.0);
                 AnchorPane.setLeftAnchor(parent, 0.0);
                 AnchorPane.setRightAnchor(parent, 0.0);
+                return fxmlLoader;
 
             } catch (IOException e) {
                 e.printStackTrace();
+                return null;
             }
+
         }
 
     }

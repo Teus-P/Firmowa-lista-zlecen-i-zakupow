@@ -20,6 +20,7 @@
                   <Font name="System Bold" size="36.0" />
                </font>
             </Label>
+            <Label text="Tworzenie nowego zlecenia zakupu produktów" />
          </children>
       </VBox>
         <HBox alignment="CENTER" layoutX="113.0" layoutY="44.0" prefHeight="127.0" prefWidth="377.0" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="190.0">

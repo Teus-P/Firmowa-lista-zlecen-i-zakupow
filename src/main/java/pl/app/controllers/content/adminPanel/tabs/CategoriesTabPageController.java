@@ -23,6 +23,7 @@ import pl.app.controllers.common.popupDialogs.WarningDialog;
 import pl.app.controllers.common.listItems.CategoryTableItem;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class CategoriesTabPageController implements Initializable, NewCategoryResponseListener {
@@ -56,7 +57,9 @@ public class CategoriesTabPageController implements Initializable, NewCategoryRe
 
     private void initCategoriesTreeTableView() {
 
-        categoriesHelper.getAllCategories().forEach(categoriesModel -> categoryTableItemObservableList.add(new CategoryTableItem(categoriesModel)));
+        List<CategoriesModel> categoriesModels = categoriesHelper.getAllCategories();
+        if (!categoriesModels.isEmpty())
+            categoriesHelper.getAllCategories().forEach(categoriesModel -> categoryTableItemObservableList.add(new CategoryTableItem(categoriesModel)));
 
         JFXTreeTableColumn<CategoryTableItem, String> categoryColumn = new JFXTreeTableColumn<>("Nazwa kategorii");
         categoryColumn.setCellValueFactory(param -> param.getValue().getValue().getCategoryName());
