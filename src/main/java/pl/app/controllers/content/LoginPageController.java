@@ -18,7 +18,7 @@ import pl.app.api.model.ResponseModel;
 import pl.app.api.model.TokenModel;
 import pl.app.api.responseInterfaces.LoginResponseListener;
 import pl.app.core.baseComponent.BasePage;
-import pl.app.core.property.ScreensProperty;
+import pl.app.core.property.StageProperty;
 
 
 import java.net.URL;
@@ -102,7 +102,7 @@ public class LoginPageController extends BasePage implements LoginResponseListen
     }
 
     private void showMainPage() {
-        super.screenController.setScreenProperty(ScreensProperty.MAIN_PAGE).show();
+        super.screenController.setScreenProperty(StageProperty.MAIN_PAGE).show();
     }
 
     private void saveTokenAfterSuccessLogin() {

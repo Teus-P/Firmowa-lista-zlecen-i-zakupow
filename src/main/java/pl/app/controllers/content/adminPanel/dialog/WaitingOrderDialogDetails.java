@@ -18,7 +18,7 @@ import pl.app.api.model.OrderModel;
 import pl.app.controllers.common.listItems.OrderProductTableItem;
 import pl.app.core.baseComponent.BaseDialog;
 import pl.app.core.dialog.DialogStage;
-import pl.app.core.property.DialogProperty;
+import pl.app.core.property.StageProperty;
 
 public class WaitingOrderDialogDetails extends BaseDialog {
 
@@ -127,7 +127,7 @@ public class WaitingOrderDialogDetails extends BaseDialog {
 
     @FXML
     void acceptOrderButtonOnAction(ActionEvent event) {
-        DialogStage assignImplementersDialog = new DialogStage(DialogProperty.ASSIGN_IMPLEMENTERS);
+        DialogStage assignImplementersDialog = new DialogStage(StageProperty.ASSIGN_IMPLEMENTERS);
         AssignImplementersDialog controller = assignImplementersDialog.getController();
         controller.initData(orderModel);
         controller.setOnDialogCloseListener(() -> {
@@ -139,7 +139,7 @@ public class WaitingOrderDialogDetails extends BaseDialog {
 
     @FXML
     void rejectOrderButtonOnAction(ActionEvent event) {
-        DialogStage rejectOrderDialog = new DialogStage(DialogProperty.REJECT_ORDER);
+        DialogStage rejectOrderDialog = new DialogStage(StageProperty.REJECT_ORDER);
         RejectOrderDialogController controller = rejectOrderDialog.getController();
         controller.initData(orderModel);
         controller.setOnDialogCloseListener(() -> {

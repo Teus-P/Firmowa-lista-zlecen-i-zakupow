@@ -18,7 +18,7 @@ import pl.app.controllers.common.FieldValidator;
 import pl.app.controllers.common.checkComboBoxItem.UserTypeCheckBoxItem;
 import pl.app.core.baseComponent.BaseDialog;
 import pl.app.core.dialog.DialogStage;
-import pl.app.core.property.DialogProperty;
+import pl.app.core.property.StageProperty;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -107,7 +107,7 @@ public class NewUserDialogController extends BaseDialog implements NewUserRespon
 
 
     private void showChooseImplementerCategory() {
-        DialogStage implementerCategories = new DialogStage(DialogProperty.SET_IMPLEMENTER_CATEGORY);
+        DialogStage implementerCategories = new DialogStage(StageProperty.SET_IMPLEMENTER_CATEGORY);
         AddImplCategoryDialogController controller = implementerCategories.getController();
         controller.initData(this.newUserAccount);
         controller.setOnDialogCloseListener(() -> {

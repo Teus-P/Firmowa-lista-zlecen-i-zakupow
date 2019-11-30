@@ -15,7 +15,7 @@ import pl.app.api.helpers.OrderHelper;
 import pl.app.controllers.common.listItems.OrderTableItem;
 import pl.app.controllers.content.adminPanel.dialog.WaitingOrderDialogDetails;
 import pl.app.core.dialog.DialogStage;
-import pl.app.core.property.DialogProperty;
+import pl.app.core.property.StageProperty;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -70,7 +70,7 @@ public class OrdersTabPageController implements Initializable {
     }
 
     private void showOrderDetails() {
-        DialogStage waitingOrderDetails = new DialogStage(DialogProperty.WAITING_ORDER_DETAILS);
+        DialogStage waitingOrderDetails = new DialogStage(StageProperty.WAITING_ORDER_DETAILS);
         WaitingOrderDialogDetails controller = waitingOrderDetails.getController();
         controller.initData(orderTable.getSelectionModel().getSelectedItem().getValue().getOrderModel());
         controller.setOnDialogCloseListener(() -> {

@@ -17,7 +17,7 @@ import pl.app.controllers.common.listItems.UserTableItem;
 import pl.app.controllers.content.adminPanel.dialog.EditUserDialogController;
 import pl.app.controllers.content.adminPanel.dialog.NewUserDialogController;
 import pl.app.core.dialog.DialogStage;
-import pl.app.core.property.DialogProperty;
+import pl.app.core.property.StageProperty;
 
 import java.net.URL;
 import java.util.List;
@@ -126,7 +126,7 @@ public class UsersTabPageController implements Initializable {
     }
 
     private void showNewUserDialog() {
-        DialogStage newUserDialog = new DialogStage(DialogProperty.NEW_USER);
+        DialogStage newUserDialog = new DialogStage(StageProperty.NEW_USER);
         NewUserDialogController controller = newUserDialog.getController();
         controller.setOnDialogCloseListener(() -> {
             userTableItemObservableList.clear();
@@ -136,7 +136,7 @@ public class UsersTabPageController implements Initializable {
     }
 
     private void showEditUserDialog() {
-        DialogStage editUserDialog = new DialogStage(DialogProperty.EDIT_USER);
+        DialogStage editUserDialog = new DialogStage(StageProperty.EDIT_USER);
         EditUserDialogController controller = editUserDialog.getController();
         controller.initData(userTable.getSelectionModel().getSelectedItem().getValue().getUserAccountModel());
         controller.setOnDialogCloseListener(() -> {

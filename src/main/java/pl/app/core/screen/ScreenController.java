@@ -4,7 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import pl.app.core.utils.ResourceLoader;
-import pl.app.core.property.ScreensProperty;
+import pl.app.core.property.StageProperty;
 import pl.app.launch.LaunchApp;
 
 import java.io.*;
@@ -15,7 +15,7 @@ public class ScreenController extends AnchorPane {
 
     private ResourceLoader resourceLoader = ResourceLoader.getInstance();
 
-    private ScreensProperty screenProperty = null;
+    private StageProperty stageProperty = null;
     private String fxmlPath = null;
     private String pageTitle = null;
 
@@ -83,7 +83,7 @@ public class ScreenController extends AnchorPane {
 
     public void show() {
 
-        if (screenProperty != null) {
+        if (stageProperty != null) {
             Node screen = loadNode(fxmlPath);
             setScreen(screen, pageTitle);
             clearReference();
@@ -97,10 +97,10 @@ public class ScreenController extends AnchorPane {
         LaunchApp.getPrimaryStage().setTitle(title);
     }
 
-    public ScreenController setScreenProperty(ScreensProperty screenProperty) {
-        this.screenProperty = screenProperty;
-        this.fxmlPath = screenProperty.getScreenPath();
-        this.pageTitle = screenProperty.getStageTitle();
+    public ScreenController setScreenProperty(StageProperty stageProperty) {
+        this.stageProperty = stageProperty;
+        this.fxmlPath = stageProperty.getFxmlPath();
+        this.pageTitle = stageProperty.getStageTitle();
         return this;
     }
 
@@ -109,7 +109,7 @@ public class ScreenController extends AnchorPane {
     }
 
     private void clearReference() {
-        screenProperty = null;
+        stageProperty = null;
         fxmlPath = null;
         pageTitle = null;
     }

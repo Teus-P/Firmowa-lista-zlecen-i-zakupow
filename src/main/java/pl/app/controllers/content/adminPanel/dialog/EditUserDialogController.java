@@ -36,17 +36,9 @@ import pl.app.controllers.common.FieldValidator;
 import pl.app.controllers.common.checkComboBoxItem.CategoriesCheckBoxItem;
 import pl.app.controllers.common.checkComboBoxItem.UserTypeCheckBoxItem;
 import pl.app.core.baseComponent.BaseDialog;
-import pl.app.core.dialog.DialogStage;
-import pl.app.core.utils.ResourceLoader;
-import pl.app.core.property.DialogProperty;
-import pl.app.launch.LaunchApp;
 
-import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
-
 
 public class EditUserDialogController extends BaseDialog implements EditUserResponseListener, ImplementerCategoriesResponseListener {
 

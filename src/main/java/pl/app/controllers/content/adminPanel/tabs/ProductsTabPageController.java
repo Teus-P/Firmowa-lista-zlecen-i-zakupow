@@ -18,7 +18,7 @@ import pl.app.controllers.common.listItems.ProductTableItem;
 import pl.app.controllers.content.adminPanel.dialog.EditProductDialogController;
 import pl.app.controllers.content.adminPanel.dialog.NewProductDialogController;
 import pl.app.core.dialog.DialogStage;
-import pl.app.core.property.DialogProperty;
+import pl.app.core.property.StageProperty;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -82,7 +82,7 @@ public class ProductsTabPageController implements Initializable {
     }
 
     private void showEditProductDialog() {
-        DialogStage editProductDialog = new DialogStage(DialogProperty.EDIT_PRODUCT);
+        DialogStage editProductDialog = new DialogStage(StageProperty.EDIT_PRODUCT);
         EditProductDialogController controller = editProductDialog.getController();
         controller.initData(productTable.getSelectionModel().getSelectedItem().getValue().getProductModel());
         controller.setOnDialogCloseListener(() -> {
@@ -93,7 +93,7 @@ public class ProductsTabPageController implements Initializable {
     }
 
     private void showNewProductDialog() {
-        DialogStage newProductDialog = new DialogStage(DialogProperty.NEW_PRODUCT);
+        DialogStage newProductDialog = new DialogStage(StageProperty.NEW_PRODUCT);
         NewProductDialogController controller = newProductDialog.getController();
         controller.setOnDialogCloseListener(() -> {
             productTableItemObservableList.clear();

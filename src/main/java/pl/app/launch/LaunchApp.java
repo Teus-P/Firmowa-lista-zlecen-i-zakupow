@@ -3,7 +3,7 @@ package pl.app.launch;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import pl.app.core.property.ScreensProperty;
+import pl.app.core.property.StageProperty;
 import pl.app.core.screen.ScreenController;
 
 
@@ -24,7 +24,7 @@ public class LaunchApp extends Application {
 
         ScreenController screenController = ScreenController.getInstance();
 
-        screenController.setScreenProperty(ScreensProperty.LOGIN_PAGE).show();
+        screenController.setScreenProperty(StageProperty.LOGIN_PAGE).show();
 
 
         Scene scene = new Scene(screenController);

@@ -7,8 +7,8 @@ import javafx.scene.effect.BoxBlur;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import pl.app.core.property.StageProperty;
 import pl.app.core.utils.ResourceLoader;
-import pl.app.core.property.DialogProperty;
 import pl.app.launch.LaunchApp;
 
 import java.io.IOException;
@@ -19,9 +19,9 @@ public class DialogStage extends Stage {
     private FXMLLoader fxmlLoader;
     private DialogBody dialogBody;
 
-    public DialogStage(DialogProperty dialogProperty) {
+    public DialogStage(StageProperty stageProperty) {
 
-        fxmlLoader = resourceLoader.fxmlLoader(dialogProperty.getDialogFxmlPath());
+        fxmlLoader = resourceLoader.fxmlLoader(stageProperty.getFxmlPath());
 
         Parent parent = null;
         try {
@@ -32,7 +32,7 @@ public class DialogStage extends Stage {
             initStyle(StageStyle.UTILITY);
 
             setResizable(false);
-            setTitle(dialogProperty.getDialogTitle());
+            setTitle(stageProperty.getStageTitle());
             Scene scene = new Scene(parent);
             setScene(scene);
             setMinWidth(parent.getScene().getWidth());

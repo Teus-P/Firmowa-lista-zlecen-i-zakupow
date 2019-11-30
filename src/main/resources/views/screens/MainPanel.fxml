@@ -57,7 +57,7 @@
                         </ImageView>
                     </graphic>
                 </JFXButton>
-                <JFXButton fx:id="profileButton" buttonType="RAISED" layoutX="4.099999904632568" layoutY="332.0" onAction="#profileButtonOnAction" prefHeight="50.0" styleClass="menuButton" text="Dane osobowe" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="350.0">
+                <JFXButton fx:id="profileButton" buttonType="RAISED" layoutX="4.099999904632568" layoutY="332.0" onAction="#profileButtonOnAction" prefHeight="50.0" styleClass="menuButton" text="Profil użytkownika" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="350.0">
                     <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                             <image>
