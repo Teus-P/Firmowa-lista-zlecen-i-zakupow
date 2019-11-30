@@ -4,12 +4,11 @@ JFXTextField, JFXPasswordField {
 }
 
 JFXCheckBox {
-    -fx-text-fill: #a0a2ab;
+    -fx-text-fill: #A0A2AB;
 }
 
 JFXButton{
-    -fx-text-alignment: #FF0000;
-    -fx-background-color: #3C58Fa;
+    -fx-background-color: #3C58FA;
     -fx-text-fill: #FFFFFF;
 
 }
@@ -24,17 +23,17 @@ JFXButton{
 }
 
 .LoginPageTextField,.LoginPagePasswordField{
-    -fx-text-fill: #fff;
+    -fx-text-fill: #ffffff;
 }
 
 .enterButton {
-    -fx-background-color: #3C58Fa;
-    -fx-text-fill: #FFF;
+    -fx-background-color: #3C58FA;
+    -fx-text-fill: #FFFfff;
 }
 
 .menuButton {
     -fx-background-color: #1D5C78;
-    -fx-text-fill: #FFF;
+    -fx-text-fill: #FFFfff;
 }
 
 .Table {
@@ -47,7 +46,7 @@ JFXButton{
 
 #remindPasswordButton, #deleteRowButton {
     -fx-background-color: #151928;
-    -fx-text-fill: #a0a2ab;
+    -fx-text-fill: #A0A2AB;
 
 }
 
@@ -56,7 +55,7 @@ JFXButton{
 }
 
 #logonLabel {
-    -fx-text-fill: #a0a2ab;
+    -fx-text-fill: #A0A2AB;
 }
 
 

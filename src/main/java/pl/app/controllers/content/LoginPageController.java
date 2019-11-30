@@ -1,6 +1,5 @@
 package pl.app.controllers.content;
 
-import com.google.common.hash.Hashing;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
@@ -11,24 +10,30 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
-import pl.app.api.TokenKeeper;
+import pl.app.api.UserSession;
 import pl.app.api.clients.ApiAuthorizationClient;
 import pl.app.api.helpers.TokenHelper;
 import pl.app.api.model.ResponseModel;
 import pl.app.api.model.TokenModel;
 import pl.app.api.responseInterfaces.LoginResponseListener;
+import pl.app.controllers.common.FieldValidator;
 import pl.app.core.baseComponent.BasePage;
 import pl.app.core.property.StageProperty;
 
 
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
+
+import static com.google.common.hash.Hashing.*;
 
 /**
  * view/LoginPage.fxml Controller
  */
+//login Administrator
+//hasło YzdhZDQ0Y2JhZDc2MmE1ZGEwYTQ1MmY5ZTg1NGZkYzFlMGU3YTUyYTM4MDE1ZjIzZjNlYWIxZDgwYjkzMWRkNDcyNjM0ZGZhYzcxY2QzNGViYzM1ZDE2YWI3ZmI4YTkwYzgxZjk3NTExM2Q2Yzc1MzhkYzY5ZGQ4ZGU5MDc3ZWM=
 public class LoginPageController extends BasePage implements LoginResponseListener {
 
     private static final Logger LOGGER = Logger.getLogger(LoginPageController.class.getName());
@@ -55,39 +60,37 @@ public class LoginPageController extends BasePage implements LoginResponseListen
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize(location, resources);
         setLoginAlertContent();
-
-
+        setValidators();
     }
 
-    private void developTimeFastLoginMethod() {
-        getTokenByUserCredentials("Administrator", "admin");
-        saveTokenAfterSuccessLogin();
-        showMainPage();
+
+    private void setValidators() {
+        FieldValidator.setRequiredValidator("Proszę wprowadzić login", loginTextField);
+        FieldValidator.setRequiredValidator("Proszę wprowadzić hasło", passwordPasswordField);
     }
 
     @FXML
     private void onClickLoginButton() {
 
-        developTimeFastLoginMethod();
-
-        userLogin = loginTextField.getText();
-        userPassword = passwordPasswordField.getText();
-
-        if (!userLogin.equals("") && !userPassword.equals("") && userLogin.length() > 0 && userPassword.length() > 0) {
-            if (getTokenByUserCredentials(userLogin, userPassword) != null) {
+        if (loginTextField.validate() && passwordPasswordField.validate()) {
+            userLogin = loginTextField.getText();
+            userPassword = passwordPasswordField.getText();
+            String encryptedPassword = encryptPassword(userPassword);
+            LOGGER.info("PASS : " + encryptedPassword);
+            if (getTokenByUserCredentials(userLogin, encryptedPassword) != null) {
 
                 LOGGER.info("TOKEN : " + tokenModel.getAccessToken());
 
-                saveTokenAfterSuccessLogin();
+                UserSession.setSession(tokenModel.getAccessToken(), tokenModel.getRefreshToken());
 
                 showMainPage();
             } else {
                 loginAlert.showAndWait();
             }
-
         } else {
             loginAlert.showAndWait();
         }
+
     }
 
     private TokenModel getTokenByUserCredentials(String username, String password) {
@@ -105,10 +108,6 @@ public class LoginPageController extends BasePage implements LoginResponseListen
         super.screenController.setScreenProperty(StageProperty.MAIN_PAGE).show();
     }
 
-    private void saveTokenAfterSuccessLogin() {
-        TokenKeeper.setAccessToken(tokenModel.getAccessToken());
-        TokenKeeper.setRefreshToken(tokenModel.getRefreshToken());
-    }
 
     private void setLoginAlertContent() {
         loginAlert.setTitle(getResourceBundle().getString("loginAlertTitle"));
@@ -117,8 +116,10 @@ public class LoginPageController extends BasePage implements LoginResponseListen
     }
 
 
-    private String hashPassword(String password) {
-        return Hashing.sha256().hashString(password, StandardCharsets.UTF_8).toString();
+    private String encryptPassword(String password) {
+
+        String pass = sha512().hashString(password, StandardCharsets.UTF_8).toString();
+        return Base64.getEncoder().encodeToString(pass.getBytes());
     }
 
 

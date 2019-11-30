@@ -20,7 +20,7 @@ AnchorPane{
 
 JFXButton{
     -fx-text-fill: WHITE;
-    -fx-alignment: LEFT;
+    -fx-alignment: center-left;
     -fx-focus-color:#CF5BFF;
     -fx-font-size: 14px;
 }

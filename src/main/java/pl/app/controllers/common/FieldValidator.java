@@ -27,6 +27,15 @@ public class FieldValidator {
         });
     }
 
+    public static void setRequiredValidator(String message, JFXPasswordField passwordField) {
+        RequiredFieldValidator requiredFieldValidator = new RequiredFieldValidator(message);
+        passwordField.getValidators().add(requiredFieldValidator);
+        passwordField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) passwordField.validate();
+        });
+    }
+
+
     public static void setRegexValidator(String message, JFXTextField textField, String regex) {
         RegexValidator regexValidator = new RegexValidator(message);
         regexValidator.setRegexPattern(regex);

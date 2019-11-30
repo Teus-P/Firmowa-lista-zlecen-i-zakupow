@@ -4,7 +4,7 @@ import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
 import org.jetbrains.annotations.NotNull;
-import pl.app.api.TokenKeeper;
+import pl.app.api.UserSession;
 
 import java.io.IOException;
 import java.util.logging.Logger;
@@ -20,7 +20,7 @@ public class TokenAuthorizationInterceptor implements Interceptor {
         Request authenticatedRequest = chain.request();
 
         authenticatedRequest = authenticatedRequest.newBuilder()
-                .header("Authorization", "Bearer" + TokenKeeper.getAccessToken())
+                .header("Authorization", "Bearer" + UserSession.getAccessToken())
                 .build();
 
         LOGGER.info("Request " + authenticatedRequest);

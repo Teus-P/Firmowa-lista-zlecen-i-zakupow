@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.shape.Circle;
 import lombok.Setter;
 import pl.app.api.model.OrderModel;
@@ -51,6 +52,12 @@ public class RealizedOrderController extends BaseScreen {
 
     @FXML
     private JFXListView<UserOrderInfoModel> orderStatusListView;
+
+    @FXML
+    private HBox rejectRow;
+
+    @FXML
+    private Label rejectReasonLabel;
 
 
     public RealizedOrderController() {
@@ -98,6 +105,11 @@ public class RealizedOrderController extends BaseScreen {
         orderStatusListView.setItems(userOrderInfoModelObservableList);
 
         initOrderProductTable();
+
+        if (orderModel.isEnded() && !orderModel.isAccepted()) {
+            rejectRow.setVisible(true);
+            rejectReasonLabel.setText(orderModel.getRejectedMessage());
+        }
 
     }
 

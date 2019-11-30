@@ -178,4 +178,14 @@ public interface ApiResourceInterface {
 
     @GET("/order/history")
     Call<List<OrderModel>> getUserOrderHistory();
+
+    @FormUrlEncoded
+    @PUT("/user/change/password")
+    Call<ResponseModel> changeUserAccountPassword(
+            @Field("oldPassword") String oldPassword,
+            @Field("newPassword") String newPassword
+    );
+
+    @GET("/user/help")
+    Call<UserAccountModel> getAdministratorHelpInfo();
 }

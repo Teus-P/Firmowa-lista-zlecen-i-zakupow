@@ -7,6 +7,7 @@ import pl.app.api.interfaces.ApiResourceInterface;
 import pl.app.api.model.ResponseModel;
 import pl.app.api.model.UnitModel;
 import pl.app.api.model.UserAccountModel;
+import pl.app.api.responseInterfaces.ChangePasswordResponseListener;
 import pl.app.api.responseInterfaces.EditUserResponseListener;
 import pl.app.api.responseInterfaces.NewUserResponseListener;
 import retrofit2.Call;
@@ -72,4 +73,32 @@ public class UserAccountHelper {
             e.printStackTrace();
         }
     }
+
+
+    public void changeUserAccountPassword(String oldPassword, String newPassword, ChangePasswordResponseListener listener) {
+        Call<ResponseModel> call = apiResourceInterface.changeUserAccountPassword(oldPassword, newPassword);
+
+        Response<ResponseModel> response = null;
+
+        try {
+            response = call.execute();
+
+            if (response.isSuccessful() && response.code() == 200) {
+                listener.onChangePasswordSuccessResponse(response.body());
+            } else {
+                Gson gson = new Gson();
+                listener.onChangePasswordFailedResponse(gson.fromJson(response.errorBody() != null ? response.errorBody().string() : null, ResponseModel.class));
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public UserAccountModel getAdministratorInfo() {
+        Call<UserAccountModel> call = apiResourceInterface.getAdministratorHelpInfo();
+        return CallExecutor.execute(call);
+    }
+
 }

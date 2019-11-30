@@ -71,16 +71,10 @@ public class CurrentOrdersController extends BaseScreen implements CurrentUserOr
         currentOrdersTable.setOnMouseClicked(click -> {
             if (click.getClickCount() == 2) {
 
-                if (currentOrdersTable.getSelectionModel().getSelectedItem().getValue().getOrderModel().getRecipient() == null) {
-                    getContentManager().buildContext(ContentProperty.CURRENT_WAITING_ORDER).attachTo(pageContainer).build();
-                } else {
-                    RealizedOrderController controller = getContentManager().buildContext(ContentProperty.REALIZED_ORDER).attachTo(pageContainer).build().getController();
-                    controller.setOrderModel(currentOrdersTable.getSelectionModel().getSelectedItem().getValue().getOrderModel());
-                    controller.setArguments(CURRENT_ORDER_PAGE);
-                    controller.notifyDataSetChanged();
-                }
-
-
+                RealizedOrderController controller = getContentManager().buildContext(ContentProperty.REALIZED_ORDER).attachTo(pageContainer).build().getController();
+                controller.setOrderModel(currentOrdersTable.getSelectionModel().getSelectedItem().getValue().getOrderModel());
+                controller.setArguments(CURRENT_ORDER_PAGE);
+                controller.notifyDataSetChanged();
             }
         });
 
@@ -90,7 +84,6 @@ public class CurrentOrdersController extends BaseScreen implements CurrentUserOr
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize(location, resources);
-        //initCurrentOrdersTable();
         fetchData();
     }
 

@@ -1,18 +1,15 @@
 package pl.app.controllers.content;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXProgressBar;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.effect.Effect;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
+import pl.app.api.UserSession;
 import pl.app.core.baseComponent.BaseScreen;
 import pl.app.core.property.ContentProperty;
+import pl.app.core.property.StageProperty;
 import pl.app.core.screen.ScreenController;
 
-import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -46,7 +43,6 @@ public class MainPageController extends BaseScreen {
     @FXML
     private JFXButton adminButton;
 
-
     public MainPageController() {
 
     }
@@ -78,7 +74,7 @@ public class MainPageController extends BaseScreen {
 
     @FXML
     void helpButtonOnAction(ActionEvent event) {
-
+        getContentManager().buildContext(ContentProperty.HELP_SCREEN).attachTo(container).build();
     }
 
     @FXML
@@ -87,7 +83,8 @@ public class MainPageController extends BaseScreen {
 
     @FXML
     void logoutButtonOnAction(ActionEvent event) {
-
+        UserSession.clearSession();
+        super.screenController.setScreenProperty(StageProperty.LOGIN_PAGE).show();
     }
 
     @FXML
@@ -112,11 +109,17 @@ public class MainPageController extends BaseScreen {
 
 
     private void initUi() {
-        //adminButton.setVisible(false);
+
+        if (UserSession.getLoggedUser().getUserAccountTypeModels().stream().anyMatch(item -> item.getName().equalsIgnoreCase("admin")
+                || item.getName().equalsIgnoreCase("implementers"))) {
+            adminButton.setVisible(true);
+        } else {
+            adminButton.setVisible(false);
+        }
 
     }
 
-    private void clearUi(){
+    private void clearUi() {
 
     }
 

@@ -11,11 +11,15 @@ import javafx.fxml.FXML;
 
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import pl.app.api.TokenKeeper;
+import pl.app.api.UserSession;
 import pl.app.api.clients.ApiResourcesClient;
 import pl.app.api.helpers.UserAccountHelper;
+import pl.app.api.model.ResponseModel;
 import pl.app.api.model.UserAccountModel;
+import pl.app.api.responseInterfaces.ChangePasswordResponseListener;
 import pl.app.controllers.common.FieldValidator;
+import pl.app.controllers.common.popupDialogs.InformationDialog;
+import pl.app.controllers.common.popupDialogs.WarningDialog;
 import pl.app.core.baseComponent.BaseScreen;
 
 
@@ -23,14 +27,19 @@ import java.awt.Graphics2D;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class UserPanelController extends BaseScreen {
+import static com.google.common.hash.Hashing.sha512;
+
+public class UserPanelController extends BaseScreen implements ChangePasswordResponseListener {
 
     private UserAccountHelper userAccountHelper;
     private UserAccountModel userAccountModel;
+
 
     @FXML
     private Label userNameLabel;
@@ -73,6 +82,14 @@ public class UserPanelController extends BaseScreen {
     public void initialize(URL location, ResourceBundle resources) {
         initQrCode();
         initUi();
+        setValidators();
+
+    }
+
+    private void setValidators() {
+        FieldValidator.setRequiredValidator("Proszę wpisać stare hasło", oldPasswordTxField);
+        FieldValidator.setRequiredValidator("Proszę wpisać nowe hasło", newPasswordTxField);
+        FieldValidator.setRequiredValidator("Proszę powtórzyć nowe hasło", repNewPasswordTxField);
     }
 
 
@@ -84,7 +101,7 @@ public class UserPanelController extends BaseScreen {
 
         BufferedImage bufferedImage = null;
         try {
-            BitMatrix byteMatrix = qrCodeWriter.encode(TokenKeeper.getAccessToken(), BarcodeFormat.QR_CODE, width, height);
+            BitMatrix byteMatrix = qrCodeWriter.encode(UserSession.getAccessToken(), BarcodeFormat.QR_CODE, width, height);
             bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
             bufferedImage.createGraphics();
 
@@ -127,12 +144,38 @@ public class UserPanelController extends BaseScreen {
         userTypesLabel.setText(builder.toString());
 
 
-
     }
 
     @FXML
     void saveNewPasswordOnAction(ActionEvent event) {
+        if (oldPasswordTxField.validate() && newPasswordTxField.validate() && repNewPasswordTxField.validate()) {
+            if (newPasswordTxField.getText().equals(repNewPasswordTxField.getText())) {
+                userAccountHelper.changeUserAccountPassword(encryptPassword(oldPasswordTxField.getText()), encryptPassword(newPasswordTxField.getText()), this);
+            } else {
+                WarningDialog.showWarningDialog("Błąd", "Nowe hasła nie są identyczne");
+            }
 
+        }
     }
 
+    @Override
+    public void onChangePasswordSuccessResponse(ResponseModel responseModel) {
+        StringBuilder builder = new StringBuilder();
+        responseModel.getDetails().forEach(message -> builder.append(message).append("\n"));
+        InformationDialog.showInformationDialog(responseModel.getMessage(), builder.toString());
+    }
+
+    @Override
+    public void onChangePasswordFailedResponse(ResponseModel responseModel) {
+
+        StringBuilder builder = new StringBuilder();
+        responseModel.getDetails().forEach(message -> builder.append(message).append("\n"));
+        WarningDialog.showWarningDialog(responseModel.getMessage(), builder.toString());
+    }
+
+    private String encryptPassword(String password) {
+
+        String pass = sha512().hashString(password, StandardCharsets.UTF_8).toString();
+        return Base64.getEncoder().encodeToString(pass.getBytes());
+    }
 }

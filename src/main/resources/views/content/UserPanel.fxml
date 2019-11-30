@@ -21,7 +21,7 @@
               <Label alignment="CENTER" text="Podstawowe informacje Twojego konta" />
          </children>
       </VBox>
-        <AnchorPane layoutX="20.0" layoutY="139.0">
+        <AnchorPane layoutX="20.0" layoutY="139.0" AnchorPane.leftAnchor="20.0">
             <children>
                 <Label text="Dane personalne">
                     <font>
@@ -89,7 +89,7 @@
                 </VBox>
             </children>
         </AnchorPane>
-        <VBox layoutX="907.0" layoutY="25.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="25.0">
+        <VBox layoutX="907.0" layoutY="25.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="25.0">
             <children>
                 <Label text="Typ konta" />
                 <Label fx:id="userTypesLabel" text="Realizator">
@@ -99,7 +99,7 @@
                 </Label>
             </children>
         </VBox>
-        <AnchorPane layoutX="20.0" layoutY="363.0">
+        <AnchorPane layoutX="20.0" layoutY="363.0" AnchorPane.leftAnchor="20.0">
             <children>
                 <Label text="Zmiana hasła">
                     <font>

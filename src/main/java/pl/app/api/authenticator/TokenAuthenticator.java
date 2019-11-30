@@ -3,7 +3,7 @@ package pl.app.api.authenticator;
 import okhttp3.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import pl.app.api.TokenKeeper;
+import pl.app.api.UserSession;
 import pl.app.api.clients.ApiAuthorizationClient;
 import pl.app.api.model.TokenModel;
 import retrofit2.Call;
@@ -23,9 +23,9 @@ public class TokenAuthenticator implements Authenticator {
         if (response.code() == 401) {
 
             RequestBody requestBodyGrantType = RequestBody.create(MediaType.parse("multipart/form-data"), "refresh_token");
-            RequestBody requestBodyRefreshToken = RequestBody.create(MediaType.parse("multipart/form-data"), TokenKeeper.getRefreshToken());
+            RequestBody requestBodyRefreshToken = RequestBody.create(MediaType.parse("multipart/form-data"), UserSession.getRefreshToken());
 
-            LOGGER.info("REFRESH TOKEN: " + TokenKeeper.getRefreshToken());
+            LOGGER.info("REFRESH TOKEN: " + UserSession.getRefreshToken());
 
             Call<TokenModel> call = ApiAuthorizationClient.getApi().refreshAccessToken(requestBodyGrantType, requestBodyRefreshToken);
             Response<TokenModel> refreshTokenResponse = null;
@@ -38,7 +38,7 @@ public class TokenAuthenticator implements Authenticator {
 
                     LOGGER.info("NEW TOKEN AFTER REFRESH " + accessToken);
 
-                    TokenKeeper.setAccessToken(accessToken);
+                    UserSession.setAccessToken(accessToken);
 
                     return response.request()
                             .newBuilder()
