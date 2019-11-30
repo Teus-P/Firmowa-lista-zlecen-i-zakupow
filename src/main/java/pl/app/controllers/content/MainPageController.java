@@ -110,8 +110,8 @@ public class MainPageController extends BaseScreen {
 
     private void initUi() {
 
-        if (UserSession.getLoggedUser().getUserAccountTypeModels().stream().anyMatch(item -> item.getName().equalsIgnoreCase("admin")
-                || item.getName().equalsIgnoreCase("implementers"))) {
+        if (UserSession.getLoggedUser().getUserAccountTypeModels().stream().anyMatch(item -> item.getName().equals("Role_IMPLEMENTERS")
+                || item.getName().equals("Role_ADMIN"))) {
             adminButton.setVisible(true);
         } else {
             adminButton.setVisible(false);
