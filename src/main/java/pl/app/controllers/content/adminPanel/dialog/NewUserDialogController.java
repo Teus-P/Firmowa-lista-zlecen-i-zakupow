@@ -134,10 +134,10 @@ public class NewUserDialogController extends BaseDialog implements NewUserRespon
         FieldValidator.setRequiredValidator("Proszę wpisać pesel", peselTextField);
         FieldValidator.setRequiredValidator("Proszę wpisać imię", firstNameTextField);
         FieldValidator.setRequiredValidator("Proszę wpisać nazwisko", lastNameTextField);
-        FieldValidator.setRequiredValidator("Proszę wpisać numer telefonu!", phoneNumberTextField);
-        FieldValidator.setRequiredValidator("Proszę wpisać nazwę użytkownika!", userNameTextField);
+        FieldValidator.setRequiredValidator("Proszę wpisać numer telefonu", phoneNumberTextField);
+        FieldValidator.setRequiredValidator("Proszę wpisać nazwę użytkownika", userNameTextField);
 
-        FieldValidator.setRequiredValidator("Proszę wpisać adres email!", emailTextField);
+        FieldValidator.setRequiredValidator("Proszę wpisać adres email", emailTextField);
         FieldValidator.setEmailValidator(emailTextField);
     }
 
