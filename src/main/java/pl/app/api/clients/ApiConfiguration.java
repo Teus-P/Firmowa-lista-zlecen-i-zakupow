@@ -7,7 +7,7 @@ import retrofit2.Retrofit;
 
 abstract class ApiConfiguration {
 
-    static final String HOST_BASE_URL = "http://127.0.0.1:8088";
+    static final String HOST_BASE_URL = "http://192.168.8.143";
     HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
     DynamicHostInterceptor dynamicHostInterceptor = new DynamicHostInterceptor(HOST_BASE_URL);
     OkHttpClient okHttpClient = null;
@@ -17,7 +17,7 @@ abstract class ApiConfiguration {
     //TODO - basic authorization api credicals
     // - do zmiany na hashe !
     // - przenieść dane to zewnetrznego plku ?
-    static final String CLIENT_LOGIN = "desktop";
-    static final String CLIENT_SECRET = "password";
-
+    static final String CLIENT_LOGIN = "restApi";
+    static final String CLIENT_SECRET = "JDJhJDA4JGg0THZMdldtZHRJWm8uTkNRVERuTk9aeHZPbVQyL3RSY0dOT0dJRnpMTnl3L0tXcEliTG9X";
+    //secret: firmowalistazlecen -> bcrypt -> base64
 }

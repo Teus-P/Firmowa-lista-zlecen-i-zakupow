@@ -28,10 +28,10 @@ public class UserAccountHelper {
         return CallExecutor.execute(call);
     }
 
-    public List<UserAccountModel> getAllUsers() {
-        Call<List<UserAccountModel>> call = apiResourceInterface.getAllUsers();
+        public List<UserAccountModel> getAllUsers() {
+            Call<List<UserAccountModel>> call = apiResourceInterface.getAllUsers();
 
-        return CallExecutor.execute(call);
+            return CallExecutor.execute(call);
     }
 
 

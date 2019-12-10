@@ -75,12 +75,11 @@ public class LoginPageController extends BasePage implements LoginResponseListen
         if (loginTextField.validate() && passwordPasswordField.validate()) {
             userLogin = loginTextField.getText();
             userPassword = passwordPasswordField.getText();
-            String encryptedPassword = encryptPassword(userPassword);
+            String encryptedPassword = userPassword;
             LOGGER.info("PASS : " + encryptedPassword);
             if (getTokenByUserCredentials(userLogin, encryptedPassword) != null) {
 
                 LOGGER.info("TOKEN : " + tokenModel.getAccessToken());
-
                 UserSession.setSession(tokenModel.getAccessToken(), tokenModel.getRefreshToken());
 
                 showMainPage();
@@ -95,9 +94,9 @@ public class LoginPageController extends BasePage implements LoginResponseListen
 
     private TokenModel getTokenByUserCredentials(String username, String password) {
 
-        RequestBody requestBodyGrantType = RequestBody.create(MediaType.parse("multipart/form-data"), "password");
-        RequestBody requestBodyUsername = RequestBody.create(MediaType.parse("multipart/form-data"), username);
-        RequestBody requestBodyPassword = RequestBody.create(MediaType.parse("multipart/form-data"), password);
+        RequestBody requestBodyGrantType = RequestBody.create("password", MediaType.parse("multipart/form-data"));
+        RequestBody requestBodyUsername = RequestBody.create(username, MediaType.parse("multipart/form-data"));
+        RequestBody requestBodyPassword = RequestBody.create(password, MediaType.parse("multipart/form-data"));
 
         tokenModel = tokenHelper.getAccessToken(requestBodyGrantType, requestBodyUsername, requestBodyPassword, this);
 
@@ -116,11 +115,11 @@ public class LoginPageController extends BasePage implements LoginResponseListen
     }
 
 
-    private String encryptPassword(String password) {
-
-        String pass = sha512().hashString(password, StandardCharsets.UTF_8).toString();
-        return Base64.getEncoder().encodeToString(pass.getBytes());
-    }
+//    private String encryptPassword(String password) {
+//
+//        String pass = sha512().hashString(password, StandardCharsets.UTF_8).toString();
+//        return Base64.getEncoder().encodeToString(pass.getBytes());
+//    }
 
 
     @Override

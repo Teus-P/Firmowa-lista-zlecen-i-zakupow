@@ -101,7 +101,7 @@ public class UserPanelController extends BaseScreen implements ChangePasswordRes
 
         BufferedImage bufferedImage = null;
         try {
-            BitMatrix byteMatrix = qrCodeWriter.encode(UserSession.getAccessToken(), BarcodeFormat.QR_CODE, width, height);
+            BitMatrix byteMatrix = qrCodeWriter.encode(UserSession.getAccessToken() + "\n" + UserSession.getRefreshToken(), BarcodeFormat.QR_CODE, width, height);
             bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
             bufferedImage.createGraphics();
 
