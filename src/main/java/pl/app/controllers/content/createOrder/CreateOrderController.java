@@ -141,7 +141,7 @@ public class CreateOrderController implements Initializable {
             orderHelper.createNewOrder(orderProductModelList);
             productTableItemObservableList.clear();
 
-            setAlertContent(Alert.AlertType.CONFIRMATION, "Złożono zamówienie", "Zamówienie zostało złożone.", "Złożone przez Ciebie zamówienie zostało wysłane i oczekuje na akceptacje.");
+            setAlertContent(Alert.AlertType.CONFIRMATION, "Złożono zamówienie", "Zamówienie zostało złożone.", "Złożone przez Ciebie zamówienie zostało wysłane i oczekuje na akceptację.");
             alert.show();
         }else {
             setAlertContent(Alert.AlertType.ERROR,"Błędne zamówienie", "Zamówienie nie zostało złożone.", "Składane zamówienie musi zawierać listę produktów.");
