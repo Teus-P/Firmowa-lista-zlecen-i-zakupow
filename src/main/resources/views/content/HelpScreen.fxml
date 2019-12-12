@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -11,57 +12,78 @@
             <children>
                 <Label text="Pomoc">
                     <font>
-                        <Font name="System Bold" size="36.0" />
+                        <Font name="System Bold" size="48.0" />
                     </font>
                 </Label>
-                <Label text="Dane kontaktowe z administratorem systemu" />
+                <Label text="Dane kontaktowe z administratorem systemu">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font></Label>
             </children>
         </VBox>
-        <VBox layoutX="59.0" layoutY="117.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="150.0">
+        <VBox layoutX="59.0" layoutY="117.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="200.0">
             <children>
                 <Label text="Główny administrator systemu">
                     <font>
-                        <Font size="18.0" />
+                        <Font name="System Italic" size="18.0" />
                     </font>
                 </Label>
                 <VBox>
                     <children>
-                        <Label text="Imię i nazwisko" />
+                        <Label text="Imię i nazwisko">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
                         <Label fx:id="fullNameLabel" text="Jan Kowalski">
                             <font>
-                                <Font size="18.0" />
+                                <Font name="System Bold" size="24.0" />
                             </font>
                         </Label>
                     </children>
+               <VBox.margin>
+                  <Insets top="25.0" />
+               </VBox.margin>
                 </VBox>
             </children>
         </VBox>
-        <VBox layoutX="347.0" layoutY="117.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="250.0">
+        <VBox layoutX="347.0" layoutY="117.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="350.0">
             <children>
                 <Label text="Dane kontaktowe">
                     <font>
-                        <Font size="18.0" />
+                        <Font size="36.0" />
                     </font>
                 </Label>
                 <VBox>
                     <children>
-                        <Label text="Adres email" />
+                        <Label text="Adres email">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
                         <Label fx:id="emailLabel" text="example@example.com">
                             <font>
-                                <Font size="18.0" />
+                                <Font name="System Bold" size="24.0" />
                             </font>
                         </Label>
                     </children>
+               <VBox.margin>
+                  <Insets top="25.0" />
+               </VBox.margin>
                 </VBox>
                 <VBox>
                     <children>
-                        <Label text="Numer Telefonu" />
+                        <Label text="Numer Telefonu">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
                         <Label fx:id="phoneNumberLabel" text="500 600 700">
                             <font>
-                                <Font size="18.0" />
+                                <Font name="System Bold" size="24.0" />
                             </font>
                         </Label>
                     </children>
+               <VBox.margin>
+                  <Insets top="25.0" />
+               </VBox.margin>
                 </VBox>
             </children>
         </VBox>

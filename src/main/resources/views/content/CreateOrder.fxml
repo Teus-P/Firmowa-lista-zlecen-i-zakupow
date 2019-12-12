@@ -4,46 +4,96 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXTreeTableView?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1080.0" stylesheets="@../../styles/MainStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.createOrder.CreateOrderController">
+<AnchorPane prefWidth="800.0" stylesheets="@../../styles/MainStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.createOrder.CreateOrderController">
     <children>
       <VBox AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
          <children>
               <Label alignment="CENTER" text="Nowe zamówienie">
                <font>
-                  <Font name="System Bold" size="36.0" />
+                  <Font name="System Bold" size="48.0" />
                </font>
             </Label>
-            <Label text="Tworzenie nowego zlecenia zakupu produktów" />
+            <Label text="Tworzenie nowego zlecenia zakupu produktów">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font></Label>
          </children>
       </VBox>
-        <HBox alignment="CENTER" layoutX="113.0" layoutY="44.0" prefHeight="127.0" prefWidth="377.0" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="190.0">
+        <HBox layoutX="85.0" layoutY="138.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="138.0">
             <children>
-                <AnchorPane prefHeight="127.0" prefWidth="600.0">
+                <AnchorPane>
                     <children>
-                        <Label layoutX="14.0" layoutY="58.0" text="Nazwa produktu" />
-                        <JFXComboBox fx:id="productComboBox" layoutX="14.0" layoutY="88.0" onAction="#productComboBoxActionPerformed" prefHeight="25.0" prefWidth="148.0" promptText="Nazwa" />
-                        <Label layoutX="236.0" layoutY="55.0" prefHeight="17.0" prefWidth="110.0" text="Kategoria produktu" />
-                        <JFXTextField fx:id="categoryTextField" disable="true" layoutX="236.0" layoutY="88.0" prefHeight="25.0" prefWidth="174.0" text="Kategoria" />
-                        <Label layoutX="489.0" layoutY="58.0" prefHeight="17.0" prefWidth="68.0" text="Liczba sztuk" />
-                        <JFXTextField fx:id="numberTextField" layoutX="489.0" layoutY="88.0" prefHeight="25.0" prefWidth="68.0" />
+                        <Label layoutX="14.0" layoutY="58.0" text="Nazwa produktu">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+                        <JFXComboBox fx:id="productComboBox" layoutX="14.0" layoutY="88.0" onAction="#productComboBoxActionPerformed" prefWidth="150.0" promptText="Nazwa" />
+                        <Label layoutX="236.0" layoutY="55.0" prefHeight="20.0" prefWidth="166.0" text="Kategoria produktu">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+                        <JFXTextField fx:id="categoryTextField" disable="true" layoutX="236.0" layoutY="88.0" prefWidth="150.0" text="Kategoria" />
+                        <Label layoutX="489.0" layoutY="58.0" text="Liczba sztuk">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+                        <JFXTextField fx:id="numberTextField" layoutX="489.0" layoutY="88.0" prefWidth="150.0" />
                     </children>
                 </AnchorPane>
             </children>
         </HBox>
-        <JFXButton fx:id="addNewProductToOrderButton" buttonType="RAISED" layoutX="191.0" layoutY="183.0" onAction="#addNewProductToList" text="+ Dodaj nowy produkt do zamówienia" textFill="#a0a2ab" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="190.0" />
-        <JFXButton layoutX="151.0" layoutY="216.0" styleClass="LinkButton" text="Zaproponuj własny produkt" AnchorPane.leftAnchor="151.0" AnchorPane.rightAnchor="149.0" />
-      <JFXTreeTableView fx:id="productTable" editable="true" layoutX="183.0" layoutY="277.0" prefHeight="300.0" prefWidth="332.0" AnchorPane.bottomAnchor="190.0" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="280.0">
+        <JFXButton fx:id="addNewProductToOrderButton" buttonType="RAISED" layoutX="32.0" layoutY="295.0" onAction="#addNewProductToList" prefWidth="200.0" text="Dodaj produkt" textFill="#a0a2ab" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="300.0">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../drawable/2x/baseline_add_white_18dp.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <padding>
+            <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
+         </padding>
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></JFXButton>
+      <JFXTreeTableView fx:id="productTable" editable="true" layoutX="194.0" layoutY="384.0" prefHeight="300.0" prefWidth="332.0" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="350.0">
          <columnResizePolicy>
             <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy></JFXTreeTableView>
-      <JFXButton fx:id="addNewOrderButton" buttonType="RAISED" layoutX="270.0" layoutY="616.0" onAction="#addNewOrder" text="Wyślij zamówienie" textFill="#a0a2ab" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="190.0" />
-      <JFXButton id="deleteRowButton" fx:id="deleteRowButton" layoutX="810.0" layoutY="618.0" onAction="#deleteRow" prefHeight="25.0" prefWidth="80.0" text="Usuń" textFill="#a0a2ab" AnchorPane.bottomAnchor="150.0" AnchorPane.rightAnchor="190.0" />
+      <JFXButton fx:id="addNewOrderButton" buttonType="RAISED" layoutX="189.0" layoutY="722.0" onAction="#addNewOrder" text="Wyślij zamówienie" textFill="#a0a2ab" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../drawable/2x/baseline_done_white_18dp.png" />
+               </image>
+            </ImageView>
+         </graphic></JFXButton>
+      <JFXButton id="deleteRowButton" fx:id="deleteRowButton" layoutX="315.0" layoutY="297.0" onAction="#deleteRow" prefWidth="200.0" text="Usuń" textFill="WHITE" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="300.0">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../drawable/2x/baseline_delete_forever_white_18dp.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <padding>
+            <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
+         </padding>
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></JFXButton>
     </children>
 </AnchorPane>

@@ -1,0 +1,18 @@
+JFXListView .list-cell:even {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #000000;
+    -fx-text-color: #000000;
+
+}
+
+JFXListView .list-cell:odd {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #000000;
+    -fx-text-color: #000000;
+}
+
+JFXListView .list-cell:filled:selected:focused, .list-cell:filled:selected {
+    /* 3:, 4: */
+    -fx-background-color: linear-gradient(#4589FF 0%, #3891E8 25%, #49BEFF 75%, #38C3E8 100%);
+    -fx-text-fill: white; /* 5 */
+}

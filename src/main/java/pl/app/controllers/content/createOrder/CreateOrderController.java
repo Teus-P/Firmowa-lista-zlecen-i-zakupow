@@ -12,6 +12,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.cell.TextFieldTreeTableCell;
@@ -74,13 +75,9 @@ public class CreateOrderController implements Initializable {
 
         ProductsComboBoxInitializer.init(productComboBox, FXCollections.observableList(productHelper.getAllProducts()));
 
-        //TODO move this code to separate method
-        numberTextField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (!newValue.matches("\\d{0,7}([\\.]\\d{0,4})?")) {
-                    numberTextField.setText(oldValue);
-                }
+        numberTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d{0,7}([\\.]\\d{0,4})?")) {
+                numberTextField.setText(oldValue);
             }
         });
     }
@@ -162,6 +159,7 @@ public class CreateOrderController implements Initializable {
     }
 
     private void initProductTreeTableView() {
+        productTable.setPlaceholder(new Label("Brak produktów w zamówieniu"));
         JFXTreeTableColumn<OrderProductTableItem, String> productColumn = new JFXTreeTableColumn<>("Nazwa produktu");
         productColumn.setCellValueFactory(param -> param.getValue().getValue().getProductName());
 

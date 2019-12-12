@@ -15,95 +15,116 @@
          <children>
               <Label alignment="CENTER" text="Profil użytkownika">
                   <font>
-                      <Font name="System Bold" size="36.0" />
+                      <Font name="System Bold" size="48.0" />
                   </font>
               </Label>
-              <Label alignment="CENTER" text="Podstawowe informacje Twojego konta" />
+              <Label alignment="CENTER" text="Podstawowe informacje Twojego konta">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font></Label>
          </children>
       </VBox>
-        <AnchorPane layoutX="20.0" layoutY="139.0" AnchorPane.leftAnchor="20.0">
+        <AnchorPane layoutX="20.0" layoutY="139.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="200.0">
             <children>
                 <Label text="Dane personalne">
                     <font>
-                        <Font size="18.0" />
+                        <Font name="System Bold" size="24.0" />
                     </font>
                 </Label>
                 <VBox AnchorPane.topAnchor="50.0">
                     <children>
-                        <Label text="Nazwa użytkownika" />
+                        <Label text="Nazwa użytkownika">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
                         <Label fx:id="userNameLabel" text="janNowak">
                             <font>
-                                <Font size="18.0" />
+                                <Font size="24.0" />
                             </font>
                         </Label>
                     </children>
                 </VBox>
                 <VBox AnchorPane.topAnchor="100.0">
                     <children>
-                        <Label text="Imię i nazwisko" />
+                        <Label text="Imię i nazwisko">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
                         <Label fx:id="fullNameLabel" text="Jan Nowak">
                             <font>
-                                <Font size="18.0" />
+                                <Font size="24.0" />
                             </font>
                         </Label>
                     </children>
                 </VBox>
                 <VBox AnchorPane.topAnchor="150.0">
                     <children>
-                        <Label text="PESEL" />
+                        <Label text="PESEL">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
                         <Label fx:id="peselLabel" text="93030321321">
                             <font>
-                                <Font size="18.0" />
+                                <Font size="24.0" />
                             </font>
                         </Label>
                     </children>
                 </VBox>
             </children>
         </AnchorPane>
-        <AnchorPane layoutX="329.0" layoutY="139.0">
+        <AnchorPane layoutX="329.0" layoutY="139.0" AnchorPane.topAnchor="200.0">
             <children>
                 <Label layoutX="36.0" layoutY="24.0" text="Dane kontaktowe" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <font>
-                        <Font size="18.0" />
+                        <Font name="System Bold" size="24.0" />
                     </font>
                 </Label>
                 <VBox AnchorPane.topAnchor="50.0">
                     <children>
-                        <Label text="Akres email" />
+                        <Label text="Akres email">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
                         <Label fx:id="emailLabel" text="email@example.com">
                             <font>
-                                <Font size="18.0" />
+                                <Font size="24.0" />
                             </font>
                         </Label>
                     </children>
                 </VBox>
                 <VBox AnchorPane.topAnchor="100.0">
                     <children>
-                        <Label text="Numer telefonu" />
+                        <Label text="Numer telefonu">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
                         <Label fx:id="phoneNumberLabel" text="+48 504213123">
                             <font>
-                                <Font size="18.0" />
+                                <Font size="24.0" />
                             </font>
                         </Label>
                     </children>
                 </VBox>
             </children>
         </AnchorPane>
-        <VBox layoutX="907.0" layoutY="25.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="25.0">
+        <VBox layoutX="20.0" layoutY="746.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="750.0">
             <children>
-                <Label text="Typ konta" />
+                <Label text="Uprawnienia">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
                 <Label fx:id="userTypesLabel" text="Realizator">
                     <font>
-                        <Font size="18.0" />
+                        <Font size="24.0" />
                     </font>
                 </Label>
             </children>
         </VBox>
-        <AnchorPane layoutX="20.0" layoutY="363.0" AnchorPane.leftAnchor="20.0">
+        <AnchorPane layoutX="20.0" layoutY="363.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="450.0">
             <children>
                 <Label text="Zmiana hasła">
                     <font>
-                        <Font size="18.0" />
+                        <Font name="System Bold" size="24.0" />
                     </font>
                 </Label>
                 <VBox AnchorPane.topAnchor="50.0">
@@ -128,12 +149,12 @@
                 <JFXButton onAction="#saveNewPasswordOnAction" text="Zapisz" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="225.0" />
             </children>
         </AnchorPane>
-        <VBox layoutX="570.0" layoutY="579.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
+        <VBox alignment="CENTER" layoutX="570.0" layoutY="579.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
             <children>
                 <ImageView fx:id="qrImageView" fitHeight="300.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
                 <Label lineSpacing="1.0" text="Za pomocą kodu QR szybko zalogujesz się do aplikacji mobilnej">
                     <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets top="15.0" />
                     </VBox.margin>
                 </Label>
             </children>

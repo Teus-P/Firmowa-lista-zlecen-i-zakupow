@@ -7,7 +7,7 @@ JFXCheckBox {
     -fx-text-fill: #A0A2AB;
 }
 
-JFXButton{
+JFXButton {
     -fx-background-color: #3C58FA;
     -fx-text-fill: #FFFFFF;
 
@@ -22,7 +22,7 @@ JFXButton{
     -fx-background-color: #2D3447;
 }
 
-.LoginPageTextField,.LoginPagePasswordField{
+.LoginPageTextField, .LoginPagePasswordField {
     -fx-text-fill: #ffffff;
 }
 
@@ -40,13 +40,13 @@ JFXButton{
     -fx-border-color: #000000
 }
 
-#menuBar{
+#menuBar {
     -fx-background-color: #832ABD;
 }
 
 #remindPasswordButton, #deleteRowButton {
     -fx-background-color: #151928;
-    -fx-text-fill: #A0A2AB;
+    -fx-text-fill: #ffffff;
 
 }
 
@@ -59,6 +59,7 @@ JFXButton{
 }
 
 
-#blackSplitter{
+#blackSplitter {
 
 }
+

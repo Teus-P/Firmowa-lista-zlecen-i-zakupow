@@ -187,7 +187,6 @@ public class EditUserDialogController extends BaseDialog implements EditUserResp
                 categoriesCheckComboBox.getCheckModel().getCheckedItems().forEach(item -> {
                     implementerCategories.add(item.getCategoriesModel());
                 });
-                //TODO - do zrobienia edycja kategorii realizatora
             }
 
             getDialogStage().close();

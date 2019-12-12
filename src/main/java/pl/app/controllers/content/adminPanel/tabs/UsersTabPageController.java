@@ -9,10 +9,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.util.Callback;
 import pl.app.api.clients.ApiResourcesClient;
 import pl.app.api.helpers.UserAccountHelper;
 import pl.app.api.model.CategoriesModel;
+import pl.app.api.model.UserAccountTypeModel;
 import pl.app.controllers.common.listItems.UserTableItem;
 import pl.app.controllers.content.adminPanel.dialog.EditUserDialogController;
 import pl.app.controllers.content.adminPanel.dialog.NewUserDialogController;
@@ -25,9 +27,13 @@ import java.util.ResourceBundle;
 
 public class UsersTabPageController implements Initializable {
 
-
     private UserAccountHelper userAccountHelper;
     private ObservableList<UserTableItem> userTableItemObservableList;
+
+    private static final String ADMIN_ROLE = "Role_ADMIN";
+    private static final String USER_ROLE = "Role_USER";
+    private static final String RECIPIENT_ROLE = "Role_RECIPIENT";
+    private static final String IMPLEMENTERS_ROLE = "Role_IMPLEMENTERS";
 
 
     @FXML
@@ -67,8 +73,48 @@ public class UsersTabPageController implements Initializable {
         JFXTreeTableColumn<UserTableItem, String> phoneNumberColumn = new JFXTreeTableColumn<>("Numer telefonu");
         phoneNumberColumn.setCellValueFactory(param -> param.getValue().getValue().getPhoneNumber());
 
-        JFXTreeTableColumn<UserTableItem, String> userTypeColumn = new JFXTreeTableColumn<>("Typ użytkownika");
-        userTypeColumn.setCellValueFactory(param -> param.getValue().getValue().getRole());
+
+        JFXTreeTableColumn<UserTableItem, List<UserAccountTypeModel>> userTypeColumn = new JFXTreeTableColumn<>("Typ użytkownika");
+        userTypeColumn.setCellFactory(new Callback<>() {
+            @Override
+            public TreeTableCell<UserTableItem, List<UserAccountTypeModel>> call(TreeTableColumn<UserTableItem, List<UserAccountTypeModel>> param) {
+                final TreeTableCell<UserTableItem, List<UserAccountTypeModel>> cell = new TreeTableCell<>() {
+                    @Override
+                    protected void updateItem(List<UserAccountTypeModel> item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty || item == null) {
+                            setGraphic(null);
+                            setText(null);
+                        } else {
+                            VBox vBox = new VBox();
+                            item.forEach(type -> {
+                                Label label = new Label();
+
+                                if (type.getName().equals(ADMIN_ROLE))
+                                    label.setText("Administrator");
+
+                                if (type.getName().equals(USER_ROLE))
+                                    label.setText("Użytkownik");
+
+                                if (type.getName().equals(RECIPIENT_ROLE))
+                                    label.setText("Przyjmujący");
+
+                                if (type.getName().equals(IMPLEMENTERS_ROLE))
+                                    label.setText("Realizator");
+
+                                label.setTextFill(Color.BLACK);
+                                vBox.getChildren().add(label);
+                            });
+                            setGraphic(vBox);
+                            setText(null);
+                        }
+                    }
+                };
+                return cell;
+            }
+        });
+        userTypeColumn.setCellValueFactory(param -> param.getValue().getValue().getUserAccountTypeModeObservable());
+
 
         JFXTreeTableColumn<UserTableItem, List<CategoriesModel>> implementersCategoriesColumn = new JFXTreeTableColumn<>("Kategorie relizatora");
         implementersCategoriesColumn.setCellFactory(new Callback<>() {
@@ -87,6 +133,7 @@ public class UsersTabPageController implements Initializable {
                             item.forEach(categoriesModel -> {
 
                                 Label label = new Label(categoriesModel.getName());
+                                label.setTextFill(Color.BLACK);
                                 if (categoriesModel.isDeleted()) {
                                     label.getStylesheets().addAll(getClass().getResource("/styles/StrikethroughLabel.css").toExternalForm());
                                 }
@@ -111,11 +158,11 @@ public class UsersTabPageController implements Initializable {
 
         userSearchField.textProperty().addListener((observable, oldValue, newValue) ->
                 userTable.setPredicate(table
-                        -> table.getValue().getLastName().getValue().contains(newValue)
-                        || table.getValue().getFirstName().getValue().contains(newValue)
-                        || table.getValue().getRole().getValue().contains(newValue)
-                        || table.getValue().getUserLogin().getValue().contains(newValue)
-                        || table.getValue().getEmail().getValue().contains(newValue)));
+                        -> table.getValue().getLastName().getValue().toLowerCase().contains(newValue.toLowerCase())
+                        || table.getValue().getFirstName().getValue().toLowerCase().contains(newValue.toLowerCase())
+                        || table.getValue().getRole().getValue().toLowerCase().contains(newValue.toLowerCase())
+                        || table.getValue().getUserLogin().getValue().toLowerCase().contains(newValue.toLowerCase())
+                        || table.getValue().getEmail().getValue().toLowerCase().contains(newValue.toLowerCase())));
 
         userTable.setOnMouseClicked(click -> {
             if (click.getClickCount() == 2) {

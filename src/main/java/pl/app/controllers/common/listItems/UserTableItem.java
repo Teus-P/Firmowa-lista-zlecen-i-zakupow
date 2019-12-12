@@ -14,6 +14,7 @@ import pl.app.api.helpers.ImplementersHelper;
 import pl.app.api.model.CategoriesModel;
 import pl.app.api.model.ResponseModel;
 import pl.app.api.model.UserAccountModel;
+import pl.app.api.model.UserAccountTypeModel;
 import pl.app.api.responseInterfaces.ImplementerCategoriesResponseListener;
 
 import java.util.List;
@@ -29,7 +30,6 @@ public class UserTableItem extends RecursiveTreeObject<UserTableItem> implements
     private int userId;
     private UserAccountModel userAccountModel;
 
-
     private StringProperty firstName;
     private StringProperty lastName;
     private StringProperty userLogin;
@@ -39,6 +39,9 @@ public class UserTableItem extends RecursiveTreeObject<UserTableItem> implements
 
 
     private ObservableValue<List<CategoriesModel>> implementersCategoriesObservable;
+
+    private ObservableValue<List<UserAccountTypeModel>> userAccountTypeModeObservable;
+
 
     public UserTableItem(UserAccountModel userAccountModel) {
         this.userAccountModel = userAccountModel;
@@ -56,6 +59,33 @@ public class UserTableItem extends RecursiveTreeObject<UserTableItem> implements
         StringBuilder builder = new StringBuilder();
         userAccountModel.getUserAccountTypeModels().forEach(role -> builder.append(role.getName()).append("\n"));
         this.role = new SimpleStringProperty(builder.toString());
+
+        this.userAccountTypeModeObservable = new ObservableValue<>() {
+            @Override
+            public void addListener(ChangeListener<? super List<UserAccountTypeModel>> listener) {
+
+            }
+
+            @Override
+            public void removeListener(ChangeListener<? super List<UserAccountTypeModel>> listener) {
+
+            }
+
+            @Override
+            public List<UserAccountTypeModel> getValue() {
+                return userAccountModel.getUserAccountTypeModels();
+            }
+
+            @Override
+            public void addListener(InvalidationListener listener) {
+
+            }
+
+            @Override
+            public void removeListener(InvalidationListener listener) {
+
+            }
+        };
     }
 
     private void checkIfUserIsImplementers() {

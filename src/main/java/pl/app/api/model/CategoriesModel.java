@@ -5,7 +5,6 @@ import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 import lombok.Setter;
 
-//TODO change the class productName to CategoryModel
 
 import java.util.Objects;
 
@@ -21,8 +20,6 @@ public class CategoriesModel {
     @Expose
     private String name;
 
-    //ostrożnie z tą flagą
-    //flaga odpowiada za usunięcie w systemie
     @SerializedName("deleted")
     @Expose
     private boolean deleted = false;

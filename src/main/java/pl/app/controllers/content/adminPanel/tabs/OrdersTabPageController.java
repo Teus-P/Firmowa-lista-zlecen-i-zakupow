@@ -20,7 +20,6 @@ import pl.app.core.property.StageProperty;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-//TODO - szczegóły w panelu admina - obsłużyć wyszukiwarkę + wyświetlenie tylko niezakceptowanych/zaakceptowanych zamówień
 public class OrdersTabPageController implements Initializable {
 
     private OrderHelper orderHelper;
@@ -66,6 +65,11 @@ public class OrdersTabPageController implements Initializable {
                 showOrderDetails();
             }
         });
+
+        orderSearchField.textProperty().addListener((observable, oldValue, newValue) ->
+                orderTable.setPredicate(orderTableItemTreeItem ->
+                        orderTableItemTreeItem.getValue().getUserNameDisplayValue().getValue().toLowerCase().contains(newValue.toLowerCase())
+                || orderTableItemTreeItem.getValue().getAcceptedStatusDisplayValue().getValue().toLowerCase().contains(newValue.toLowerCase())));
 
     }
 

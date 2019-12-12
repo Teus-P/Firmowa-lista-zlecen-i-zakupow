@@ -9,7 +9,7 @@
 
 <AnchorPane fx:id="container" minHeight="900.0" minWidth="800.0" stylesheets="@../../../styles/AdminPanelStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.adminPanel.AdminPanelController">
     <children>
-        <TabPane layoutY="64.0" minHeight="850.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+        <TabPane layoutY="64.0" minHeight="850.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="125.0">
             <tabs>
                 <Tab fx:id="usersTab" text="Zarządzanie użytkownikami">
                     <content>
@@ -66,10 +66,13 @@
          <children>
               <Label alignment="CENTER" text="Panel administratora">
                <font>
-                  <Font name="System Bold" size="36.0" />
+                  <Font name="System Bold" size="48.0" />
                </font>
             </Label>
-            <Label text="Zarządzanie systemem" />
+            <Label text="Zarządzanie systemem">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font></Label>
          </children>
       </VBox>
     </children>

@@ -69,9 +69,9 @@ public class ProductsTabPageController implements Initializable {
 
         productSearchField.textProperty().addListener((observable, oldValue, newValue) ->
                 productTable.setPredicate(productTableItemTreeItem
-                        -> productTableItemTreeItem.getValue().getProduct().getValue().contains(newValue)
-                        || productTableItemTreeItem.getValue().getCategory().getValue().contains(newValue)
-                        || productTableItemTreeItem.getValue().getUnit().getValue().contains(newValue)));
+                        -> productTableItemTreeItem.getValue().getProduct().getValue().toLowerCase().contains(newValue.toLowerCase())
+                        || productTableItemTreeItem.getValue().getCategory().getValue().toLowerCase().contains(newValue.toLowerCase())
+                        || productTableItemTreeItem.getValue().getUnit().getValue().toLowerCase().contains(newValue.toLowerCase())));
 
         productTable.setOnMouseClicked(click -> {
             if (click.getClickCount() == 2) {

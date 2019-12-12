@@ -7,6 +7,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import pl.app.api.model.UserOrderInfoModel;
+import pl.app.controllers.common.DateParser;
 
 import java.awt.*;
 import java.net.URL;
@@ -51,8 +52,9 @@ public class OrderStatusCellController implements Initializable {
 
     private void initUI() {
         statusName.setText(userOrderInfoModel.getOrderStatus().getName());
-        statusDate.setText(userOrderInfoModel.getInformationDate());
+        statusDate.setText(DateParser.parseDate(userOrderInfoModel.getInformationDate()));
     }
+
 
     private void initStatus() {
         if (containsIgnoreCase(userOrderInfoModel.getOrderStatus().getName(), "oczekuje")) {
@@ -69,14 +71,14 @@ public class OrderStatusCellController implements Initializable {
         if (containsIgnoreCase(userOrderInfoModel.getOrderStatus().getName(), "zaakceptowane")) {
             statusShape.setFill(Color.GREEN);
         }
+        if (containsIgnoreCase(userOrderInfoModel.getOrderStatus().getName(), "odbiór")) {
+            statusShape.setFill(Color.BLUEVIOLET);
+        }
     }
 
     private static boolean containsIgnoreCase(String str, String subString) {
         return str.toLowerCase().contains(subString.toLowerCase());
     }
-
-
-
 
 
 }

@@ -195,7 +195,7 @@ public class AssignImplementersDialog extends BaseDialog implements OrderImpleme
 
     @FXML
     void cancelButtonOnAction(ActionEvent event) {
-
+        getDialogStage().close();
     }
 
     @Override
@@ -205,7 +205,6 @@ public class AssignImplementersDialog extends BaseDialog implements OrderImpleme
 
     @Override
     public void onOrderImplementersResponseFailed(ResponseModel responseModel) {
-        //
     }
 
 

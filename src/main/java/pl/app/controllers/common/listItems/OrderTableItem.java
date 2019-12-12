@@ -5,8 +5,13 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import lombok.Getter;
 import pl.app.api.model.OrderModel;
+import pl.app.controllers.common.DateParser;
 
-//TODO - formatowanie daty
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 @Getter
 public class OrderTableItem extends RecursiveTreeObject<OrderTableItem> {
 
@@ -36,8 +41,9 @@ public class OrderTableItem extends RecursiveTreeObject<OrderTableItem> {
             this.userNameDisplayValue = new SimpleStringProperty(orderModel.getUserAccount().getUsername());
         }
 
-        this.createdOrderDateDisplayValue = new SimpleStringProperty(orderModel.getCreatedDate());
-
+        this.createdOrderDateDisplayValue = new SimpleStringProperty(DateParser.parseDate(orderModel.getCreatedDate()));
 
     }
+
+
 }

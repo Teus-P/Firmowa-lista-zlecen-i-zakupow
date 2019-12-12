@@ -89,7 +89,7 @@ public class UnitsTabPageController implements Initializable, NewUnitResponseLis
         unitTable.setShowRoot(false);
 
         unitSearchField.textProperty().addListener((observable, oldValue, newValue) -> {
-            unitTable.setPredicate(table -> table.getValue().getUnit().getValue().contains(newValue));
+            unitTable.setPredicate(table -> table.getValue().getUnit().getValue().toLowerCase().contains(newValue.toLowerCase()));
         });
     }
 

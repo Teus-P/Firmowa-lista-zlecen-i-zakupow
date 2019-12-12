@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import pl.app.api.UserSession;
+import pl.app.api.model.UserAccountTypeModel;
 import pl.app.core.baseComponent.BaseScreen;
 import pl.app.core.property.ContentProperty;
 import pl.app.core.property.StageProperty;
@@ -58,6 +59,7 @@ public class MainPageController extends BaseScreen {
     public void onLoadNode(ScreenController screenPage) {
         super.onLoadNode(screenPage);
         initUi();
+        getContentManager().buildContext(ContentProperty.HOME_PAGE).attachTo(container).build();
     }
 
     @Override
@@ -65,7 +67,6 @@ public class MainPageController extends BaseScreen {
         super.onCreateBuildContext();
 
     }
-
 
     @FXML
     void currentOrdersButtonOnAction(ActionEvent event) {
@@ -79,6 +80,7 @@ public class MainPageController extends BaseScreen {
 
     @FXML
     void homeButtonOnAction(ActionEvent event) {
+        getContentManager().buildContext(ContentProperty.HOME_PAGE).attachTo(container).build();
     }
 
     @FXML
@@ -110,7 +112,7 @@ public class MainPageController extends BaseScreen {
 
     private void initUi() {
 
-        if (UserSession.getLoggedUser().getUserAccountTypeModels().stream().anyMatch(item -> item.getName().equals("Role_IMPLEMENTERS")
+        if (UserSession.getLoggedUser().getUserAccountTypeModels().stream().anyMatch(item -> item.getName().equals("Role_RECIPIENT")
                 || item.getName().equals("Role_ADMIN"))) {
             adminButton.setVisible(true);
         } else {
@@ -118,10 +120,5 @@ public class MainPageController extends BaseScreen {
         }
 
     }
-
-    private void clearUi() {
-
-    }
-
 
 }

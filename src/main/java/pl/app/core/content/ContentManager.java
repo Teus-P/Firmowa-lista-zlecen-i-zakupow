@@ -8,7 +8,6 @@ import pl.app.core.property.ContentProperty;
 
 import java.io.IOException;
 
-//TODO do dokończenia
 public class ContentManager {
 
     private static final ContentManager instance = new ContentManager();

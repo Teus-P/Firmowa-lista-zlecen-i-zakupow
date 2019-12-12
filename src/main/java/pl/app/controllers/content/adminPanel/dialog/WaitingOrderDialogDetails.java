@@ -15,6 +15,7 @@ import javafx.scene.paint.Color;
 import pl.app.api.clients.ApiResourcesClient;
 import pl.app.api.helpers.OrderHelper;
 import pl.app.api.model.OrderModel;
+import pl.app.controllers.common.DateParser;
 import pl.app.controllers.common.listItems.OrderProductTableItem;
 import pl.app.core.baseComponent.BaseDialog;
 import pl.app.core.dialog.DialogStage;
@@ -37,16 +38,10 @@ public class WaitingOrderDialogDetails extends BaseDialog {
     private Label orderStatus;
 
     @FXML
-    private Label responseLabel;
-
-    @FXML
     private Label orderUserNameLabel;
 
     @FXML
     private Label orderDateLabel;
-
-    @FXML
-    private Label productSuggestionCountLabel;
 
     @FXML
     private Label productCountLabel;
@@ -84,7 +79,7 @@ public class WaitingOrderDialogDetails extends BaseDialog {
 
 
         orderUserNameLabel.setText(orderModel.getUserAccount().getUsername());
-        orderDateLabel.setText(orderModel.getCreatedDate());
+        orderDateLabel.setText(DateParser.parseDate(orderModel.getCreatedDate()));
         productCountLabel.setText(Integer.toString(orderModel.getOrderProductModels().size()));
 
         if (orderModel.getRecipient() != null) {

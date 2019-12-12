@@ -75,7 +75,7 @@
                         </ImageView>
                     </graphic>
                 </JFXButton>
-                <JFXButton fx:id="adminButton" buttonType="RAISED" layoutX="4.099999904632568" layoutY="732.0" maxHeight="50.0" minHeight="50.0" onAction="#adminButtonOnAction" prefHeight="50.0" styleClass="menuButton" text="Panel administratora" AnchorPane.bottomAnchor="225.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                <JFXButton fx:id="adminButton" buttonType="RAISED" layoutX="4.099999904632568" layoutY="732.0" maxHeight="50.0" minHeight="50.0" onAction="#adminButtonOnAction" prefHeight="50.0" styleClass="menuButton" text="Panel administratora" visible="false" AnchorPane.bottomAnchor="225.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                     <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                             <image>

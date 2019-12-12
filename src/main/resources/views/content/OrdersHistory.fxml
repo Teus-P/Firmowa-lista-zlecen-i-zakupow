@@ -13,13 +13,16 @@
          <children>
               <Label alignment="CENTER" text="Historia zamówień">
                <font>
-                  <Font name="System Bold" size="36.0" />
+                  <Font name="System Bold" size="48.0" />
                </font>
             </Label>
-            <Label text="Zamówienia zrealizowane i odrzucone" />
+            <Label text="Zamówienia zrealizowane i odrzucone">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font></Label>
          </children>
       </VBox>
-      <JFXTreeTableView fx:id="orderHistoryTable" layoutX="193.0" layoutY="126.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
+      <JFXTreeTableView fx:id="orderHistoryTable" layoutX="193.0" layoutY="126.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="150.0">
          <columnResizePolicy>
             <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>

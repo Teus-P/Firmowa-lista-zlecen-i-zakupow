@@ -11,9 +11,9 @@ public enum ContentProperty {
     ORDERS_TAB_PAGE("views/content/adminPanel/tabs/OrdersTabPage.fxml"),
     UNITS_TAB_PAGE("views/content/adminPanel/tabs/UnitsTabPage.fxml"),
     CATEGORIES_TAB_PAGE("views/content/adminPanel/tabs/CategoriesTabPage.fxml"),
-    CURRENT_WAITING_ORDER("views/content/CurrentWaitingOrder.fxml"),
     REALIZED_ORDER("views/content/RealizedOrder.fxml"),
-    HELP_SCREEN("views/content/HelpScreen.fxml");
+    HELP_SCREEN("views/content/HelpScreen.fxml"),
+    HOME_PAGE("views/content/HomePage.fxml");
 
 
     private String screenPath;

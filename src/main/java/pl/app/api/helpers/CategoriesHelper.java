@@ -12,7 +12,6 @@ import retrofit2.Response;
 import java.io.IOException;
 import java.util.List;
 
-//TODO change the class productName to "CategoryHelper"
 public class CategoriesHelper {
 
     private ApiResourceInterface apiResourceInterface;
