@@ -1,4 +1,4 @@
-#Firmowa lista zleceń i zakupów - moduł desktopowy
+# Firmowa lista zleceń i zakupów - moduł desktopowy
 
 Konfiguracja
 
