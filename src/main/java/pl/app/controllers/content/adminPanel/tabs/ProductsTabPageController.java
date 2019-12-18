@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
 import pl.app.api.clients.ApiResourcesClient;
 import pl.app.api.helpers.ProductHelper;
@@ -65,7 +66,7 @@ public class ProductsTabPageController implements Initializable {
         productTable.getColumns().setAll(productColumn, categoryColumn, unitColumn);
         productTable.setRoot(root);
         productTable.setShowRoot(false);
-
+        productTable.setPlaceholder(new Label("Brak produktów w systemie"));
 
         productSearchField.textProperty().addListener((observable, oldValue, newValue) ->
                 productTable.setPredicate(productTableItemTreeItem

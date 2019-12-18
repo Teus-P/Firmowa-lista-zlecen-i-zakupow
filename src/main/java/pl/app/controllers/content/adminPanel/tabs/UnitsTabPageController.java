@@ -87,6 +87,7 @@ public class UnitsTabPageController implements Initializable, NewUnitResponseLis
         unitTable.getColumns().setAll(unitNameColumn);
         unitTable.setRoot(root);
         unitTable.setShowRoot(false);
+        unitTable.setPlaceholder(new Label("Brak jednostek w systemie"));
 
         unitSearchField.textProperty().addListener((observable, oldValue, newValue) -> {
             unitTable.setPredicate(table -> table.getValue().getUnit().getValue().toLowerCase().contains(newValue.toLowerCase()));

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ImplementerCategoriesResponseListener {
 
-    void onImplementerCategoriesSuccessResponse(List<CategoriesModel> categoriesModelList);
+    void onImplementerCategoriesSuccessResponse(CategoriesModel categoriesModelList);
 
     void onImplementerCategoriesFailedResponse(ResponseModel responseModel);
 

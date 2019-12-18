@@ -116,30 +116,29 @@ public class UsersTabPageController implements Initializable {
         userTypeColumn.setCellValueFactory(param -> param.getValue().getValue().getUserAccountTypeModeObservable());
 
 
-        JFXTreeTableColumn<UserTableItem, List<CategoriesModel>> implementersCategoriesColumn = new JFXTreeTableColumn<>("Kategorie relizatora");
+        JFXTreeTableColumn<UserTableItem, CategoriesModel> implementersCategoriesColumn = new JFXTreeTableColumn<>("Kategorie relizatora");
         implementersCategoriesColumn.setCellFactory(new Callback<>() {
             @Override
-            public TreeTableCell<UserTableItem, List<CategoriesModel>> call(TreeTableColumn<UserTableItem, List<CategoriesModel>> param) {
-                final TreeTableCell<UserTableItem, List<CategoriesModel>> cell = new TreeTableCell<>() {
+            public TreeTableCell<UserTableItem, CategoriesModel> call(TreeTableColumn<UserTableItem, CategoriesModel> param) {
+                final TreeTableCell<UserTableItem, CategoriesModel> cell = new TreeTableCell<>() {
 
                     @Override
-                    protected void updateItem(List<CategoriesModel> item, boolean empty) {
+                    protected void updateItem(CategoriesModel item, boolean empty) {
                         super.updateItem(item, empty);
                         if (empty || item == null) {
                             setGraphic(null);
                             setText(null);
                         } else {
                             VBox vBox = new VBox();
-                            item.forEach(categoriesModel -> {
 
-                                Label label = new Label(categoriesModel.getName());
-                                label.setTextFill(Color.BLACK);
-                                if (categoriesModel.isDeleted()) {
-                                    label.getStylesheets().addAll(getClass().getResource("/styles/StrikethroughLabel.css").toExternalForm());
-                                }
-                                vBox.getChildren().add(label);
+                            Label label = new Label(item.getName());
+                            label.setTextFill(Color.BLACK);
+                            if (item.isDeleted()) {
+                                label.getStylesheets().addAll(getClass().getResource("/styles/StrikethroughLabel.css").toExternalForm());
+                            }
+                            vBox.getChildren().add(label);
 
-                            });
+
                             setGraphic(vBox);
                             setText(null);
                         }
@@ -155,6 +154,7 @@ public class UsersTabPageController implements Initializable {
         userTable.getColumns().setAll(usernameColumn, firstNameColumn, lastNameColumn, emailColumn, phoneNumberColumn, userTypeColumn, implementersCategoriesColumn);
         userTable.setRoot(root);
         userTable.setShowRoot(false);
+        userTable.setPlaceholder(new Label("Brak użytkowników"));
 
         userSearchField.textProperty().addListener((observable, oldValue, newValue) ->
                 userTable.setPredicate(table

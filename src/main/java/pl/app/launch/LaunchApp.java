@@ -6,7 +6,6 @@ import javafx.stage.Stage;
 import pl.app.core.property.StageProperty;
 import pl.app.core.screen.ScreenController;
 
-
 public class LaunchApp extends Application {
 
     private static Stage primaryStage;

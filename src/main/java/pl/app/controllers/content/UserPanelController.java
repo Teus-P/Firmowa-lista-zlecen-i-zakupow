@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import pl.app.api.UserSession;
 import pl.app.api.clients.ApiResourcesClient;
 import pl.app.api.helpers.UserAccountHelper;
@@ -27,13 +28,9 @@ import java.awt.Graphics2D;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import static com.google.common.hash.Hashing.sha512;
 
 public class UserPanelController extends BaseScreen implements ChangePasswordResponseListener {
 
@@ -71,6 +68,9 @@ public class UserPanelController extends BaseScreen implements ChangePasswordRes
     @FXML
     private ImageView qrImageView;
 
+    @FXML
+    private VBox qrContainer;
+
 
     public UserPanelController() {
         userAccountHelper = new UserAccountHelper(ApiResourcesClient.getApi());
@@ -80,7 +80,16 @@ public class UserPanelController extends BaseScreen implements ChangePasswordRes
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        if (UserSession.getLoggedUser().getUserAccountTypeModels().stream().anyMatch(item -> item.getName().equals("Role_IMPLEMENTERS"))) {
+            qrContainer.setVisible(true);
+        } else {
+            qrContainer.setVisible(false);
+        }
+
         initQrCode();
+
+
         initUi();
         setValidators();
 
@@ -150,7 +159,7 @@ public class UserPanelController extends BaseScreen implements ChangePasswordRes
     void saveNewPasswordOnAction(ActionEvent event) {
         if (oldPasswordTxField.validate() && newPasswordTxField.validate() && repNewPasswordTxField.validate()) {
             if (newPasswordTxField.getText().equals(repNewPasswordTxField.getText())) {
-                userAccountHelper.changeUserAccountPassword(encryptPassword(oldPasswordTxField.getText()), encryptPassword(newPasswordTxField.getText()), this);
+                userAccountHelper.changeUserAccountPassword(oldPasswordTxField.getText(), newPasswordTxField.getText(), this);
             } else {
                 WarningDialog.showWarningDialog("Błąd", "Nowe hasła nie są identyczne");
             }
@@ -173,9 +182,4 @@ public class UserPanelController extends BaseScreen implements ChangePasswordRes
         WarningDialog.showWarningDialog(responseModel.getMessage(), builder.toString());
     }
 
-    private String encryptPassword(String password) {
-
-        String pass = sha512().hashString(password, StandardCharsets.UTF_8).toString();
-        return Base64.getEncoder().encodeToString(pass.getBytes());
-    }
 }

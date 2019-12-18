@@ -24,11 +24,6 @@ public interface ApiResourceInterface {
             @Body CategoriesModel categoriesModel
     );
 
-    @GET("/categories/{productName}")
-    Call<CategoriesModel> getCategoryByName(
-            @Path("productName") String categoriesName
-    );
-
     @PUT("/categories/edit/{id}")
     Call<ResponseModel> editCategoryById(
             @Path("id") int id,
@@ -59,31 +54,10 @@ public interface ApiResourceInterface {
             @Path("id") int id
     );
 
-    @GET("/orderstatus")
-    Call<List<OrderStatusModel>> getAllOrderStatus();
-
-    @PUT("/orderstatus/edit/{id}")
-    Call<ResponseModel> editOrderStatusById(
-            @Path("id") int id
-    );
-
-    @POST("/orderstatus")
-    Call<ResponseModel> createNewOrderStatus(
-            @Body OrderStatusModel orderStatusModel
-    );
-
-    @PUT("/orderstatus/delete/{id}")
-    Call<ResponseModel> deleteOrderStatus(
-            @Path("id") int id
-    );
-
     @GET("/order/{id}")
     Call<OrderModel> getOrderById(
             @Path("id") int id
     );
-
-    @GET("/order/my/all")
-    Call<List<OrderModel>> getMyAllOrders();
 
     @GET("/order/all")
     Call<List<OrderModel>> getAllOrders();
@@ -104,9 +78,6 @@ public interface ApiResourceInterface {
     @GET("/user/all")
     Call<List<UserAccountModel>> getAllUsers();
 
-    @GET("/useraccounttype")
-    Call<List<UserAccountTypeModel>> getAllAccountType();
-
     @GET("/useraccounttype/extra")
     Call<List<UserAccountTypeModel>> getExtraAccountType();
 
@@ -126,34 +97,27 @@ public interface ApiResourceInterface {
             @Body UserAccountModel userAccountModel
     );
 
-    @POST("/implementers")
-    Call<ResponseModel> addNewImplementers(
-            @Field("idUserAccount") int userId,
-            @Field("idCategories") int categoryId
+    @FormUrlEncoded
+    @PUT("/implementers/edit")
+    Call<ResponseModel> editImplementerCategory(
+            @Field("idUserAccount") int userAccountId,
+            @Field("idCategory") int categoryId
     );
-
-    @GET("/implementers")
-    Call<List<ImplementerModel>> getAllImplementers();
 
 
     @GET("/implementers/{id}/categories")
-    Call<List<CategoriesModel>> getImplementerCategories(
+    Call<CategoriesModel> getImplementerCategories(
             @Path("id") int userId
     );
 
-    @POST("/implementers/{id}/add/many")
+    @POST("/implementers/{id}/add")
     Call<ResponseModel> assignManyCategoriesToImplementer(
             @Path("id") int userId,
-            @Body List<CategoriesModel> categoriesId
+            @Body CategoriesModel categoriesModel
     );
 
     @GET("/implementers/order/{id}")
     Call<List<ImplementerModel>> getImplementersForOrder(
-            @Path("id") int orderId
-    );
-
-    @GET("/categories/order/{id}/all")
-    Call<List<CategoriesModel>> getOrderCategories(
             @Path("id") int orderId
     );
 
@@ -172,7 +136,6 @@ public interface ApiResourceInterface {
             @Body String rejectReason
     );
 
-
     @GET("/order/current")
     Call<List<OrderModel>> getAllCurrentUserOrders();
 
@@ -188,4 +151,5 @@ public interface ApiResourceInterface {
 
     @GET("/user/help")
     Call<UserAccountModel> getAdministratorHelpInfo();
+
 }

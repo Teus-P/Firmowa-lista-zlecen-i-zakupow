@@ -5,7 +5,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import pl.app.api.UserSession;
-import pl.app.api.model.UserAccountTypeModel;
 import pl.app.core.baseComponent.BaseScreen;
 import pl.app.core.property.ContentProperty;
 import pl.app.core.property.StageProperty;
@@ -14,32 +13,10 @@ import pl.app.core.screen.ScreenController;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
 public class MainPageController extends BaseScreen {
 
     @FXML
     private AnchorPane container;
-
-    @FXML
-    private JFXButton homeButton;
-
-    @FXML
-    private JFXButton orderButton;
-
-    @FXML
-    private JFXButton currentOrdersButton;
-
-    @FXML
-    private JFXButton orderHistoryButton;
-
-    @FXML
-    private JFXButton profileButton;
-
-    @FXML
-    private JFXButton helpButton;
-
-    @FXML
-    private JFXButton logoutButton;
 
     @FXML
     private JFXButton adminButton;

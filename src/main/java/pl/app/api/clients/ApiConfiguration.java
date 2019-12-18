@@ -7,7 +7,7 @@ import retrofit2.Retrofit;
 
 abstract class ApiConfiguration {
 
-    static final String HOST_BASE_URL = "http://172.20.10.2";
+    static final String HOST_BASE_URL = "http://192.168.8.143";
     HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
     DynamicHostInterceptor dynamicHostInterceptor = new DynamicHostInterceptor(HOST_BASE_URL);
     OkHttpClient okHttpClient = null;

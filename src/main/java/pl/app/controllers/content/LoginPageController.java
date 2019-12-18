@@ -32,8 +32,6 @@ import static com.google.common.hash.Hashing.*;
 /**
  * view/LoginPage.fxml Controller
  */
-//login Administrator
-//hasło YzdhZDQ0Y2JhZDc2MmE1ZGEwYTQ1MmY5ZTg1NGZkYzFlMGU3YTUyYTM4MDE1ZjIzZjNlYWIxZDgwYjkzMWRkNDcyNjM0ZGZhYzcxY2QzNGViYzM1ZDE2YWI3ZmI4YTkwYzgxZjk3NTExM2Q2Yzc1MzhkYzY5ZGQ4ZGU5MDc3ZWM=
 public class LoginPageController extends BasePage implements LoginResponseListener {
 
     private static final Logger LOGGER = Logger.getLogger(LoginPageController.class.getName());
@@ -113,13 +111,6 @@ public class LoginPageController extends BasePage implements LoginResponseListen
         loginAlert.setHeaderText(getResourceBundle().getString("loginAlertHeaderText"));
         loginAlert.setContentText(getResourceBundle().getString("loginAlertContentText"));
     }
-
-
-//    private String encryptPassword(String password) {
-//
-//        String pass = sha512().hashString(password, StandardCharsets.UTF_8).toString();
-//        return Base64.getEncoder().encodeToString(pass.getBytes());
-//    }
 
 
     @Override

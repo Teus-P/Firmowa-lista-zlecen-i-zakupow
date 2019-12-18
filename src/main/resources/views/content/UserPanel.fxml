@@ -149,7 +149,7 @@
                 <JFXButton onAction="#saveNewPasswordOnAction" text="Zapisz" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="225.0" />
             </children>
         </AnchorPane>
-        <VBox alignment="CENTER" layoutX="570.0" layoutY="579.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+        <VBox fx:id="qrContainer" alignment="CENTER" layoutX="570.0" layoutY="579.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
             <children>
                 <ImageView fx:id="qrImageView" fitHeight="300.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
                 <Label lineSpacing="1.0" text="Za pomocą kodu QR szybko zalogujesz się do aplikacji mobilnej">

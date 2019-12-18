@@ -26,13 +26,12 @@ import pl.app.api.helpers.CategoriesHelper;
 import pl.app.api.helpers.ImplementersHelper;
 import pl.app.api.helpers.UserAccountHelper;
 import pl.app.api.helpers.UserAccountTypeHelper;
-import pl.app.api.model.CategoriesModel;
-import pl.app.api.model.ResponseModel;
-import pl.app.api.model.UserAccountModel;
-import pl.app.api.model.UserAccountTypeModel;
+import pl.app.api.model.*;
 import pl.app.api.responseInterfaces.EditUserResponseListener;
 import pl.app.api.responseInterfaces.ImplementerCategoriesResponseListener;
+import pl.app.controllers.common.CategoriesComboBoxInitializer;
 import pl.app.controllers.common.FieldValidator;
+import pl.app.controllers.common.UnitComboBoxInitializer;
 import pl.app.controllers.common.checkComboBoxItem.CategoriesCheckBoxItem;
 import pl.app.controllers.common.checkComboBoxItem.UserTypeCheckBoxItem;
 import pl.app.core.baseComponent.BaseDialog;
@@ -51,6 +50,7 @@ public class EditUserDialogController extends BaseDialog implements EditUserResp
     private ImplementersHelper implementersHelper;
     private ObservableList<UserTypeCheckBoxItem> userAccountTypeModelObservableList;
     private ObservableList<CategoriesCheckBoxItem> categoriesModelObservableList;
+    private List<CategoriesModel> categoriesModelsList;
 
     @FXML
     private Label userNameLabel;
@@ -80,7 +80,7 @@ public class EditUserDialogController extends BaseDialog implements EditUserResp
     private Label responseLabel;
 
     @FXML
-    private CheckComboBox<CategoriesCheckBoxItem> categoriesCheckComboBox;
+    private JFXComboBox<CategoriesModel> categoriesComboBox;
 
 
     public void initData(UserAccountModel userAccountModel) {
@@ -93,6 +93,7 @@ public class EditUserDialogController extends BaseDialog implements EditUserResp
     }
 
     private void initGui() {
+
         userNameLabel.setText(userAccountModel.getFirstName() + " " + userAccountModel.getLastName());
         userNameTextField.setText(userAccountModel.getUsername());
         phoneNumberTextField.setText(userAccountModel.getPhoneNumber());
@@ -111,11 +112,22 @@ public class EditUserDialogController extends BaseDialog implements EditUserResp
         });
 
         if (userAccountModel.getUserAccountTypeModels().stream().anyMatch(item -> item.getName().equals(IMPLEMENTER_ROLE))) {
-            initImplementersCategoriesCheckComboBox();
-            categoriesCheckComboBox.setVisible(true);
+            initCategoriesComboBox();
+            categoriesComboBox.setVisible(true);
             isImplementer = true;
         }
+
+
     }
+
+    private void initCategoriesComboBox() {
+        categoriesModelsList = categoriesHelper.getAllCategories();
+        ObservableList<CategoriesModel> categoriesModelObservableList = FXCollections.observableList(categoriesModelsList);
+        CategoriesComboBoxInitializer.init(categoriesComboBox, categoriesModelObservableList);
+        implementersHelper.getImplementerCategory(userAccountModel.getIdUserAccount(), this);
+
+    }
+
 
     private void initUserTypeCheckComboBox() {
 
@@ -124,15 +136,6 @@ public class EditUserDialogController extends BaseDialog implements EditUserResp
 
     }
 
-    private void initImplementersCategoriesCheckComboBox() {
-
-
-        categoriesHelper.getAllCategories().forEach(model -> categoriesModelObservableList.add(new CategoriesCheckBoxItem(model)));
-        categoriesCheckComboBox.getItems().setAll(categoriesModelObservableList);
-
-        implementersHelper.getImplementerCategory(userAccountModel.getIdUserAccount(), this);
-
-    }
 
 
     private void initHelpers() {
@@ -182,14 +185,16 @@ public class EditUserDialogController extends BaseDialog implements EditUserResp
             userAccountModel.setUserAccountTypeModels(userAccountTypeModelList);
             userAccountHelper.editUserAccountById(userAccountModel, this);
 
-            if (isImplementer) {
-                List<CategoriesModel> implementerCategories = new ArrayList<>();
-                categoriesCheckComboBox.getCheckModel().getCheckedItems().forEach(item -> {
-                    implementerCategories.add(item.getCategoriesModel());
-                });
+            if (userAccountModel.getUserAccountTypeModels().stream().anyMatch(item -> item.getName().equals(IMPLEMENTER_ROLE))) {
+                isImplementer = true;
             }
 
-            getDialogStage().close();
+            if (isImplementer) {
+
+                implementersHelper.editImplementerCategory(userAccountModel.getIdUserAccount(), categoriesComboBox.getSelectionModel().getSelectedItem().getIdCategories());
+
+            }
+
         }
 
     }
@@ -201,22 +206,20 @@ public class EditUserDialogController extends BaseDialog implements EditUserResp
 
     @Override
     public void onEditUserFailedResponse(ResponseModel responseModel) {
-        StringBuilder builder = new StringBuilder(responseModel.getMessage() + "\n");
-        responseModel.getDetails().forEach(message -> builder.append(message).append("\n"));
-        responseLabel.setText(builder.toString());
+        if (responseModel != null) {
+            StringBuilder builder = new StringBuilder(responseModel.getMessage() + "\n");
+            responseModel.getDetails().forEach(message -> builder.append(message).append("\n"));
+            responseLabel.setText(builder.toString());
+        } else {
+            responseLabel.setText("Błąd");
+        }
+
     }
 
 
     @Override
-    public void onImplementerCategoriesSuccessResponse(List<CategoriesModel> categoriesModelList) {
-        categoriesModelObservableList.forEach(item -> {
-            categoriesModelList.forEach(categoriesModel -> {
-                if (item.getCategoriesModel().equals(categoriesModel)) {
-                    categoriesCheckComboBox.getCheckModel().check(item);
-                }
-            });
-        });
-
+    public void onImplementerCategoriesSuccessResponse(CategoriesModel categoriesModel) {
+        categoriesComboBox.getSelectionModel().select(categoriesModel);
     }
 
     @Override

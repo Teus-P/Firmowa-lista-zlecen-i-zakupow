@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
 import pl.app.api.clients.ApiResourcesClient;
 import pl.app.api.helpers.OrderHelper;
@@ -59,6 +60,7 @@ public class OrdersTabPageController implements Initializable {
         orderTable.getColumns().setAll(orderNumberColumn, userNameColumn, orderAcceptStatusColumn);
         orderTable.setRoot(root);
         orderTable.setShowRoot(false);
+        orderTable.setPlaceholder(new Label("Brak zamówień w systemie"));
 
         orderTable.setOnMouseClicked(click -> {
             if (click.getClickCount() == 2) {

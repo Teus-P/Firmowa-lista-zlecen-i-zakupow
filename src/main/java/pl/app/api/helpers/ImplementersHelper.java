@@ -7,6 +7,7 @@ import pl.app.api.interfaces.ApiResourceInterface;
 import pl.app.api.model.CategoriesModel;
 import pl.app.api.model.ImplementerModel;
 import pl.app.api.model.ResponseModel;
+import pl.app.api.responseInterfaces.AssignCategoryToImplementer;
 import pl.app.api.responseInterfaces.ImplementerCategoriesResponseListener;
 import pl.app.api.responseInterfaces.OrderImplementersResponseListener;
 import retrofit2.Call;
@@ -21,26 +22,11 @@ public class ImplementersHelper {
     private ApiResourceInterface apiResourceInterface;
 
 
-    public ResponseModel addNewImplementer(int userId, int categoryId) {
-        Call<ResponseModel> call = apiResourceInterface.addNewImplementers(userId, categoryId);
-
-        return CallExecutor.execute(call);
-
-    }
-
-    public List<ImplementerModel> getAllImplementers() {
-
-        Call<List<ImplementerModel>> call = apiResourceInterface.getAllImplementers();
-
-        return CallExecutor.execute(call);
-    }
-
-
     public void getImplementerCategory(int userId, ImplementerCategoriesResponseListener listener) {
 
-        Call<List<CategoriesModel>> call = apiResourceInterface.getImplementerCategories(userId);
+        Call<CategoriesModel> call = apiResourceInterface.getImplementerCategories(userId);
 
-        Response<List<CategoriesModel>> response = null;
+        Response<CategoriesModel> response = null;
 
         try {
             response = call.execute();
@@ -57,10 +43,26 @@ public class ImplementersHelper {
         }
     }
 
-    public ResponseModel assignCategoriesToImplementer(int userId, List<CategoriesModel> categoriesId) {
-        Call<ResponseModel> call = apiResourceInterface.assignManyCategoriesToImplementer(userId, categoriesId);
+    public void assignCategoriesToImplementer(int userId, CategoriesModel categoriesModel, AssignCategoryToImplementer listener) {
 
-        return CallExecutor.execute(call);
+        Call<ResponseModel> call = apiResourceInterface.assignManyCategoriesToImplementer(userId, categoriesModel);
+
+        Response<ResponseModel> response = null;
+
+        try {
+            response = call.execute();
+
+            if (response.isSuccessful() && response.code() == 200) {
+                listener.onAssignCategoryToImplementerSuccessResponse(response.body());
+            } else {
+                Gson gson = new Gson();
+                listener.onAssignCategoryToImplementerResponseFailed(gson.fromJson(response.errorBody() != null ? response.errorBody().string() : null, ResponseModel.class));
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void getImplementersForOrder(int orderId, OrderImplementersResponseListener listener) {
@@ -79,6 +81,12 @@ public class ImplementersHelper {
             e.printStackTrace();
         }
 
+    }
+
+    public ResponseModel editImplementerCategory(int userId, int categoryId) {
+        Call<ResponseModel> call = apiResourceInterface.editImplementerCategory(userId, categoryId);
+
+        return CallExecutor.execute(call);
     }
 
 }

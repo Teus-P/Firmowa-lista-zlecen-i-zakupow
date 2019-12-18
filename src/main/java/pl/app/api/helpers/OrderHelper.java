@@ -25,13 +25,6 @@ public class OrderHelper {
     }
 
 
-    public List<OrderModel> getAllUserOrders() {
-        Call<List<OrderModel>> call = apiResourceInterface.getMyAllOrders();
-
-        return CallExecutor.execute(call);
-
-    }
-
     public void getAllUserOrderHistory(OrderHistoryResponseListener listener) {
         Call<List<OrderModel>> call = apiResourceInterface.getUserOrderHistory();
 

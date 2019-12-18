@@ -1,13 +1,11 @@
 package pl.app.core.baseComponent;
 
 import javafx.fxml.Initializable;
-import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
 import pl.app.core.dialog.DialogBody;
 import pl.app.core.dialog.DialogStage;
 import pl.app.core.dialog.OnDialogCloseListener;
-import pl.app.launch.LaunchApp;
 
 import java.net.URL;
 import java.util.ResourceBundle;

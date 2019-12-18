@@ -129,7 +129,7 @@ public class CreateOrderController implements Initializable {
     }
 
     public void addNewOrder(ActionEvent event) {
-        if(productTableItemObservableList.size() != 0){
+        if (productTableItemObservableList.size() != 0) {
             List<OrderProductModel> orderProductModelList = new ArrayList<>();
             productTableItemObservableList.forEach(product -> {
                 orderProductModelList.add(product.getOrderProductModel());
@@ -140,8 +140,8 @@ public class CreateOrderController implements Initializable {
 
             setAlertContent(Alert.AlertType.CONFIRMATION, "Złożono zamówienie", "Zamówienie zostało złożone.", "Złożone przez Ciebie zamówienie zostało wysłane i oczekuje na akceptację.");
             alert.show();
-        }else {
-            setAlertContent(Alert.AlertType.ERROR,"Błędne zamówienie", "Zamówienie nie zostało złożone.", "Składane zamówienie musi zawierać listę produktów.");
+        } else {
+            setAlertContent(Alert.AlertType.ERROR, "Błędne zamówienie", "Zamówienie nie zostało złożone.", "Składane zamówienie musi zawierać listę produktów.");
             alert.show();
         }
     }
@@ -195,12 +195,12 @@ public class CreateOrderController implements Initializable {
 
     public void deleteRow(ActionEvent event) {
         TreeItem<OrderProductTableItem> selectedItem = productTable.getSelectionModel().getSelectedItem();
-
-        for (OrderProductTableItem product : productTableItemObservableList) {
-            if (product.getProductName() == selectedItem.getValue().getProductName()) {
-                productTableItemObservableList.remove(product);
-                break;
+        if (selectedItem != null)
+            for (OrderProductTableItem product : productTableItemObservableList) {
+                if (product.getProductName() == selectedItem.getValue().getProductName()) {
+                    productTableItemObservableList.remove(product);
+                    break;
+                }
             }
-        }
     }
 }

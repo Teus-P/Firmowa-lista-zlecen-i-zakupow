@@ -90,6 +90,7 @@ public class CategoriesTabPageController implements Initializable, NewCategoryRe
         categoryTable.getColumns().setAll(categoryColumn);
         categoryTable.setRoot(root);
         categoryTable.setShowRoot(false);
+        categoryTable.setPlaceholder(new Label("Brak kategorii w systemie"));
 
         categorySearchField.textProperty().addListener((observable, oldValue, newValue) -> {
             categoryTable.setPredicate(table -> table.getValue().getCategoryName().getValue().contains(newValue));

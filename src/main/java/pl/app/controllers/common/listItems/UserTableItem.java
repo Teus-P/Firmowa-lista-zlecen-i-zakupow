@@ -38,7 +38,7 @@ public class UserTableItem extends RecursiveTreeObject<UserTableItem> implements
     private StringProperty role;
 
 
-    private ObservableValue<List<CategoriesModel>> implementersCategoriesObservable;
+    private ObservableValue<CategoriesModel> implementersCategoriesObservable;
 
     private ObservableValue<List<UserAccountTypeModel>> userAccountTypeModeObservable;
 
@@ -98,21 +98,21 @@ public class UserTableItem extends RecursiveTreeObject<UserTableItem> implements
     }
 
     @Override
-    public void onImplementerCategoriesSuccessResponse(List<CategoriesModel> categoriesModelList) {
+    public void onImplementerCategoriesSuccessResponse(CategoriesModel categoriesModelList) {
 
         this.implementersCategoriesObservable = new ObservableValue<>() {
             @Override
-            public void addListener(ChangeListener<? super List<CategoriesModel>> listener) {
+            public void addListener(ChangeListener<? super CategoriesModel> listener) {
 
             }
 
             @Override
-            public void removeListener(ChangeListener<? super List<CategoriesModel>> listener) {
+            public void removeListener(ChangeListener<? super CategoriesModel> listener) {
 
             }
 
             @Override
-            public List<CategoriesModel> getValue() {
+            public CategoriesModel getValue() {
                 return categoriesModelList;
             }
 

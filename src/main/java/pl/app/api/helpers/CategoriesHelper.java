@@ -56,11 +56,4 @@ public class CategoriesHelper {
         return CallExecutor.execute(call);
     }
 
-
-    public List<CategoriesModel> getOrderCategories(int orderID) {
-        Call<List<CategoriesModel>> call = apiResourceInterface.getOrderCategories(orderID);
-
-        return CallExecutor.execute(call);
-    }
-
 }
