@@ -1,11 +1,8 @@
 package pl.app.api.interfaces;
 
-import pl.app.api.model.CategoriesModel;
-import retrofit2.Call;
-import retrofit2.http.GET;
 import pl.app.api.model.*;
+import retrofit2.Call;
 import retrofit2.http.*;
-
 
 import java.util.List;
 

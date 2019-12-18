@@ -20,14 +20,9 @@ import pl.app.controllers.common.FieldValidator;
 import pl.app.core.baseComponent.BasePage;
 import pl.app.core.property.StageProperty;
 
-
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
-
-import static com.google.common.hash.Hashing.*;
 
 /**
  * view/LoginPage.fxml Controller

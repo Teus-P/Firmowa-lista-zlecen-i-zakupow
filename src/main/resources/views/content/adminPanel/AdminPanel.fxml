@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-
-<AnchorPane fx:id="container" minHeight="900.0" minWidth="800.0" stylesheets="@../../../styles/AdminPanelStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.adminPanel.AdminPanelController">
+<AnchorPane fx:id="container" minHeight="900.0" minWidth="800.0" stylesheets="@../../../styles/AdminPanelStyle.css"
+            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="pl.app.controllers.content.adminPanel.AdminPanelController">
     <children>
-        <TabPane layoutY="64.0" minHeight="850.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="125.0">
+        <TabPane layoutY="64.0" minHeight="850.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0"
+                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="125.0">
             <tabs>
                 <Tab fx:id="usersTab" text="Zarządzanie użytkownikami">
                     <content>
                         <AnchorPane>
                             <children>
-                                <TabPane tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <TabPane tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0"
+                                         AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                                         AnchorPane.topAnchor="0.0">
                                     <tabs>
                                         <Tab text="Użytkownicy">
                                             <content>
-                                                <AnchorPane fx:id="usersTabContainer" prefHeight="752.0" prefWidth="745.0" />
+                                                <AnchorPane fx:id="usersTabContainer" prefHeight="752.0"
+                                                            prefWidth="745.0"/>
                                             </content>
                                         </Tab>
                                     </tabs>
@@ -30,28 +32,30 @@
                 </Tab>
                 <Tab fx:id="ordersTab" text="Zarządzanie zamówieniami">
                     <content>
-                        <AnchorPane fx:id="ordersTabContainer" />
+                        <AnchorPane fx:id="ordersTabContainer"/>
                     </content>
                 </Tab>
                 <Tab fx:id="resourcesTab" text="Zarządzanie zasobami">
                     <content>
                         <AnchorPane>
                             <children>
-                                <TabPane tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <TabPane tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0"
+                                         AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                                         AnchorPane.topAnchor="0.0">
                                     <tabs>
                                         <Tab text="Produkty">
                                             <content>
-                                                <AnchorPane fx:id="productsTabContainer" />
+                                                <AnchorPane fx:id="productsTabContainer"/>
                                             </content>
                                         </Tab>
                                         <Tab text="Jednostki">
                                             <content>
-                                                <AnchorPane fx:id="unitsTabContainer" />
+                                                <AnchorPane fx:id="unitsTabContainer"/>
                                             </content>
                                         </Tab>
                                         <Tab text="Kategorie">
                                             <content>
-                                                <AnchorPane fx:id="categoriesTabContainer" />
+                                                <AnchorPane fx:id="categoriesTabContainer"/>
                                             </content>
                                         </Tab>
                                     </tabs>
@@ -62,18 +66,19 @@
                 </Tab>
             </tabs>
         </TabPane>
-      <VBox layoutX="455.0" layoutY="-53.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
-         <children>
-              <Label alignment="CENTER" text="Panel administratora">
-               <font>
-                  <Font name="System Bold" size="48.0" />
-               </font>
-            </Label>
-            <Label text="Zarządzanie systemem">
-               <font>
-                  <Font name="System Italic" size="14.0" />
-               </font></Label>
-         </children>
-      </VBox>
+        <VBox layoutX="455.0" layoutY="-53.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+            <children>
+                <Label alignment="CENTER" text="Panel administratora">
+                    <font>
+                        <Font name="System Bold" size="48.0"/>
+                    </font>
+                </Label>
+                <Label text="Zarządzanie systemem">
+                    <font>
+                        <Font name="System Italic" size="14.0"/>
+                    </font>
+                </Label>
+            </children>
+        </VBox>
     </children>
 </AnchorPane>

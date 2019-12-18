@@ -2,11 +2,9 @@ package pl.app.controllers.common;
 
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.controls.base.IFXLabelFloatControl;
 import com.jfoenix.validation.NumberValidator;
 import com.jfoenix.validation.RegexValidator;
 import com.jfoenix.validation.RequiredFieldValidator;
-import javafx.scene.control.TextField;
 
 
 public class FieldValidator {

@@ -4,22 +4,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import pl.app.api.model.UserOrderInfoModel;
 import pl.app.controllers.common.DateParser;
 
-import java.awt.*;
 import java.net.URL;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
-import java.time.temporal.TemporalAccessor;
-import java.time.temporal.TemporalField;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 public class OrderStatusCellController implements Initializable {

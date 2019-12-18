@@ -28,7 +28,7 @@ public class ProductModel {
     private String name;
 
 
-    public ProductModel(String name){
+    public ProductModel(String name) {
         this.name = name;
     }
 

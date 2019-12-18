@@ -12,7 +12,6 @@ public class UnitComboBoxInitializer {
     public static void init(JFXComboBox<UnitModel> comboBox, ObservableList<UnitModel> observableList) {
 
         comboBox.setItems(observableList);
-        //TextFields.bindAutoCompletion(categoriesComboBox.getEditor(), categoriesComboBox.getItems());
 
         comboBox.setCellFactory(new Callback<>() {
             @Override

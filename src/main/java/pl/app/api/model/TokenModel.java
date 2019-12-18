@@ -18,5 +18,4 @@ public class TokenModel {
     private String refreshToken;
 
 
-
 }

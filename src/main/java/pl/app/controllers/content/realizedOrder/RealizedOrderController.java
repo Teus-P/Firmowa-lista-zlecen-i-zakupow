@@ -13,7 +13,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.shape.Circle;
 import lombok.Setter;
 import pl.app.api.model.OrderModel;
 import pl.app.api.model.UserOrderInfoModel;

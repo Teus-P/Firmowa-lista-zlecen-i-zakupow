@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import pl.app.api.helpers.common.CallExecutor;
 import pl.app.api.interfaces.ApiResourceInterface;
 import pl.app.api.model.ResponseModel;
-import pl.app.api.model.UnitModel;
 import pl.app.api.model.UserAccountModel;
 import pl.app.api.responseInterfaces.ChangePasswordResponseListener;
 import pl.app.api.responseInterfaces.EditUserResponseListener;
@@ -28,10 +27,10 @@ public class UserAccountHelper {
         return CallExecutor.execute(call);
     }
 
-        public List<UserAccountModel> getAllUsers() {
-            Call<List<UserAccountModel>> call = apiResourceInterface.getAllUsers();
+    public List<UserAccountModel> getAllUsers() {
+        Call<List<UserAccountModel>> call = apiResourceInterface.getAllUsers();
 
-            return CallExecutor.execute(call);
+        return CallExecutor.execute(call);
     }
 
 

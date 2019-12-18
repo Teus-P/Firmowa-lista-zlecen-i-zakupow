@@ -7,25 +7,33 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
-
-<HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="LoginPageBackground" stylesheets="@../../styles/MainStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.LoginPageController">
-   <children>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
-         <children>
-            <Label id="pageLabel" layoutX="206.0" layoutY="76.0" text="Strona">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label id="logonLabel" layoutX="280.0" layoutY="76.0" text="Logowania">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <JFXTextField fx:id="loginTextField" focusColor="#a0a2ab" layoutX="200.0" layoutY="180.0" prefHeight="25.0" prefWidth="200.0" promptText="Login" styleClass="LoginPageTextField" unFocusColor="#a0a2ab" />
-            <JFXPasswordField fx:id="passwordPasswordField" focusColor="#a0a2ab" layoutX="200.0" layoutY="232.0" prefHeight="25.0" prefWidth="200.0" promptText="Hasło" styleClass="LoginPagePasswordField" unFocusColor="#a0a2ab" />
-            <JFXButton fx:id="onClickLoginButton" buttonType="RAISED" layoutX="342.0" layoutY="285.0" onAction="#onClickLoginButton" style="-fx-background-color: #3C58Fa;" text="Zaloguj" textFill="WHITE" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" />
-         </children>
-      </AnchorPane>
-   </children>
+<HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="LoginPageBackground"
+      stylesheets="@../../styles/MainStyle.css" xmlns="http://javafx.com/javafx/11.0.1"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.LoginPageController">
+    <children>
+        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                    prefHeight="400.0" prefWidth="600.0">
+            <children>
+                <Label id="pageLabel" layoutX="206.0" layoutY="76.0" text="Strona">
+                    <font>
+                        <Font size="24.0"/>
+                    </font>
+                </Label>
+                <Label id="logonLabel" layoutX="280.0" layoutY="76.0" text="Logowania">
+                    <font>
+                        <Font size="24.0"/>
+                    </font>
+                </Label>
+                <JFXTextField fx:id="loginTextField" focusColor="#a0a2ab" layoutX="200.0" layoutY="180.0"
+                              prefHeight="25.0" prefWidth="200.0" promptText="Login" styleClass="LoginPageTextField"
+                              unFocusColor="#a0a2ab"/>
+                <JFXPasswordField fx:id="passwordPasswordField" focusColor="#a0a2ab" layoutX="200.0" layoutY="232.0"
+                                  prefHeight="25.0" prefWidth="200.0" promptText="Hasło"
+                                  styleClass="LoginPagePasswordField" unFocusColor="#a0a2ab"/>
+                <JFXButton fx:id="onClickLoginButton" buttonType="RAISED" layoutX="342.0" layoutY="285.0"
+                           onAction="#onClickLoginButton" style="-fx-background-color: #3C58Fa;" text="Zaloguj"
+                           textFill="WHITE" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0"/>
+            </children>
+        </AnchorPane>
+    </children>
 </HBox>

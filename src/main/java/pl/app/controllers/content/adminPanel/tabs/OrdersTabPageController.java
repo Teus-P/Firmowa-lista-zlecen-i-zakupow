@@ -71,7 +71,7 @@ public class OrdersTabPageController implements Initializable {
         orderSearchField.textProperty().addListener((observable, oldValue, newValue) ->
                 orderTable.setPredicate(orderTableItemTreeItem ->
                         orderTableItemTreeItem.getValue().getUserNameDisplayValue().getValue().toLowerCase().contains(newValue.toLowerCase())
-                || orderTableItemTreeItem.getValue().getAcceptedStatusDisplayValue().getValue().toLowerCase().contains(newValue.toLowerCase())));
+                                || orderTableItemTreeItem.getValue().getAcceptedStatusDisplayValue().getValue().toLowerCase().contains(newValue.toLowerCase())));
 
     }
 

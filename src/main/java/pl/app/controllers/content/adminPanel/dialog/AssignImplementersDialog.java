@@ -20,9 +20,9 @@ import pl.app.api.model.OrderModel;
 import pl.app.api.model.ResponseModel;
 import pl.app.api.responseInterfaces.AcceptOrderResponseListener;
 import pl.app.api.responseInterfaces.OrderImplementersResponseListener;
-import pl.app.controllers.common.popupDialogs.WarningDialog;
 import pl.app.controllers.common.listItems.CategoryTableItem;
 import pl.app.controllers.common.listItems.ImplementersTableItem;
+import pl.app.controllers.common.popupDialogs.WarningDialog;
 import pl.app.core.baseComponent.BaseDialog;
 
 import java.util.*;

@@ -2,36 +2,25 @@ package pl.app.controllers.content.adminPanel.dialog;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import org.controlsfx.control.CheckComboBox;
 import pl.app.api.clients.ApiResourcesClient;
 import pl.app.api.helpers.CategoriesHelper;
 import pl.app.api.helpers.ImplementersHelper;
 import pl.app.api.helpers.UserAccountHelper;
 import pl.app.api.helpers.UserAccountTypeHelper;
-import pl.app.api.model.*;
+import pl.app.api.model.CategoriesModel;
+import pl.app.api.model.ResponseModel;
+import pl.app.api.model.UserAccountModel;
+import pl.app.api.model.UserAccountTypeModel;
 import pl.app.api.responseInterfaces.EditUserResponseListener;
 import pl.app.api.responseInterfaces.ImplementerCategoriesResponseListener;
 import pl.app.controllers.common.CategoriesComboBoxInitializer;
 import pl.app.controllers.common.FieldValidator;
-import pl.app.controllers.common.UnitComboBoxInitializer;
 import pl.app.controllers.common.checkComboBoxItem.CategoriesCheckBoxItem;
 import pl.app.controllers.common.checkComboBoxItem.UserTypeCheckBoxItem;
 import pl.app.core.baseComponent.BaseDialog;
@@ -135,7 +124,6 @@ public class EditUserDialogController extends BaseDialog implements EditUserResp
         userTypeCheckComboBox.getItems().setAll(userAccountTypeModelObservableList);
 
     }
-
 
 
     private void initHelpers() {

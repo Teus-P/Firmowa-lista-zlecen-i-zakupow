@@ -17,8 +17,6 @@ import pl.app.api.responseInterfaces.AssignCategoryToImplementer;
 import pl.app.controllers.common.listViewItems.CategoryCell;
 import pl.app.core.baseComponent.BaseDialog;
 
-import java.util.ArrayList;
-
 public class AddImplCategoryDialogController extends BaseDialog implements AssignCategoryToImplementer {
 
     private CategoriesHelper categoriesHelper;

@@ -9,7 +9,7 @@ public abstract class BaseScreen extends BasePage {
     @Getter
     private ContentManager contentManager = ContentManager.getInstance();
 
-    protected void onCreateBuildContext(){
+    protected void onCreateBuildContext() {
     }
 
     @Override

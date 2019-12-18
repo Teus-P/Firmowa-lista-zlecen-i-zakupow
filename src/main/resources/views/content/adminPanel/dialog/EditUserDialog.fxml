@@ -1,47 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXComboBox?>
-<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.CheckComboBox?>
-
-<AnchorPane fx:id="rowContainer" prefHeight="588.0" prefWidth="796.0" stylesheets="@../../../../styles/DialogStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.adminPanel.dialog.EditUserDialogController">
-   <children>
-      <Label layoutX="51.0" layoutY="39.0" text="Edycja użytkownika" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="25.0">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="51.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="87.0">
-         <image>
-            <Image url="@../../../../drawable/2x/baseline_account_circle_black_18dp.png" />
-         </image>
-      </ImageView>
-      <Label fx:id="userNameLabel" layoutX="129.0" layoutY="94.0" text="Label" AnchorPane.topAnchor="94.0">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <JFXTextField fx:id="userNameTextField" disable="true" editable="false" layoutX="446.0" layoutY="95.0" minWidth="300.0" promptText="Nazwa użytkownika" style="-jfx-label-float: true;" />
-      <JFXTextField fx:id="phoneNumberTextField" layoutX="51.0" layoutY="167.0" minWidth="300.0" promptText="Numer telefonu" style="-jfx-label-float: true;" AnchorPane.topAnchor="165.0" />
-      <JFXTextField fx:id="emailTextField" layoutX="446.0" layoutY="167.0" minWidth="300.0" promptText="Adres email" style="-jfx-label-float: true;" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="165.0" />
-      <JFXTextField fx:id="firstNameTextField" layoutX="50.0" layoutY="225.0" minWidth="300.0" promptText="Imię" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="230.0">
-         <padding>
-            <Insets top="8.0" />
-         </padding>
-      </JFXTextField>
-      <JFXTextField fx:id="lastNameTextField" alignment="TOP_LEFT" layoutX="470.0" layoutY="225.0" minWidth="300.0" promptText="Nazwisko" style="-jfx-label-float: true;" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="230.0" />
-      <JFXTextField fx:id="peselTextField" layoutX="51.0" layoutY="288.0" minWidth="300.0" promptText="PESEL" style="-jfx-label-float: true;" AnchorPane.topAnchor="295.0" />
-      <CheckComboBox fx:id="userTypeCheckComboBox" layoutX="51.0" layoutY="349.0" minWidth="300.0" showCheckedCount="true" stylesheets="@../../../../styles/CheckComboBoxStyle.css" title="Typ użytkownika" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="360.0" />
-      <JFXButton layoutX="150.0" layoutY="440.0" onAction="#saveButtonOnAction" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #3C58Fa;" text="Zapisz" textFill="#a0a2ab" AnchorPane.leftAnchor="150.0" />
-      <JFXButton layoutX="473.0" layoutY="440.0" onAction="#cancelButtonOnAction" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #3C58Fa;" text="Anuluj" textFill="#a0a2ab" AnchorPane.rightAnchor="153.0" />
-      <Label fx:id="responseLabel" alignment="CENTER" layoutX="50.0" layoutY="498.0" AnchorPane.bottomAnchor="73.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
-      <JFXComboBox fx:id="categoriesComboBox" layoutX="445.0" layoutY="295.0" prefHeight="25.0" prefWidth="300.0" promptText="Kategoria relizatora" style="-jfx-label-float: true;" visible="false" />
-   </children>
+<AnchorPane fx:id="rowContainer" prefHeight="588.0" prefWidth="796.0" stylesheets="@../../../../styles/DialogStyle.css"
+            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="pl.app.controllers.content.adminPanel.dialog.EditUserDialogController">
+    <children>
+        <Label layoutX="51.0" layoutY="39.0" text="Edycja użytkownika" AnchorPane.leftAnchor="25.0"
+               AnchorPane.topAnchor="25.0">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Label>
+        <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="51.0" layoutY="87.0" pickOnBounds="true"
+                   preserveRatio="true" AnchorPane.topAnchor="87.0">
+            <image>
+                <Image url="@../../../../drawable/2x/baseline_account_circle_black_18dp.png"/>
+            </image>
+        </ImageView>
+        <Label fx:id="userNameLabel" layoutX="129.0" layoutY="94.0" text="Label" AnchorPane.topAnchor="94.0">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Label>
+        <JFXTextField fx:id="userNameTextField" disable="true" editable="false" layoutX="446.0" layoutY="95.0"
+                      minWidth="300.0" promptText="Nazwa użytkownika" style="-jfx-label-float: true;"/>
+        <JFXTextField fx:id="phoneNumberTextField" layoutX="51.0" layoutY="167.0" minWidth="300.0"
+                      promptText="Numer telefonu" style="-jfx-label-float: true;" AnchorPane.topAnchor="165.0"/>
+        <JFXTextField fx:id="emailTextField" layoutX="446.0" layoutY="167.0" minWidth="300.0" promptText="Adres email"
+                      style="-jfx-label-float: true;" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="165.0"/>
+        <JFXTextField fx:id="firstNameTextField" layoutX="50.0" layoutY="225.0" minWidth="300.0" promptText="Imię"
+                      AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="230.0">
+            <padding>
+                <Insets top="8.0"/>
+            </padding>
+        </JFXTextField>
+        <JFXTextField fx:id="lastNameTextField" alignment="TOP_LEFT" layoutX="470.0" layoutY="225.0" minWidth="300.0"
+                      promptText="Nazwisko" style="-jfx-label-float: true;" AnchorPane.rightAnchor="50.0"
+                      AnchorPane.topAnchor="230.0"/>
+        <JFXTextField fx:id="peselTextField" layoutX="51.0" layoutY="288.0" minWidth="300.0" promptText="PESEL"
+                      style="-jfx-label-float: true;" AnchorPane.topAnchor="295.0"/>
+        <CheckComboBox fx:id="userTypeCheckComboBox" layoutX="51.0" layoutY="349.0" minWidth="300.0"
+                       showCheckedCount="true" stylesheets="@../../../../styles/CheckComboBoxStyle.css"
+                       title="Typ użytkownika" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="360.0"/>
+        <JFXButton layoutX="150.0" layoutY="440.0" onAction="#saveButtonOnAction" prefHeight="25.0" prefWidth="170.0"
+                   style="-fx-background-color: #3C58Fa;" text="Zapisz" textFill="#a0a2ab"
+                   AnchorPane.leftAnchor="150.0"/>
+        <JFXButton layoutX="473.0" layoutY="440.0" onAction="#cancelButtonOnAction" prefHeight="25.0" prefWidth="170.0"
+                   style="-fx-background-color: #3C58Fa;" text="Anuluj" textFill="#a0a2ab"
+                   AnchorPane.rightAnchor="153.0"/>
+        <Label fx:id="responseLabel" alignment="CENTER" layoutX="50.0" layoutY="498.0" AnchorPane.bottomAnchor="73.0"
+               AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0"/>
+        <JFXComboBox fx:id="categoriesComboBox" layoutX="445.0" layoutY="295.0" prefHeight="25.0" prefWidth="300.0"
+                     promptText="Kategoria relizatora" style="-jfx-label-float: true;" visible="false"/>
+    </children>
 </AnchorPane>

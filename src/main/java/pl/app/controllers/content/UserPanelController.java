@@ -8,7 +8,6 @@ import com.jfoenix.controls.JFXPasswordField;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
@@ -23,9 +22,7 @@ import pl.app.controllers.common.popupDialogs.InformationDialog;
 import pl.app.controllers.common.popupDialogs.WarningDialog;
 import pl.app.core.baseComponent.BaseScreen;
 
-
-import java.awt.Graphics2D;
-import java.awt.Color;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.net.URL;
 import java.util.ResourceBundle;

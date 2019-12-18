@@ -1,27 +1,27 @@
-#menuContainer{
+#menuContainer {
     -fx-background-color: #1D5C78;
 }
 
-#menuHeader{
+#menuHeader {
     -fx-background-color: #1D5C78;
 }
 
-.menuButton{
+.menuButton {
     -fx-background-color: #1D5C78;
 }
 
-VBox{
+VBox {
     -fx-background-color: #1D5C78;
 }
 
-AnchorPane{
+AnchorPane {
     -fx-background-color: #1D5C78;
 }
 
-JFXButton{
+JFXButton {
     -fx-text-fill: WHITE;
     -fx-alignment: center-left;
-    -fx-focus-color:#CF5BFF;
+    -fx-focus-color: #CF5BFF;
     -fx-font-size: 14px;
 }
 

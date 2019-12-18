@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import lombok.AllArgsConstructor;
 import pl.app.api.helpers.common.CallExecutor;
 import pl.app.api.interfaces.ApiResourceInterface;
-import pl.app.api.model.CategoriesModel;
 import pl.app.api.model.ResponseModel;
 import pl.app.api.model.UnitModel;
 import pl.app.api.responseInterfaces.NewUnitResponseListener;

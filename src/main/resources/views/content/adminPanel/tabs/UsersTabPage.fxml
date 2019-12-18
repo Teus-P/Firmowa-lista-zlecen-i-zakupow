@@ -7,37 +7,47 @@
 <?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-
-<AnchorPane prefHeight="300.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.adminPanel.tabs.UsersTabPageController">
-   <children>
-      <JFXButton buttonType="RAISED" layoutX="291.0" layoutY="23.0" onAction="#addNewUserOnAction" style="-fx-background-color: #3C58Fa;" text="Dodaj" textFill="#a0a2ab" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="25.0">
-         <graphic>
-            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../drawable/2x/baseline_person_add_white_18dp.png" />
-               </image>
-            </ImageView>
-         </graphic>
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding></JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="419.0" layoutY="23.0" onAction="#editUserOnAction" style="-fx-background-color: #3C58Fa;" text="Edytuj" textFill="#a0a2ab" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="25.0">
-         <graphic>
-            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../drawable/2x/baseline_edit_white_18dp.png" />
-               </image>
-            </ImageView>
-         </graphic>
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding></JFXButton>
-      <JFXTextField fx:id="userSearchField" layoutX="14.0" layoutY="14.0" promptText="Szukaj" style="-jfx-label-float: true;" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="25.0" />
-      <JFXTreeTableView fx:id="userTable" layoutX="15.0" layoutY="275.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="75.0">
-         <columnResizePolicy>
-            <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-         </columnResizePolicy>
-      </JFXTreeTableView>
-   </children>
+<?import javafx.scene.layout.*?>
+<AnchorPane prefHeight="300.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="pl.app.controllers.content.adminPanel.tabs.UsersTabPageController">
+    <children>
+        <JFXButton buttonType="RAISED" layoutX="291.0" layoutY="23.0" onAction="#addNewUserOnAction"
+                   style="-fx-background-color: #3C58Fa;" text="Dodaj" textFill="#a0a2ab" AnchorPane.rightAnchor="100.0"
+                   AnchorPane.topAnchor="25.0">
+            <graphic>
+                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../../drawable/2x/baseline_person_add_white_18dp.png"/>
+                    </image>
+                </ImageView>
+            </graphic>
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            </padding>
+        </JFXButton>
+        <JFXButton buttonType="RAISED" layoutX="419.0" layoutY="23.0" onAction="#editUserOnAction"
+                   style="-fx-background-color: #3C58Fa;" text="Edytuj" textFill="#a0a2ab" AnchorPane.rightAnchor="10.0"
+                   AnchorPane.topAnchor="25.0">
+            <graphic>
+                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../../drawable/2x/baseline_edit_white_18dp.png"/>
+                    </image>
+                </ImageView>
+            </graphic>
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            </padding>
+        </JFXButton>
+        <JFXTextField fx:id="userSearchField" layoutX="14.0" layoutY="14.0" promptText="Szukaj"
+                      style="-jfx-label-float: true;" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="25.0"/>
+        <JFXTreeTableView fx:id="userTable" layoutX="15.0" layoutY="275.0" tableMenuButtonVisible="true"
+                          AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0"
+                          AnchorPane.topAnchor="75.0">
+            <columnResizePolicy>
+                <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
+        </JFXTreeTableView>
+    </children>
 </AnchorPane>

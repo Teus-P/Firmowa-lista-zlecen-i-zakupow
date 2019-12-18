@@ -19,9 +19,10 @@
     -fx-background-color: #4d4d4d;
 }
 
-.combo-box.center-aligned>.list-cell {
+.combo-box.center-aligned > .list-cell {
     -fx-alignment: center;
 }
-.combo-box>.list-cell {
+
+.combo-box > .list-cell {
     -fx-alignment: LEFT;
 }

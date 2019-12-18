@@ -144,5 +144,4 @@ public class EditProductDialogController extends BaseDialog implements EditProdu
     }
 
 
-
 }

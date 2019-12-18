@@ -2,11 +2,9 @@ package pl.app.controllers.content.adminPanel.dialog;
 
 import com.jfoenix.controls.JFXTextArea;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.DialogEvent;
 import javafx.scene.control.Label;
 import pl.app.api.clients.ApiResourcesClient;
 import pl.app.api.helpers.OrderHelper;

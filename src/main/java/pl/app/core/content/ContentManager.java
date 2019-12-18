@@ -3,8 +3,8 @@ package pl.app.core.content;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
-import pl.app.core.utils.ResourceLoader;
 import pl.app.core.property.ContentProperty;
+import pl.app.core.utils.ResourceLoader;
 
 import java.io.IOException;
 

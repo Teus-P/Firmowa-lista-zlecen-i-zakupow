@@ -3,29 +3,30 @@
 <?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TreeTableView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-
-<AnchorPane fx:id="pageContainer" minHeight="500.0" minWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.OrdersHistoryController">
+<AnchorPane fx:id="pageContainer" minHeight="500.0" minWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.OrdersHistoryController">
     <children>
-      <VBox layoutX="408.0" layoutY="-53.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
-         <children>
-              <Label alignment="CENTER" text="Historia zamówień">
-               <font>
-                  <Font name="System Bold" size="48.0" />
-               </font>
-            </Label>
-            <Label text="Zamówienia zrealizowane i odrzucone">
-               <font>
-                  <Font name="System Italic" size="14.0" />
-               </font></Label>
-         </children>
-      </VBox>
-      <JFXTreeTableView fx:id="orderHistoryTable" layoutX="193.0" layoutY="126.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="150.0">
-         <columnResizePolicy>
-            <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-         </columnResizePolicy>
-      </JFXTreeTableView>
+        <VBox layoutX="408.0" layoutY="-53.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+            <children>
+                <Label alignment="CENTER" text="Historia zamówień">
+                    <font>
+                        <Font name="System Bold" size="48.0"/>
+                    </font>
+                </Label>
+                <Label text="Zamówienia zrealizowane i odrzucone">
+                    <font>
+                        <Font name="System Italic" size="14.0"/>
+                    </font>
+                </Label>
+            </children>
+        </VBox>
+        <JFXTreeTableView fx:id="orderHistoryTable" layoutX="193.0" layoutY="126.0" AnchorPane.bottomAnchor="10.0"
+                          AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="150.0">
+            <columnResizePolicy>
+                <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
+        </JFXTreeTableView>
     </children>
 </AnchorPane>

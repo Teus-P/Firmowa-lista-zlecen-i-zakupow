@@ -1,58 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.CheckComboBox?>
-
-<AnchorPane maxHeight="500.0" maxWidth="700.0" minHeight="500.0" minWidth="700.0" prefHeight="500.0" prefWidth="700.0" stylesheets="@../../../../styles/DialogStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.app.controllers.content.adminPanel.dialog.NewUserDialogController">
+<AnchorPane maxHeight="500.0" maxWidth="700.0" minHeight="500.0" minWidth="700.0" prefHeight="500.0" prefWidth="700.0"
+            stylesheets="@../../../../styles/DialogStyle.css" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="pl.app.controllers.content.adminPanel.dialog.NewUserDialogController">
     <children>
-      <VBox layoutX="407.0" layoutY="37.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
-         <children>
-            <Label text="Nowy użytkownik">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-            <Label text="Proszę wprowadzić dane nowego użytkownika" />
-         </children>
-      </VBox>
-        <JFXTextField fx:id="firstNameTextField" layoutX="50.0" layoutY="79.0" minWidth="250.0" promptText="Imię" style="-jfx-label-float: true;" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="100.0" />
-        <JFXTextField fx:id="lastNameTextField" layoutX="450.0" layoutY="75.0" minWidth="250.0" promptText="Nazwisko" style="-jfx-label-float: true;" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="100.0" />
-        <JFXTextField fx:id="peselTextField" layoutX="50.0" layoutY="150.0" minWidth="250.0" promptText="PESEL" style="-jfx-label-float: true;" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="150.0" />
-        <JFXTextField fx:id="emailTextField" layoutX="50.0" layoutY="225.0" minWidth="250.0" promptText="Adres email" style="-jfx-label-float: true;" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="200.0" />
-        <JFXTextField fx:id="userNameTextField" layoutX="50.0" layoutY="300.0" minWidth="250.0" promptText="Nazwa użytkownika" style="-jfx-label-float: true;" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="250.0" />
-        <JFXTextField fx:id="phoneNumberTextField" layoutX="450.0" layoutY="225.0" minWidth="250.0" promptText="Numer telefonu" style="-jfx-label-float: true;" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="250.0" />
-        <CheckComboBox fx:id="userTypeCheckComboBox" layoutX="200.0" layoutY="375.0" minWidth="250.0" showCheckedCount="true" stylesheets="@../../../../styles/CheckComboBoxStyle.css" title="Typ użytkownika" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="300.0">
+        <VBox layoutX="407.0" layoutY="37.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+            <children>
+                <Label text="Nowy użytkownik">
+                    <font>
+                        <Font name="System Bold" size="18.0"/>
+                    </font>
+                </Label>
+                <Label text="Proszę wprowadzić dane nowego użytkownika"/>
+            </children>
+        </VBox>
+        <JFXTextField fx:id="firstNameTextField" layoutX="50.0" layoutY="79.0" minWidth="250.0" promptText="Imię"
+                      style="-jfx-label-float: true;" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="100.0"/>
+        <JFXTextField fx:id="lastNameTextField" layoutX="450.0" layoutY="75.0" minWidth="250.0" promptText="Nazwisko"
+                      style="-jfx-label-float: true;" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="100.0"/>
+        <JFXTextField fx:id="peselTextField" layoutX="50.0" layoutY="150.0" minWidth="250.0" promptText="PESEL"
+                      style="-jfx-label-float: true;" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="150.0"/>
+        <JFXTextField fx:id="emailTextField" layoutX="50.0" layoutY="225.0" minWidth="250.0" promptText="Adres email"
+                      style="-jfx-label-float: true;" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="200.0"/>
+        <JFXTextField fx:id="userNameTextField" layoutX="50.0" layoutY="300.0" minWidth="250.0"
+                      promptText="Nazwa użytkownika" style="-jfx-label-float: true;" AnchorPane.leftAnchor="50.0"
+                      AnchorPane.topAnchor="250.0"/>
+        <JFXTextField fx:id="phoneNumberTextField" layoutX="450.0" layoutY="225.0" minWidth="250.0"
+                      promptText="Numer telefonu" style="-jfx-label-float: true;" AnchorPane.leftAnchor="400.0"
+                      AnchorPane.topAnchor="250.0"/>
+        <CheckComboBox fx:id="userTypeCheckComboBox" layoutX="200.0" layoutY="375.0" minWidth="250.0"
+                       showCheckedCount="true" stylesheets="@../../../../styles/CheckComboBoxStyle.css"
+                       title="Typ użytkownika" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="300.0">
         </CheckComboBox>
-        <JFXButton id="enterButton" layoutX="50.0" layoutY="376.0" onAction="#addButtonOnAction" prefWidth="100.0" styleClass="enterButton" text="Dodaj" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="150.0">
-         <graphic>
-            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../drawable/2x/baseline_add_white_18dp.png" />
-               </image>
-            </ImageView>
-         </graphic>
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding></JFXButton>
-        <JFXButton layoutX="550.0" layoutY="450.0" onAction="#cancelButtonOnAction" prefWidth="100.0" styleClass="enterButton" text="Anuluj" AnchorPane.bottomAnchor="70.0" AnchorPane.rightAnchor="150.0">
-         <graphic>
-            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../drawable/2x/baseline_cancel_white_18dp.png" />
-               </image>
-            </ImageView>
-         </graphic>
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding></JFXButton>
-        <Label fx:id="responseLabel" alignment="CENTER" layoutX="50.0" layoutY="500.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="500.0" />
+        <JFXButton id="enterButton" layoutX="50.0" layoutY="376.0" onAction="#addButtonOnAction" prefWidth="100.0"
+                   styleClass="enterButton" text="Dodaj" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="150.0">
+            <graphic>
+                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../../drawable/2x/baseline_add_white_18dp.png"/>
+                    </image>
+                </ImageView>
+            </graphic>
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            </padding>
+        </JFXButton>
+        <JFXButton layoutX="550.0" layoutY="450.0" onAction="#cancelButtonOnAction" prefWidth="100.0"
+                   styleClass="enterButton" text="Anuluj" AnchorPane.bottomAnchor="70.0" AnchorPane.rightAnchor="150.0">
+            <graphic>
+                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../../drawable/2x/baseline_cancel_white_18dp.png"/>
+                    </image>
+                </ImageView>
+            </graphic>
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            </padding>
+        </JFXButton>
+        <Label fx:id="responseLabel" alignment="CENTER" layoutX="50.0" layoutY="500.0" AnchorPane.bottomAnchor="25.0"
+               AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="500.0"/>
     </children>
 </AnchorPane>

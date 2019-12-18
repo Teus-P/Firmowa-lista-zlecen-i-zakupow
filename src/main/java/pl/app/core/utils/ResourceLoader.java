@@ -16,7 +16,8 @@ public class ResourceLoader {
 
     private static final ResourceLoader instance = new ResourceLoader();
 
-    private ResourceLoader(){}
+    private ResourceLoader() {
+    }
 
     public static ResourceLoader getInstance() {
         return instance;

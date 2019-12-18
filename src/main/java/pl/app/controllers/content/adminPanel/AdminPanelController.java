@@ -1,11 +1,8 @@
 package pl.app.controllers.content.adminPanel;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.AnchorPane;
-import pl.app.api.clients.ApiResourcesClient;
-import pl.app.api.helpers.*;
 import pl.app.core.baseComponent.BaseScreen;
 import pl.app.core.property.ContentProperty;
 
